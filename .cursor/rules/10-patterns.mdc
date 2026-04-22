@@ -1,0 +1,172 @@
+---
+description: Error handling, Sonner toasts, performance, providers, Supabase real-time
+globs: ["**/*.ts", "**/*.tsx", "providers/**"]
+alwaysApply: false
+---
+
+# Error Handling, Toasts & Performance
+
+## Sonner Toast Patterns
+
+```typescript
+import { toast } from "sonner";
+
+// AI-specific toasts
+toast.loading("الـ AI بيراجع الكود...");
+toast.success("تم الـ review بنجاح ✓");
+toast.error("حصل خطأ — حاول تاني");
+
+// Promise toast — best for async AI calls
+toast.promise(submitReview(code), {
+  loading: "جاري المراجعة...",
+  success: "تم الـ review!",
+  error: "فشل الـ review",
+});
+```
+
+---
+
+## Providers Setup
+
+```typescript
+// providers/app/index.tsx
+"use client";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
+import { Toaster } from "sonner";
+
+export function AppProviders({ children }: { children: React.ReactNode }) {
+  // State
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: { staleTime: 1000 * 60 * 5, retry: 1 },
+        },
+      })
+  );
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+      <Toaster
+        richColors
+        position="top-center"
+        toastOptions={{
+          style: { fontFamily: "var(--font-cairo)" },
+        }}
+      />
+    </QueryClientProvider>
+  );
+}
+```
+
+---
+
+## Performance — Dynamic Imports
+
+Use `next/dynamic` for heavy AI-related components.
+
+```typescript
+import dynamic from "next/dynamic";
+
+// Monaco Editor is heavy — always lazy load
+const MonacoEditor = dynamic(
+  () => import("@/components/features/review/MonacoEditor"),
+  {
+    ssr: false,
+    loading: () => <EditorSkeleton />,
+  }
+);
+
+// Terminal animation on landing — not needed on other pages
+const TerminalAnimation = dynamic(
+  () => import("@/components/features/landing/TerminalAnimation"),
+  { ssr: false }
+);
+```
+
+---
+
+## Stale Time Guidelines
+
+```typescript
+// lib/constants/query.constant.ts
+export const STALE_TIMES = {
+  REAL_TIME: 0,              // Live chat messages
+  SHORT: 1000 * 30,          // 30 seconds
+  STANDARD: 1000 * 60 * 5,  // 5 minutes (default)
+  LONG: 1000 * 60 * 30,     // 30 minutes — knowledge base, sessions list
+  PERMANENT: Infinity,       // User profile, preferences
+} as const;
+```
+
+---
+
+## Supabase Real-time (Chat)
+
+For live chat — use Supabase real-time subscription.
+
+```typescript
+// hooks/chat/use-realtime-messages.ts
+"use client";
+
+import { useEffect, useState } from "react";
+import { createClient } from "@/utils/supabase/client";
+import type { ChatMessage } from "@/lib/types/chat.d";
+
+export function useRealtimeMessages(sessionId: string) {
+  // State
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+
+  // Effects
+  useEffect(() => {
+    const supabase = createClient();
+
+    const channel = supabase
+      .channel(`chat:${sessionId}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "chat_messages",
+          filter: `session_id=eq.${sessionId}`,
+        },
+        (payload) => {
+          setMessages((prev) => [...prev, payload.new as ChatMessage]);
+        }
+      )
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
+  }, [sessionId]);
+
+  return { messages };
+}
+```
+
+---
+
+## Error Utility
+
+```typescript
+// lib/utils/error.util.ts
+export function getErrorMessage(error: unknown): string {
+  if (error instanceof Error) return error.message;
+  if (typeof error === "string") return error;
+  return "حصل خطأ غير متوقع";
+}
+```
+
+---
+
+## Rules Summary
+
+- ✅ All global providers in `providers/app/index.tsx`
+- ✅ Lazy load Monaco Editor and heavy animations
+- ✅ Set `staleTime` explicitly on all queries
+- ✅ Use Supabase real-time for live chat updates
+- ✅ Toast errors always in Arabic
+- ❌ Never `console.log` in committed code

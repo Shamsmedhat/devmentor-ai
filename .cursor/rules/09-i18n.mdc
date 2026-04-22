@@ -1,0 +1,199 @@
+---
+description: next-intl v4 — flat translations, navigation imports, RTL support for Arabic, routing config
+globs: ["i18n/**", "messages/**", "**/*.tsx", "**/*.ts", "proxy.ts"]
+alwaysApply: false
+---
+
+# Internationalization — next-intl v4
+
+## Supported Locales
+
+```typescript
+// i18n/routing.ts
+import { defineRouting } from "next-intl/routing";
+
+export const routing = defineRouting({
+  locales: ["ar", "en"],
+  defaultLocale: "ar",
+});
+
+export type Locale = (typeof routing.locales)[number];
+```
+
+---
+
+## Flat Translations — No Nesting
+
+Translation keys must be one-level flat. Never use nested objects inside translation files.
+
+```json
+// ✅ messages/ar.json — flat, one level
+{
+  "login-title": "تسجيل الدخول",
+  "login-email-label": "البريد الإلكتروني",
+  "login-email-placeholder": "example@email.com",
+  "login-password-label": "كلمة المرور",
+  "login-submit": "دخول",
+  "register-title": "إنشاء حساب",
+  "register-firstname-label": "الاسم الأول"
+}
+
+// ❌ Bad — nested translations
+{
+  "login": {
+    "title": "تسجيل الدخول",
+    "email": { "label": "البريد الإلكتروني" }
+  }
+}
+```
+
+---
+
+## Navigation Imports
+
+Always import navigation utilities from `next-intl` or the project's `i18n/navigation.ts` — never from `next/navigation`. This ensures locale handling works correctly.
+
+```typescript
+// i18n/navigation.ts
+import { createNavigation } from "next-intl/navigation";
+
+import { routing } from "./routing";
+
+export const { Link, redirect, usePathname, useRouter } =
+  createNavigation(routing);
+```
+
+```typescript
+// ✅ Good — locale-aware navigation
+import { useRouter, usePathname, Link } from "@/i18n/navigation";
+
+// ✅ Good — next-intl hooks
+import { useTranslations, useLocale } from "next-intl";
+
+// ❌ Bad — bypasses locale handling
+import { useRouter, usePathname, Link } from "next/navigation";
+```
+
+---
+
+## Using Translations in Server Components
+
+```typescript
+// app/products/page.tsx
+import { getTranslations } from "next-intl/server";
+
+export default async function ProductsPage() {
+  const t = await getTranslations();
+
+  return <h1>{t("products-title")}</h1>;
+}
+```
+
+---
+
+## Using Translations in Client Components
+
+```typescript
+"use client";
+
+import { useTranslations } from "next-intl";
+
+export function AddToCartButton() {
+  // Translation
+  const t = useTranslations();
+
+  return <button>{t("product-add-to-cart")}</button>;
+}
+```
+
+---
+
+## RTL Support
+
+Set `dir` on the root `<html>` element based on locale:
+
+```typescript
+// app/[locale]/layout.tsx
+import { routing } from "@/i18n/routing";
+
+const rtlLocales = ["ar"];
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const dir = rtlLocales.includes(locale) ? "rtl" : "ltr";
+
+  return (
+    <html lang={locale} dir={dir}>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+---
+
+## RTL-aware Tailwind Classes
+
+Use logical CSS properties (`ms-*`, `me-*`, `ps-*`, `pe-*`, `text-start`, `text-end`) in shared components instead of directional properties. This ensures layout works correctly in both LTR and RTL.
+
+```typescript
+// ✅ Good — works in Arabic (RTL) and English (LTR)
+<div className="ms-4 pe-6 text-start">
+<ul className="ps-4">
+
+// ❌ Bad — breaks in RTL
+<div className="ml-4 pr-6 text-left">
+<ul className="pl-4">
+```
+
+---
+
+## Number & Date Formatting
+
+Always use locale-aware formatting with `Intl`:
+
+```typescript
+// ✅ Good
+const formatted = new Intl.NumberFormat(locale, {
+  style: "currency",
+  currency: "EGP",
+}).format(price);
+
+const date = new Intl.DateTimeFormat(locale, {
+  dateStyle: "long",
+}).format(new Date(createdAt));
+```
+
+---
+
+## next-intl proxy
+
+```typescript
+// proxy.ts
+import createproxy from "next-intl/proxy";
+
+import { routing } from "./i18n/routing";
+
+export default createproxy(routing);
+
+export const config = {
+  matcher: ["/((?!api|_next|.*\\..*).*)"],
+};
+```
+
+---
+
+## Rules Summary
+
+- ✅ Flat (one-level) translation keys only — never nested
+- ✅ Import `useRouter`, `usePathname`, `Link` from `@/i18n/navigation` — not `next/navigation`
+- ✅ Use logical Tailwind classes (`ms-*`, `ps-*`, `text-start`) in shared components
+- ✅ Set `dir` on `<html>` from locale
+- ✅ Pass `locale` to all `Intl` number/date formatters
+- ❌ Never use `text-left` / `text-right` in shared/reusable components

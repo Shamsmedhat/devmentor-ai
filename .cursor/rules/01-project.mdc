@@ -1,0 +1,249 @@
+---
+description: Core project architecture, folder structure, naming conventions, TypeScript, and code quality rules
+globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+alwaysApply: true
+---
+
+# Project Architecture Rules
+
+## Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS v4 + shadcn/ui
+- **Auth**: Supabase Auth
+- **Database**: Supabase (PostgreSQL + pgvector)
+- **AI**: Vercel AI SDK + Google Gemini (gemini-2.0-flash)
+- **i18n**: next-intl v4
+- **Forms**: React Hook Form + Zod
+- **Toasts**: Sonner
+- **Package Manager**: Yarn v1 — always use `yarn`, never `npm`
+
+---
+
+## Folder Structure
+
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── chat/
+│   │   │   └── route.ts                  # AI streaming chat
+│   │   └── auth/
+│   │       └── callback/
+│   │           └── route.ts              # Supabase OAuth callback
+│   ├── [locale]/
+│   │   ├── (auth)/
+│   │   │   ├── login/
+│   │   │   └── layout.tsx
+│   │   ├── (dashboard)/
+│   │   │   ├── chat/
+│   │   │   ├── review/
+│   │   │   ├── resources/
+│   │   │   └── layout.tsx
+│   │   ├── layout.tsx
+│   │   └── page.tsx                      # Landing page
+│   ├── layout.tsx                        # Root layout
+│   ├── error.tsx
+│   ├── global-error.tsx
+│   └── not-found.tsx
+│
+├── components/
+│   ├── shared/                           # Small, generic, highly reusable
+│   │   └── <component-name>.tsx
+│   ├── features/                         # Feature-domain components
+│   │   ├── chat/
+│   │   ├── review/
+│   │   ├── landing/
+│   │   └── auth/
+│   ├── skeletons/
+│   │   ├── shared/
+│   │   └── <feature-name>/
+│   ├── layout/
+│   │   ├── app/                          # Navbar, Footer
+│   │   └── dashboard/                   # Sidebar, DashboardHeader
+│   └── ui/                              # shadcn generated — NEVER edit
+│
+├── components/providers/
+│   └── app/
+│       ├── index.tsx
+│       └── components/
+│           └── <provider>.provider.tsx
+│
+├── hooks/
+│   ├── shared/
+│   └── <feature-name>/
+│
+├── lib/
+│   ├── constants/
+│   ├── schemes/                          # Zod schemas
+│   ├── types/
+│   ├── utils/
+│   ├── services/                         # Supabase read operations
+│   ├── actions/                          # Server actions (mutations)
+│   └── ai/
+│       ├── prompts.ts                    # All system prompts
+│       └── tools.ts                     # AI tool definitions
+│
+├── messages/
+│   ├── ar.json
+│   └── en.json
+│
+├── i18n/
+│   ├── request.ts
+│   ├── routing.ts
+│   └── navigation.ts
+│
+├── utils/
+│   └── supabase/
+│       ├── client.ts                     # Browser Supabase client
+│       ├── server.ts                     # Server Supabase client
+│       └── proxy.ts
+│
+└── proxy.ts
+```
+
+---
+
+## Naming Conventions
+
+| Type          | Convention                  | Example                         |
+| ------------- | --------------------------- | ------------------------------- |
+| Route folders | kebab-case                  | `code-review/`, `chat-history/` |
+| Components    | PascalCase                  | `ChatMessage.tsx`               |
+| Hooks         | camelCase + `use` prefix    | `useChatHistory.ts`             |
+| Schemas       | camelCase + `Schema` suffix | `reviewSchema`                  |
+| Services      | camelCase + feature         | `chat.service.ts`               |
+| Actions       | camelCase + `Action` suffix | `saveReviewAction`              |
+| Constants     | SCREAMING_SNAKE_CASE        | `MAX_TOKENS`, `DEFAULT_LOCALE`  |
+| Types files   | camelCase + `.d.ts`         | `chat.d.ts`                     |
+| AI prompts    | SCREAMING_SNAKE_CASE        | `MENTOR_SYSTEM_PROMPT`          |
+
+---
+
+## TypeScript Rules
+
+- Never use `any` — use `unknown` and narrow it, or define a proper type
+- Always derive TypeScript types from Zod schemas using `z.infer<typeof schema>`
+- Type all function return values explicitly
+- Prefer discriminated unions over boolean flags
+
+```typescript
+// ✅ Good — type derived from schema
+export type ReviewFields = z.infer<typeof reviewSchema>;
+
+// ✅ Good — unknown narrowed
+function handleError(error: unknown) {
+  if (error instanceof Error) return error.message;
+  return "Unexpected error";
+}
+
+// ❌ Bad
+const handler = async (data: any) => { ... };
+```
+
+---
+
+## File Exports
+
+- One component per file
+- Named exports for all components
+- Default export only for Next.js pages and layouts
+
+```typescript
+// ✅ components/features/chat/ChatMessage.tsx
+export function ChatMessage({ message }: ChatMessageProps) { ... }
+
+// ✅ app/[locale]/(dashboard)/chat/page.tsx
+export default function ChatPage() { ... }
+```
+
+---
+
+## Code Quality Rules
+
+**Blank lines between sections** — always leave a blank line after `"use client"`, imports, constants, and between logical sections inside a component or function.
+
+**Comments before sections** — add a short, concise comment before each logical section inside a component body.
+
+```typescript
+// ✅ Good
+"use client";
+
+import { useChat } from "ai/react";
+
+export default function ChatPage() {
+  // Translation
+  const t = useTranslations("chat");
+
+  // State
+  const [isStreaming, setIsStreaming] = useState(false);
+
+  // AI Chat hook
+  const { messages, input, handleSubmit } = useChat({ api: "/api/chat" });
+
+  // Functions
+  function handleKeyDown(e: KeyboardEvent) { ... }
+
+  return <></>;
+}
+```
+
+**No commented-out code** — remove all dead code.
+
+**No `console.log`** — use `console.error` only for caught errors.
+
+**No unused imports** — every import must be used.
+
+**Stable keys in lists** — never use array index as key. Use stable IDs.
+
+```typescript
+// ✅ Good
+messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)
+
+// ❌ Bad
+messages.map((msg, index) => <ChatMessage key={index} message={msg} />)
+```
+
+---
+
+## Import Order
+
+```typescript
+// 1. React / Next.js core
+import { useState } from "react";
+
+// 2. Third-party libraries
+import { useChat } from "ai/react";
+import { useTranslations } from "next-intl";
+
+// 3. Internal aliases
+import { Button } from "@/components/ui/button";
+import { MENTOR_SYSTEM_PROMPT } from "@/lib/ai/prompts";
+
+// 4. Relative
+import { MessageBubble } from "./MessageBubble";
+```
+
+---
+
+## Component Internal Order
+
+```typescript
+export default function MyComponent() {
+  // Translation
+  // Navigation
+  // State
+  // Ref
+  // Context
+  // Hooks (AI, auth, custom)
+  // Queries
+  // Mutations
+  // Form & validation
+  // Variables
+  // Functions
+  // Effects
+
+  return <></>;
+}
+```

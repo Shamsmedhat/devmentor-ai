@@ -1,0 +1,191 @@
+---
+description: Next.js 15 App Router — Server vs Client components, data fetching, Route Handlers, Suspense, metadata
+globs: ["app/**/*.tsx", "app/**/*.ts"]
+alwaysApply: false
+---
+
+# Next.js 15 App Router Rules
+
+## Server vs Client Components
+
+Default to Server Components. Add `"use client"` only when the component needs:
+- Event listeners (`onClick`, `onChange`, etc.)
+- Browser APIs (`window`, `localStorage`, etc.)
+- React hooks (`useState`, `useEffect`, `useRef`, etc.)
+- Vercel AI SDK client hooks (`useChat`, `useCompletion`)
+
+**Never place `"use client"` on a page or layout.** Keep pages as Server Components and extract interactive parts into `_components/`.
+
+```typescript
+// ✅ app/[locale]/(dashboard)/chat/page.tsx — Server Component
+export default async function ChatPage() {
+  const supabase = await createClient();
+  const { data: history } = await supabase.from("chat_sessions").select("*");
+  return <ChatArea history={history} />;
+}
+
+// ✅ app/[locale]/(dashboard)/chat/_components/ChatArea.tsx — Client boundary
+"use client";
+
+export function ChatArea({ history }: ChatAreaProps) {
+  const { messages, input, handleSubmit } = useChat({ api: "/api/chat" });
+  // ...
+}
+```
+
+---
+
+## Next.js 15 — Async Params
+
+In Next.js 15, `params` and `searchParams` are now **Promises**. Always `await` them.
+
+```typescript
+// ✅ Next.js 15 — params is async
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string; id: string }>;
+}) {
+  const { locale, id } = await params;
+  return <div>{id}</div>;
+}
+
+// ❌ Next.js 14 style — breaks in Next.js 15
+export default function Page({ params }: { params: { id: string } }) {
+  return <div>{params.id}</div>;
+}
+```
+
+---
+
+## Data Fetching Strategy
+
+**Default: server-side fetching** — call Supabase directly in async Server Components.
+
+**Client-side fetching** — only for real-time updates or data depending on client state. Use Route Handlers + React Query.
+
+**Never use Axios** — use the native `fetch()` API or Supabase client directly.
+
+```typescript
+// ✅ Server Component — direct Supabase call
+import { createClient } from "@/utils/supabase/server";
+
+export async function ChatHistory() {
+  const supabase = await createClient();
+  const { data: sessions } = await supabase
+    .from("chat_sessions")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  return <SessionList sessions={sessions ?? []} />;
+}
+```
+
+---
+
+## AI Route Handlers — Streaming
+
+Use Route Handlers in `app/api/` for all AI calls. Never call AI APIs directly from Server Components.
+
+```typescript
+// app/api/chat/route.ts
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { streamText } from "ai";
+import { createClient } from "@/utils/supabase/server";
+
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY!,
+});
+
+export async function POST(req: Request) {
+  // Auth check
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return new Response("Unauthorized", { status: 401 });
+
+  const { messages } = await req.json();
+
+  const result = streamText({
+    model: google("gemini-2.0-flash"),
+    system: MENTOR_SYSTEM_PROMPT,
+    messages,
+  });
+
+  return result.toDataStreamResponse();
+}
+```
+
+---
+
+## Suspense Strategy
+
+Wrap every async Server Component in `<Suspense>` with a skeleton fallback.
+
+```typescript
+// app/[locale]/(dashboard)/chat/page.tsx
+import { Suspense } from "react";
+import { ChatHistorySkeleton } from "@/components/skeletons/chat/chat-history.skeleton";
+import { ChatHistory } from "./_components/ChatHistory";
+
+export default function ChatPage() {
+  return (
+    <div className="flex h-full">
+      <Suspense fallback={<ChatHistorySkeleton />}>
+        <ChatHistory />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+---
+
+## App Directory Files
+
+| File | Purpose |
+|---|---|
+| `layout.tsx` | Persistent shell |
+| `page.tsx` | Route content |
+| `loading.tsx` | Auto Suspense boundary |
+| `error.tsx` | Catches errors — must be `"use client"` |
+| `not-found.tsx` | Shown when `notFound()` is called |
+| `global-error.tsx` | Root-level catch |
+
+---
+
+## Metadata
+
+Export `metadata` from every page:
+
+```typescript
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "DevMentor AI — مرشدك الذكي",
+  description: "منصة ذكاء اصطناعي لتعليم الـ Frontend للمطورين العرب",
+};
+```
+
+---
+
+## Images
+
+Always use `next/image` — never `<img>`.
+
+```typescript
+import Image from "next/image";
+
+<Image src={user.avatarUrl} alt={user.name} width={40} height={40} className="rounded-full" />
+```
+
+---
+
+## Rules Summary
+
+- ✅ Default to Server Components — `"use client"` only when necessary
+- ✅ Always `await params` and `searchParams` in Next.js 15
+- ✅ AI calls go in `app/api/` Route Handlers — not Server Components
+- ✅ Wrap async Server Components in `<Suspense>`
+- ✅ Use `next/image` — never `<img>`
+- ❌ Never put `"use client"` on pages or layouts
+- ❌ Never call AI APIs from the client directly

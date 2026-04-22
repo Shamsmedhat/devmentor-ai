@@ -1,0 +1,272 @@
+---
+description: AI patterns — Vercel AI SDK, streaming, system prompts, RAG pipeline, token management
+globs: ["app/api/**", "lib/ai/**", "hooks/**", "**/_components/**"]
+alwaysApply: false
+---
+
+# AI Patterns — Vercel AI SDK + Gemini
+
+## Vercel AI SDK — Core Hooks
+
+Always use Vercel AI SDK hooks on the client. Never call AI Route Handlers with raw `fetch`.
+
+```typescript
+// ✅ Chat with streaming
+"use client";
+
+import { useChat } from "ai/react";
+
+export function ChatArea() {
+  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+    api: "/api/chat",
+    onError: (error) => toast.error(error.message),
+  });
+
+  return (
+    <div>
+      {messages.map((msg) => (
+        <MessageBubble key={msg.id} message={msg} />
+      ))}
+      <ChatInput
+        value={input}
+        onChange={handleInputChange}
+        onSubmit={handleSubmit}
+        isLoading={isLoading}
+      />
+    </div>
+  );
+}
+```
+
+---
+
+## System Prompts — Centralized
+
+All system prompts live in `lib/ai/prompts.ts`. Never hardcode system prompts inside route handlers.
+
+```typescript
+// lib/ai/prompts.ts
+
+export const MENTOR_SYSTEM_PROMPT = `أنت مرشد تقني متخصص في تطوير الـ Frontend للمطورين العرب.
+
+قواعد صارمة:
+- أجب دائماً بالعربية إلا لو المستخدم كتب بالإنجليزي
+- لا تختلق معلومات — لو مش متأكد قول "مش متأكد، ابحث في الـ docs"
+- اشرح الكود سطر بسطر لو الموضوع معقد
+- استخدم أمثلة عملية من Next.js وReact
+- أسلوبك: مباشر، واضح، محترم، زي mentor حقيقي
+
+تخصصك: React 19, Next.js 15, TypeScript, Tailwind CSS, Supabase.`;
+
+export const CODE_REVIEW_SYSTEM_PROMPT = `أنت خبير code review متخصص في Next.js وReact للمطورين العرب.
+
+عند مراجعة الكود:
+1. حدد المشكلة بوضوح
+2. اشرح سبب المشكلة
+3. قدم الكود الصح
+4. اذكر best practice مرتبطة
+
+أسلوب الـ review:
+- ابدأ بالإيجابيات
+- المشاكل مرتبة من الأهم للأقل
+- الكود المقترح دايماً يكون TypeScript
+- استخدم Next.js 15 وReact 19 conventions`;
+
+export const RAG_SYSTEM_PROMPT = (context: string) => `أنت مرشد تقني للمطورين العرب.
+
+استخدم المعلومات دي للإجابة:
+---
+${context}
+---
+
+لو المعلومات مش كافية، قول: "المعلومات المتاحة عندي مش بتغطي الموضوع ده بالكامل."
+أجب بالعربية دايماً.`;
+```
+
+---
+
+## Streaming Route Handler Pattern
+
+```typescript
+// app/api/chat/route.ts
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { streamText } from "ai";
+import { createClient } from "@/utils/supabase/server";
+import { MENTOR_SYSTEM_PROMPT } from "@/lib/ai/prompts";
+import { retrieveContext } from "@/lib/ai/rag";
+
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY!,
+});
+
+export async function POST(req: Request) {
+  // Auth check
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return new Response("Unauthorized", { status: 401 });
+
+  const { messages } = await req.json();
+
+  // Get last user message for RAG retrieval
+  const lastMessage = messages[messages.length - 1]?.content ?? "";
+
+  // RAG context retrieval
+  const context = await retrieveContext(lastMessage);
+
+  const result = streamText({
+    model: google("gemini-2.0-flash"),
+    system: context ? RAG_SYSTEM_PROMPT(context) : MENTOR_SYSTEM_PROMPT,
+    messages,
+    maxTokens: 1000,
+    onFinish: async ({ text }) => {
+      // Save to DB after stream completes
+      await supabase.from("chat_messages").insert({
+        user_id: user.id,
+        role: "assistant",
+        content: text,
+      });
+    },
+  });
+
+  return result.toDataStreamResponse();
+}
+```
+
+---
+
+## RAG Pipeline
+
+```typescript
+// lib/ai/rag.ts
+import { createClient } from "@/utils/supabase/server";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { embed } from "ai";
+
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY!,
+});
+
+export async function retrieveContext(query: string): Promise<string> {
+  // Generate embedding for the query
+  const { embedding } = await embed({
+    model: google.textEmbeddingModel("text-embedding-004"),
+    value: query,
+  });
+
+  // Search Supabase pgvector
+  const supabase = await createClient();
+  const { data: chunks } = await supabase.rpc("match_documents", {
+    query_embedding: embedding,
+    match_threshold: 0.7,
+    match_count: 5,
+  });
+
+  if (!chunks?.length) return "";
+
+  return chunks.map((c: { content: string }) => c.content).join("\n\n");
+}
+```
+
+---
+
+## Token Management
+
+Always set `maxTokens` to prevent runaway costs. Tune per use case.
+
+```typescript
+// lib/constants/ai.constant.ts
+export const AI_LIMITS = {
+  CHAT_MAX_TOKENS: 1000,       // Regular chat message
+  REVIEW_MAX_TOKENS: 2000,     // Code review (needs more output)
+  SUMMARY_MAX_TOKENS: 500,     // Short summaries
+  CONTEXT_MAX_CHUNKS: 5,       // Max RAG chunks to inject
+  CONTEXT_MAX_CHARS: 3000,     // Max chars of RAG context
+} as const;
+```
+
+---
+
+## Message Rendering
+
+Always render AI messages as Markdown. Use `react-markdown` with syntax highlighting.
+
+```typescript
+// components/features/chat/MessageBubble.tsx
+"use client";
+
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import type { Message } from "ai";
+
+interface MessageBubbleProps {
+  message: Message;
+}
+
+export function MessageBubble({ message }: MessageBubbleProps) {
+  const isUser = message.role === "user";
+
+  return (
+    <div className={cn("flex gap-3", isUser && "flex-row-reverse")}>
+      <div className={cn(
+        "rounded-lg px-4 py-3 max-w-[80%]",
+        isUser
+          ? "bg-cyan-500/10 border border-cyan-500/20 text-foreground"
+          : "bg-card border border-border"
+      )}>
+        <ReactMarkdown
+          components={{
+            code({ className, children }) {
+              const language = /language-(\w+)/.exec(className || "")?.[1];
+              return language ? (
+                <SyntaxHighlighter language={language}>
+                  {String(children)}
+                </SyntaxHighlighter>
+              ) : (
+                <code className="bg-muted px-1 rounded text-sm">{children}</code>
+              );
+            },
+          }}
+        >
+          {message.content}
+        </ReactMarkdown>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+## Rate Limiting
+
+Every AI route must have rate limiting. Use `upstash/ratelimit` or a simple Supabase counter.
+
+```typescript
+// Simple per-user rate limit check
+export async function checkRateLimit(userId: string): Promise<boolean> {
+  const supabase = await createClient();
+  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+
+  const { count } = await supabase
+    .from("chat_messages")
+    .select("*", { count: "exact", head: true })
+    .eq("user_id", userId)
+    .gte("created_at", oneHourAgo);
+
+  return (count ?? 0) < 50; // 50 messages per hour
+}
+```
+
+---
+
+## Rules Summary
+
+- ✅ All system prompts in `lib/ai/prompts.ts` — never inline
+- ✅ Always set `maxTokens` in every AI call
+- ✅ Always auth-check before AI route handler runs
+- ✅ Use `useChat` / `useCompletion` from `ai/react` — never raw fetch
+- ✅ Render AI messages with Markdown + syntax highlighting
+- ✅ Rate limit every AI endpoint
+- ✅ Save messages to DB in `onFinish` callback
+- ❌ Never expose API keys to the client
+- ❌ Never call Gemini API directly from Client Components

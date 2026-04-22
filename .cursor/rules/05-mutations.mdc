@@ -1,0 +1,93 @@
+---
+description: Mutations — Server Actions with Supabase, no external API layer
+globs: ["lib/actions/**", "hooks/**", "**/_actions/**"]
+alwaysApply: false
+---
+
+# Mutations Flow
+
+Pattern: **Server Action → Custom Hook (useMutation) → Component**
+
+No external REST API. All mutations go directly to Supabase.
+
+---
+
+## Layer 1 — Server Action
+
+```typescript
+// lib/actions/chat.action.ts
+"use server";
+
+import { createClient } from "@/utils/supabase/server";
+import type { SaveMessageFields } from "@/lib/schemes/chat.schema";
+
+export async function saveMessageAction(fields: SaveMessageFields) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
+  const { error } = await supabase.from("chat_messages").insert({
+    ...fields,
+    user_id: user.id,
+  });
+
+  if (error) throw new Error(error.message);
+}
+```
+
+---
+
+## Layer 2 — Custom Hook
+
+```typescript
+// hooks/chat/use-save-message.ts
+"use client";
+
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "sonner";
+import { saveMessageAction } from "@/lib/actions/chat.action";
+import type { SaveMessageFields } from "@/lib/schemes/chat.schema";
+
+export function useSaveMessage() {
+  const { isPending, mutate } = useMutation({
+    mutationFn: (fields: SaveMessageFields) => saveMessageAction(fields),
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
+  return { isPending, saveMessage: mutate };
+}
+```
+
+---
+
+## Query Key Factory
+
+```typescript
+// lib/constants/query-keys.constant.ts
+export const queryKeys = {
+  chat: {
+    sessions: ["chat", "sessions"] as const,
+    session: (id: string) => ["chat", "session", id] as const,
+    messages: (sessionId: string) => ["chat", "messages", sessionId] as const,
+  },
+  review: {
+    all: ["reviews"] as const,
+    byUser: (userId: string) => ["reviews", userId] as const,
+  },
+  knowledge: {
+    all: ["knowledge"] as const,
+  },
+} as const;
+```
+
+---
+
+## Rules Summary
+
+- ✅ Server Actions call Supabase directly — no external API
+- ✅ Always check auth inside Server Actions
+- ✅ Custom hook wraps every mutation — never raw `useMutation` in components
+- ✅ Centralize query keys
+- ❌ Never use Axios or external fetch in Server Actions

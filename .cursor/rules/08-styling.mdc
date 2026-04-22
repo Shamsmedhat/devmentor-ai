@@ -1,0 +1,217 @@
+---
+description: Styling — Tailwind CSS conventions, shadcn/ui usage, cn utility, text casing, no static values
+globs: ["**/*.tsx", "**/*.ts"]
+alwaysApply: false
+---
+
+# Styling — Tailwind CSS + shadcn/ui
+
+## Pixel-Perfect UI
+
+The UI must match the Figma design **exactly**. Every component must be implemented to pixel-perfect accuracy — spacing, font sizes, colors, border radius, shadows, and responsive breakpoints must all match the design spec precisely.
+
+Before marking any UI task complete:
+- Compare side-by-side with the Figma frame
+- Check all breakpoints (`sm`, `md`, `lg`, `xl`)
+- Verify spacing, padding, and margin values match the design tokens
+- Never approximate — if a value doesn't map to a Tailwind class, check the design token or use the exact value from the design system
+
+---
+
+## shadcn/ui Rules
+
+Never manually edit files inside `components/ui/`. They are generated and owned by shadcn.
+
+Add components via CLI only:
+```bash
+npx shadcn@latest add [component-name]
+```
+
+Extend by wrapping — never by modifying the source:
+
+```typescript
+// ✅ Extend by wrapping — components/shared/loading-button.tsx
+import { Loader2 } from "lucide-react";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+
+interface LoadingButtonProps extends ButtonProps {
+  isLoading?: boolean;
+  loadingText?: string;
+}
+
+export function LoadingButton({
+  isLoading,
+  loadingText,
+  children,
+  disabled,
+  ...props
+}: LoadingButtonProps) {
+  return (
+    <Button disabled={isLoading || disabled} {...props}>
+      {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+      {isLoading && loadingText ? loadingText : children}
+    </Button>
+  );
+}
+```
+
+---
+
+## `cn()` Utility
+
+Use `cn()` whenever you need JavaScript logic inside a `className`. Never use string concatenation or template literals for conditional classes.
+
+```typescript
+import { cn } from "@/lib/utils";
+
+// ✅ Good
+<div className={cn(
+  "base-class another-class",
+  isActive && "active-class",
+  variant === "destructive" && "text-destructive border-destructive",
+  className
+)} />
+
+// ❌ Bad
+<div className={`base-class ${isActive ? "active-class" : ""}`} />
+<div className={"base-class " + (isActive ? "active-class" : "")} />
+```
+
+---
+
+## No Static Values in Tailwind
+
+Do not use arbitrary static values like `w-[1280px]`. Always use Tailwind's built-in utility scale. Use the `container` class for consistent page-width layouts.
+
+```typescript
+// ✅ Good
+<div className="container mx-auto px-4">
+<div className="w-full max-w-7xl">
+<div className="h-12 w-12">
+
+// ❌ Bad
+<div className="w-[1280px]">
+<div className="h-[48px] w-[48px]">
+```
+
+---
+
+## Text Casing — Use CSS, Not Content
+
+Control text case with Tailwind utility classes. Never hardcode content in uppercase or lowercase in JSX.
+
+```typescript
+// ✅ Good — easy to change later without editing content
+<h2 className="uppercase tracking-widest">section title</h2>
+<span className="capitalize">category name</span>
+
+// ❌ Bad — hardcoded, hard to update
+<h2>SECTION TITLE</h2>
+<span>Category Name</span>
+```
+
+---
+
+## Dark Mode — Use CSS Variables
+
+All colors must use shadcn's CSS variable tokens, not hardcoded Tailwind color values. This ensures dark mode works automatically.
+
+```typescript
+// ✅ Good — works in both light and dark mode
+<div className="bg-background text-foreground">
+<p className="text-muted-foreground">
+<div className="border border-border bg-card text-card-foreground">
+<span className="text-destructive">
+
+// ❌ Bad — breaks in dark mode
+<div className="bg-white text-gray-900">
+<p className="text-gray-500">
+<div className="border border-gray-200 bg-white">
+```
+
+---
+
+## CVA for Component Variants
+
+Use `class-variance-authority` for components that have multiple visual variants:
+
+```typescript
+// components/shared/status-badge.tsx
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "@/lib/utils";
+
+const badgeVariants = cva(
+  "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold",
+  {
+    variants: {
+      status: {
+        active: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100",
+        inactive: "bg-muted text-muted-foreground",
+        pending: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100",
+        error: "bg-destructive/10 text-destructive",
+      },
+    },
+    defaultVariants: {
+      status: "active",
+    },
+  }
+);
+
+interface StatusBadgeProps extends VariantProps<typeof badgeVariants> {
+  className?: string;
+}
+
+export function StatusBadge({ status, className }: StatusBadgeProps) {
+  return <span className={cn(badgeVariants({ status }), className)} />;
+}
+```
+
+---
+
+## Lucide Icons
+
+```typescript
+// Always set size via className — not the size prop
+import { ShoppingCart, Trash2 } from "lucide-react";
+
+<ShoppingCart className="h-5 w-5" />
+<Trash2 className="h-4 w-4 text-destructive" />
+```
+
+---
+
+## Composability — Accept `className`
+
+Every reusable component should accept and forward a `className` prop:
+
+```typescript
+interface SectionProps extends React.HTMLAttributes<HTMLElement> {
+  title: string;
+}
+
+export function Section({ title, className, children, ...props }: SectionProps) {
+  return (
+    <section className={cn("py-12", className)} {...props}>
+      <h2 className="text-2xl font-bold">{title}</h2>
+      {children}
+    </section>
+  );
+}
+```
+
+---
+
+## Rules Summary
+
+- ✅ UI must be pixel-perfect — match the Figma design exactly at all breakpoints
+- ✅ Use `cn()` for all conditional/merged classNames
+- ✅ Use Tailwind utility scale — no arbitrary static values
+- ✅ Use CSS text casing (`uppercase`, `capitalize`) — not hardcoded content
+- ✅ Use shadcn CSS variable tokens for all colors
+- ✅ Use `container` class for page-width layouts
+- ✅ Accept and forward `className` prop in reusable components
+- ❌ Never edit `components/ui/` files
+- ❌ Never use string concatenation for class names
+- ❌ Never use hardcoded color values like `text-gray-500`

@@ -1,0 +1,220 @@
+---
+description: Supabase Auth — client setup, Google OAuth, session handling, route protection
+globs: ["utils/supabase/**", "proxy.ts", "app/api/auth/**", "**/*.tsx"]
+alwaysApply: false
+---
+
+# Authentication — Supabase Auth
+
+## Supabase Client Setup
+
+Two separate clients: one for the browser, one for the server.
+
+```typescript
+// utils/supabase/client.ts
+import { createBrowserClient } from "@supabase/ssr";
+
+export function createClient() {
+  return createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  );
+}
+```
+
+```typescript
+// utils/supabase/server.ts
+import { createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
+
+export async function createClient() {
+  const cookieStore = await cookies();
+
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            cookieStore.set(name, value, options),
+          );
+        },
+      },
+    },
+  );
+}
+```
+
+---
+
+## Google OAuth
+
+```typescript
+// hooks/auth/use-google-login.ts
+"use client";
+
+import { createClient } from "@/utils/supabase/client";
+
+export function useGoogleLogin() {
+  async function signInWithGoogle() {
+    const supabase = createClient();
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}/api/auth/callback`,
+      },
+    });
+
+    if (error) toast.error(error.message);
+  }
+
+  return { signInWithGoogle };
+}
+```
+
+```typescript
+// app/api/auth/callback/route.ts
+import { createClient } from "@/utils/supabase/server";
+import { NextResponse } from "next/server";
+
+export async function GET(request: Request) {
+  const { searchParams, origin } = new URL(request.url);
+  const code = searchParams.get("code");
+
+  if (code) {
+    const supabase = await createClient();
+    await supabase.auth.exchangeCodeForSession(code);
+  }
+
+  return NextResponse.redirect(`${origin}/ar/chat`);
+}
+```
+
+---
+
+## Getting Session
+
+```typescript
+// Server Components / Route Handlers
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "@/i18n/navigation";
+
+export default async function ProtectedPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) redirect("/login");
+
+  return <div>مرحباً، {user.email}</div>;
+}
+
+// Client Components
+"use client";
+
+import { createClient } from "@/utils/supabase/client";
+import { useEffect, useState } from "react";
+import type { User } from "@supabase/supabase-js";
+
+export function UserMenu() {
+  // State
+  const [user, setUser] = useState<User | null>(null);
+
+  // Effects
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data }) => setUser(data.user));
+  }, []);
+
+  if (!user) return null;
+  return <div>{user.email}</div>;
+}
+```
+
+---
+
+## Sign Out
+
+```typescript
+// lib/actions/auth.action.ts
+"use server";
+
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "@/i18n/navigation";
+
+export async function signOutAction() {
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+  redirect("/login");
+}
+```
+
+---
+
+## proxy — Auth + i18n
+
+```typescript
+// proxy.ts
+import { createServerClient } from "@supabase/ssr";
+import createIntlproxy from "next-intl/proxy";
+import { type NextRequest, NextResponse } from "next/server";
+import { routing } from "./i18n/routing";
+
+const intlproxy = createIntlproxy(routing);
+
+const protectedRoutes = ["/chat", "/review", "/resources"];
+
+export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const isProtected = protectedRoutes.some((r) => pathname.includes(r));
+
+  if (isProtected) {
+    let response = NextResponse.next({ request });
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          getAll: () => request.cookies.getAll(),
+          setAll: (cookiesToSet) => {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              response.cookies.set(name, value, options),
+            );
+          },
+        },
+      },
+    );
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return NextResponse.redirect(new URL("/ar/login", request.url));
+  }
+
+  return intlproxy(request);
+}
+
+export const config = {
+  matcher: [
+    "/((?!api|_next|.*\\..*).*)",
+    "/api/chat/:path*",
+    "/api/review/:path*",
+  ],
+};
+```
+
+---
+
+## Rules Summary
+
+- ✅ Two Supabase clients: `client.ts` (browser) and `server.ts` (server)
+- ✅ Always use `supabase.auth.getUser()` — not `getSession()` (more secure)
+- ✅ Protect routes in `proxy.ts` — not inside pages
+- ✅ OAuth callback route at `app/api/auth/callback/route.ts`
+- ✅ Sign out via Server Action
+- ❌ Never use service role key on the client
+- ❌ Never trust client-side session alone — always verify on server
