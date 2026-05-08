@@ -11,13 +11,13 @@ interface UseCaseCardProps {
 
 function UseCaseCard({ title, description, icon }: UseCaseCardProps) {
   return (
-    <article className="group relative flex flex-col gap-5 rounded-2xl border border-white/8 bg-primary-surface/70 p-8 transition hover:-translate-y-1 hover:border-white/15 hover:shadow-[0_0_40px_rgba(0,212,255,0.05)]">
-      <div className="flex size-12 items-center justify-center rounded-xl border border-secondary/25 bg-secondary/8 text-secondary shadow-[0_0_24px_rgba(0,212,255,0.12)]">
+    <article className="group relative flex flex-col gap-5 rounded-2xl border border-white/8 bg-card/70 p-8 transition hover:-translate-y-1 hover:border-white/15 hover:shadow-[0_0_40px_rgba(0,212,255,0.05)]">
+      <div className="flex size-12 items-center justify-center rounded-xl border border-chart-2/25 bg-chart-2/8 text-chart-2 shadow-[0_0_24px_rgba(0,212,255,0.12)]">
         {icon}
       </div>
       <div className="space-y-2.5">
-        <h3 className="text-xl font-semibold text-primary-text">{title}</h3>
-        <p className="text-sm leading-relaxed text-primary-muted sm:text-[15px]">
+        <h3 className="text-xl font-semibold text-foreground">{title}</h3>
+        <p className="text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
           {description}
         </p>
       </div>
@@ -61,7 +61,7 @@ export async function UseCases() {
   return (
     <section
       id="use-cases"
-      className="relative bg-primary py-24 sm:py-32 lg:py-40"
+      className="relative bg-background py-24 sm:py-32 lg:py-40"
     >
       <div className="container mx-auto px-4 lg:px-8">
         <SectionHeading

@@ -1,29 +1,41 @@
-import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-import { createClient } from "@/utils/supabase/server";
+import { loadAuthenticatedChatSessions } from "@/lib/utils/auth/load-authenticated-chat-sessions";
+import ChatShell from "@/components/features/chat/chat-shell";
 
-import { ChatShell } from "./_components/chat-shell";
-
+// Types
 type Props = {
   params: Promise<{ locale: string }>;
 };
 
-export const metadata: Metadata = {
-  title: "DevMentor AI — Chat",
-  description: "تحدث مع مرشدك الذكي للـ Frontend",
-};
+// Metadata
+export async function generateMetadata(props: Props) {
+  // Translations
+  const { locale } = await props.params;
+  const t = await getTranslations({ locale });
+
+  return {
+    title: t("metadata-title"),
+    description: t("metadata-description"),
+  };
+}
 
 export default async function ChatPage({ params }: Props) {
+  // Params
   const { locale } = await params;
 
   setRequestLocale(locale);
 
-  // Attempt to load the authenticated user — null means guest/unauthenticated
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { user, initialSessions } = await loadAuthenticatedChatSessions({
+    locale,
+    callbackPath: `/${locale}/chat`,
+  });
 
-  return <ChatShell user={user} />;
+  return (
+    <ChatShell
+      user={user}
+      initialSessions={initialSessions}
+      initialSessionIdFromUrl={null}
+    />
+  );
 }

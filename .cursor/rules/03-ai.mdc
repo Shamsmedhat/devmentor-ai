@@ -38,13 +38,7 @@ export function ChatArea() {
 }
 ```
 
----
-
-## System Prompts — Centralized
-
-All system prompts live in `lib/ai/prompts.ts`. Never hardcode system prompts inside route handlers.
-
-```typescript
+<!-- ```typescript
 // lib/ai/prompts.ts
 
 export const MENTOR_SYSTEM_PROMPT = `أنت مرشد تقني متخصص في تطوير الـ Frontend للمطورين العرب.
@@ -72,7 +66,9 @@ export const CODE_REVIEW_SYSTEM_PROMPT = `أنت خبير code review متخصص
 - الكود المقترح دايماً يكون TypeScript
 - استخدم Next.js 15 وReact 19 conventions`;
 
-export const RAG_SYSTEM_PROMPT = (context: string) => `أنت مرشد تقني للمطورين العرب.
+export const RAG_SYSTEM_PROMPT = (
+  context: string,
+) => `أنت مرشد تقني للمطورين العرب.
 
 استخدم المعلومات دي للإجابة:
 ---
@@ -81,6 +77,52 @@ ${context}
 
 لو المعلومات مش كافية، قول: "المعلومات المتاحة عندي مش بتغطي الموضوع ده بالكامل."
 أجب بالعربية دايماً.`;
+``` -->
+
+---
+
+## System Prompts — Centralized
+
+All system prompts live in `lib/ai/prompts.ts`. Never hardcode system prompts inside route handlers.
+
+```typescript
+// lib/ai/prompts.ts
+
+export const MENTOR_SYSTEM_PROMPT = `You are a technical mentor specialized in frontend development.
+
+Rules:
+- Respond in clear, natural English by default.
+- Do not invent facts. If unsure, say so and suggest checking official docs.
+- Explain code step by step when the topic is complex.
+- Use practical examples from Next.js and React.
+- Tone: direct, clear, respectful, and helpful.
+
+Primary stack: React 19, Next.js 15, TypeScript, Tailwind CSS, Supabase.`;
+
+export const CODE_REVIEW_SYSTEM_PROMPT = `You are a code review expert focused on Next.js and React.
+
+When reviewing code:
+1. Identify the issue clearly
+2. Explain why it is a problem
+3. Provide a correct code example
+4. Mention a related best practice
+
+Review style:
+- Start with positives
+- Order issues by severity
+- Keep suggested code in TypeScript
+- Follow Next.js 15 and React 19 conventions`;
+
+export const RAG_SYSTEM_PROMPT = (
+  context: string,
+) => `You are a technical mentor.
+
+Use this information to answer:
+---
+${context}
+---
+
+If this context is not enough, say: "The available context does not fully cover this topic."`;
 ```
 
 ---
@@ -102,7 +144,9 @@ const google = createGoogleGenerativeAI({
 export async function POST(req: Request) {
   // Auth check
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   if (!user) return new Response("Unauthorized", { status: 401 });
 
   const { messages } = await req.json();
@@ -176,11 +220,11 @@ Always set `maxTokens` to prevent runaway costs. Tune per use case.
 ```typescript
 // lib/constants/ai.constant.ts
 export const AI_LIMITS = {
-  CHAT_MAX_TOKENS: 1000,       // Regular chat message
-  REVIEW_MAX_TOKENS: 2000,     // Code review (needs more output)
-  SUMMARY_MAX_TOKENS: 500,     // Short summaries
-  CONTEXT_MAX_CHUNKS: 5,       // Max RAG chunks to inject
-  CONTEXT_MAX_CHARS: 3000,     // Max chars of RAG context
+  CHAT_MAX_TOKENS: 1000, // Regular chat message
+  REVIEW_MAX_TOKENS: 2000, // Code review (needs more output)
+  SUMMARY_MAX_TOKENS: 500, // Short summaries
+  CONTEXT_MAX_CHUNKS: 5, // Max RAG chunks to inject
+  CONTEXT_MAX_CHARS: 3000, // Max chars of RAG context
 } as const;
 ```
 

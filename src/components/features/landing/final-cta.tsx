@@ -7,7 +7,7 @@ export async function FinalCTA() {
   const t = await getTranslations();
 
   return (
-    <section className="relative isolate overflow-hidden bg-primary py-28 sm:py-36 lg:py-44">
+    <section className="relative isolate overflow-hidden bg-background py-28 sm:py-36 lg:py-44">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
@@ -22,10 +22,10 @@ export async function FinalCTA() {
       />
 
       <div className="container mx-auto px-4 text-center lg:px-8">
-        <h2 className="text-balance text-5xl font-semibold tracking-tight text-primary-text sm:text-6xl lg:text-7xl">
+        <h2 className="text-balance text-5xl font-semibold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
           {t("cta-title")}
         </h2>
-        <p className="mx-auto mt-6 max-w-xl text-pretty text-base text-primary-muted sm:text-lg">
+        <p className="mx-auto mt-6 max-w-xl text-pretty text-base text-muted-foreground sm:text-lg">
           {t("cta-subtitle")}
         </p>
 
@@ -33,7 +33,7 @@ export async function FinalCTA() {
           <Button
             asChild
             size="lg"
-            className="animate-glow-pulse h-12 rounded-xl border border-secondary/60 bg-secondary/15 px-8 text-sm font-semibold text-secondary hover:border-secondary hover:bg-secondary/25"
+            className="animate-glow-pulse h-12 rounded-xl border border-chart-2/60 bg-chart-2/15 px-8 text-sm font-semibold text-chart-2 hover:border-chart-2 hover:bg-chart-2/25"
           >
             <Link href="/chat">{t("cta-button")}</Link>
           </Button>

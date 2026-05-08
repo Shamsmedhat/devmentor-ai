@@ -155,7 +155,7 @@ export function TerminalAnimation() {
       />
 
       <motion.div
-        className="primary-badge-float absolute -inset-s-2 top-6 z-20 hidden rounded-full border border-cyan-300/20 bg-primary-surface px-3 py-1 text-[11px] font-medium tracking-wide text-cyan-300/90 backdrop-blur-md sm:block"
+        className="primary-badge-float absolute -inset-s-2 top-6 z-20 hidden rounded-full border border-cyan-300/20 bg-card px-3 py-1 text-[11px] font-medium tracking-wide text-cyan-300/90 backdrop-blur-md sm:block"
         animate={{ y: [0, -8, 0], opacity: [0.9, 1, 0.9] }}
         transition={{
           duration: 3.2,
@@ -167,7 +167,7 @@ export function TerminalAnimation() {
         {t("landing-terminal-badge-next")}
       </motion.div>
       <motion.div
-        className="primary-badge-float absolute -inset-e-4 top-1/4 z-20 hidden rounded-full border border-sky-300/20 bg-primary-surface px-3 py-1 text-[11px] font-medium tracking-wide text-sky-300/90 backdrop-blur-md sm:block"
+        className="primary-badge-float absolute -inset-e-4 top-1/4 z-20 hidden rounded-full border border-sky-300/20 bg-card px-3 py-1 text-[11px] font-medium tracking-wide text-sky-300/90 backdrop-blur-md sm:block"
         animate={{ y: [0, -10, 0], opacity: [0.88, 1, 0.88] }}
         transition={{
           duration: 3.6,
@@ -179,7 +179,7 @@ export function TerminalAnimation() {
         {t("landing-terminal-badge-react")}
       </motion.div>
       <motion.div
-        className="primary-badge-float absolute -bottom-2 inset-s-1/4 z-20 hidden rounded-full border border-emerald-300/20 bg-primary-surface px-3 py-1 text-[11px] font-medium tracking-wide text-emerald-300/85 backdrop-blur-md sm:block"
+        className="primary-badge-float absolute -bottom-2 inset-s-1/4 z-20 hidden rounded-full border border-emerald-300/20 bg-card px-3 py-1 text-[11px] font-medium tracking-wide text-emerald-300/85 backdrop-blur-md sm:block"
         animate={{ y: [0, -7, 0], opacity: [0.86, 1, 0.86] }}
         transition={{
           duration: 3.4,
@@ -207,14 +207,14 @@ export function TerminalAnimation() {
           whileHover={{ scale: 1.012 }}
           transition={{ type: "spring", stiffness: 220, damping: 20 }}
         >
-          <div className="rounded-2xl border border-white/12 bg-primary-surface shadow-[0_24px_80px_rgba(0,0,0,0.55),0_0_0_1px_rgba(34,211,238,0.1)] backdrop-blur-sm">
+          <div className="rounded-2xl border border-white/12 bg-card shadow-[0_24px_80px_rgba(0,0,0,0.55),0_0_0_1px_rgba(34,211,238,0.1)] backdrop-blur-sm">
             <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
               <div className="flex gap-1.5">
                 <span className="size-2.5 rounded-full bg-[#FF5F57]/90" />
                 <span className="size-2.5 rounded-full bg-[#FEBC2E]/90" />
                 <span className="size-2.5 rounded-full bg-[#28C840]/90" />
               </div>
-              <span className="ms-3 font-mono text-[11px] text-primary-muted">
+              <span className="ms-3 font-mono text-[11px] text-muted-foreground">
                 {t("landing-terminal-window-title")}
               </span>
             </div>

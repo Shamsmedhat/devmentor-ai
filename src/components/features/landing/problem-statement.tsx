@@ -24,7 +24,7 @@ function XIcon() {
     <svg
       aria-hidden
       viewBox="0 0 24 24"
-      className="mt-1 size-4 shrink-0 text-primary-muted/60"
+      className="mt-1 size-4 shrink-0 text-muted-foreground/60"
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
@@ -41,7 +41,7 @@ function CheckIcon() {
     <svg
       aria-hidden
       viewBox="0 0 24 24"
-      className="mt-1 size-4 shrink-0 text-secondary"
+      className="mt-1 size-4 shrink-0 text-chart-2"
       fill="none"
       stroke="currentColor"
       strokeWidth="2.4"
@@ -59,7 +59,7 @@ export async function ProblemStatement() {
   return (
     <section
       id="problem"
-      className="relative isolate overflow-hidden bg-primary py-24 sm:py-32 lg:py-40"
+      className="relative isolate overflow-hidden bg-background py-24 sm:py-32 lg:py-40"
     >
       <div aria-hidden className="dot-grid absolute inset-0 -z-10 opacity-60" />
 
@@ -72,12 +72,12 @@ export async function ProblemStatement() {
         <div className="relative mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-6 lg:mt-20 lg:grid-cols-[1fr_auto_1fr] lg:gap-8">
           <div
             className={cn(
-              "group rounded-2xl border border-white/5 bg-primary-surface/70 p-8 opacity-70 backdrop-blur-sm transition",
+              "group rounded-2xl border border-white/5 bg-card/70 p-8 opacity-70 backdrop-blur-sm transition",
               "hover:opacity-90 hover:border-white/10",
             )}
           >
             <header className="flex items-center gap-3 border-b border-white/5 pb-5">
-              <div className="flex size-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-primary-muted">
+              <div className="flex size-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-muted-foreground">
                 <svg
                   aria-hidden
                   viewBox="0 0 24 24"
@@ -92,12 +92,12 @@ export async function ProblemStatement() {
                   <path d="M12 3v3" strokeLinecap="round" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-primary-text/80">
+              <h3 className="text-lg font-semibold text-foreground/80">
                 {t("problem-chatgpt-title")}
               </h3>
             </header>
 
-            <ul className="mt-6 space-y-4 text-sm text-primary-muted sm:text-[15px]">
+            <ul className="mt-6 space-y-4 text-sm text-muted-foreground sm:text-[15px]">
               {CHATGPT_KEYS.map((key) => (
                 <li key={key} className="flex items-start gap-3">
                   <XIcon />
@@ -112,15 +112,15 @@ export async function ProblemStatement() {
             className="relative hidden items-center justify-center lg:flex"
           >
             <div className="absolute inset-y-0 inset-s-1/2 w-px -translate-x-1/2 bg-linear-to-b from-transparent via-white/10 to-transparent" />
-            <span className="relative z-10 rounded-full border border-white/10 bg-primary-surface px-3 py-1.5 text-xs font-semibold tracking-widest text-primary-muted/70">
+            <span className="relative z-10 rounded-full border border-white/10 bg-card px-3 py-1.5 text-xs font-semibold tracking-widest text-muted-foreground/70">
               {t("problem-vs")}
             </span>
           </div>
 
           <div
             className={cn(
-              "group relative rounded-2xl border border-secondary/20 bg-linear-to-b from-secondary/6 to-transparent p-8 backdrop-blur-sm transition",
-              "hover:border-secondary/35",
+              "group relative rounded-2xl border border-chart-2/20 bg-linear-to-b from-chart-2/6 to-transparent p-8 backdrop-blur-sm transition",
+              "hover:border-chart-2/35",
             )}
           >
             <div
@@ -133,7 +133,7 @@ export async function ProblemStatement() {
             />
 
             <header className="flex items-center gap-3 border-b border-white/5 pb-5">
-              <div className="flex size-9 items-center justify-center rounded-lg border border-secondary/30 bg-secondary/10 text-secondary shadow-[0_0_24px_rgba(0,212,255,0.25)]">
+              <div className="flex size-9 items-center justify-center rounded-lg border border-chart-2/30 bg-chart-2/10 text-chart-2 shadow-[0_0_24px_rgba(0,212,255,0.25)]">
                 <svg
                   aria-hidden
                   viewBox="0 0 24 24"
@@ -148,12 +148,12 @@ export async function ProblemStatement() {
                   <path d="m9 12 2 2 4-4" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-primary-text">
+              <h3 className="text-lg font-semibold text-foreground">
                 {t("problem-devmentor-title")}
               </h3>
             </header>
 
-            <ul className="mt-6 space-y-4 text-sm text-primary-text/90 sm:text-[15px]">
+            <ul className="mt-6 space-y-4 text-sm text-foreground/90 sm:text-[15px]">
               {DEVMENTOR_KEYS.map((key) => (
                 <li key={key} className="flex items-start gap-3">
                   <CheckIcon />

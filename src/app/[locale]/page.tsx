@@ -21,7 +21,7 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
-      <main className="min-h-screen bg-primary">
+      <main className="min-h-screen bg-background">
         <Hero />
         <ProblemStatement />
         <HowItWorks />

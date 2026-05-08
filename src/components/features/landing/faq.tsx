@@ -26,22 +26,22 @@ function FAQItem({ question, answer, open, onToggle }: FAQItemProps) {
   return (
     <div
       className={cn(
-        "rounded-xl border border-white/8 bg-primary-surface/60 transition",
-        open && "border-secondary/25 bg-secondary/3",
+        "rounded-xl border border-white/8 bg-card/60 transition",
+        open && "border-chart-2/25 bg-chart-2/3",
       )}
     >
       <button
         type="button"
         aria-expanded={open}
         onClick={onToggle}
-        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-start text-base font-medium text-primary-text transition hover:text-secondary sm:text-[17px]"
+        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-start text-base font-medium text-foreground transition hover:text-chart-2 sm:text-[17px]"
       >
         <span>{question}</span>
         <span
           aria-hidden
           className={cn(
-            "flex size-8 shrink-0 items-center justify-center rounded-full border border-white/10 text-primary-muted transition",
-            open && "rotate-45 border-secondary/40 text-secondary",
+            "flex size-8 shrink-0 items-center justify-center rounded-full border border-white/10 text-muted-foreground transition",
+            open && "rotate-45 border-chart-2/40 text-chart-2",
           )}
         >
           <svg
@@ -63,7 +63,7 @@ function FAQItem({ question, answer, open, onToggle }: FAQItemProps) {
         )}
       >
         <div className="overflow-hidden">
-          <p className="px-6 pb-5 text-sm leading-relaxed text-primary-muted sm:text-[15px]">
+          <p className="px-6 pb-5 text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
             {answer}
           </p>
         </div>
@@ -80,7 +80,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative bg-primary py-24 sm:py-32 lg:py-40">
+    <section id="faq" className="relative bg-background py-24 sm:py-32 lg:py-40">
       <div className="container mx-auto px-4 lg:px-8">
         <SectionHeading title={t("faq-title")} subtitle={t("faq-subtitle")} />
 

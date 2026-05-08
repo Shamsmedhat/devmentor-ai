@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DevMentor AI — Project Walkthrough</title>
+<style>
+  :root {
+    --bg: #0b1020;
+    --panel: #11182f;
+    --ink: #e6edf7;
+    --muted: #93a3c0;
+    --line: #1f2a44;
+    --accent: #22d3ee;
+    --accent-2: #a78bfa;
+
+    --c-mw: #fca5a5;     /* red - middleware */
+    --c-page: #93c5fd;    /* blue - page */
+    --c-srv: #6ee7b7;     /* green - server cmp */
+    --c-cli: #fdba74;     /* peach - client cmp */
+    --c-hook: #86efac;    /* green - hook */
+    --c-act: #d8b4fe;     /* purple - action */
+    --c-api: #f9a8d4;     /* pink - api/service */
+    --c-ai:  #fcd34d;     /* yellow - ai lib */
+    --c-util:#94a3b8;     /* gray - util */
+    --c-i18n:#5eead4;     /* teal */
+    --c-ext: #67e8f9;     /* cyan */
+    --c-rag: #facc15;     /* future yellow */
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#fafaf9; --panel:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code, pre, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  code { background: var(--line); padding: 1px 6px; border-radius: 4px; font-size: 0.9em; }
+  pre { background: var(--line); padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+
+  .layout { display: grid; grid-template-columns: 260px 1fr; gap: 0; min-height: 100vh; }
+  nav.toc { position: sticky; top: 0; align-self: start; height: 100vh; overflow: auto; background: var(--panel); border-right: 1px solid var(--line); padding: 18px 14px; font-size: 13.5px; }
+  nav.toc h2 { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 18px 6px 6px; }
+  nav.toc h2:first-child { margin-top: 0; }
+  nav.toc a { display: block; color: var(--ink); padding: 5px 8px; border-radius: 6px; }
+  nav.toc a:hover { background: var(--line); text-decoration: none; }
+  nav.toc .crumb { color: var(--muted); font-size: 12px; margin-left: 14px; }
+
+  main { padding: 28px 36px 80px; max-width: 1100px; }
+  h1 { font-size: 28px; margin: 0 0 4px; }
+  h1 .sub { display: block; font-size: 14px; color: var(--muted); font-weight: 400; margin-top: 6px; }
+  section { margin-top: 36px; padding-top: 12px; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: none; padding-top: 0; }
+  h2 { font-size: 22px; margin: 0 0 14px; display: flex; align-items: center; gap: 10px; }
+  h2 .tag { display: inline-block; width: 10px; height: 10px; border-radius: 3px; }
+  h3 { font-size: 16px; margin: 22px 0 8px; color: var(--ink); }
+  h4 { font-size: 14px; margin: 14px 0 6px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  p { margin: 6px 0 12px; }
+  ul, ol { margin: 6px 0 12px; padding-left: 22px; }
+  li { margin: 3px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 13.5px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+  td.path { white-space: nowrap; }
+  td.path code { background: transparent; padding: 0; color: var(--accent); font-size: 12.5px; }
+
+  .chip { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #0b1020; margin-right: 6px; }
+  .chip.mw { background: var(--c-mw); }
+  .chip.page { background: var(--c-page); }
+  .chip.srv { background: var(--c-srv); }
+  .chip.cli { background: var(--c-cli); }
+  .chip.hook { background: var(--c-hook); }
+  .chip.act { background: var(--c-act); }
+  .chip.api { background: var(--c-api); }
+  .chip.ai { background: var(--c-ai); }
+  .chip.util { background: var(--c-util); }
+  .chip.i18n { background: var(--c-i18n); }
+  .chip.ext { background: var(--c-ext); }
+  .chip.rag { background: var(--c-rag); }
+
+  .grid { display: grid; gap: 14px; }
+  .grid.two { grid-template-columns: repeat(2, 1fr); }
+  .grid.three { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    nav.toc { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
+    main { padding: 20px; }
+    .grid.two, .grid.three { grid-template-columns: 1fr; }
+  }
+
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .card h3 { margin-top: 0; }
+
+  .flow { counter-reset: step; padding-left: 0; list-style: none; }
+  .flow li { counter-increment: step; padding-left: 38px; position: relative; margin: 10px 0; }
+  .flow li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: 1px;
+    width: 26px; height: 26px; line-height: 26px; text-align: center;
+    border-radius: 50%; background: var(--accent); color: var(--bg); font-weight: 700; font-size: 12px;
+  }
+  .flow li code { background: var(--bg); border: 1px solid var(--line); }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; padding: 10px 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; font-size: 12.5px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+  .callout { border-left: 3px solid var(--accent); background: var(--panel); padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 10px 0; font-size: 14px; }
+  .callout.warn { border-left-color: #f59e0b; }
+  .callout.rag { border-left-color: var(--c-rag); }
+
+  .ascii {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 18px 20px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; line-height: 1.55; white-space: pre; overflow-x: auto; color: var(--ink);
+  }
+
+  details { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; margin: 8px 0; }
+  details + details { margin-top: 6px; }
+  summary { cursor: pointer; font-weight: 600; }
+
+  hr { border: none; border-top: 1px dashed var(--line); margin: 18px 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: 12.5px; }
+
+  @media print {
+    nav.toc { display: none; }
+    .layout { grid-template-columns: 1fr; }
+    main { max-width: none; padding: 0; }
+    a { color: inherit; }
+    section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="toc" aria-label="Table of contents">
+  <h2>Start here</h2>
+  <a href="#tldr">TL;DR — 60-second tour</a>
+  <a href="#legend">Color legend</a>
+  <a href="#stack">Tech stack</a>
+  <a href="#read-order">Recommended read order</a>
+
+  <h2>Architecture</h2>
+  <a href="#bigpic">The big picture</a>
+  <a href="#layout">Layout chain</a>
+  <a href="#routes">All routes at a glance</a>
+
+  <h2>Flows (step by step)</h2>
+  <a href="#flow-boot">App boot &amp; locale</a>
+  <a href="#flow-login">Google OAuth login</a>
+  <a href="#flow-chat">Sending a chat message</a>
+  <a href="#flow-history">Loading chat history</a>
+  <a href="#flow-realtime">Sidebar realtime updates</a>
+
+  <h2>Layer-by-layer</h2>
+  <a href="#l-mw">Middleware</a>
+  <a href="#l-pages">Pages</a>
+  <a href="#l-comp">Client components</a>
+  <a href="#l-hooks">Hooks</a>
+  <a href="#l-actions">Server actions</a>
+  <a href="#l-api">API routes</a>
+  <a href="#l-service">Service layer</a>
+  <a href="#l-ai">AI library</a>
+  <a href="#l-util">Utils &amp; auth</a>
+  <a href="#l-const">Constants</a>
+  <a href="#l-types">Types &amp; DB</a>
+  <a href="#l-i18n">i18n</a>
+  <a href="#l-ext">External services</a>
+
+  <h2>Reference</h2>
+  <a href="#data">Key data shapes</a>
+  <a href="#env">Env &amp; config</a>
+  <a href="#rag">Where RAG plugs in</a>
+  <a href="#cheatsheet">Cheat sheet</a>
+</nav>
+
+<main>
+
+<h1>DevMentor AI — Project Walkthrough
+  <span class="sub">A guided tour of every layer, file, and data flow before you start the RAG feature.</span>
+</h1>
+
+<!-- ============================================== -->
+<section id="tldr">
+<h2><span class="tag" style="background:var(--accent)"></span>TL;DR — 60-second tour</h2>
+<p>
+DevMentor AI is an Arabic-first (with English) Next.js 16 chat app where a developer talks to an AI mentor that streams Markdown/code answers.
+A request enters through <code>src/proxy.ts</code> (next-intl + Supabase auth), lands on a localized App-Router page, the chat UI mounts client components that delegate to two custom hooks (<code>useChat</code> wrapping the Vercel AI SDK, <code>useChatSession</code> managing the session row), and submitting a message hits <code>POST /api/chat</code>, which authenticates → rate-limits → strips unsupported attachments → streams from <strong>Groq Llama 3.3 70B</strong> back through the UIMessage protocol. Sessions and messages are persisted in Supabase Postgres; the sidebar subscribes to a realtime channel to update the list as new sessions appear.
+</p>
+<div class="grid two">
+  <div class="card">
+    <h3>What's running</h3>
+    <ul>
+      <li><strong>Frontend:</strong> Next.js 16 App Router, React 19, Tailwind v4 + shadcn/ui</li>
+      <li><strong>i18n:</strong> next-intl, locales <code>ar</code> (default) + <code>en</code>, prefix always shown</li>
+      <li><strong>Auth + DB:</strong> Supabase (Google OAuth, Postgres, Realtime, RLS)</li>
+      <li><strong>AI:</strong> Vercel AI SDK 6 + <code>@ai-sdk/groq</code> → <code>llama-3.3-70b-versatile</code></li>
+      <li><strong>Streaming:</strong> UIMessage stream protocol (<code>toUIMessageStreamResponse</code> ↔ <code>useChat</code>)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>What you'll touch for RAG</h3>
+    <ul>
+      <li><code>src/app/api/chat/route.ts</code> — inject retrieval before <code>streamText</code></li>
+      <li><code>src/lib/ai/prompts.ts</code> — already has <code>RAG_SYSTEM_PROMPT(context)</code></li>
+      <li>New: <code>src/lib/ai/rag.ts</code>, embedding service, ingest action/route</li>
+      <li>Supabase: enable <code>pgvector</code>, add <code>documents</code> + <code>chunks</code> tables</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<!-- ============================================== -->
+<section id="legend">
+<h2>Color legend</h2>
+<p class="muted small">Used both here and in <code>devmentor-architecture.excalidraw</code>.</p>
+<div class="legend">
+  <span><i class="swatch" style="background:var(--c-mw)"></i> middleware</span>
+  <span><i class="swatch" style="background:var(--c-page)"></i> page (server)</span>
+  <span><i class="swatch" style="background:var(--c-srv)"></i> server component</span>
+  <span><i class="swatch" style="background:var(--c-cli)"></i> client component</span>
+  <span><i class="swatch" style="background:var(--c-hook)"></i> hook</span>
+  <span><i class="swatch" style="background:var(--c-act)"></i> server action</span>
+  <span><i class="swatch" style="background:var(--c-api)"></i> API route / service</span>
+  <span><i class="swatch" style="background:var(--c-ai)"></i> AI library</span>
+  <span><i class="swatch" style="background:var(--c-util)"></i> util / auth</span>
+  <span><i class="swatch" style="background:var(--c-i18n)"></i> i18n</span>
+  <span><i class="swatch" style="background:var(--c-ext)"></i> external service</span>
+  <span><i class="swatch" style="background:var(--c-rag)"></i> RAG (planned)</span>
+</div>
+</section>
+
+<!-- ============================================== -->
+<section id="stack">
+<h2>Tech stack — one row per dependency that matters</h2>
+<table>
+  <thead><tr><th>Concern</th><th>Library</th><th>Where it shows up</th></tr></thead>
+  <tbody>
+    <tr><td>Framework</td><td>next ^16.2.4 (App Router, React Compiler)</td><td>everywhere; <code>middleware.ts</code> renamed to <code>proxy.ts</code></td></tr>
+    <tr><td>UI</td><td>react ^19.2, tailwindcss ^4, shadcn/ui, lucide-react, motion</td><td><code>src/components/**</code></td></tr>
+    <tr><td>i18n</td><td>next-intl</td><td><code>src/i18n/*</code>, <code>messages/{ar,en}.json</code>, layouts</td></tr>
+    <tr><td>Auth + DB</td><td>@supabase/ssr, @supabase/supabase-js</td><td><code>src/utils/supabase/{client,server}.ts</code>, proxy, actions</td></tr>
+    <tr><td>AI</td><td>ai ^6, @ai-sdk/groq, @ai-sdk/react</td><td><code>/api/chat</code>, <code>useChat</code> hook</td></tr>
+    <tr><td>Markdown rendering</td><td>react-markdown, react-syntax-highlighter (Prism oneDark)</td><td><code>message-bubble.tsx</code> → <code>AssistantBubble</code> + <code>CodeBlock</code></td></tr>
+    <tr><td>Notifications</td><td>sonner</td><td><code>auth-toaster.tsx</code>, <code>useGoogleLogin</code></td></tr>
+    <tr><td>Validation</td><td>zod</td><td>action input shapes</td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ============================================== -->
+<section id="read-order">
+<h2>Recommended read order (≈ 30 minutes)</h2>
+<ol>
+  <li><code>src/proxy.ts</code> — request lifecycle entry point.</li>
+  <li><code>src/app/[locale]/layout.tsx</code> — locale, fonts, NextIntlClientProvider.</li>
+  <li><code>src/app/[locale]/(dashboard)/chat/page.tsx</code> — server-side auth + bootstrap.</li>
+  <li><code>src/app/[locale]/(dashboard)/chat/_components/chat-area.tsx</code> — meet <strong>ChatSessionPanel</strong> inside it; this file is where most of the wiring lives.</li>
+  <li><code>src/hooks/chat/use-chat.ts</code> + <code>use-chat-session.ts</code> — the brains of the chat UI.</li>
+  <li><code>src/app/api/chat/route.ts</code> — request → Groq stream.</li>
+  <li><code>src/lib/actions/chat.action.ts</code> + <code>src/lib/services/chat.service.ts</code> — persistence path.</li>
+  <li><code>src/lib/ai/{prompts,rate-limit,normalize-ui-messages-for-model,model-capabilities}.ts</code> — AI plumbing.</li>
+  <li><code>src/lib/auth/safe-next-path.ts</code> + <code>src/app/api/auth/callback/route.ts</code> — OAuth.</li>
+</ol>
+<p class="muted small">If you only have 5 minutes, read items 4 and 6.</p>
+</section>
+
+<!-- ============================================== -->
+<section id="bigpic">
+<h2>The big picture</h2>
+<div class="ascii">
+       ┌─────────────────────────────┐
+       │  Browser hits /ar/* /en/*   │
+       └─────────────┬───────────────┘
+                     ▼
+       ┌─────────────────────────────┐    ╭── reads/refreshes Supabase auth cookies
+       │  src/proxy.ts (middleware)  │────┤   redirects unauthed /chat,/review → /login
+       │   next-intl + Supabase      │    ╰── redirects authed /login → safeNextPath
+       └─────────────┬───────────────┘
+                     ▼
+       ┌─────────────────────────────┐
+       │ app/layout → [locale]/layout│  fonts, dir, NextIntlClientProvider
+       └─────────────┬───────────────┘
+        ┌────────────┼─────────────┐
+        ▼            ▼             ▼
+   /landing     /(auth)/login   /(dashboard)/chat
+   (12 srv      LoginPanel +    ChatShell ─┬─► Sidebar (sessions list, realtime)
+    sections)   GoogleLogin      (client)   ├─► ChatArea ─► ChatSessionPanel
+                Button + Toaster                              ├ useChat (Vercel AI SDK)
+                       │                                      ├ useChatSession
+                       └─► useGoogleLogin                     └ ChatInput · MessageBubble · WelcomeScreen
+                              │
+                              ▼
+                          Supabase OAuth ─► /api/auth/callback ─► safeNextPath
+                                                                    │
+                                                                    ▼
+                                                              /[locale]/chat
+
+   Sending a message:
+   ChatSessionPanel.handleSend
+         │
+         ├─► useChatSession.createSession  ─► createChatSessionAction ─► Supabase INSERT
+         ├─► saveChatMessageAction("user")
+         ├─► updateSessionTitleAction (first message only)
+         └─► useChat.handleSubmit  ──HTTP──►  POST /api/chat
+                                                │
+                                                ├ getUser()  → 401 if missing
+                                                ├ checkChatRateLimit (50 msg/h)
+                                                ├ normalizeUiMessagesForAttachmentCapabilities
+                                                ├ convertToModelMessages
+                                                ├ streamText(groq llama-3.3-70b, MENTOR_SYSTEM_PROMPT)
+                                                └ toUIMessageStreamResponse  ──stream──► useChat
+                                                                                              │
+                                                                                              ▼
+                                                                              onFinish: saveChatMessageAction("assistant")
+                                                                              + onSessionsRefresh (sidebar)
+
+   Sidebar realtime:  Supabase channel "postgres_changes" on chat_sessions  ─► setSessions
+</div>
+</section>
+
+<!-- ============================================== -->
+<section id="layout">
+<h2>Layout chain — what wraps what</h2>
+<table>
+  <thead><tr><th>File</th><th>Type</th><th>Job</th></tr></thead>
+  <tbody>
+    <tr><td class="path"><code>src/app/layout.tsx</code></td><td>server</td><td>Pass-through; imports global CSS.</td></tr>
+    <tr><td class="path"><code>src/app/[locale]/layout.tsx</code></td><td>server</td><td><code>generateStaticParams</code> for ar/en, loads Geist + Cairo, <code>setRequestLocale</code>, <code>getMessages</code>, sets <code>&lt;html dir lang&gt;</code>, wraps in <code>NextIntlClientProvider</code>.</td></tr>
+    <tr><td class="path"><code>src/app/[locale]/(auth)/layout.tsx</code></td><td>server</td><td>Centered card on dark background + dot-grid + <code>&lt;AuthToaster /&gt;</code>.</td></tr>
+    <tr><td class="path"><code>src/app/[locale]/(dashboard)/layout.tsx</code></td><td>server</td><td>Pass-through, reserved for future chrome.</td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ============================================== -->
+<section id="routes">
+<h2>All routes at a glance</h2>
+<table>
+  <thead><tr><th>Path</th><th>Kind</th><th>Auth</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td><code>/[locale]/</code></td><td>page (server)</td><td>—</td><td>Marketing landing; 12 sections, all server components.</td></tr>
+    <tr><td><code>/[locale]/login</code></td><td>page (server)</td><td>blocks if logged-in</td><td>Reads <code>?next=</code>, <code>?error=</code>; renders LoginPanel.</td></tr>
+    <tr><td><code>/[locale]/chat</code></td><td>page (server)</td><td>required</td><td>Calls <code>getUser()</code>, mounts <code>&lt;ChatShell user=… /&gt;</code>.</td></tr>
+    <tr><td><code>/[locale]/review</code></td><td>page</td><td>required</td><td>Reserved for future code-review feature.</td></tr>
+    <tr><td><code>POST /api/chat</code></td><td>route handler</td><td>required (401)</td><td>Streaming Groq response (UIMessage protocol).</td></tr>
+    <tr><td><code>GET /api/auth/callback</code></td><td>route handler</td><td>—</td><td>OAuth exchange; redirects to safe next path.</td></tr>
+  </tbody>
+</table>
+<p class="muted small">Protection lives in <code>src/proxy.ts</code>: <code>root === "chat" || root === "review"</code> requires a user.</p>
+</section>
+
+<!-- ============================================== -->
+<section id="flow-boot">
+<h2>Flow 1 — App boot &amp; locale resolution</h2>
+<ol class="flow">
+  <li>Browser requests <code>/ar/anything</code> (or <code>/en/anything</code>).</li>
+  <li><code>src/proxy.ts</code> runs. <strong>next-intl</strong> middleware sets the locale cookie and may rewrite the URL; <code>localePrefix: "always"</code> means the prefix is required.</li>
+  <li>The same proxy then builds a <strong>server Supabase client</strong> with cookie helpers and calls <code>supabase.auth.getUser()</code> — this both reads the session and refreshes its cookies onto the response.</li>
+  <li>Path is split into segments; <code>root</code> = first non-locale segment. If it is <code>chat</code> or <code>review</code> and there's no user → <code>302 /[locale]/login?next=…</code>. If <code>root</code> is <code>login</code> and there <em>is</em> a user → <code>302 safeNextPath()</code>.</li>
+  <li>Otherwise the response continues into Next.js routing. Root <code>app/layout.tsx</code> (just CSS) → <code>app/[locale]/layout.tsx</code> resolves messages, fonts, <code>html dir/lang</code>, and renders <code>NextIntlClientProvider</code>.</li>
+  <li>The matching route layout (<code>(auth)</code> or <code>(dashboard)</code>) wraps the page, then the page renders.</li>
+</ol>
+<div class="callout"><strong>Why <code>proxy.ts</code> not <code>middleware.ts</code>?</strong> Next.js 16 renamed the file. Same purpose, new name. Your repo's <code>AGENTS.md</code> warns about exactly this kind of drift from older docs.</div>
+</section>
+
+<!-- ============================================== -->
+<section id="flow-login">
+<h2>Flow 2 — Google OAuth login</h2>
+<ol class="flow">
+  <li>User on <code>/[locale]/login</code> clicks the Google button. <code>GoogleLoginButton</code> (client) calls <code>useGoogleLogin({ nextPath })</code>.</li>
+  <li><code>signInWithGoogle()</code> wraps the call in <code>useTransition</code> and asks Supabase for an OAuth URL. The <code>redirectTo</code> is computed as <code>&lt;origin&gt;/api/auth/callback?next=&lt;safe&gt;</code>.</li>
+  <li>Browser leaves to Google, user consents, Google sends them back to <code>/api/auth/callback?code=…&amp;next=…</code>.</li>
+  <li>The callback route reads <code>code</code> and <code>next</code>, derives locale via <code>localeFromNextParam</code>, sanitizes via <code>safeNextPath</code>, builds a server Supabase client, calls <code>exchangeCodeForSession(code)</code>.</li>
+  <li>On success → <code>302</code> to the cleaned <code>next</code>. On error → <code>302</code> to <code>/[locale]/login?error=auth_failed&amp;next=…</code> so the page shows a banner.</li>
+  <li>Now any subsequent request goes through <code>proxy.ts</code>, which sees a user cookie and lets <code>/chat</code> through.</li>
+</ol>
+<div class="callout warn"><strong>Open-redirect guard:</strong> <code>safeNextPath</code> rejects anything that isn't <code>/&lt;locale&gt;/...</code>, contains <code>//</code>, or has a protocol. Always go through it before redirecting on user-supplied <code>next</code>.</div>
+</section>
+
+<!-- ============================================== -->
+<section id="flow-chat">
+<h2>Flow 3 — Sending a chat message (the hot path)</h2>
+<ol class="flow">
+  <li>User types in <code>ChatInput</code> → state lives in <code>useChat</code> (<code>input</code>) and attachments in <code>attachments[]</code>.</li>
+  <li>Pressing Enter (or Send) calls <code>ChatSessionPanel.handleSend</code>. It first ensures a session exists: if <code>sessionId</code> is null, it calls <code>useChatSession.createSession</code>, which invokes <code>createChatSessionAction</code> (server). That INSERTs into <code>chat_sessions</code> and returns the new id.</li>
+  <li>The user message is persisted via <code>saveChatMessageAction({ role: "user", content })</code>. Content is flattened by <code>formatUserMessageForPersistence</code> so attachments are stored as readable references.</li>
+  <li>If this is the first message, <code>updateSessionTitleAction</code> is called with the first 40 characters as the title — this is what shows in the sidebar list.</li>
+  <li><code>useChat.handleSubmit</code> fires. <code>DefaultChatTransport.prepareSendMessagesRequest</code> appends <code>{ sessionId, attachments }</code> to the body, then <code>POST /api/chat</code> goes out with the full UIMessage history.</li>
+  <li>On the server, <code>route.ts</code>:
+    <ul>
+      <li>builds a server Supabase client, calls <code>getUser()</code>; missing user → <code>401</code>.</li>
+      <li><code>checkChatRateLimit(userId)</code> HEAD-counts user messages in the last hour against <code>AI_LIMITS.CHAT_MESSAGES_PER_HOUR</code> (50). Over → <code>429</code> with reset.</li>
+      <li><code>normalizeUiMessagesForAttachmentCapabilities</code> walks each <code>file</code> part. The active model (<code>groq-llama-3.3-70b</code>) flags both <code>image</code> and <code>non-image</code> as <strong>unsupported</strong>, so file parts get dropped and replaced with a textual marker — Groq Llama never sees binary attachments.</li>
+      <li><code>convertToModelMessages</code> turns UIMessages into model messages.</li>
+      <li><code>streamText({ model: groq("llama-3.3-70b-versatile"), system: MENTOR_SYSTEM_PROMPT, messages })</code> opens a Groq stream.</li>
+      <li><code>result.toUIMessageStreamResponse()</code> sends the stream back in the UIMessage protocol.</li>
+    </ul>
+  </li>
+  <li><code>useChat</code> on the browser consumes the stream. As tokens arrive, <code>messages</code> updates and the assistant bubble re-renders incrementally. Code blocks render through <code>react-markdown</code> + Prism (oneDark).</li>
+  <li>When the stream finishes, <code>onFinish(message)</code> fires inside <code>ChatSessionPanel</code>: it persists the assistant turn via <code>saveChatMessageAction({ role: "assistant", content })</code> and notifies the parent so the sidebar can refresh ordering.</li>
+  <li>If the user scrolled up, autoscroll is suppressed (<code>distFromBottom &lt; 120</code> check in <code>handleScroll</code>); otherwise the view sticks to the bottom via <code>scrollIntoView</code>.</li>
+</ol>
+<div class="callout"><strong>Key invariant:</strong> the database is the source of truth for history. <code>useChat</code> holds the live stream state, but reload = fetch <code>chat_messages</code> via <code>getChatMessagesAction</code>, then bump <code>panelKey</code> to remount <code>ChatSessionPanel</code> with fresh <code>initialMessages</code>.</div>
+</section>
+
+<!-- ============================================== -->
+<section id="flow-history">
+<h2>Flow 4 — Loading an existing chat</h2>
+<ol class="flow">
+  <li>User clicks a session in the sidebar → <code>onSessionSelect(sessionId)</code> bubbles up to <code>ChatShell</code>, which sets <code>selectedSessionId</code>.</li>
+  <li><code>ChatArea</code> sees the change in its <code>useEffect</code>, calls <code>getChatMessagesAction({ userId, sessionId })</code>, and stores the result in <code>loadedMessages</code>.</li>
+  <li>It bumps <code>panelKey</code> — React unmounts the previous <code>ChatSessionPanel</code> and mounts a new one with <code>initialMessages={loadedMessages}</code>, which seeds <code>useChat</code>.</li>
+  <li>Two refs (<code>syncingFromCreateRef</code>, <code>skipFirstNullClearRef</code>) guard against double-fetches and an unwanted clear when a brand-new session id is created locally.</li>
+</ol>
+</section>
+
+<!-- ============================================== -->
+<section id="flow-realtime">
+<h2>Flow 5 — Sidebar realtime updates</h2>
+<ol class="flow">
+  <li>On mount, <code>Sidebar</code> queries <code>chat_sessions</code> directly with the browser Supabase client, ordered by <code>updated_at DESC</code>.</li>
+  <li>It then opens a Supabase Realtime channel listening for <code>postgres_changes</code> on <code>chat_sessions</code>, filtered by <code>user_id = auth.uid()</code>.</li>
+  <li>On INSERT/UPDATE/DELETE events, the local sessions array is patched — so a new chat created in another tab appears live.</li>
+  <li>Sign-out: <code>supabase.auth.signOut()</code> → <code>router.push("/")</code>. The proxy will redirect any subsequent protected access back to login.</li>
+</ol>
+</section>
+
+<!-- ============================================== -->
+<section id="l-mw">
+<h2><span class="chip mw">middleware</span>Middleware layer</h2>
+<table>
+  <thead><tr><th>File</th><th>Exports</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="path"><code>src/proxy.ts</code></td>
+      <td><code>default middleware</code>, <code>config.matcher</code></td>
+      <td>Combines next-intl's <code>createMiddleware(routing)</code> with a Supabase server client to refresh cookies and gate protected routes. Matcher excludes <code>api</code>, <code>_next</code>, <code>_vercel</code>, files with extensions.</td>
+    </tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ============================================== -->
+<section id="l-pages">
+<h2><span class="chip page">pages</span>Pages</h2>
+<table>
+  <thead><tr><th>Route</th><th>File</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>/[locale]/</code></td><td class="path"><code>app/[locale]/page.tsx</code></td><td>Composes 12 marketing sections from <code>features/landing/*</code>; uses <code>getTranslations</code>; entirely server-rendered.</td></tr>
+    <tr><td><code>/[locale]/(auth)/login</code></td><td class="path"><code>app/[locale]/(auth)/login/page.tsx</code></td><td>Reads <code>next</code>/<code>error</code> from search params, sanitizes via <code>safeNextPath</code>, renders <code>&lt;LoginPanel /&gt;</code>.</td></tr>
+    <tr><td><code>/[locale]/(dashboard)/chat</code></td><td class="path"><code>app/[locale]/(dashboard)/chat/page.tsx</code></td><td><code>setRequestLocale</code>, builds a server Supabase client, calls <code>getUser()</code>, mounts <code>&lt;ChatShell user=… /&gt;</code>.</td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ============================================== -->
+<section id="l-comp">
+<h2><span class="chip cli">client</span>Client components (chat)</h2>
+<table>
+  <thead><tr><th>Component</th><th>File</th><th>Role</th></tr></thead>
+  <tbody>
+    <tr><td><code>ChatShell</code></td><td class="path"><code>chat/_components/chat-shell.tsx</code></td><td>Top-level layout. Holds <code>sidebarOpen</code>, <code>currentTitle</code>, <code>selectedSessionId</code>. Renders <code>Sidebar</code> + <code>ChatArea</code>; mobile drawer overlay; <code>handleNewChat</code> resets state.</td></tr>
+    <tr><td><code>Sidebar</code></td><td class="path"><code>chat/_components/sidebar.tsx</code></td><td>Lists chat sessions. Browser Supabase fetch + Realtime channel. Renders user card with avatar initials, sign-out button.</td></tr>
+    <tr><td><code>ChatArea</code> (outer)</td><td class="path"><code>chat/_components/chat-area.tsx</code></td><td>Header (sidebar toggle + title + AR/EN locale switcher). Loads messages for the selected session. Hosts the inner panel.</td></tr>
+    <tr><td><code>ChatSessionPanel</code> (inner)</td><td class="path">declared inside <code>chat-area.tsx</code></td><td>Where almost all behavior lives: <code>useChat</code> + <code>useChatSession</code>, <code>handleSend</code>, scroll management, file selection, derived title.</td></tr>
+    <tr><td><code>ChatInput</code></td><td class="path"><code>chat/_components/chat-input.tsx</code></td><td>Auto-resizing textarea. Enter submits, Shift+Enter newline. Multi-file picker, attachment chips, Send/Stop button. <code>forwardRef</code> for focus from <code>WelcomeScreen</code>.</td></tr>
+    <tr><td><code>MessageBubble</code></td><td class="path"><code>chat/_components/message-bubble.tsx</code></td><td>Routes by role to <code>UserBubble</code> / <code>AssistantBubble</code>. Custom MD components, code copy button. Exports <code>TypingIndicator</code>.</td></tr>
+    <tr><td><code>WelcomeScreen</code></td><td class="path"><code>chat/_components/welcome-screen.tsx</code></td><td>Empty-state. Suggestion chips that fill the input and focus it.</td></tr>
+    <tr><td><code>SidebarToggle</code></td><td class="path"><code>chat/_components/sidebar-toggle.tsx</code></td><td>Mobile-only menu button (<code>lg:hidden</code>).</td></tr>
+  </tbody>
+</table>
+
+<h3>Auth UI components</h3>
+<table>
+  <thead><tr><th>Component</th><th>File</th><th>Role</th></tr></thead>
+  <tbody>
+    <tr><td><code>LoginPanel</code></td><td class="path"><code>(auth)/login/_components/login-panel.tsx</code></td><td>Server async component. Logo, copy, optional error banner, Google button, terms.</td></tr>
+    <tr><td><code>GoogleLoginButton</code></td><td class="path"><code>features/auth/google-login-button.tsx</code></td><td>Client. Calls <code>useGoogleLogin</code>; spinner while pending; forces LTR for the inner label.</td></tr>
+    <tr><td><code>AuthToaster</code></td><td class="path"><code>features/auth/auth-toaster.tsx</code></td><td>Wraps sonner <code>&lt;Toaster richColors position="top-center" /&gt;</code>; mounted in the (auth) layout.</td></tr>
+  </tbody>
+</table>
+
+<h3>Landing components</h3>
+<p class="small muted">All in <code>src/components/features/landing/*</code>, all server components, fed by <code>getTranslations</code>: <code>hero</code>, <code>terminal-animation</code>, <code>problem-statement</code>, <code>how-it-works</code>, <code>core-features</code>, <code>supported-tracks</code>, <code>use-cases</code>, <code>live-preview</code>, <code>faq</code>, <code>final-cta</code>, <code>footer</code>, <code>section-heading</code>.</p>
+</section>
+
+<!-- ============================================== -->
+<section id="l-hooks">
+<h2><span class="chip hook">hook</span>Hooks</h2>
+<details open>
+  <summary><code>useChat</code> — <span class="muted">src/hooks/chat/use-chat.ts</span></summary>
+  <ul>
+    <li>Thin wrapper over <code>@ai-sdk/react</code>'s <code>useChat</code> + a <code>DefaultChatTransport</code> pointing at <code>/api/chat</code>.</li>
+    <li><code>prepareSendMessagesRequest</code> appends <code>{ sessionId, attachments }</code> to the request body.</li>
+    <li>Local state: <code>input</code>, <code>attachments[]</code>.</li>
+    <li>Returns: <code>messages</code>, <code>input</code>, <code>setInput</code>, <code>attachments</code>, <code>setAttachments</code>, <code>addAttachmentsFromFileList</code>, <code>removeAttachment</code>, <code>handleSubmit</code>, <code>isLoading</code>, <code>error</code>, <code>stop</code>, <code>sendMessage</code>.</li>
+    <li><code>addAttachmentsFromFileList</code> uses <code>addFilesToChatAttachments</code> from constants and surfaces error codes (<code>too_many | too_large | type_not_allowed</code>) via <code>onError</code>.</li>
+  </ul>
+</details>
+<details>
+  <summary><code>useChatSession</code> — <span class="muted">src/hooks/chat/use-chat-session.ts</span></summary>
+  <ul>
+    <li>Holds <code>sessionId</code>; sync-effects with <code>initialSessionId</code>.</li>
+    <li><code>createSession(title?)</code> calls <code>createChatSessionAction({ userId, title })</code>, sets local state, returns the new id. Throws if no <code>userId</code>.</li>
+  </ul>
+</details>
+<details>
+  <summary><code>useGoogleLogin</code> — <span class="muted">src/hooks/auth/use-google-login.ts</span></summary>
+  <ul>
+    <li><code>isPending</code> via <code>useTransition</code>.</li>
+    <li><code>signInWithGoogle()</code> calls <code>supabase.auth.signInWithOAuth({ provider: "google", options: { redirectTo } })</code> with a callback URL pre-loaded with <code>safeNextPath</code>.</li>
+    <li>On error toasts a translated message via sonner.</li>
+  </ul>
+</details>
+</section>
+
+<!-- ============================================== -->
+<section id="l-actions">
+<h2><span class="chip act">action</span>Server actions</h2>
+<p>All in <code>src/lib/actions/chat.action.ts</code>. Each takes <code>{ userId, … }</code>, builds a server Supabase client, and (for non-create actions) verifies <code>session.user_id === userId</code> before mutating.</p>
+<table>
+  <thead><tr><th>Action</th><th>Effect</th></tr></thead>
+  <tbody>
+    <tr><td><code>getChatSessionsAction</code></td><td>Delegates to <code>chatService.getChatSessions</code>; returns <code>ChatSession[]</code>.</td></tr>
+    <tr><td><code>getChatMessagesAction</code></td><td>Verifies ownership, then <code>chatService.getChatMessages</code>; returns <code>ChatMessage[]</code>.</td></tr>
+    <tr><td><code>createChatSessionAction</code></td><td><code>INSERT INTO chat_sessions (user_id, title)</code>, returns <code>{ id, title }</code>, calls <code>revalidatePath("/[locale]/chat")</code>.</td></tr>
+    <tr><td><code>saveChatMessageAction</code></td><td><code>INSERT INTO chat_messages</code> + <code>UPDATE chat_sessions.updated_at = now()</code>.</td></tr>
+    <tr><td><code>updateSessionTitleAction</code></td><td><code>UPDATE chat_sessions.title</code>.</td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ============================================== -->
+<section id="l-api">
+<h2><span class="chip api">API</span>API routes</h2>
+<table>
+  <thead><tr><th>Route</th><th>File</th><th>Outline</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code>POST /api/chat</code></td>
+      <td class="path"><code>src/app/api/chat/route.ts</code></td>
+      <td>
+        <code>maxDuration = 30</code> →
+        parse <code>{ messages, sessionId }</code> →
+        <code>getUser()</code> (401 if missing) →
+        <code>checkChatRateLimit</code> (429) →
+        <code>normalizeUiMessagesForAttachmentCapabilities</code> →
+        <code>convertToModelMessages</code> →
+        <code>streamText({ model: groq("llama-3.3-70b-versatile"), system: MENTOR_SYSTEM_PROMPT, messages })</code> →
+        <code>toUIMessageStreamResponse()</code>.
+      </td>
+    </tr>
+    <tr>
+      <td><code>GET /api/auth/callback</code></td>
+      <td class="path"><code>src/app/api/auth/callback/route.ts</code></td>
+      <td>
+        Reads <code>code</code> + <code>next</code> →
+        <code>localeFromNextParam</code> + <code>safeNextPath</code> →
+        server Supabase <code>exchangeCodeForSession(code)</code> →
+        success → 302 to <code>next</code>; error → 302 to <code>/[locale]/login?error=auth_failed&amp;next=…</code>.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ============================================== -->
+<section id="l-service">
+<h2><span class="chip api">service</span>Service layer</h2>
+<table>
+  <thead><tr><th>Function</th><th>File</th><th>Query</th></tr></thead>
+  <tbody>
+    <tr><td><code>getChatSessions(supabase, userId)</code></td><td class="path"><code>src/lib/services/chat.service.ts</code></td><td><code>SELECT * FROM chat_sessions WHERE user_id = ? ORDER BY updated_at DESC</code></td></tr>
+    <tr><td><code>getChatMessages(supabase, sessionId)</code></td><td class="path"><code>src/lib/services/chat.service.ts</code></td><td><code>SELECT * FROM chat_messages WHERE session_id = ? ORDER BY created_at ASC</code></td></tr>
+  </tbody>
+</table>
+<p class="muted small">Pure data access — actions create the client and pass it in.</p>
+</section>
+
+<!-- ============================================== -->
+<section id="l-ai">
+<h2><span class="chip ai">AI lib</span>AI library</h2>
+<table>
+  <thead><tr><th>File</th><th>Exports</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="path"><code>src/lib/ai/prompts.ts</code></td>
+      <td><code>MENTOR_SYSTEM_PROMPT</code>, <code>CODE_REVIEW_SYSTEM_PROMPT</code>, <code>RAG_SYSTEM_PROMPT(context)</code></td>
+      <td>Mentor prompt is the active one (English). Arabic variant is commented out. Code-review and RAG prompts are ready for future features.</td>
+    </tr>
+    <tr>
+      <td class="path"><code>src/lib/ai/rate-limit.ts</code></td>
+      <td><code>checkChatRateLimit(userId)</code></td>
+      <td>HEAD-counts user messages in the last hour; compares against <code>AI_LIMITS.CHAT_MESSAGES_PER_HOUR</code> (50). Returns <code>{ ok, remaining, resetMs }</code>.</td>
+    </tr>
+    <tr>
+      <td class="path"><code>src/lib/ai/normalize-ui-messages-for-model.ts</code></td>
+      <td><code>normalizeUiMessagesForAttachmentCapabilities(messages, key)</code></td>
+      <td>Walks file parts. Drops unsupported and appends a textual marker. Used inside <code>/api/chat</code> before <code>convertToModelMessages</code>.</td>
+    </tr>
+    <tr>
+      <td class="path"><code>src/lib/ai/model-capabilities.ts</code></td>
+      <td><code>getModelAttachmentCapabilities(key)</code></td>
+      <td>Lookup map of <code>{ supportsImageInput, supportsNonImageInput }</code>. <code>groq-llama-3.3-70b</code> → both false. <code>gemini-2.5-flash</code> → both true. Default: false (safest).</td>
+    </tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ============================================== -->
+<section id="l-util">
+<h2><span class="chip util">util</span>Utils &amp; auth helpers</h2>
+<table>
+  <thead><tr><th>File</th><th>Exports</th><th>Used by</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="path"><code>src/lib/auth/safe-next-path.ts</code></td>
+      <td><code>safeNextPath</code>, <code>localeFromNextParam</code>, <code>defaultChatPath</code></td>
+      <td><code>proxy.ts</code>, <code>/login</code> page, <code>/api/auth/callback</code>, <code>useGoogleLogin</code></td>
+    </tr>
+    <tr>
+      <td class="path"><code>src/utils/supabase/client.ts</code></td>
+      <td><code>createClient()</code> (browser)</td>
+      <td>Hooks, <code>Sidebar</code> (realtime)</td>
+    </tr>
+    <tr>
+      <td class="path"><code>src/utils/supabase/server.ts</code></td>
+      <td><code>createClient()</code> (server, cookies via <code>next/headers</code>)</td>
+      <td>Pages, route handlers, server actions</td>
+    </tr>
+    <tr>
+      <td class="path"><code>src/lib/utils/chat-attachment.util.ts</code></td>
+      <td><code>formatUserMessageForPersistence</code></td>
+      <td><code>ChatSessionPanel.handleSend</code></td>
+    </tr>
+    <tr>
+      <td class="path"><code>src/lib/utils/date.util.ts</code></td>
+      <td><code>formatRelativeTime(date, locale)</code></td>
+      <td>Sidebar timestamp labels (Arabic-aware)</td>
+    </tr>
+    <tr>
+      <td class="path"><code>src/lib/utils.ts</code></td>
+      <td><code>cn(...)</code> (clsx + twMerge)</td>
+      <td>Everywhere</td>
+    </tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ============================================== -->
+<section id="l-const">
+<h2><span class="chip util">const</span>Constants</h2>
+<table>
+  <thead><tr><th>File</th><th>Exports</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="path"><code>src/lib/constants/ai.constant.ts</code></td>
+      <td>
+        <code>AI_LIMITS.CHAT_MESSAGES_PER_HOUR = 50</code>,
+        <code>CHAT_MODEL_CAPABILITY_KEY = "groq-llama-3.3-70b"</code>,
+        <code>DEFAULT_GOOGLE_CHAT_MODEL = "gemini-2.5-flash"</code> (reserved)
+      </td>
+    </tr>
+    <tr>
+      <td class="path"><code>src/lib/constants/chat-attachments.constant.ts</code></td>
+      <td>
+        <code>MAX_BYTES</code> (400 KB text / 2 MB image),
+        <code>MAX_FILES = 6</code>,
+        <code>addFilesToChatAttachments</code>,
+        <code>isChatAttachmentAllowed</code>,
+        <code>CHAT_ATTACHMENT_ACCEPT</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ============================================== -->
+<section id="l-types">
+<h2><span class="chip util">types</span>Types &amp; database</h2>
+<h3>TypeScript</h3>
+<pre>// src/lib/types/chat.d.ts
+interface ChatSession {
+  id: string;
+  user_id: string;
+  title: string | null;
+  created_at: string;
+  updated_at: string;
+}
+interface ChatMessage {
+  id: string;
+  session_id: string;
+  role: "user" | "assistant" | "system";
+  content: string;
+  created_at: string;
+}
+
+// inline in src/hooks/chat/use-chat.ts
+interface ChatAttachment {
+  id: string;
+  name: string;
+  size: number;
+  mediaType: string;
+  dataUrl: string;
+}</pre>
+<h3>Supabase tables</h3>
+<table>
+  <thead><tr><th>Table</th><th>Columns</th><th>RLS</th></tr></thead>
+  <tbody>
+    <tr><td><code>chat_sessions</code></td><td><code>id, user_id, title, created_at, updated_at</code></td><td><code>user_id = auth.uid()</code></td></tr>
+    <tr><td><code>chat_messages</code></td><td><code>id, session_id, role, content, created_at</code></td><td>via session ownership</td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ============================================== -->
+<section id="l-i18n">
+<h2><span class="chip i18n">i18n</span>Internationalization</h2>
+<table>
+  <thead><tr><th>File</th><th>Role</th></tr></thead>
+  <tbody>
+    <tr><td class="path"><code>src/i18n/routing.ts</code></td><td><code>defineRouting({ locales: ["ar","en"], defaultLocale: "ar", localePrefix: "always" })</code>.</td></tr>
+    <tr><td class="path"><code>src/i18n/navigation.ts</code></td><td><code>createNavigation(routing)</code> → typed <code>Link</code>, <code>redirect</code>, <code>usePathname</code>, <code>useRouter</code>, <code>getPathname</code>.</td></tr>
+    <tr><td class="path"><code>src/i18n/request.ts</code></td><td><code>getRequestConfig</code> resolves the locale via <code>hasLocale</code> and dynamically imports <code>messages/${locale}.json</code>.</td></tr>
+    <tr><td class="path"><code>messages/ar.json</code> + <code>messages/en.json</code></td><td>All UI copy (landing + auth + chat).</td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ============================================== -->
+<section id="l-ext">
+<h2><span class="chip ext">external</span>External services</h2>
+<div class="grid two">
+  <div class="card">
+    <h3>Supabase</h3>
+    <ul>
+      <li><strong>Auth:</strong> Google OAuth (PKCE) → <code>/api/auth/callback</code>; <code>signInWithOAuth</code>, <code>signOut</code>, <code>getUser</code>.</li>
+      <li><strong>Postgres:</strong> <code>chat_sessions</code>, <code>chat_messages</code>; RLS on <code>user_id</code>.</li>
+      <li><strong>Realtime:</strong> <code>postgres_changes</code> channel on <code>chat_sessions</code>, filtered by <code>user_id</code> — sidebar subscribes.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Groq</h3>
+    <ul>
+      <li><code>@ai-sdk/groq</code> → <code>groq("llama-3.3-70b-versatile")</code>.</li>
+      <li>Used by <code>/api/chat</code> via Vercel AI SDK <code>streamText</code>.</li>
+      <li>Returns a streaming UIMessage protocol response that <code>useChat</code> consumes.</li>
+      <li>Gemini provider is wired but commented out in <code>route.ts</code>.</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<!-- ============================================== -->
+<section id="data">
+<h2>Key data shapes (one place to look)</h2>
+<h3>UIMessage (Vercel AI SDK 6)</h3>
+<pre>type UIMessage = {
+  id: string;
+  role: "user" | "assistant" | "system";
+  parts: Array&lt;
+    | { type: "text"; text: string }
+    | { type: "file"; mediaType: string; data: string /* base64 */ ; name?: string }
+    /* + tool, reasoning, etc. */
+  &gt;;
+};</pre>
+<p class="small muted">This is what flows over <code>POST /api/chat</code> and what <code>useChat</code> stores. <code>convertToModelMessages</code> turns it into provider-specific messages before <code>streamText</code>.</p>
+<h3>Persisted message content</h3>
+<p><code>chat_messages.content</code> is a single <code>text</code> column. <code>formatUserMessageForPersistence</code> flattens text + attachment metadata into that string when saving the user turn.</p>
+</section>
+
+<!-- ============================================== -->
+<section id="env">
+<h2>Env &amp; config</h2>
+<table>
+  <thead><tr><th>Var</th><th>Used by</th></tr></thead>
+  <tbody>
+    <tr><td><code>NEXT_PUBLIC_SUPABASE_URL</code></td><td>browser + server Supabase clients, proxy</td></tr>
+    <tr><td><code>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code></td><td>browser + server Supabase clients, proxy</td></tr>
+    <tr><td><code>GROQ_API_KEY</code></td><td><code>@ai-sdk/groq</code> in <code>/api/chat</code></td></tr>
+  </tbody>
+</table>
+<p class="small muted">Add a <code>SUPABASE_SERVICE_ROLE_KEY</code> if/when you add server-only operations that bypass RLS (e.g., RAG ingestion).</p>
+</section>
+
+<!-- ============================================== -->
+<section id="rag">
+<h2><span class="chip rag">planned</span>Where RAG plugs in (your next feature)</h2>
+<div class="callout rag">
+  <strong>Insertion point:</strong> in <code>src/app/api/chat/route.ts</code>, between <code>normalizeUiMessagesForAttachmentCapabilities</code> and <code>streamText</code>. That's where you add: extract latest user query → embed → retrieve top-k chunks → wrap with <code>RAG_SYSTEM_PROMPT(context)</code> as the <code>system</code> message.
+</div>
+<h3>Likely new files</h3>
+<table>
+  <thead><tr><th>File</th><th>Purpose</th></tr></thead>
+  <tbody>
+    <tr><td class="path"><code>src/lib/ai/rag.ts</code></td><td>Retriever: takes a query string, returns top-k chunks (with metadata).</td></tr>
+    <tr><td class="path"><code>src/lib/services/embeddings.service.ts</code></td><td>Generates embeddings (Groq doesn't ship them — likely OpenAI/Voyage/Cohere).</td></tr>
+    <tr><td class="path"><code>src/lib/actions/ingest.action.ts</code></td><td>Server action to ingest pasted text / uploaded files → chunks → embeddings.</td></tr>
+    <tr><td class="path"><code>src/app/api/ingest/route.ts</code> (optional)</td><td>If you want a long-running ingest endpoint instead of an action.</td></tr>
+  </tbody>
+</table>
+<h3>Likely DB additions</h3>
+<table>
+  <thead><tr><th>Table</th><th>Purpose</th></tr></thead>
+  <tbody>
+    <tr><td><code>documents</code></td><td>Source-level metadata (title, owner, status).</td></tr>
+    <tr><td><code>chunks</code></td><td><code>document_id, content, embedding vector(N)</code> — needs <code>pgvector</code> extension on Supabase.</td></tr>
+  </tbody>
+</table>
+<h3>Things to decide before writing code</h3>
+<ul>
+  <li><strong>Embedding provider</strong> (Groq doesn't expose embeddings). OpenAI <code>text-embedding-3-small</code> is cheap and good enough; Voyage is stronger; Cohere has multilingual.</li>
+  <li><strong>Chunking strategy</strong> — by tokens (recommended ~500 with 50 overlap), by markdown sections, by code symbols, etc.</li>
+  <li><strong>Index/search</strong> — <code>pgvector</code> + cosine similarity is the simplest path; HNSW index for performance.</li>
+  <li><strong>Retrieval surface</strong> — automatic on every chat? Tied to a "knowledge base" picker? Per-session or global?</li>
+  <li><strong>RLS</strong> — chunks should be readable only by the document owner unless explicitly shared.</li>
+</ul>
+</section>
+
+<!-- ============================================== -->
+<section id="cheatsheet">
+<h2>Cheat sheet</h2>
+<div class="grid three">
+  <div class="card">
+    <h3>"Where do I add…?"</h3>
+    <ul class="small">
+      <li>A new locale → <code>src/i18n/routing.ts</code> + <code>messages/&lt;locale&gt;.json</code></li>
+      <li>A protected page → put it under <code>/[locale]/(dashboard)/</code> and add the segment name to the protected check in <code>proxy.ts</code></li>
+      <li>A new model → extend <code>model-capabilities.ts</code> + flip <code>CHAT_MODEL_CAPABILITY_KEY</code></li>
+      <li>A new server mutation → action in <code>src/lib/actions/*.action.ts</code>, query in <code>src/lib/services/*.service.ts</code></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>"How is auth enforced?"</h3>
+    <ul class="small">
+      <li><strong>Pages:</strong> <code>proxy.ts</code> redirects unauthed</li>
+      <li><strong>API:</strong> <code>route.ts</code> calls <code>getUser()</code>, returns 401</li>
+      <li><strong>Actions:</strong> verify <code>session.user_id === userId</code></li>
+      <li><strong>DB:</strong> RLS — last line of defense</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>"Why is X happening?"</h3>
+    <ul class="small">
+      <li>Sidebar updates without refresh → <code>postgres_changes</code> Realtime channel.</li>
+      <li>First message sets the title → <code>updateSessionTitleAction</code> with first 40 chars.</li>
+      <li>File upload silently dropped → model capability says no, normalize step replaces with marker.</li>
+      <li>Locale didn't switch → check <code>localePrefix: "always"</code> + <code>switchLocale</code> in <code>chat-area.tsx</code>.</li>
+    </ul>
+  </div>
+</div>
+<hr/>
+<p class="small muted">Companion file: <code>devmentor-architecture.excalidraw</code> — open in <a href="https://excalidraw.com">excalidraw.com</a> for the visual map.</p>
+</section>
+
+</main>
+</div>
+</body>
+</html>

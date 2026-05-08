@@ -1,126 +1,103 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 
-import { generateId } from "ai";
+import { useChat as useAiChat } from "@ai-sdk/react";
+import {
+  DefaultChatTransport,
+  type ChatStatus,
+  type FileUIPart,
+  type UIMessage,
+} from "ai";
 
-export interface ChatMessage {
-  id: string;
-  role: "user" | "assistant";
-  content: string;
-}
+import type { ChatMessage as PersistedChatMessage } from "@/lib/types/chat";
+
+/** Minimal seed shape — what DB-loaded chat history provides. */
+type InitialMessage = Pick<PersistedChatMessage, "id" | "role" | "content">;
 
 interface UseChatOptions {
   api?: string;
+  initialMessages?: InitialMessage[];
   onError?: (error: Error) => void;
-  onFinish?: () => void;
+  /** Fires when streaming completes (not on abort/error). */
+  onFinish?: (message: { id: string; content: string }) => void;
 }
 
 interface UseChatReturn {
-  messages: ChatMessage[];
-  input: string;
+  messages: UIMessage[];
+  status: ChatStatus;
   isLoading: boolean;
-  setInput: (value: string) => void;
-  handleInputChange: (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
-  ) => void;
-  handleSubmit: (e?: React.FormEvent) => void;
+  stop: () => void;
+  sendMessage: (msg: {
+    text: string;
+    files: FileUIPart[];
+  }) => Promise<void>;
+}
+
+/** Concatenate a UIMessage's text parts into a single string for persistence/title. */
+export function getMessageContent(message: UIMessage): string {
+  if (!Array.isArray(message.parts)) return "";
+  return message.parts
+    .map((part) => (part.type === "text" ? part.text : ""))
+    .join("");
 }
 
 export function useChat({
-  api = "/api/chat",
+  api: _api = "/api/chat",
+  initialMessages,
   onError,
   onFinish,
 }: UseChatOptions = {}): UseChatReturn {
-  // State
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const {
+    messages,
+    status,
+    stop,
+    sendMessage: aiSendMessage,
+  } = useAiChat({
+    transport: new DefaultChatTransport({ api: _api }),
+    messages: (initialMessages ?? []).map((message) => ({
+      id: message.id,
+      role: message.role,
+      parts: [{ type: "text" as const, text: message.content }],
+    })),
+    onError,
+    onFinish: onFinish
+      ? ({ message, isAbort, isError }) => {
+          if (isAbort || isError) return;
+          const content = getMessageContent(message);
+          if (!content.trim()) return;
+          onFinish({ id: message.id, content });
+        }
+      : undefined,
+  });
 
-  // Functions
-  function handleInputChange(
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
-  ) {
-    setInput(e.target.value);
-  }
-
-  const handleSubmit = useCallback(
-    async (e?: React.FormEvent) => {
-      e?.preventDefault();
-
-      const trimmed = input.trim();
-      if (!trimmed || isLoading) return;
-
-      const userMessage: ChatMessage = {
-        id: generateId(),
-        role: "user",
-        content: trimmed,
-      };
-
-      const nextMessages = [...messages, userMessage];
-      const assistantId = generateId();
-
-      setMessages([
-        ...nextMessages,
-        { id: assistantId, role: "assistant", content: "" },
-      ]);
-      setInput("");
-      setIsLoading(true);
-
+  const sendMessage = useCallback(
+    async (msg: { text: string; files: FileUIPart[] }): Promise<void> => {
+      const trimmed = msg.text.trim();
       try {
-        const response = await fetch(api, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            messages: nextMessages.map(({ role, content }) => ({
-              role,
-              content,
-            })),
-          }),
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-
-        if (!response.body) {
-          throw new Error("No response body");
-        }
-
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let accumulated = "";
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          accumulated += decoder.decode(value, { stream: true });
-
-          setMessages((prev) =>
-            prev.map((msg) =>
-              msg.id === assistantId ? { ...msg, content: accumulated } : msg,
-            ),
+        if (msg.files.length > 0) {
+          await aiSendMessage(
+            trimmed
+              ? { text: trimmed, files: msg.files }
+              : { files: msg.files },
           );
+        } else {
+          await aiSendMessage({ text: trimmed });
         }
-
-        onFinish?.();
       } catch (err) {
-        setMessages((prev) => prev.filter((msg) => msg.id !== assistantId));
-        onError?.(err instanceof Error ? err : new Error("Unknown error"));
-      } finally {
-        setIsLoading(false);
+        // AbortError surfaces when stop() interrupts the stream — expected.
+        if (err instanceof Error && err.name === "AbortError") return;
+        throw err;
       }
     },
-    [input, messages, isLoading, api, onError, onFinish],
+    [aiSendMessage],
   );
 
   return {
     messages,
-    input,
-    isLoading,
-    setInput,
-    handleInputChange,
-    handleSubmit,
+    status,
+    isLoading: status === "submitted" || status === "streaming",
+    stop,
+    sendMessage,
   };
 }

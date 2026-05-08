@@ -11,10 +11,10 @@ interface TrackCardProps {
 
 function TrackCard({ name, version, description, logo }: TrackCardProps) {
   return (
-    <article className="group relative flex h-full flex-col gap-4 rounded-xl border border-white/8 bg-primary-surface p-6  transition hover:-translate-y-0.5 hover:border-white/20">
+    <article className="group relative flex h-full flex-col gap-4 rounded-xl border border-white/8 bg-card p-6  transition hover:-translate-y-0.5 hover:border-white/20">
       <span
         aria-hidden
-        className="absolute inset-e-4 top-4 text-primary-muted/40 transition group-hover:text-secondary group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        className="absolute inset-e-4 top-4 text-muted-foreground/40 transition group-hover:text-chart-2 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
       >
         <svg
           viewBox="0 0 24 24"
@@ -29,18 +29,18 @@ function TrackCard({ name, version, description, logo }: TrackCardProps) {
         </svg>
       </span>
 
-      <div className="flex size-10 items-center justify-center rounded-lg border border-white/10 bg-white/3 text-primary-text">
+      <div className="flex size-10 items-center justify-center rounded-lg border border-white/10 bg-white/3 text-foreground">
         {logo}
       </div>
 
       <div className="space-y-1">
         <div className="flex items-center gap-2">
-          <h3 className="text-base font-semibold text-primary-text">{name}</h3>
-          <span className="rounded-md border border-white/10 bg-white/4 px-1.5 py-0.5 font-mono text-[10px] text-primary-muted/80">
+          <h3 className="text-base font-semibold text-foreground">{name}</h3>
+          <span className="rounded-md border border-white/10 bg-white/4 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground/80">
             {version}
           </span>
         </div>
-        <p className="text-xs leading-relaxed text-primary-muted/70 sm:text-[13px]">
+        <p className="text-xs leading-relaxed text-muted-foreground/70 sm:text-[13px]">
           {description}
         </p>
       </div>
@@ -331,7 +331,7 @@ export async function SupportedTracks() {
   return (
     <section
       id="tracks"
-      className="relative isolate overflow-hidden bg-primary py-24 sm:py-32 lg:py-40"
+      className="relative isolate overflow-hidden bg-background py-24 sm:py-32 lg:py-40"
     >
       <div
         aria-hidden
@@ -351,7 +351,7 @@ export async function SupportedTracks() {
 
         <div className="relative mx-auto mt-20 max-w-5xl">
           <div className="flex items-center justify-center">
-            <div className="border-2 border-white/10 rounded-xl p-4 outline outline-primary-accent-soft">
+            <div className="border-2 border-white/10 rounded-xl p-4 outline outline-chart-2">
               <Image
                 src="/brain.svg"
                 alt="Chip"

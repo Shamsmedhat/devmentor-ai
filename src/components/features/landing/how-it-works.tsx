@@ -69,7 +69,7 @@ interface StepCardProps {
 
 function StepCard({ number, title, description, icon }: StepCardProps) {
   return (
-    <article className="group relative flex-1 overflow-hidden rounded-2xl border border-white/8 bg-primary-surface/70 p-8 backdrop-blur-sm transition hover:-translate-y-1 hover:border-white/15 hover:shadow-[0_0_40px_rgba(0,212,255,0.06)]">
+    <article className="group relative flex-1 overflow-hidden rounded-2xl border border-white/8 bg-card/70 p-8 backdrop-blur-sm transition hover:-translate-y-1 hover:border-white/15 hover:shadow-[0_0_40px_rgba(0,212,255,0.06)]">
       <span
         aria-hidden
         className="pointer-events-none absolute -bottom-4 inset-e-4 select-none text-8xl font-bold leading-none text-white/4"
@@ -77,14 +77,14 @@ function StepCard({ number, title, description, icon }: StepCardProps) {
         {number}
       </span>
 
-      <div className="relative flex size-12 items-center justify-center rounded-xl border border-secondary/25 bg-secondary/10 text-secondary shadow-[0_0_24px_rgba(0,212,255,0.15)]">
+      <div className="relative flex size-12 items-center justify-center rounded-xl border border-chart-2/25 bg-chart-2/10 text-chart-2 shadow-[0_0_24px_rgba(0,212,255,0.15)]">
         {icon}
       </div>
 
-      <h3 className="relative mt-6 text-xl font-semibold text-primary-text">
+      <h3 className="relative mt-6 text-xl font-semibold text-foreground">
         {title}
       </h3>
-      <p className="relative mt-3 text-sm leading-relaxed text-primary-muted sm:text-[15px]">
+      <p className="relative mt-3 text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
         {description}
       </p>
     </article>
@@ -99,7 +99,7 @@ function Connector() {
     >
       <div className="absolute inset-0 border-t border-dashed border-white/10" />
       <span
-        className="absolute inset-s-1/2 top-1/2 block size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-secondary shadow-[0_0_16px_rgba(0,212,255,0.8)]"
+        className="absolute inset-s-1/2 top-1/2 block size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-chart-2 shadow-[0_0_16px_rgba(0,212,255,0.8)]"
         style={{ animation: "glow-pulse 2.4s ease-in-out infinite" }}
       />
     </div>
@@ -112,7 +112,7 @@ export async function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="relative bg-primary py-24 sm:py-32 lg:py-40"
+      className="relative bg-background py-24 sm:py-32 lg:py-40"
     >
       <div className="container mx-auto px-4 lg:px-8">
         <SectionHeading title={t("how-title")} subtitle={t("how-subtitle")} />

@@ -128,9 +128,23 @@
   "chat-suggestion-1": "Review my code and tell me what's wrong",
   "chat-suggestion-2": "What's the difference between useEffect and useLayoutEffect?",
   "chat-suggestion-3": "How do I implement authentication in Next.js 15?",
+  "chat-ai-disclaimer": "This mentor is AI. Double-check important details and code before you rely on it.",
   "chat-placeholder": "Ask a question or paste your code here...",
   "chat-send-hint": "Enter to send • Shift+Enter for new line",
-  "chat-attach-soon": "Coming soon — file uploads",
+  "chat-stop-generating": "Stop generating",
+  "chat-attach-file": "Attach file",
+  "chat-attachment-remove": "Remove attachment",
+  "chat-attachments-only": "Attached files",
+  "chat-attachment-error-too-many": "Too many files (max 6 per message)",
+  "chat-attachment-error-too-large": "Each file must be under the limit (code/text 400 KB, images 2 MB)",
+  "chat-attachment-error-type": "That file type is not supported — use text, code, or image files",
   "chat-error": "An error occurred — please try again",
-  "chat-logout": "Sign out"
+  "chat-logout": "Sign out",
+
+  "login-title": "Sign in",
+  "login-subtitle": "Continue with Google to reach your mentor in chat.",
+  "login-google-button": "Continue with Google",
+  "login-terms": "By signing in you agree to the terms and acceptable use policy.",
+  "login-auth-error": "We could not verify your account — please try again.",
+  "login-back-home": "Back to home"
 }

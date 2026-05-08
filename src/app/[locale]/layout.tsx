@@ -8,6 +8,7 @@ import {
 } from "next-intl/server";
 
 import { routing } from "@/i18n/routing";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,17 +61,17 @@ export default async function LocaleLayout({ children, params }: Props) {
       lang={locale}
       dir={dir}
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} h-full scroll-smooth antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} dark h-full scroll-smooth antialiased`}
     >
       <body
-        className="min-h-full bg-primary font-sans  selection:bg-secondary/30 selection:text-primary-bg"
+        className="min-h-full bg-background font-sans selection:bg-chart-2/25 selection:text-foreground"
         style={{
           fontFamily:
             "var(--font-cairo), var(--font-geist-sans), ui-sans-serif, system-ui",
         }}
       >
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <TooltipProvider>{children}</TooltipProvider>
         </NextIntlClientProvider>
       </body>
     </html>
