@@ -4,7 +4,7 @@ import { PDFParse } from "pdf-parse";
 
 import { chunkText } from "@/lib/ai/chunking";
 import { getServerSupabaseAuth } from "@/lib/utils/auth/auth-server-guard";
-import { createAdminClient } from "@/utils/supabase/admin";
+import { createAdminClient } from "@/lib/utils/supabase/admin";
 import { generateEmbeddingsMany } from "../ai/embeddings";
 
 export async function processPdfFileAction(formData: FormData) {
@@ -66,7 +66,9 @@ export async function processPdfFileAction(formData: FormData) {
     const adminSupabase = createAdminClient();
 
     // bulk insert the records into the knowledge_base table
-    const { error } = await adminSupabase.from("knowledge_base").insert(records);
+    const { error } = await adminSupabase
+      .from("knowledge_base")
+      .insert(records);
     // if there is an error, return an error
     if (error) {
       return {

@@ -3,7 +3,7 @@
 import { useCallback, useState } from "react";
 import { toast } from "sonner";
 
-import { createClient } from "@/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/client";
 import { useTranslations } from "next-intl";
 
 type Options = {

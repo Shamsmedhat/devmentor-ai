@@ -1,6 +1,6 @@
 import type { User } from "@supabase/supabase-js";
 
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/lib/utils/supabase/server";
 
 export type ServerSupabaseAuth = {
   supabase: Awaited<ReturnType<typeof createClient>>;
@@ -44,4 +44,3 @@ export async function requireServerAuthUser(): Promise<AuthenticatedServerSupaba
 
   return { supabase, user };
 }
-

@@ -1,5 +1,5 @@
 import type { ChatMessage, ChatSession } from "@/lib/types/chat";
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/lib/utils/supabase/server";
 
 export async function getChatSessions(userId: string): Promise<ChatSession[]> {
   const supabase = await createClient();

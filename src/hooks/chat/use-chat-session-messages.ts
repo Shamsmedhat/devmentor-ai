@@ -27,8 +27,8 @@ export function useChatSessionMessages(selectedSessionId: string | null): {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [loadedMessages, setLoadedMessages] = useState<ChatMessage[]>([]);
   const [panelKey, setPanelKey] = useState(0);
-  const [isLoadingSessionMessages, setIsLoadingSessionMessages] = useState(
-    () => Boolean(selectedSessionId),
+  const [isLoadingSessionMessages, setIsLoadingSessionMessages] = useState(() =>
+    Boolean(selectedSessionId),
   );
 
   // Refs

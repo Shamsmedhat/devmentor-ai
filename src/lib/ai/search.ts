@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/utils/supabase/admin";
+import { createAdminClient } from "@/lib/utils/supabase/admin";
 import { generateEmbeddings } from "./embeddings";
 
 export type KnowledgeBaseSearchResult = {

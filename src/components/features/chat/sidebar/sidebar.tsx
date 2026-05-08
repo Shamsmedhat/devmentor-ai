@@ -24,22 +24,18 @@ import { useRouter } from "@/i18n/navigation";
 import type { ChatSession } from "@/lib/types/chat";
 import { cn } from "@/lib/utils";
 import { formatRelativeTime } from "@/lib/utils/date.util";
-import { createClient } from "@/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/client";
+
+import { useChatUi } from "../chat-ui.context";
 
 interface ChatSidebarProps {
   user: User;
   initialSessions: ChatSession[];
-  activeSessionId: string | null;
-  onSessionSelect: (session: ChatSession) => void;
-  onNewChat: () => void;
 }
 
 export function ChatSidebar({
   user,
   initialSessions,
-  activeSessionId,
-  onSessionSelect,
-  onNewChat,
 }: ChatSidebarProps) {
   // Translation
   const t = useTranslations();
@@ -47,6 +43,9 @@ export function ChatSidebar({
 
   // Navigation
   const router = useRouter();
+
+  // Hooks
+  const { selectedSessionId, selectSession, startNewChat } = useChatUi();
 
   // Sidebar (mobile sheet close)
   const { setOpenMobile } = useSidebar();
@@ -103,12 +102,15 @@ export function ChatSidebar({
   }
 
   function handleSessionSelect(session: ChatSession) {
-    onSessionSelect(session);
+    selectSession(session);
     setOpenMobile(false);
   }
 
   return (
-    <Sidebar collapsible="offcanvas" className="border-sidebar-border">
+    <Sidebar
+      collapsible="offcanvas"
+      className="border-sidebar-border"
+    >
       {/* Brand */}
       <SidebarHeader className="border-b border-sidebar-border px-2 py-4">
         <div className="flex items-center gap-2.5 px-2">
@@ -128,7 +130,7 @@ export function ChatSidebar({
                 <SidebarMenuButton
                   type="button"
                   onClick={() => {
-                    onNewChat();
+                    startNewChat();
                     setOpenMobile(false);
                   }}
                   className={cn(
@@ -167,7 +169,7 @@ export function ChatSidebar({
             ) : (
               <SidebarMenu className="chat-scrollbar max-h-full overflow-y-auto">
                 {sessions.map((session) => {
-                  const isActive = session.id === activeSessionId;
+                  const isActive = session.id === selectedSessionId;
                   return (
                     <SidebarMenuItem key={session.id}>
                       <SidebarMenuButton

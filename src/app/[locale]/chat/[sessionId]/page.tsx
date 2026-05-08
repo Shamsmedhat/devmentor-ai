@@ -1,16 +1,14 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { redirect } from "next/navigation";
 
 import { loadAuthenticatedChatSessions } from "@/lib/utils/auth/load-authenticated-chat-sessions";
-import ChatShell from "@/components/features/chat/chat-shell";
+import ChatSession from "@/components/features/chat/chat-session";
 
-// Types
 type Props = {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; sessionId: string }>;
 };
 
-// Metadata
-export async function generateMetadata(props: Props) {
-  // Translations
+export async function generateMetadata(props: Omit<Props, "children">) {
   const { locale } = await props.params;
   const t = await getTranslations({ locale });
 
@@ -20,22 +18,28 @@ export async function generateMetadata(props: Props) {
   };
 }
 
-export default async function ChatPage({ params }: Props) {
+export default async function ChatSessionPage({ params }: Props) {
   // Params
-  const { locale } = await params;
+  const { locale, sessionId } = await params;
 
   setRequestLocale(locale);
 
   const { user, initialSessions } = await loadAuthenticatedChatSessions({
     locale,
-    callbackPath: `/${locale}/chat`,
+    callbackPath: `/${locale}/chat/${sessionId}`,
   });
 
+  const isOwned = initialSessions.some((s) => s.id === sessionId);
+
+  if (!isOwned) {
+    redirect(`/${locale}/chat`);
+  }
+
   return (
-    <ChatShell
+    <ChatSession
       user={user}
       initialSessions={initialSessions}
-      initialSessionIdFromUrl={null}
+      initialSessionId={sessionId}
     />
   );
 }
