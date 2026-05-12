@@ -1,4 +1,4 @@
-import type { ChatMessage, ChatSession } from "@/lib/types/chat";
+import type { ChatSession, ChatUIMessage } from "@/lib/types/chat";
 import { createClient } from "@/lib/utils/supabase/server";
 
 export async function getChatSessions(userId: string): Promise<ChatSession[]> {
@@ -16,7 +16,7 @@ export async function getChatSessions(userId: string): Promise<ChatSession[]> {
 
 export async function getChatMessages(
   sessionId: string,
-): Promise<ChatMessage[]> {
+): Promise<ChatUIMessage[]> {
   const supabase = await createClient();
 
   const { data, error } = await supabase
@@ -26,5 +26,5 @@ export async function getChatMessages(
     .order("created_at", { ascending: true });
 
   if (error) throw new Error(error.message);
-  return (data ?? []) as ChatMessage[];
+  return (data ?? []) as ChatUIMessage[];
 }

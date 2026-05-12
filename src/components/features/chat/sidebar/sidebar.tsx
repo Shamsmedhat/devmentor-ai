@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import { useLocale, useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 import { Code2, LogOut, MessageSquare, Plus } from "lucide-react";
 
 import type { User } from "@supabase/supabase-js";
@@ -20,79 +19,41 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { useChatSessionsRealtime } from "@/hooks/chat/use-chat-sessions-realtime";
 import { useRouter } from "@/i18n/navigation";
 import type { ChatSession } from "@/lib/types/chat";
 import { cn } from "@/lib/utils";
+import { buildChatPath } from "@/lib/utils/chat/chat-navigation.util";
 import { formatRelativeTime } from "@/lib/utils/date.util";
 import { createClient } from "@/lib/utils/supabase/client";
-
-import { useChatUi } from "../chat-ui.context";
 
 interface ChatSidebarProps {
   user: User;
   initialSessions: ChatSession[];
 }
 
-export function ChatSidebar({
-  user,
-  initialSessions,
-}: ChatSidebarProps) {
+export function ChatSidebar({ user, initialSessions }: ChatSidebarProps) {
   // Translation
   const t = useTranslations();
   const locale = useLocale();
+  const isArabic = locale === "ar";
 
   // Navigation
   const router = useRouter();
-
-  // Hooks
-  const { selectedSessionId, selectSession, startNewChat } = useChatUi();
+  const params = useParams();
+  const selectedSessionId =
+    (params?.sessionId as string[] | undefined)?.[0] ?? null;
 
   // Sidebar (mobile sheet close)
   const { setOpenMobile } = useSidebar();
-
-  // State
-  const [sessions, setSessions] = useState<ChatSession[]>(initialSessions);
 
   // Variables
   const userId = user.id;
   const initials = (user.email ?? "DM").slice(0, 2).toUpperCase();
   const displayName = user.email ?? "Account";
 
-  // Effects
-  useEffect(() => {
-    const supabase = createClient();
-
-    const channel = supabase
-      .channel(`chat_sessions_changes:${userId}`)
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "chat_sessions",
-          filter: `user_id=eq.${userId}`,
-        },
-        () => {
-          void supabase
-            .from("chat_sessions")
-            .select("*")
-            .eq("user_id", userId)
-            .order("updated_at", { ascending: false })
-            .then(({ data, error }) => {
-              if (error) {
-                console.error(error.message);
-                return;
-              }
-              setSessions(data ?? []);
-            });
-        },
-      )
-      .subscribe();
-
-    return () => {
-      void supabase.removeChannel(channel);
-    };
-  }, [userId]);
+  // Hooks
+  const sessions = useChatSessionsRealtime(userId, initialSessions);
 
   // Functions
   async function handleSignOut() {
@@ -102,7 +63,12 @@ export function ChatSidebar({
   }
 
   function handleSessionSelect(session: ChatSession) {
-    selectSession(session);
+    router.push(buildChatPath(session.id));
+    setOpenMobile(false);
+  }
+
+  function handleNewChat() {
+    router.push(buildChatPath(null));
     setOpenMobile(false);
   }
 
@@ -110,6 +76,7 @@ export function ChatSidebar({
     <Sidebar
       collapsible="offcanvas"
       className="border-sidebar-border"
+      side={isArabic ? "right" : "left"}
     >
       {/* Brand */}
       <SidebarHeader className="border-b border-sidebar-border px-2 py-4">
@@ -129,10 +96,7 @@ export function ChatSidebar({
               <SidebarMenuItem>
                 <SidebarMenuButton
                   type="button"
-                  onClick={() => {
-                    startNewChat();
-                    setOpenMobile(false);
-                  }}
+                  onClick={handleNewChat}
                   className={cn(
                     "h-auto min-h-8 border border-chart-2/20 bg-chart-2/8 py-2 text-chart-2",
                     "hover:bg-chart-2/15 hover:text-chart-2",

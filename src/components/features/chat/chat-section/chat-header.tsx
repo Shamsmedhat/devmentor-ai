@@ -1,10 +1,26 @@
+"use client";
+
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
-import { useChatUi } from "../chat-ui.context";
+import { GlobeIcon } from "lucide-react";
+import { useChatUi } from "../../../../lib/context/chat-ui.context";
+import { cn } from "@/lib/utils";
 
-export default function ChatHeader() {
+export default function ChatHeader({
+  setIsArabicResponse,
+  isArabicResponse,
+}: {
+  setIsArabicResponse: (isArabicResponse: boolean) => void;
+  isArabicResponse: boolean;
+}) {
   // Translation
   const locale = useLocale();
   const router = useRouter();
@@ -27,23 +43,66 @@ export default function ChatHeader() {
         </span>
       </div>
 
-      {/* Locale switch */}
-      <div className="flex items-center rounded-full border border-white/6 bg-white/4 p-0.5">
-        {(["ar", "en"] as const).map((loc) => (
-          <button
-            key={loc}
-            type="button"
-            onClick={() => switchLocale(loc)}
+      <div className="flex items-center gap-2">
+        {/* Response language switch */}
+        <button
+          type="button"
+          onClick={() => setIsArabicResponse(!isArabicResponse)}
+          aria-label="Toggle response language"
+          aria-pressed={isArabicResponse}
+          className="inline-flex items-center rounded-full border border-border bg-muted p-0.5 text-xs"
+        >
+          <span
             className={cn(
-              "rounded-full px-3 py-1 text-xs transition-all",
-              locale === loc
-                ? "bg-white/8 text-white"
-                : "text-white/40 hover:text-white/70",
+              isArabicResponse
+                ? "bg-background text-foreground"
+                : "text-muted-foreground",
+              "rounded-full px-2.5 py-1 transition-all duration-300 ease-out",
             )}
           >
-            {loc === "ar" ? "AR" : "EN"}
-          </button>
-        ))}
+            AR Text
+          </span>
+          <span
+            className={cn(
+              !isArabicResponse
+                ? "bg-background text-foreground"
+                : "text-muted-foreground",
+              "rounded-full px-2.5 py-1 transition-all duration-300 ease-out",
+            )}
+          >
+            EN Text
+          </span>
+        </button>
+
+        {/* Locale dropdown */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              className="size-8 rounded-full"
+              aria-label="Change locale"
+            >
+              <GlobeIcon className="size-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            className="w-fit"
+            align="end"
+          >
+            {(["ar", "en"] as const).map((loc) => (
+              <DropdownMenuItem
+                key={loc}
+                onClick={() => switchLocale(loc)}
+                className="cursor-pointer "
+              >
+                {loc === "ar" ? "Arabic (AR)" : "English (EN)"}
+                {locale === loc ? " • Active" : ""}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );

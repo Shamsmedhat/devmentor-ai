@@ -18,7 +18,6 @@
   "landing-terminal-line-4": "✓ good separation of concerns",
   "landing-terminal-line-5": "> scanning for hydration mismatches...",
   "landing-terminal-line-6": "✓ Server/Client boundaries look solid",
-
   "problem-title": "Why not just use ChatGPT?",
   "problem-subtitle": "Fair question — let me be honest with you",
   "problem-vs": "VS",
@@ -34,7 +33,6 @@
   "problem-devmentor-3": "Remembers full conversation context",
   "problem-devmentor-4": "Focused on one stack — not a jack of all trades",
   "problem-devmentor-5": "Speaks Arabic like a real mentor",
-
   "how-title": "How does it work?",
   "how-subtitle": "Just 3 steps and you're ready",
   "how-step-1-title": "Pick your stack",
@@ -43,7 +41,6 @@
   "how-step-2-desc": "Upload the docs you actually use — React, Next.js, any library. The AI learns from them.",
   "how-step-3-title": "Ask, submit code, learn",
   "how-step-3-desc": "The AI answers and reviews your code based on your sources exactly — not from thin air.",
-
   "features-title": "What makes it different?",
   "features-subtitle": "A real mentor, not just a chatbot",
   "features-1-title": "AI Mentor, 24/7",
@@ -54,7 +51,6 @@
   "features-3-desc": "Load any docs, rules, or best practices you work with. The AI learns from them and answers accordingly.",
   "features-4-title": "Debugging, not just error fixing",
   "features-4-desc": "It doesn't just say \"there's an error here\" — it explains why the bug happened and how to avoid it next time.",
-
   "tracks-title": "Built on the best tools",
   "tracks-subtitle": "Specialized in the stack you actually ship",
   "tracks-chip": "Powered By",
@@ -77,7 +73,6 @@
   "tracks-supabase-version": "pgvector",
   "tracks-supabase-desc": "Database + Auth + Vector search — our RAG engine",
   "tracks-footnote": "+ You can add any other library through your personal Knowledge Base",
-
   "usecases-title": "Who is it for?",
   "usecases-subtitle": "For every developer who wants to level up",
   "usecases-1-title": "The Beginner",
@@ -86,14 +81,12 @@
   "usecases-2-desc": "Have experience but want to make sure your code is senior-level? Get a full review before you push to GitHub.",
   "usecases-3-title": "The Mentor",
   "usecases-3-desc": "Teaching or reviewing your students' code? Use DevMentor AI as an assistant to deliver faster, more thorough feedback.",
-
   "preview-title": "See it for yourself",
   "preview-subtitle": "Clean interface, smooth experience",
   "preview-browser-url": "devmentor.ai/chat",
   "preview-chat-user": "Review this code — I want to know if there's a dependency issue",
   "preview-chat-ai": "Found two key things — the useEffect dependency array is missing [userId], which can cause stale closure. Also, the async call needs an error boundary.",
   "preview-cta": "Try it now",
-
   "faq-title": "Frequently asked",
   "faq-subtitle": "Everything you'd want to know",
   "faq-q-1": "Is DevMentor AI free?",
@@ -108,17 +101,14 @@
   "faq-a-5": "Yes — this is one of the core features. Add any docs or rules and the AI learns from them.",
   "faq-q-6": "Does it support other languages?",
   "faq-a-6": "Right now it's specialized in the JavaScript ecosystem — React, Next.js, TypeScript. Coming soon: Python and more.",
-
   "cta-title": "Ready to start?",
   "cta-subtitle": "Join 80+ developers using DevMentor AI right now",
   "cta-button": "Start free — no card required",
-
   "footer-tagline": "Your intelligent frontend mentor",
   "footer-privacy": "Privacy",
   "footer-terms": "Terms",
   "footer-github": "GitHub",
   "footer-credits": "Made with ❤ for Arab developers",
-
   "chat-new": "New Chat",
   "chat-code-review": "Code Review",
   "chat-recent": "Recent Chats",
@@ -139,12 +129,37 @@
   "chat-attachment-error-too-large": "Each file must be under the limit (code/text 400 KB, images 2 MB)",
   "chat-attachment-error-type": "That file type is not supported — use text, code, or image files",
   "chat-error": "An error occurred — please try again",
+  "chat-insights-header": "Response details",
+  "chat-insights-tokens-label": "Tokens used",
+  "chat-insights-tokens-desc": "{input} input · {output} output · {total} total",
+  "chat-insights-finish-stop-label": "Finished naturally",
+  "chat-insights-finish-stop-desc": "The model returned a complete response.",
+  "chat-insights-finish-tool-label": "Stopped to call a tool",
+  "chat-insights-finish-tool-desc": "Generation paused so the model could call a tool.",
+  "chat-insights-finish-filter-label": "Filtered by safety",
+  "chat-insights-finish-filter-desc": "The provider's content filter stopped the response.",
+  "chat-insights-finish-error-label": "Stopped on error",
+  "chat-insights-finish-error-desc": "An error occurred during generation.",
+  "chat-insights-finish-other-label": "Stopped",
+  "chat-insights-finish-other-desc": "The model finished for an unspecified reason.",
+  "chat-truncated-banner-title": "Response was cut off",
+  "chat-truncated-banner-desc": "It reached the maximum length. Send a follow-up like \"continue\" to keep going.",
+  "chat-rate-limit-banner-title": "Rate limit reached",
+  "chat-rate-limit-banner-desc": "The AI provider is throttling requests. Try again in {seconds} seconds.",
+  "chat-rate-limit-banner-desc-generic": "The AI provider is throttling requests. Please slow down and try again in a moment.",
+  "chat-error-banner-title": "Something went wrong",
+  "chat-error-banner-desc": "The AI service couldn't complete your request. Please try again.",
+  "chat-tool-knowledge_base_search": "Knowledge base search",
+  "chat-tool-browser_search": "Web search",
+  "chat-reasoning-streaming": "Thinking…",
+  "chat-reasoning-brief": "Thought for a few seconds",
+  "chat-reasoning-seconds": "Thought for {seconds} seconds",
   "chat-logout": "Sign out",
-
   "login-title": "Sign in",
   "login-subtitle": "Continue with Google to reach your mentor in chat.",
   "login-google-button": "Continue with Google",
   "login-terms": "By signing in you agree to the terms and acceptable use policy.",
   "login-auth-error": "We could not verify your account — please try again.",
-  "login-back-home": "Back to home"
+  "login-back-home": "Back to home",
+  "token-used": "token used:"
 }

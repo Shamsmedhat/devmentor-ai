@@ -1,15 +1,12 @@
 import { groq } from "@ai-sdk/groq";
 
-// import { createGoogleGenerativeAI } from "@ai-sdk/google";
-
 import {
   convertToModelMessages,
   streamText,
-  tool,
   UIMessage,
-  InferUITools,
   UIDataTypes,
   stepCountIs,
+  smoothStream,
 } from "ai";
 
 import { MENTOR_SYSTEM_PROMPT, RAG_SYSTEM_PROMPT } from "@/lib/ai/prompts";
@@ -22,58 +19,17 @@ import {
   // DEFAULT_GOOGLE_CHAT_MODEL,
 } from "@/lib/constants/ai.constant";
 import { getServerSupabaseAuth } from "@/lib/utils/auth/auth-server-guard";
-import { z } from "zod";
 import { searchKnowledgeBase } from "@/lib/ai/search";
+import { ChatTools, modelTools } from "@/lib/ai/tools";
+import { getLatestUserMessageText } from "@/lib/ai/helpers";
+import { serializeChatStreamError } from "@/lib/utils/chat/chat-stream-error.util";
+import type { ChatMessageMetadata } from "@/lib/types/chat";
 
-const tools = {
-  knowledge_base_search: tool({
-    description: "Search the knowledge base for information",
-    inputSchema: z.object({
-      query: z.string().describe("The query to search the knowledge base for"),
-    }),
-    execute: async ({ query }) => {
-      try {
-        const results = await searchKnowledgeBase(query, 10, 0.5);
-        if (results.length === 0) {
-          return "No results found";
-        }
-
-        const formattedResults = results
-          .map((r, i) => `Result ${i + 1}: ${r.content}`)
-          .join("\n\n");
-        return formattedResults;
-      } catch (error) {
-        console.error(error);
-        return {
-          success: false,
-          error: error instanceof Error ? error.message : "Unknown error",
-        };
-      }
-    },
-  }),
-};
-
-export type ChatTools = InferUITools<typeof tools>;
-export type ChatMessage = UIMessage<never, UIDataTypes, ChatTools>;
-
-function getLatestUserMessageText(messages: ChatMessage[]): string {
-  const lastUserMessage = [...messages]
-    .reverse()
-    .find((message) => message.role === "user");
-
-  if (!lastUserMessage) {
-    return "";
-  }
-
-  if (Array.isArray(lastUserMessage.parts)) {
-    return lastUserMessage.parts
-      .map((part) => (part.type === "text" ? (part.text ?? "") : ""))
-      .join("")
-      .trim();
-  }
-
-  return "";
-}
+export type ChatMessage = UIMessage<
+  ChatMessageMetadata,
+  UIDataTypes,
+  ChatTools
+>;
 
 export async function POST(request: Request) {
   // Variables
@@ -91,24 +47,34 @@ export async function POST(request: Request) {
     return new Response("AI is not configured", { status: 503 });
   }
 
-  // Kick off auth and body parsing concurrently — they don't depend on each other.
+  // start auth and body parsing concurrently, they don't depend on each other.
   const authPromise = getServerSupabaseAuth();
   const bodyPromise = request.json() as Promise<unknown>;
 
   const { user } = await authPromise;
+
+  // If the user is not authenticated, return an error
   if (!user) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  // Check the chat rate limit
   const rate = await checkChatRateLimit(user.id);
+
+  // If the rate limit is exceeded, return an error
   if (!rate.ok && rate.reason === "over_limit") {
     return new Response("Too many requests", { status: 429 });
   }
+
+  // If the rate limit check failed, return an error
   if (!rate.ok && rate.reason === "check_failed") {
     return new Response("Rate limit check failed", { status: 503 });
   }
 
+  // Parse the body
   const body = await bodyPromise;
+
+  // If the body is not valid, return an error
   if (
     !body ||
     typeof body !== "object" ||
@@ -118,11 +84,16 @@ export async function POST(request: Request) {
     return Response.json({ error: "Invalid request body" }, { status: 400 });
   }
 
+  // Get the messages from the body
   const messages = (body as { messages: ChatMessage[] }).messages;
+
+  // Get the latest user message text
   const retrievalQuery = getLatestUserMessageText(messages);
+
+  // Get the model attachment capabilities
   const caps = getModelAttachmentCapabilities(CHAT_MODEL_CAPABILITY_KEY);
 
-  // RAG retrieval and message normalization+conversion are independent — run in parallel.
+  // RAG retrieval and message normalization+conversion are independent, run in parallel.
   const [retrievalResults, modelMessages] = await Promise.all([
     retrievalQuery
       ? searchKnowledgeBase(retrievalQuery, 10, 0.5)
@@ -136,24 +107,55 @@ export async function POST(request: Request) {
     })(),
   ]);
 
+  // Get the retrieval context
   const retrievalContext = retrievalResults
     .map((result, index) => `Result ${index + 1}: ${result.content}`)
     .join("\n\n");
+
+  // Get the system prompt
   const systemPrompt = retrievalContext
     ? RAG_SYSTEM_PROMPT(retrievalContext)
     : MENTOR_SYSTEM_PROMPT;
 
-  // Stream text
+  // Stream text using the model, tools, messages, max output tokens, max retries, stop when, experimental transform
   const result = streamText({
-    model: groq("llama-3.3-70b-versatile"),
+    model: groq("openai/gpt-oss-120b"),
     system: systemPrompt,
-    tools,
+    tools: modelTools,
     messages: modelMessages,
     maxOutputTokens: AI_LIMITS.CHAT_MAX_TOKENS,
     // Retrying 429 quota errors wastes attempts and obscures the real failure.
     maxRetries: 0,
-    stopWhen: stepCountIs(2),
+    stopWhen: stepCountIs(5),
+    experimental_transform: smoothStream({
+      delayInMs: 20,
+      chunking: "word",
+    }),
   });
+
   // useChat + DefaultChatTransport expects the UI message stream protocol.
-  return result.toUIMessageStreamResponse();
+  // `messageMetadata` attaches per-turn details (finish reason + token usage) to
+  // each assistant message. They ride through `message.metadata`, get persisted,
+  // and feed the MessageInsights chain-of-thought block on the client.
+  // `onError` translates the raw provider error (which the SDK would otherwise
+  // hide behind a generic "An error occurred." message) into a structured JSON
+  // payload the client banner can render — see `serializeChatStreamError`.
+  return result.toUIMessageStreamResponse({
+    messageMetadata: ({ part }) => {
+      if (part.type === "finish") {
+        return {
+          truncated: part.finishReason === "length",
+          finishReason: part.finishReason,
+          rawFinishReason: part.rawFinishReason,
+          usage: {
+            inputTokens: part.totalUsage?.inputTokens,
+            outputTokens: part.totalUsage?.outputTokens,
+            totalTokens: part.totalUsage?.totalTokens,
+            reasoningTokens: part.totalUsage?.reasoningTokens,
+          },
+        } satisfies ChatMessageMetadata;
+      }
+    },
+    onError: serializeChatStreamError,
+  });
 }

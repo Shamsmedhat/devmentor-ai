@@ -1,12 +1,12 @@
 "use server";
 
-import type { ChatMessage } from "@/lib/types/chat";
+import type { ChatMessageMetadata, ChatUIMessage } from "@/lib/types/chat";
 import { getChatMessages } from "@/lib/services/chat.service";
 import { requireServerAuthUser } from "@/lib/utils/auth/auth-server-guard";
 
 export async function getChatMessagesAction(
   sessionId: string,
-): Promise<ChatMessage[]> {
+): Promise<ChatUIMessage[]> {
   const { supabase, user } = await requireServerAuthUser();
 
   const { data: session, error: sessionError } = await supabase
@@ -39,7 +39,8 @@ export async function createChatSessionAction(title: string): Promise<string> {
 export async function saveChatMessageAction(fields: {
   sessionId: string;
   role: "user" | "assistant";
-  content: string;
+  parts: ChatUIMessage["parts"];
+  metadata?: ChatMessageMetadata;
 }): Promise<void> {
   const { supabase, user } = await requireServerAuthUser();
 
@@ -47,7 +48,8 @@ export async function saveChatMessageAction(fields: {
     session_id: fields.sessionId,
     user_id: user.id,
     role: fields.role,
-    content: fields.content,
+    parts: fields.parts,
+    metadata: fields.metadata ?? null,
   });
 
   if (error) throw new Error(error.message);

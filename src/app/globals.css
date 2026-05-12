@@ -222,6 +222,7 @@
 
 .chat-scrollbar::-webkit-scrollbar {
   width: 4px;
+  height: 4px;
 }
 
 .chat-scrollbar::-webkit-scrollbar-track {

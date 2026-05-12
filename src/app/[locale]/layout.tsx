@@ -61,7 +61,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       lang={locale}
       dir={dir}
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} dark h-full scroll-smooth antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} dark h-full antialiased`}
     >
       <body
         className="min-h-full bg-background font-sans selection:bg-chart-2/25 selection:text-foreground"
