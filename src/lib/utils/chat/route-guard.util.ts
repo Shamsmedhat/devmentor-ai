@@ -1,0 +1,65 @@
+import type { User } from "@supabase/supabase-js";
+
+import { checkChatRateLimit } from "@/lib/ai/rate-limit";
+import { getServerSupabaseAuth } from "@/lib/utils/auth/auth-server-guard";
+
+type GuardSuccess = { ok: true; user: User };
+type GuardFailure = { ok: false; response: Response };
+
+/**
+ * Validates env vars, authenticates the user, and checks the per-user rate
+ * limit. Returns the authenticated `User` on success, or an early `Response`
+ * the route handler can return immediately on failure.
+ */
+export async function guardChatRoute(): Promise<GuardSuccess | GuardFailure> {
+  // Env checks
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+  const groqApiKey = process.env.GROQ_API_KEY;
+  const agentRouterApiKey = process.env.AGENT_ROUTER_API_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    return {
+      ok: false,
+      response: new Response("Authentication is not configured", {
+        status: 503,
+      }),
+    };
+  }
+
+  if (!groqApiKey || !agentRouterApiKey) {
+    return {
+      ok: false,
+      response: new Response("AI is not configured", { status: 503 }),
+    };
+  }
+
+  // Auth
+  const { user } = await getServerSupabaseAuth();
+
+  if (!user) {
+    return {
+      ok: false,
+      response: Response.json({ error: "Unauthorized" }, { status: 401 }),
+    };
+  }
+
+  // Rate limit
+  const rate = await checkChatRateLimit(user.id);
+
+  if (!rate.ok && rate.reason === "over_limit") {
+    return {
+      ok: false,
+      response: new Response("Too many requests", { status: 429 }),
+    };
+  }
+
+  if (!rate.ok && rate.reason === "check_failed") {
+    return {
+      ok: false,
+      response: new Response("Rate limit check failed", { status: 503 }),
+    };
+  }
+
+  return { ok: true, user };
+}

@@ -1,4 +1,4 @@
-import { groq } from "@ai-sdk/groq";
+import { google } from "@ai-sdk/google";
 import { InferUITools, streamText, tool } from "ai";
 import z from "zod";
 import { searchKnowledgeBase } from "./search";
@@ -34,7 +34,9 @@ type StreamTextTools = NonNullable<Parameters<typeof streamText>[0]["tools"]>;
 
 export const modelTools = {
   ...uiTools,
-  browser_search: groq.tools.browserSearch({}),
+  browser_search: google.tools.googleSearch({
+    apiKey: process.env.GOOGLE_API_KEY!,
+  }),
 } as StreamTextTools;
 
 export type ChatTools = InferUITools<typeof uiTools>;

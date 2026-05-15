@@ -1,12 +1,11 @@
-import { ChatMessage } from "@/app/api/chat/route";
-
+import type { ChatUIMessage } from "@/lib/types/chat";
 /**
  * Helper function to get the latest user message text
  * @param messages - The messages to get the latest user message text from
  * @returns The latest user message text
  *
  */
-export function getLatestUserMessageText(messages: ChatMessage[]): string {
+export function getLatestUserMessageText(messages: ChatUIMessage[]): string {
   const lastUserMessage = [...messages]
     .reverse()
     .find((message) => message.role === "user");
