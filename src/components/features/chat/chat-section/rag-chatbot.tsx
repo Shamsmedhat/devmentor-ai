@@ -78,6 +78,9 @@ export default function RAGChatBot({
     },
   });
 
+  console.log("messages", messages);
+  console.log("status", status);
+
   // Functions
   function handleSubmit(message: PromptInputMessage) {
     const text = message.text.trim();
@@ -110,6 +113,11 @@ export default function RAGChatBot({
     Boolean(lastMessage.metadata?.truncated);
   const showInsights =
     lastMessage?.role === "assistant" && !!lastMessage?.metadata;
+
+  console.log(
+    "messages.at(-1)?.parts.map(p => p.type)",
+    messages.at(-1)?.parts.map((p) => p.type),
+  );
 
   return (
     <div className="max-w-4xl mx-auto p-6 relative size-full h-[calc(100vh-4rem)]">

@@ -269,6 +269,14 @@ Don't rewrite working code just for style preference — only when it violates a
 
 ---
 
+## Switching chat provider
+
+To switch the active chat model: change `ACTIVE_CHAT_PROVIDER_ID` in `src/lib/ai/providers.ts` to one of the IDs in `CHAT_PROVIDERS` and restart `yarn dev`. No automatic fallback — intentional. If the active provider fails, the request fails and we see it instead of silently retrying a second model on the same key.
+
+The catalog (`CHAT_PROVIDERS`) carries per-provider `streamOptions` (e.g. `structuredOutputs: false` for gpt-oss, `thinkingConfig: { thinkingBudget: 0 }` for Gemini) and `capabilities` (image/file support), so the route stays provider-agnostic. Add a new entry to the catalog before pointing `ACTIVE_CHAT_PROVIDER_ID` at it.
+
+---
+
 ## Quick Reference Commands
 
 ```bash

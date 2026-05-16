@@ -23,7 +23,9 @@ import {
   useRef,
   useState,
 } from "react";
-import { Streamdown } from "streamdown";
+import { Streamdown, type Components } from "streamdown";
+
+import { MessageCodeBlock } from "./message-code-block";
 
 import { Shimmer } from "./shimmer";
 
@@ -206,6 +208,10 @@ export type ReasoningContentProps = ComponentProps<
 
 const streamdownPlugins = { cjk, code, math, mermaid };
 
+const streamdownComponents: Pick<Components, "code"> = {
+  code: MessageCodeBlock as NonNullable<Components["code"]>,
+};
+
 export const ReasoningContent = memo(
   ({ className, children, ...props }: ReasoningContentProps) => (
     <CollapsibleContent
@@ -216,7 +222,13 @@ export const ReasoningContent = memo(
       )}
       {...props}
     >
-      <Streamdown plugins={streamdownPlugins}>{children}</Streamdown>
+      <Streamdown
+        components={streamdownComponents}
+        controls={{ code: false }}
+        plugins={streamdownPlugins}
+      >
+        {children}
+      </Streamdown>
     </CollapsibleContent>
   )
 );

@@ -51,7 +51,7 @@ async function filePartToInlinedText(
   const isImage = part.mediaType.startsWith("image/");
 
   if (isImage) {
-    return `\n\n--- Image: ${name} (${part.mediaType}) ---\n[This model cannot view images. Describe the image in text or switch to a vision-capable model (set CHAT_MODEL_CAPABILITY_KEY, e.g. google:gemini-2.5-flash).]`;
+    return `\n\n--- Image: ${name} (${part.mediaType}) ---\n[This model cannot view images. Describe the image in text or switch ACTIVE_CHAT_PROVIDER_ID in src/lib/ai/providers.ts to a vision-capable model (e.g. google:gemini-2.5-flash).]`;
   }
 
   // Non-image: try to inline UTF-8 from data URL

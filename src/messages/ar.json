@@ -149,7 +149,6 @@
   "chat-rate-limit-banner-desc-generic": "مزود الـ AI بيحدّ من سرعة الطلبات دلوقتي. خفف من السرعة وجرّب تاني بعد شوية.",
   "chat-error-banner-title": "حصلت مشكلة",
   "chat-error-banner-desc": "خدمة الـ AI ما قدرتش تكمّل الطلب. حاول تاني.",
-  "chat-tool-knowledge_base_search": "بحث في قاعدة المعرفة",
   "chat-tool-browser_search": "بحث على الويب",
   "chat-reasoning-streaming": "جاري التفكير…",
   "chat-reasoning-brief": "تفكير لبضع ثوانٍ",

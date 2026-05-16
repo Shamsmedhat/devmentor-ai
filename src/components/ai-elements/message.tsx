@@ -28,7 +28,9 @@ import {
   useMemo,
   useState,
 } from "react";
-import { Streamdown } from "streamdown";
+import { Streamdown, type Components } from "streamdown";
+
+import { MessageCodeBlock } from "./message-code-block";
 
 export type MessageProps = HTMLAttributes<HTMLDivElement> & {
   from: UIMessage["role"];
@@ -323,15 +325,21 @@ export type MessageResponseProps = ComponentProps<typeof Streamdown>;
 
 const streamdownPlugins = { cjk, code, math, mermaid };
 
+const streamdownComponents: Pick<Components, "code"> = {
+  code: MessageCodeBlock as NonNullable<Components["code"]>,
+};
+
 export const MessageResponse = memo(
-  ({ className, ...props }: MessageResponseProps) => (
+  ({ className, components, controls, ...props }: MessageResponseProps) => (
     <Streamdown
+      plugins={streamdownPlugins}
+      {...props}
       className={cn(
         "size-full [&>*:first-child]:mt-0 [&>*:last-child]:mb-0",
         className
       )}
-      plugins={streamdownPlugins}
-      {...props}
+      components={{ ...streamdownComponents, ...components }}
+      controls={controls ?? { code: false }}
     />
   ),
   (prevProps, nextProps) =>

@@ -7,16 +7,11 @@ import {
   ToolOutput,
 } from "@/components/ai-elements/tool";
 import { ChatUIMessage } from "@/lib/types/chat";
-import {
-  type DynamicToolUIPart,
-  type ToolUIPart,
-  getToolName,
-} from "ai";
+import { type DynamicToolUIPart, type ToolUIPart, getToolName } from "ai";
 import { useTranslations } from "next-intl";
 import { Fragment } from "react/jsx-runtime";
 
 const CHAT_TOOL_TITLE_KEYS: Record<string, string> = {
-  knowledge_base_search: "chat-tool-knowledge_base_search",
   browser_search: "chat-tool-browser_search",
 };
 

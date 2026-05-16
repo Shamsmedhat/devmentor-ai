@@ -1,7 +1,8 @@
 import type { UIDataTypes, UIMessage } from "ai";
-import { ChatTools } from "../ai/tools";
 
 export type ChatMessageMetadata = {
+  /** Identifier of the provider that produced this turn (e.g. `groq:openai/gpt-oss-20b`). */
+  provider?: string;
   truncated?: boolean;
   finishReason?:
     | "stop"
@@ -19,11 +20,7 @@ export type ChatMessageMetadata = {
   };
 };
 
-export type ChatUIMessage = UIMessage<
-  ChatMessageMetadata,
-  UIDataTypes,
-  ChatTools
->;
+export type ChatUIMessage = UIMessage<ChatMessageMetadata, UIDataTypes>;
 
 export interface ChatSession {
   id: string;

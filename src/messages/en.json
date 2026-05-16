@@ -149,7 +149,6 @@
   "chat-rate-limit-banner-desc-generic": "The AI provider is throttling requests. Please slow down and try again in a moment.",
   "chat-error-banner-title": "Something went wrong",
   "chat-error-banner-desc": "The AI service couldn't complete your request. Please try again.",
-  "chat-tool-knowledge_base_search": "Knowledge base search",
   "chat-tool-browser_search": "Web search",
   "chat-reasoning-streaming": "Thinking…",
   "chat-reasoning-brief": "Thought for a few seconds",

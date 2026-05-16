@@ -19,7 +19,7 @@ import {
 import type { ComponentProps, ReactNode } from "react";
 import { isValidElement } from "react";
 
-import { CodeBlock } from "./code-block";
+import { CODE_BLOCK_LTR_CLASS, CodeBlock } from "./code-block";
 
 export type ToolProps = ComponentProps<typeof Collapsible>;
 
@@ -130,7 +130,9 @@ export const ToolInput = ({ className, input, ...props }: ToolInputProps) => (
     <div className="rounded-md bg-muted/50">
       <CodeBlock
         code={JSON.stringify(input, null, 2)}
+        dir="ltr"
         language="json"
+        className={CODE_BLOCK_LTR_CLASS}
       />
     </div>
   </div>
@@ -157,14 +159,18 @@ export const ToolOutput = ({
     Output = (
       <CodeBlock
         code={JSON.stringify(output, null, 2)}
+        dir="ltr"
         language="json"
+        className={CODE_BLOCK_LTR_CLASS}
       />
     );
   } else if (typeof output === "string") {
     Output = (
       <CodeBlock
         code={output}
+        dir="ltr"
         language="json"
+        className={CODE_BLOCK_LTR_CLASS}
       />
     );
   }

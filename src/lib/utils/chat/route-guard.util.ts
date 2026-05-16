@@ -12,11 +12,11 @@ type GuardFailure = { ok: false; response: Response };
  * the route handler can return immediately on failure.
  */
 export async function guardChatRoute(): Promise<GuardSuccess | GuardFailure> {
-  // Env checks
+  // Env checks — the active AI provider's key is checked by the route handler
+  // itself (see `getActiveChatProvider` + `ACTIVE_CHAT_PROVIDER_ID`), so we
+  // only verify Supabase config here.
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
-  const groqApiKey = process.env.GROQ_API_KEY;
-  const agentRouterApiKey = process.env.AGENT_ROUTER_API_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
     return {
@@ -24,13 +24,6 @@ export async function guardChatRoute(): Promise<GuardSuccess | GuardFailure> {
       response: new Response("Authentication is not configured", {
         status: 503,
       }),
-    };
-  }
-
-  if (!groqApiKey || !agentRouterApiKey) {
-    return {
-      ok: false,
-      response: new Response("AI is not configured", { status: 503 }),
     };
   }
 

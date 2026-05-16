@@ -110,6 +110,9 @@ const LineSpan = ({
   </span>
 );
 
+/** Use on code blocks inside `dir="rtl"` parents so source stays LTR. */
+export const CODE_BLOCK_LTR_CLASS = "text-left [unicode-bidi:isolate]";
+
 // Types
 type CodeBlockProps = HTMLAttributes<HTMLDivElement> & {
   code: string;

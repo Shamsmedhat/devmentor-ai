@@ -17,7 +17,9 @@ export async function buildRagSystemPrompt(
   if (results.length === 0) return MENTOR_SYSTEM_PROMPT;
 
   const context = results
-    .map((r, i) => `Result ${i + 1}: ${r.content}`)
+    .map(
+      (r) => `[Source: ${r.metadata?.document_id ?? "unknown"}] ${r.content}`,
+    )
     .join("\n\n");
 
   return RAG_SYSTEM_PROMPT(context);
