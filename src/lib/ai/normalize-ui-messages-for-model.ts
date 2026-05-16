@@ -80,11 +80,10 @@ async function filePartToInlinedText(
  * Rewrites user `file` parts so `convertToModelMessages` only sees parts the
  * active model supports; everything else becomes `text`.
  */
-export async function normalizeUiMessagesForAttachmentCapabilities(
-  messages: UIMessage[],
-  caps: ModelAttachmentCapabilities,
-): Promise<UIMessage[]> {
-  const out: UIMessage[] = [];
+export async function normalizeUiMessagesForAttachmentCapabilities<
+  M extends UIMessage,
+>(messages: M[], caps: ModelAttachmentCapabilities): Promise<M[]> {
+  const out: M[] = [];
 
   for (const msg of messages) {
     if (msg.role !== "user" || !Array.isArray(msg.parts)) {
@@ -116,7 +115,7 @@ export async function normalizeUiMessagesForAttachmentCapabilities(
       }
     }
 
-    out.push({ ...msg, parts: mergeAdjacentTextParts(rebuilt) });
+    out.push({ ...msg, parts: mergeAdjacentTextParts(rebuilt) } as M);
   }
 
   return out;

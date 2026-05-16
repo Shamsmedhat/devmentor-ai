@@ -7,6 +7,7 @@ import {
   type ToolSet,
 } from "ai";
 
+import { memoryStrategy } from "@/lib/ai/memory";
 import { normalizeUiMessagesForAttachmentCapabilities } from "@/lib/ai/normalize-ui-messages-for-model";
 import { getActiveChatProvider } from "@/lib/ai/providers";
 import { buildRagSystemPrompt } from "@/lib/ai/rag";
@@ -43,16 +44,22 @@ export async function POST(request: Request): Promise<Response> {
     });
   }
 
-  // RAG retrieval (system prompt) — provider-agnostic
-  const systemPrompt = await buildRagSystemPrompt(messages);
-
   // Attachments are reshaped against THIS provider's capability profile;
   // image parts stay native on Gemini, get inlined as text on Groq.
   const normalized = await normalizeUiMessagesForAttachmentCapabilities(
     messages,
     provider.capabilities,
   );
-  const modelMessages = await convertToModelMessages(normalized);
+
+  // Conversation memory — trim history before it hits the model. The active
+  // strategy lives in `src/lib/ai/memory.ts` (one-line swap, like providers).
+  const trimmed = memoryStrategy(normalized);
+
+  // RAG retrieval (system prompt). Reads the latest user message, which the
+  // memory strategy always preserves — safe to run against `trimmed`.
+  const systemPrompt = await buildRagSystemPrompt(trimmed);
+
+  const modelMessages = await convertToModelMessages(trimmed);
 
   const result = streamText({
     model: provider.createModel(),
@@ -68,8 +75,6 @@ export async function POST(request: Request): Promise<Response> {
       chunking: "word",
     }),
   });
-
-  console.log("result", result);
 
   return result.toUIMessageStreamResponse<ChatUIMessage>({
     // `sendReasoning` defaults to TRUE in the AI SDK — Gemini would otherwise
