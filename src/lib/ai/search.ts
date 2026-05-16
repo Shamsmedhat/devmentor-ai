@@ -1,3 +1,4 @@
+import { AI_LIMITS } from "@/lib/constants/ai.constant";
 import { createAdminClient } from "@/lib/utils/supabase/admin";
 import { generateEmbeddings } from "./embeddings";
 
@@ -10,8 +11,8 @@ export type KnowledgeBaseSearchResult = {
 
 export async function searchKnowledgeBase(
   query: string,
-  limit: number = 10,
-  threshold: number = 0.5,
+  limit: number = AI_LIMITS.RAG_MAX_RESULTS,
+  threshold: number = AI_LIMITS.RAG_SIMILARITY_THRESHOLD,
 ): Promise<KnowledgeBaseSearchResult[]> {
   const normalizedQuery = query.trim();
 
