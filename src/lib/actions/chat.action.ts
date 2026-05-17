@@ -1,26 +1,7 @@
 "use server";
 
 import type { ChatMessageMetadata, ChatUIMessage } from "@/lib/types/chat";
-import { getChatMessages } from "@/lib/services/chat.service";
 import { requireServerAuthUser } from "@/lib/utils/auth/auth-server-guard";
-
-export async function getChatMessagesAction(
-  sessionId: string,
-): Promise<ChatUIMessage[]> {
-  const { supabase, user } = await requireServerAuthUser();
-
-  const { data: session, error: sessionError } = await supabase
-    .from("chat_sessions")
-    .select("id")
-    .eq("id", sessionId)
-    .eq("user_id", user.id)
-    .maybeSingle();
-
-  if (sessionError) throw new Error(sessionError.message);
-  if (!session) throw new Error("Session not found");
-
-  return getChatMessages(sessionId);
-}
 
 export async function createChatSessionAction(title: string): Promise<string> {
   const { supabase, user } = await requireServerAuthUser();

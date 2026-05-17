@@ -2,12 +2,12 @@ import type { User } from "@supabase/supabase-js";
 
 import { createClient } from "@/lib/utils/supabase/server";
 
-export type ServerSupabaseAuth = {
+type ServerSupabaseAuth = {
   supabase: Awaited<ReturnType<typeof createClient>>;
   user: User | null;
 };
 
-export type AuthenticatedServerSupabaseAuth = {
+type AuthenticatedServerSupabaseAuth = {
   supabase: Awaited<ReturnType<typeof createClient>>;
   user: User;
 };

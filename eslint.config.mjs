@@ -13,6 +13,20 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  // Vendored from @vercel/ai-elements. Lint deferred per audit decision —
+  // React 19 compiler rules vs vendored upstream code.
+  {
+    files: ["src/components/ai-elements/**"],
+    rules: {
+      "react-hooks/refs": "off",
+      "react-hooks/static-components": "off",
+      "@next/next/no-img-element": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
+    },
+  },
 ]);
 
 export default eslintConfig;

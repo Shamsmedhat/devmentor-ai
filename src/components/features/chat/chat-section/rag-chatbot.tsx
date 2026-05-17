@@ -78,8 +78,19 @@ export default function RAGChatBot({
     },
   });
 
-  console.log("messages", messages);
-  console.log("status", status);
+  // Variables
+  const lastMessage = messages.at(-1);
+  const showActivitySpinner =
+    (status === "submitted" || status === "streaming") &&
+    !(
+      lastMessage?.role === "assistant" &&
+      messageHasStreamingAssistantActivity(lastMessage)
+    );
+  const showTruncatedBanner =
+    lastMessage?.role === "assistant" &&
+    Boolean(lastMessage.metadata?.truncated);
+  const showInsights =
+    lastMessage?.role === "assistant" && !!lastMessage?.metadata;
 
   // Functions
   function handleSubmit(message: PromptInputMessage) {
@@ -99,25 +110,6 @@ export default function RAGChatBot({
     // Fire AI request immediately. PromptInput auto-clears after onSubmit returns.
     sendMessage({ text });
   }
-
-  // Variables
-  const lastMessage = messages.at(-1);
-  const showActivitySpinner =
-    (status === "submitted" || status === "streaming") &&
-    !(
-      lastMessage?.role === "assistant" &&
-      messageHasStreamingAssistantActivity(lastMessage)
-    );
-  const showTruncatedBanner =
-    lastMessage?.role === "assistant" &&
-    Boolean(lastMessage.metadata?.truncated);
-  const showInsights =
-    lastMessage?.role === "assistant" && !!lastMessage?.metadata;
-
-  console.log(
-    "messages.at(-1)?.parts.map(p => p.type)",
-    messages.at(-1)?.parts.map((p) => p.type),
-  );
 
   return (
     <div className="max-w-4xl mx-auto p-6 relative size-full h-[calc(100vh-4rem)]">

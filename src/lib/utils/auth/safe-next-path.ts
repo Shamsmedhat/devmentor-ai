@@ -4,7 +4,7 @@ function isLocale(value: string): value is (typeof routing.locales)[number] {
   return routing.locales.includes(value as (typeof routing.locales)[number]);
 }
 
-export function defaultChatPath(locale: string): string {
+function defaultChatPath(locale: string): string {
   const loc = isLocale(locale) ? locale : routing.defaultLocale;
   return `/${loc}/chat`;
 }

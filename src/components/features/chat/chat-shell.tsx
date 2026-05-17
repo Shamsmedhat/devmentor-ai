@@ -1,5 +1,3 @@
-"use client";
-
 import type { User } from "@supabase/supabase-js";
 
 import { AuthToaster } from "@/components/features/auth/auth-toaster";

@@ -1,7 +1,7 @@
 import { AI_LIMITS } from "@/lib/constants/ai.constant";
 import { createClient } from "@/lib/utils/supabase/server";
 
-export type ChatRateLimitResult =
+type ChatRateLimitResult =
   | { ok: true }
   | { ok: false; reason: "over_limit" }
   | { ok: false; reason: "check_failed" };

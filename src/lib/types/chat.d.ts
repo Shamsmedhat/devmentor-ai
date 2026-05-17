@@ -30,16 +30,6 @@ export interface ChatSession {
   updated_at: string;
 }
 
-export interface ChatMessage {
-  id: string;
-  session_id: string;
-  user_id: string;
-  role: "user" | "assistant";
-  parts: ChatUIMessage["parts"];
-  metadata: ChatMessageMetadata | null;
-  created_at: string;
-}
-
 export interface ChatBannerState {
   title: string;
   description: string;
