@@ -3,7 +3,7 @@ export const AI_LIMITS = {
   REVIEW_MAX_TOKENS: 2000,
   SUMMARY_MAX_TOKENS: 500,
   /** Cosine similarity floor for a knowledge-base chunk to count as a match. */
-  RAG_SIMILARITY_THRESHOLD: 0.5,
+  RAG_SIMILARITY_THRESHOLD: 0.6,
   /** Max chunks returned by a single knowledge-base search. */
   RAG_MAX_RESULTS: 10,
   /** Texts per `embedMany` call. Keeps a single document under Gemini RPM. */

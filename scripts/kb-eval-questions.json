@@ -1,0 +1,145 @@
+[
+  {
+    "id": "en-covered-usestate",
+    "question": "What does useState do in React and when should I use it?",
+    "lang": "en",
+    "topic": "useState",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-useeffect",
+    "question": "How does useEffect run on mount and on dependency change?",
+    "lang": "en",
+    "topic": "useEffect",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-usedeferredvalue",
+    "question": "When should I use useDeferredValue in React?",
+    "lang": "en",
+    "topic": "useDeferredValue",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-server-components",
+    "question": "What are React Server Components and how do they differ from Client Components?",
+    "lang": "en",
+    "topic": "Server Components",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-app-router",
+    "question": "How do I create dynamic routes in the Next.js app router?",
+    "lang": "en",
+    "topic": "app-router routing",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-suspense",
+    "question": "How does Suspense work for data fetching in React?",
+    "lang": "en",
+    "topic": "Suspense",
+    "type": "covered"
+  },
+
+  {
+    "id": "ar-covered-usestate",
+    "question": "ايه اللي بيعمله useState في React وامتى أستخدمه؟",
+    "lang": "ar",
+    "topic": "useState",
+    "type": "covered"
+  },
+  {
+    "id": "ar-covered-useeffect",
+    "question": "ازاي useEffect بيشتغل عند ال mount وعند تغيير ال dependencies؟",
+    "lang": "ar",
+    "topic": "useEffect",
+    "type": "covered"
+  },
+  {
+    "id": "ar-covered-usedeferredvalue",
+    "question": "امتى أستخدم useDeferredValue في React؟",
+    "lang": "ar",
+    "topic": "useDeferredValue",
+    "type": "covered"
+  },
+  {
+    "id": "ar-covered-server-components",
+    "question": "ايه هي Server Components في React وايه الفرق بينها وبين Client Components؟",
+    "lang": "ar",
+    "topic": "Server Components",
+    "type": "covered"
+  },
+  {
+    "id": "ar-covered-app-router",
+    "question": "ازاي أعمل dynamic routes في Next.js app router؟",
+    "lang": "ar",
+    "topic": "app-router routing",
+    "type": "covered"
+  },
+  {
+    "id": "ar-covered-suspense",
+    "question": "ازاي Suspense بيشتغل مع ال data fetching في React؟",
+    "lang": "ar",
+    "topic": "Suspense",
+    "type": "covered"
+  },
+
+  {
+    "id": "en-deep-react-lazy",
+    "question": "What is the function signature of React.lazy and what does it return?",
+    "lang": "en",
+    "topic": "React.lazy",
+    "type": "deep"
+  },
+  {
+    "id": "ar-deep-useimperativehandle",
+    "question": "ايه ال signature بتاع useImperativeHandle وامتى نستخدمه؟",
+    "lang": "ar",
+    "topic": "useImperativeHandle",
+    "type": "deep"
+  },
+  {
+    "id": "en-deep-notfound",
+    "question": "What HTTP status code does Next.js return when notFound() is called from a Server Component?",
+    "lang": "en",
+    "topic": "notFound",
+    "type": "deep"
+  },
+  {
+    "id": "ar-deep-cookies-server",
+    "question": "ايه الـ error اللي بيرميه Next.js لما تستدعي cookies() برا Server Component؟",
+    "lang": "ar",
+    "topic": "cookies()",
+    "type": "deep"
+  },
+
+  {
+    "id": "ar-control-koshary",
+    "question": "ازاي أطبخ الكشري المصري بالخطوات؟",
+    "lang": "ar",
+    "topic": "cooking",
+    "type": "control"
+  },
+  {
+    "id": "en-control-france",
+    "question": "What is the capital of France?",
+    "lang": "en",
+    "topic": "geography",
+    "type": "control"
+  },
+  {
+    "id": "en-control-worldcup",
+    "question": "Who won the 2022 FIFA World Cup final?",
+    "lang": "en",
+    "topic": "sports",
+    "type": "control"
+  },
+  {
+    "id": "ar-control-apple-stock",
+    "question": "كم سعر سهم Apple النهارده في البورصة؟",
+    "lang": "ar",
+    "topic": "finance",
+    "type": "control"
+  }
+]

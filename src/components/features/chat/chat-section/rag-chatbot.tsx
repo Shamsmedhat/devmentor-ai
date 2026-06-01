@@ -207,6 +207,11 @@ export default function RAGChatBot({
           </PromptInputFooter>
         </PromptInput>
       </div>
+
+      <p className="text-xs text-muted-foreground text-center mt-2">
+        devmentor.ai is a agent mentor platform that may make mistakes, please
+        verify the information before using it.
+      </p>
     </div>
   );
 }

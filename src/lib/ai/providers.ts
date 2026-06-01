@@ -101,7 +101,7 @@ export const CHAT_PROVIDERS: readonly ChatProvider[] = [
   },
   {
     id: "google:gemini-2.5-flash",
-    apiKeyEnv: "GOOGLE_GENERATIVE_AI_API_KEY",
+    apiKeyEnv: "GOOGLE_GENERATIVE_FREE_AI_API_KEY",
     capabilities: geminiMultimodal,
     createModel: () => google.chat("gemini-2.5-flash"),
     createTools: googleSearchTools,
