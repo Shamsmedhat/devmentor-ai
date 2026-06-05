@@ -12,9 +12,7 @@ import { AI_LIMITS } from "@/lib/constants/ai.constant";
 
 const EMBEDDING_DIMENSIONS = 768;
 
-export async function generateEmbeddings(
-  text: string,
-): Promise<EmbedResult> {
+export async function generateEmbeddings(text: string): Promise<EmbedResult> {
   const value = text.replace(/[\r\n]+/g, " ");
 
   const result = await embed({

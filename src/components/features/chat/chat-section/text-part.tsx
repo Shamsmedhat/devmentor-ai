@@ -5,6 +5,10 @@ import { MessageResponse } from "@/components/ai-elements/message";
 import type { ChatUIMessage } from "@/lib/types/chat";
 import type { TextUIPart } from "ai";
 
+import { MessageBlockquote } from "./message-blockquote";
+
+const responseComponents = { blockquote: MessageBlockquote };
+
 export default function TextPart({
   message,
   part,
@@ -16,7 +20,9 @@ export default function TextPart({
     <Fragment>
       <Message from={message.role}>
         <MessageContent>
-          <MessageResponse mode="streaming">{part.text}</MessageResponse>
+          <MessageResponse mode="streaming" components={responseComponents}>
+            {part.text}
+          </MessageResponse>
         </MessageContent>
       </Message>
     </Fragment>

@@ -3434,6 +3434,13 @@ arraybuffer.prototype.slice@^1.0.4:
     get-intrinsic "^1.2.6"
     is-array-buffer "^3.0.4"
 
+assemblyai@^4.33.3:
+  version "4.33.3"
+  resolved "https://registry.yarnpkg.com/assemblyai/-/assemblyai-4.33.3.tgz#5f0a04335142153d417403049197354d8a4c898a"
+  integrity sha512-KLu/lUAZEYz17zWMV6kk9nJyzzO1kItpZ5vruW5WpNjTpbgye58V1PKUOCWNndyxBn099lEBg3V5CbxKq1plAw==
+  dependencies:
+    ws "^8.18.0"
+
 ast-types-flow@^0.0.8:
   version "0.0.8"
   resolved "https://registry.npmjs.org/ast-types-flow/-/ast-types-flow-0.0.8.tgz"

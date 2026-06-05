@@ -10,6 +10,7 @@
     "Groq",
     "Helicone",
     "langchain",
+    "MMSS",
     "textsplitters",
     "uploadthing"
   ],

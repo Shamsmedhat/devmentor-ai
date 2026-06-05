@@ -43,6 +43,12 @@ export default async function middleware(request: NextRequest) {
   // split pathname into segments
   const { pathname } = request.nextUrl;
 
+  const ownerEmail = process.env.OWNER_EMAIL;
+
+  if (pathname === "/upload" && user?.email !== ownerEmail) {
+    return NextResponse.redirect(new URL("/chat", request.url));
+  }
+
   // remove any empty value
   const segments = pathname.split("/").filter(Boolean);
 

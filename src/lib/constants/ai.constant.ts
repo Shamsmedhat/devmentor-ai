@@ -16,4 +16,8 @@ export const AI_LIMITS = {
    * preserved by the active strategy. DB persistence is unaffected.
    */
   SLIDING_WINDOW_MESSAGES: 10,
+  /** Target character length per transcribed-lecture chunk. */
+  VIDEO_CHUNK_SIZE: 500,
+  /** Words carried into the next chunk to preserve cross-chunk context. */
+  VIDEO_CHUNK_OVERLAP_WORDS: 10,
 } as const;

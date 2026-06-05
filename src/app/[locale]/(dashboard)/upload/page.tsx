@@ -1,5 +1,6 @@
 import PdfUploadForm from "@/components/features/upload/pdf-upload-form";
 import UrlIngestionForm from "@/components/features/upload/url-ingestion-form";
+import VideoIngestionForm from "@/components/features/upload/video-ingestion-form";
 import {
   Tabs,
   TabsContent,
@@ -16,6 +17,7 @@ export default function UploadPage() {
         <TabsList>
           <TabsTrigger value="pdf">PDF</TabsTrigger>
           <TabsTrigger value="url">URL</TabsTrigger>
+          <TabsTrigger value="video">Lecture (MP3)</TabsTrigger>
         </TabsList>
 
         <TabsContent value="pdf" className="mt-4">
@@ -24,6 +26,10 @@ export default function UploadPage() {
 
         <TabsContent value="url" className="mt-4">
           <UrlIngestionForm />
+        </TabsContent>
+
+        <TabsContent value="video" className="mt-4">
+          <VideoIngestionForm />
         </TabsContent>
       </Tabs>
     </div>
