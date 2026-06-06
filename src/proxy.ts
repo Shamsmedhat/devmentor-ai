@@ -3,6 +3,7 @@ import createMiddleware from "next-intl/middleware";
 import { type NextRequest, NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
 import { safeNextPath } from "./lib/utils/auth/safe-next-path";
+import { isOwner } from "./lib/utils/require-owner";
 
 // protected routes
 const PROTECTED_ROUTES = ["chat"];
@@ -43,12 +44,6 @@ export default async function middleware(request: NextRequest) {
   // split pathname into segments
   const { pathname } = request.nextUrl;
 
-  const ownerEmail = process.env.OWNER_EMAIL;
-
-  if (pathname === "/upload" && user?.email !== ownerEmail) {
-    return NextResponse.redirect(new URL("/chat", request.url));
-  }
-
   // remove any empty value
   const segments = pathname.split("/").filter(Boolean);
 
@@ -65,6 +60,11 @@ export default async function middleware(request: NextRequest) {
 
   // get root
   const root = isLocale ? (segments[1] ?? "") : first;
+
+  // Owner-only: the upload surface drives RLS-bypassing ingestion. Fail closed.
+  if (root === "upload" && !isOwner(user)) {
+    return NextResponse.redirect(new URL(`/${locale}/chat`, request.url));
+  }
 
   // check if root is a protected route
   const isProtected = PROTECTED_ROUTES.includes(root);

@@ -9,6 +9,7 @@ import {
   transcribeAudio,
 } from "@/lib/services/assemblyai-transcribe.service";
 import { getServerSupabaseAuth } from "@/lib/utils/auth/auth-server-guard";
+import { isOwner } from "@/lib/utils/require-owner";
 import { createAdminClient } from "@/lib/utils/supabase/admin";
 
 export type IngestVideoResponse =
@@ -21,6 +22,11 @@ export async function ingestVideoAction(
   const { user } = await getServerSupabaseAuth();
   if (!user) {
     return { success: false, error: "Unauthorized" };
+  }
+
+  // Owner-only: ingestion bypasses RLS via createAdminClient — restrict to owner.
+  if (!isOwner(user)) {
+    return { success: false, error: "Forbidden" };
   }
 
   const file = formData.get("file");

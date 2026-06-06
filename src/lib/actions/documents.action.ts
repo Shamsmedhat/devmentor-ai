@@ -4,6 +4,7 @@ import { PDFParse } from "pdf-parse";
 
 import { chunkText } from "@/lib/ai/chunking";
 import { getServerSupabaseAuth } from "@/lib/utils/auth/auth-server-guard";
+import { isOwner } from "@/lib/utils/require-owner";
 import { createAdminClient } from "@/lib/utils/supabase/admin";
 import { generateEmbeddingsMany } from "../ai/embeddings";
 
@@ -16,6 +17,14 @@ export async function processPdfFileAction(formData: FormData) {
       return {
         success: false,
         error: "Unauthorized",
+      };
+    }
+
+    // Owner-only: ingestion bypasses RLS via createAdminClient — restrict to owner.
+    if (!isOwner(user)) {
+      return {
+        success: false,
+        error: "Forbidden",
       };
     }
 

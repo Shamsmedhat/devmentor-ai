@@ -11,10 +11,20 @@ import { memoryStrategy } from "@/lib/ai/memory";
 import { normalizeUiMessagesForAttachmentCapabilities } from "@/lib/ai/normalize-ui-messages-for-model";
 import { getActiveChatProvider } from "@/lib/ai/providers";
 import { buildRagSystemPrompt } from "@/lib/ai/rag";
+import { logChatRequest } from "@/lib/ai/rate-limit";
 import { AI_LIMITS } from "@/lib/constants/ai.constant";
 import type { ChatMessageMetadata, ChatUIMessage } from "@/lib/types/chat";
 import { serializeChatStreamError } from "@/lib/utils/chat/chat-stream-error.util";
 import { guardChatRoute } from "@/lib/utils/chat/route-guard.util";
+
+// First hop of x-forwarded-for, or null when unknown (e.g. local dev).
+function getClientIp(request: Request): string | null {
+  const first = request.headers
+    .get("x-forwarded-for")
+    ?.split(",")[0]
+    ?.trim();
+  return first && first.length > 0 ? first : null;
+}
 
 export async function POST(request: Request): Promise<Response> {
   // Auth + rate limit
@@ -61,6 +71,10 @@ export async function POST(request: Request): Promise<Response> {
 
   const modelMessages = await convertToModelMessages(trimmed);
 
+  // Rate-limit accounting: record THIS request so it counts toward the next
+  // window check. Best-effort — never blocks the response (see logChatRequest).
+  await logChatRequest(guard.user.id, getClientIp(request));
+
   const result = streamText({
     model: provider.createModel(),
     tools: provider.createTools(),
@@ -68,7 +82,7 @@ export async function POST(request: Request): Promise<Response> {
     messages: modelMessages,
     maxOutputTokens: AI_LIMITS.CHAT_MAX_TOKENS,
     maxRetries: 0,
-    stopWhen: stepCountIs(5) as StopCondition<ToolSet>,
+    stopWhen: stepCountIs(2) as StopCondition<ToolSet>,
     ...provider.streamOptions,
     experimental_transform: smoothStream({
       delayInMs: 20,

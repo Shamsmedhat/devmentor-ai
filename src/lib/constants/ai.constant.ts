@@ -10,7 +10,8 @@ export const AI_LIMITS = {
   EMBEDDING_BATCH_SIZE: 50,
   /** Pause between embedding batches in ms. Skipped after the final batch. */
   EMBEDDING_BATCH_DELAY_MS: 1000,
-  CHAT_MESSAGES_PER_HOUR: 50,
+  /** Max /api/chat requests per user per hour. One row per request = one turn. */
+  CHAT_REQUESTS_PER_HOUR: 30,
   /**
    * Max recent UIMessages sent to the model per turn. `messages[0]` is always
    * preserved by the active strategy. DB persistence is unaffected.

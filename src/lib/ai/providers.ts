@@ -37,9 +37,7 @@ const groqBrowserTools = (): ChatProviderTools =>
 
 const googleSearchTools = (): ChatProviderTools =>
   ({
-    browser_search: google.tools.googleSearch({
-      apiKey: process.env.GOOGLE_API_KEY!,
-    }),
+    browser_search: google.tools.googleSearch({}),
   }) as ChatProviderTools;
 
 const emptyTools = (): ChatProviderTools => ({}) as ChatProviderTools;

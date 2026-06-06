@@ -11,6 +11,7 @@ import {
   scrapeUrl,
 } from "@/lib/services/firecrawl.service";
 import { getServerSupabaseAuth } from "@/lib/utils/auth/auth-server-guard";
+import { isOwner } from "@/lib/utils/require-owner";
 import { createAdminClient } from "@/lib/utils/supabase/admin";
 
 export type UrlIngestionResult =
@@ -28,6 +29,11 @@ export async function ingestUrlsAction(
   const { user } = await getServerSupabaseAuth();
   if (!user) {
     return { success: false, error: "Unauthorized" };
+  }
+
+  // Owner-only: ingestion bypasses RLS via createAdminClient — restrict to owner.
+  if (!isOwner(user)) {
+    return { success: false, error: "Forbidden" };
   }
 
   // Validate
