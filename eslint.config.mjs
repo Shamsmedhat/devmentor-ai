@@ -13,7 +13,7 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
-  // Vendored from @vercel/ai-elements. Lint deferred per audit decision —
+  // Vendored from @vercel/ai-elements. Lint deferred per audit decision -
   // React 19 compiler rules vs vendored upstream code.
   {
     files: ["src/components/ai-elements/**"],

@@ -1,1 +1,515 @@
-{"success":true,"links":[{"url":"https://react.dev/reference/react/createRef","title":"createRef – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useRef","title":"useRef – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/memo","title":"memo – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/legacy","title":"Legacy React APIs – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/addTransitionType","title":"addTransitionType – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/act","title":"act – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useOptimistic","title":"useOptimistic – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary","title":"Component – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/PureComponent","title":"PureComponent – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/createElement","title":"createElement – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useState","title":"useState – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useContext","title":"useContext – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/startTransition","title":"startTransition – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/cache","title":"cache – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useInsertionEffect","title":"useInsertionEffect – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/Profiler","title":"<Profiler> – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/Children","title":"Children – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/cloneElement","title":"cloneElement – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/Activity","title":"<Activity> – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/captureOwnerStack","title":"captureOwnerStack – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useLayoutEffect","title":"useLayoutEffect – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useMemo","title":"useMemo – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/components","title":"Built-in React Components – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/isValidElement","title":"isValidElement – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useEffect","title":"useEffect – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/Fragment","title":"<Fragment> (<>...</>) – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useActionState","title":"useActionState – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useEffectEvent","title":"useEffectEvent – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useCallback","title":"useCallback – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useDeferredValue","title":"useDeferredValue – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/apis","title":"Built-in React APIs – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/experimental_taintUniqueValue","title":"experimental_taintUniqueValue – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state","title":"useState – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useDebugValue","title":"useDebugValue – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/Suspense","title":"<Suspense> – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useImperativeHandle","title":"useImperativeHandle – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/StrictMode","title":"<StrictMode> – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/Component#type-only-imports","title":"Component – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/use","title":"use – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/experimental_taintObjectReference","title":"experimental_taintObjectReference – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/cacheSignal","title":"cacheSignal – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/createContext","title":"createContext – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useReducer","title":"useReducer – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/forwardRef","title":"forwardRef – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react","title":"React Reference Overview – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useId","title":"useId – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/hooks","title":"Built-in React Hooks – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/lazy","title":"lazy – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/ViewTransition","title":"<ViewTransition> – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useSyncExternalStore","title":"useSyncExternalStore – React","description":"The library for web and native user interfaces"},{"url":"https://react.dev/reference/react/useTransition","title":"useTransition – React","description":"The library for web and native user interfaces"},{"url":"https://hu.react.dev/reference/react","title":"Built-in React Hooks","description":"Hooks let you use different React features from your components. You can either use the built-in Hooks or combine them to build your own. This page lists all ..."},{"url":"https://hu.react.dev/reference/react/useTransition","title":"useTransition - React","description":"The library for web and native user interfaces."},{"url":"https://react.dev/reference/react/createFactory","title":"createFactory - React","description":"Call createFactory(type) to create a factory function which produces React elements of a given type . import { createFactory } from 'react';. const button ..."},{"url":"https://it.react.dev/reference/react","title":"Panoramica della documentazione di React","description":"Rules of Hooks – Hooks are defined using JavaScript functions, but they represent a special type of reusable UI logic with restrictions on where they can be ..."},{"url":"https://es.react.dev/reference/react","title":"Descripción General de la Referencia de React","description":"React invoca los Componentes y Hooks – React se encarga de renderizar los componentes y hooks cuando sea necesario para optimizar la experiencia del usuario."},{"url":"https://react.dev/reference/react-dom","title":"React DOM APIs","description":"APIs. These APIs can be imported from your components. They are rarely used: createPortal lets you render child components in a different part of the DOM ..."},{"url":"https://tr.react.dev/reference/react","title":"React Başvuru Dökümanına Genel Bakış","description":"Programatik React özellikleri: Hooks - Bileşenlerinizdeki farklı React özelliklerini kullanın. Bileşenler - JSX'inizde kullanabileceğiniz yerleşik bileşenler."},{"url":"https://ru.react.dev/reference/react","title":"React Reference Overview","description":"React has idioms — or rules — for how to express patterns in a way that is easy to understand and yields high-quality applications: Components and Hooks ..."},{"url":"https://ko.react.dev/reference/react","title":"React 참고서 개요","description":"React 컴파일러는 React 컴포넌트와 값을 자동으로 메모이제이션하는 빌드 타임 최적화 도구입니다. 설정 - React 컴파일러의 설정 옵션입니다. 지시어 - ..."},{"url":"https://react.dev/reference/react/Component","title":"Component - React","description":"Component is the base class for the React components defined as JavaScript classes. Class components are still supported by React, but we don't recommend using ..."},{"url":"https://pl.react.dev/reference/react","title":"React Reference Overview","description":"The React reference documentation is broken down into functional subsections: React. Programmatic React features: Hooks - Use different React features from ..."},{"url":"https://id.react.dev/reference/react","title":"Pengantar Referensi React","description":"Pengantar Referensi React. Bagian ini menyediakan dokumentasi referensi yang mendetail untuk bekerja dengan React. Untuk pengenalan tentang React, Silahkan ..."},{"url":"https://fr.react.dev/reference/react","title":"Référence API React","description":"Les règles de React. React repose sur des idiomes — ou règles — visant à exprimer vos approches de façon facile à comprendre, et à même de produire des ..."},{"url":"https://ja.react.dev/reference/react","title":"React リファレンス概要","description":"React リファレンスは機能別にいくつかのサブセクションに分かれています。 React. プログラムから利用する React の機能です。 フック - コンポーネント内から使用 ..."},{"url":"https://it.react.dev/reference/react/useEffectEvent","title":"useEffectEvent - React","description":"Effect Events are a part of your Effect logic, but they behave more like an event handler. They always “see” the latest values from render (like props and ..."},{"url":"https://tr.react.dev/reference/react/hooks","title":"Yerleşik React Hook'ları","description":"Hook'lar, bileşenlerinizde farklı React özelliklerini kullanmanızı sağlar. Yerleşik Hook'ları kullanabilir ya da kendi Hook'larınızı oluşturmak için onları ..."},{"url":"https://tr.react.dev/reference/react/createElement","title":"createElement - React","description":"createElement. createElement bir React elemanı oluşturmanızı sağlar. JSX yazmaya alternatif olarak hizmet eder. const element = createElement(type, props, ..."},{"url":"https://ru.react.dev/reference/react/use","title":"use - React","description":"The use API must be called inside a Component or a Hook. · When fetching data in a Server Component, prefer async and await over use . · Prefer creating Promises ..."},{"url":"https://fr.react.dev/reference/react/use","title":"use - React","description":"Contrairement aux Hooks React, use peut être appelée au sein de boucles ou d'instructions conditionnelles telles que if . En revanche, comme pour les Hooks ..."},{"url":"https://ja.react.dev/reference/react/memo","title":"memo - React","description":"React Compiler はすべてのコンポーネントに自動で memo を適用するため、手作業によるメモ化の必要性を減らします。コンパイラを使って自動的にコンポーネントのメモ ..."},{"url":"https://ru.react.dev/reference/react/createElement","title":"createElement - React","description":"See more examples below. Parameters. type : The type argument must be a valid React component type. For example, it could be a tag name string (such as ..."},{"url":"https://fr.react.dev/reference/react/useInsertionEffect","title":"useInsertionEffect - React","description":"useInsertionEffect s'adresse aux auteurs de bibliothèques de CSS-en-JS. À moins que vous ne travailliez sur une bibliothèque de CSS-en-JS et ayez besoin ..."},{"url":"https://ko.react.dev/reference/react/useDeferredValue","title":"useDeferredValue - React","description":"React는 백그라운드 리렌더링을 처음부터 다시 시작할 것입니다. 예를 들어 차트가 리렌더링 가능한 지연된 값을 받는 속도보다 사용자가 Input에 값을 입력하는 속도가 더 ..."},{"url":"https://ru.react.dev/reference/react/cloneElement","title":"cloneElement - React","description":"See more examples below. Parameters. element : The element argument must be a valid React element. For example, it could be a JSX node like <Something /> ..."},{"url":"https://es.react.dev/reference/react/forwardRef","title":"forwardRef - React","description":"forwardRef devuelve un componente de React que puedes renderizar en JSX. A diferencia de los componentes de React definidos como funciones simples, el ..."},{"url":"https://ko.react.dev/reference/react/act","title":"act – React","description":"사용법. 컴포넌트를 테스트할 때 act 를 사용하면 출력 결과에 대한 단언을 더 안전하게 할 수 있습니다. 예시로 Counter 라는 컴포넌트가 있다고 가정하고 아래 사용 예시 ..."},{"url":"https://tr.react.dev/reference/react/useTransition","title":"useTransition - React","description":"useTransition is a React Hook that lets you render a part of the UI in the background. const [isPending, startTransition] = useTransition(). Başvuru dokümanı."},{"url":"https://es.react.dev/reference/react/Component","title":"Component - React","description":"Si defines componentDidCatch , React lo llamará cuando algún componente hijo (incluso los distantes) lance un error durante el renderizado. Esto te permite ..."},{"url":"https://ru.react.dev/reference/react/useRef","title":"useRef - React","description":"В строгом режиме React вызовет функцию компонента дважды, чтобы помочь обнаружить возможные побочные эффекты. Это поведение существует только в режиме ..."},{"url":"https://fr.react.dev/reference/react/useRef","title":"useRef - React","description":"useRef. useRef est un Hook React qui vous permet de référencer une valeur qui n'est pas nécessaire au code du rendu lui-même. const ref = ..."},{"url":"https://tr.react.dev/reference/react/Suspense","title":"<Suspense> – React","description":"Herhangi geçerli React düğümü kabul edilir, ancak pratikte, bir fallback hafif bir yer tutucu görünümdür, örneğin bir yükleniyor göstergesi ya da iskelet."},{"url":"https://tr.react.dev/reference/react/useDeferredValue","title":"useDeferredValue - React","description":"useDeferredValue 'ı performans optimizasyonu olarak da uygulayabilirsiniz. Kullanıcı arayüzünüzün bir bölümünün yeniden işlenmesi yavaş olduğunda, optimize ..."},{"url":"https://es.react.dev/reference/react/startTransition","title":"startTransition - React","description":"Nota. startTransition es muy similar a useTransition , excepto que no proporciona la bandera isPending para rastrear si una Transición está en curso. Puedes ..."},{"url":"https://tr.react.dev/reference/react/forwardRef","title":"forwardRef - React","description":"forwardRef , JSX'te render edebileceğiniz bir React bileşeni döndürür. Düz fonksiyonlar olarak tanımlanan React bileşenlerinin aksine, forwardRef tarafından ..."},{"url":"https://id.react.dev/reference/react/components","title":"Komponen Bawaan React","description":"React menyediakan beberapa komponen bawaan yang dapat Anda gunakan dalam JSX Anda. Komponen bawaan. <Fragment> , sebagai alternatif dapat ditulis menjadi <>...< ..."},{"url":"https://ko.react.dev/reference/react/useContext","title":"useContext - React","description":"useContext 는 전달한 Context에 대한 Context Value를 반환합니다. Context 값을 결정하기 위해 React는 컴포넌트 트리를 탐색하고 특정 Context에 대해 상위에서 가장 ..."},{"url":"https://ko.react.dev/reference/react/legacy","title":"Legacy React API","description":"Component 는 자바스크립트 클래스로써 React 컴포넌트를 정의합니다. 대안 확인하기. createElement 로 React 엘리먼트를 생성합니다. 일반적으로 JSX를 대신 사용 ..."},{"url":"https://ja.react.dev/reference/react/useId","title":"useId - React","description":"useId はフックであるため、コンポーネントのトップレベルまたは独自のフック内でのみ呼び出すことができます。ループまたは条件分岐内で呼び出すことはできません。もし ..."},{"url":"https://fr.react.dev/reference/react/createFactory","title":"createFactory - React","description":"Créer des éléments React avec une factory. Même si la majorité des projets React utilisent JSX pour décrire leurs interfaces utilisateurs (UI), JSX n'est pas ..."},{"url":"https://fr.react.dev/reference/react/Component","title":"Component - React","description":"Component est la classe de base pour les composants React définis à l'aide de classes JavaScript. Les composants à base de classes restent pris en charge ..."},{"url":"https://ja.react.dev/reference/react/useCallback","title":"useCallback - React","description":"React Compiler は値や関数の自動的なメモ化を行うことで、手作業による useCallback 呼び出しの必要性を軽減します。自動でメモ化を行うためにコンパイラを使用可能 ..."},{"url":"https://ko.react.dev/reference/react/PureComponent","title":"PureComponent - React","description":"React 컴포넌트에는 항상 순수한 렌더링 로직이 있어야 합니다. 즉, props, state 및 context가 변경되지 않은 경우 같은 출력을 반환해야 합니다."},{"url":"https://18.react.dev/reference/react/createFactory","title":"createFactory - React","description":"Call createFactory(type) to create a factory function which produces React elements of a given type . import { createFactory } from 'react';. const button ..."},{"url":"https://ko.react.dev/reference/react/isValidElement","title":"isValidElement - React","description":"어떤 것이 React 엘리먼트인지 확인하기. 어떤 값이 React 엘리먼트인지 확인하려면 isValidElement 를 호출해 보세요. React 엘리먼트는 다음과 같습니다. ... React ..."},{"url":"https://ko.react.dev/reference/react/useDebugValue","title":"useDebugValue - React","description":"format (선택사항): 포맷팅 함수입니다. 컴포넌트가 검사될 때, React DevTools는 value 를 인자로 포맷팅 함수를 호출하고, 포맷팅 함수가 반환한 포맷팅 된 값을 표시 ..."},{"url":"https://es.react.dev/reference/react/createContext","title":"createContext - React","description":"createContext(defaultValue). Puedes llamar a createContext fuera de cualquier componente para crear un contexto. import { createContext } from 'react';. const ..."},{"url":"https://pl.react.dev/reference/react/act","title":"act – React","description":"act is a test helper to apply pending React updates before making assertions. await act(async actFn)."},{"url":"https://ko.react.dev/reference/react/createContext","title":"createContext - React","description":"컨텍스트 생성. 컨텍스트를 사용하면 컴포넌트가 정보를 깊게 전달할 수 있습니다. 컴포넌트 외부에서 createContext 를 호출하여 하나 이상의 컨텍스트를 생성합니다."},{"url":"https://id.react.dev/reference/react/act","title":"act – React","description":"act adalah alat bantu pengujian untuk menerapkan pembaruan React yang tertunda sebelum melakukan perbandingan. await act(async actFn)."},{"url":"https://ja.react.dev/reference/react/cloneElement","title":"cloneElement - React","description":"さらに例を見る. 引数. element : element 引数は有効な React 要素でなければなりません。例えば、 <Something /> のような JSX ノード、 createElement の呼び出し ..."},{"url":"https://ja.react.dev/reference/react/apis","title":"React の組み込み API","description":"フックやコンポーネントの他に、 react パッケージはコンポーネントの定義に役立つ他の API も提供しています。このページでは、残りのモダンな React API をすべて ..."}]}
+{
+  "success": true,
+  "links": [
+    {
+      "url": "https://react.dev/reference/react/createRef",
+      "title": "createRef – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useRef",
+      "title": "useRef – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/memo",
+      "title": "memo – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/legacy",
+      "title": "Legacy React APIs – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/addTransitionType",
+      "title": "addTransitionType – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/act",
+      "title": "act – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useOptimistic",
+      "title": "useOptimistic – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary",
+      "title": "Component – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/PureComponent",
+      "title": "PureComponent – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/createElement",
+      "title": "createElement – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useState",
+      "title": "useState – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useContext",
+      "title": "useContext – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/startTransition",
+      "title": "startTransition – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/cache",
+      "title": "cache – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useInsertionEffect",
+      "title": "useInsertionEffect – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/Profiler",
+      "title": "<Profiler> – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/Children",
+      "title": "Children – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/cloneElement",
+      "title": "cloneElement – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/Activity",
+      "title": "<Activity> – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/captureOwnerStack",
+      "title": "captureOwnerStack – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useLayoutEffect",
+      "title": "useLayoutEffect – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useMemo",
+      "title": "useMemo – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/components",
+      "title": "Built-in React Components – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/isValidElement",
+      "title": "isValidElement – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useEffect",
+      "title": "useEffect – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/Fragment",
+      "title": "<Fragment> (<>...</>) – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useActionState",
+      "title": "useActionState – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useEffectEvent",
+      "title": "useEffectEvent – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useCallback",
+      "title": "useCallback – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useDeferredValue",
+      "title": "useDeferredValue – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/apis",
+      "title": "Built-in React APIs – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/experimental_taintUniqueValue",
+      "title": "experimental_taintUniqueValue – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state",
+      "title": "useState – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useDebugValue",
+      "title": "useDebugValue – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/Suspense",
+      "title": "<Suspense> – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useImperativeHandle",
+      "title": "useImperativeHandle – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/StrictMode",
+      "title": "<StrictMode> – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/Component#type-only-imports",
+      "title": "Component – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/use",
+      "title": "use – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/experimental_taintObjectReference",
+      "title": "experimental_taintObjectReference – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/cacheSignal",
+      "title": "cacheSignal – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/createContext",
+      "title": "createContext – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useReducer",
+      "title": "useReducer – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/forwardRef",
+      "title": "forwardRef – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react",
+      "title": "React Reference Overview – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useId",
+      "title": "useId – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/hooks",
+      "title": "Built-in React Hooks – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/lazy",
+      "title": "lazy – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/ViewTransition",
+      "title": "<ViewTransition> – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useSyncExternalStore",
+      "title": "useSyncExternalStore – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://react.dev/reference/react/useTransition",
+      "title": "useTransition – React",
+      "description": "The library for web and native user interfaces"
+    },
+    {
+      "url": "https://hu.react.dev/reference/react",
+      "title": "Built-in React Hooks",
+      "description": "Hooks let you use different React features from your components. You can either use the built-in Hooks or combine them to build your own. This page lists all ..."
+    },
+    {
+      "url": "https://hu.react.dev/reference/react/useTransition",
+      "title": "useTransition - React",
+      "description": "The library for web and native user interfaces."
+    },
+    {
+      "url": "https://react.dev/reference/react/createFactory",
+      "title": "createFactory - React",
+      "description": "Call createFactory(type) to create a factory function which produces React elements of a given type . import { createFactory } from 'react';. const button ..."
+    },
+    {
+      "url": "https://it.react.dev/reference/react",
+      "title": "Panoramica della documentazione di React",
+      "description": "Rules of Hooks – Hooks are defined using JavaScript functions, but they represent a special type of reusable UI logic with restrictions on where they can be ..."
+    },
+    {
+      "url": "https://es.react.dev/reference/react",
+      "title": "Descripción General de la Referencia de React",
+      "description": "React invoca los Componentes y Hooks – React se encarga de renderizar los componentes y hooks cuando sea necesario para optimizar la experiencia del usuario."
+    },
+    {
+      "url": "https://react.dev/reference/react-dom",
+      "title": "React DOM APIs",
+      "description": "APIs. These APIs can be imported from your components. They are rarely used: createPortal lets you render child components in a different part of the DOM ..."
+    },
+    {
+      "url": "https://tr.react.dev/reference/react",
+      "title": "React Başvuru Dökümanına Genel Bakış",
+      "description": "Programatik React özellikleri: Hooks - Bileşenlerinizdeki farklı React özelliklerini kullanın. Bileşenler - JSX'inizde kullanabileceğiniz yerleşik bileşenler."
+    },
+    {
+      "url": "https://ru.react.dev/reference/react",
+      "title": "React Reference Overview",
+      "description": "React has idioms - or rules - for how to express patterns in a way that is easy to understand and yields high-quality applications: Components and Hooks ..."
+    },
+    {
+      "url": "https://ko.react.dev/reference/react",
+      "title": "React 참고서 개요",
+      "description": "React 컴파일러는 React 컴포넌트와 값을 자동으로 메모이제이션하는 빌드 타임 최적화 도구입니다. 설정 - React 컴파일러의 설정 옵션입니다. 지시어 - ..."
+    },
+    {
+      "url": "https://react.dev/reference/react/Component",
+      "title": "Component - React",
+      "description": "Component is the base class for the React components defined as JavaScript classes. Class components are still supported by React, but we don't recommend using ..."
+    },
+    {
+      "url": "https://pl.react.dev/reference/react",
+      "title": "React Reference Overview",
+      "description": "The React reference documentation is broken down into functional subsections: React. Programmatic React features: Hooks - Use different React features from ..."
+    },
+    {
+      "url": "https://id.react.dev/reference/react",
+      "title": "Pengantar Referensi React",
+      "description": "Pengantar Referensi React. Bagian ini menyediakan dokumentasi referensi yang mendetail untuk bekerja dengan React. Untuk pengenalan tentang React, Silahkan ..."
+    },
+    {
+      "url": "https://fr.react.dev/reference/react",
+      "title": "Référence API React",
+      "description": "Les règles de React. React repose sur des idiomes - ou règles - visant à exprimer vos approches de façon facile à comprendre, et à même de produire des ..."
+    },
+    {
+      "url": "https://ja.react.dev/reference/react",
+      "title": "React リファレンス概要",
+      "description": "React リファレンスは機能別にいくつかのサブセクションに分かれています。 React. プログラムから利用する React の機能です。 フック - コンポーネント内から使用 ..."
+    },
+    {
+      "url": "https://it.react.dev/reference/react/useEffectEvent",
+      "title": "useEffectEvent - React",
+      "description": "Effect Events are a part of your Effect logic, but they behave more like an event handler. They always “see” the latest values from render (like props and ..."
+    },
+    {
+      "url": "https://tr.react.dev/reference/react/hooks",
+      "title": "Yerleşik React Hook'ları",
+      "description": "Hook'lar, bileşenlerinizde farklı React özelliklerini kullanmanızı sağlar. Yerleşik Hook'ları kullanabilir ya da kendi Hook'larınızı oluşturmak için onları ..."
+    },
+    {
+      "url": "https://tr.react.dev/reference/react/createElement",
+      "title": "createElement - React",
+      "description": "createElement. createElement bir React elemanı oluşturmanızı sağlar. JSX yazmaya alternatif olarak hizmet eder. const element = createElement(type, props, ..."
+    },
+    {
+      "url": "https://ru.react.dev/reference/react/use",
+      "title": "use - React",
+      "description": "The use API must be called inside a Component or a Hook. · When fetching data in a Server Component, prefer async and await over use . · Prefer creating Promises ..."
+    },
+    {
+      "url": "https://fr.react.dev/reference/react/use",
+      "title": "use - React",
+      "description": "Contrairement aux Hooks React, use peut être appelée au sein de boucles ou d'instructions conditionnelles telles que if . En revanche, comme pour les Hooks ..."
+    },
+    {
+      "url": "https://ja.react.dev/reference/react/memo",
+      "title": "memo - React",
+      "description": "React Compiler はすべてのコンポーネントに自動で memo を適用するため、手作業によるメモ化の必要性を減らします。コンパイラを使って自動的にコンポーネントのメモ ..."
+    },
+    {
+      "url": "https://ru.react.dev/reference/react/createElement",
+      "title": "createElement - React",
+      "description": "See more examples below. Parameters. type : The type argument must be a valid React component type. For example, it could be a tag name string (such as ..."
+    },
+    {
+      "url": "https://fr.react.dev/reference/react/useInsertionEffect",
+      "title": "useInsertionEffect - React",
+      "description": "useInsertionEffect s'adresse aux auteurs de bibliothèques de CSS-en-JS. À moins que vous ne travailliez sur une bibliothèque de CSS-en-JS et ayez besoin ..."
+    },
+    {
+      "url": "https://ko.react.dev/reference/react/useDeferredValue",
+      "title": "useDeferredValue - React",
+      "description": "React는 백그라운드 리렌더링을 처음부터 다시 시작할 것입니다. 예를 들어 차트가 리렌더링 가능한 지연된 값을 받는 속도보다 사용자가 Input에 값을 입력하는 속도가 더 ..."
+    },
+    {
+      "url": "https://ru.react.dev/reference/react/cloneElement",
+      "title": "cloneElement - React",
+      "description": "See more examples below. Parameters. element : The element argument must be a valid React element. For example, it could be a JSX node like <Something /> ..."
+    },
+    {
+      "url": "https://es.react.dev/reference/react/forwardRef",
+      "title": "forwardRef - React",
+      "description": "forwardRef devuelve un componente de React que puedes renderizar en JSX. A diferencia de los componentes de React definidos como funciones simples, el ..."
+    },
+    {
+      "url": "https://ko.react.dev/reference/react/act",
+      "title": "act – React",
+      "description": "사용법. 컴포넌트를 테스트할 때 act 를 사용하면 출력 결과에 대한 단언을 더 안전하게 할 수 있습니다. 예시로 Counter 라는 컴포넌트가 있다고 가정하고 아래 사용 예시 ..."
+    },
+    {
+      "url": "https://tr.react.dev/reference/react/useTransition",
+      "title": "useTransition - React",
+      "description": "useTransition is a React Hook that lets you render a part of the UI in the background. const [isPending, startTransition] = useTransition(). Başvuru dokümanı."
+    },
+    {
+      "url": "https://es.react.dev/reference/react/Component",
+      "title": "Component - React",
+      "description": "Si defines componentDidCatch , React lo llamará cuando algún componente hijo (incluso los distantes) lance un error durante el renderizado. Esto te permite ..."
+    },
+    {
+      "url": "https://ru.react.dev/reference/react/useRef",
+      "title": "useRef - React",
+      "description": "В строгом режиме React вызовет функцию компонента дважды, чтобы помочь обнаружить возможные побочные эффекты. Это поведение существует только в режиме ..."
+    },
+    {
+      "url": "https://fr.react.dev/reference/react/useRef",
+      "title": "useRef - React",
+      "description": "useRef. useRef est un Hook React qui vous permet de référencer une valeur qui n'est pas nécessaire au code du rendu lui-même. const ref = ..."
+    },
+    {
+      "url": "https://tr.react.dev/reference/react/Suspense",
+      "title": "<Suspense> – React",
+      "description": "Herhangi geçerli React düğümü kabul edilir, ancak pratikte, bir fallback hafif bir yer tutucu görünümdür, örneğin bir yükleniyor göstergesi ya da iskelet."
+    },
+    {
+      "url": "https://tr.react.dev/reference/react/useDeferredValue",
+      "title": "useDeferredValue - React",
+      "description": "useDeferredValue 'ı performans optimizasyonu olarak da uygulayabilirsiniz. Kullanıcı arayüzünüzün bir bölümünün yeniden işlenmesi yavaş olduğunda, optimize ..."
+    },
+    {
+      "url": "https://es.react.dev/reference/react/startTransition",
+      "title": "startTransition - React",
+      "description": "Nota. startTransition es muy similar a useTransition , excepto que no proporciona la bandera isPending para rastrear si una Transición está en curso. Puedes ..."
+    },
+    {
+      "url": "https://tr.react.dev/reference/react/forwardRef",
+      "title": "forwardRef - React",
+      "description": "forwardRef , JSX'te render edebileceğiniz bir React bileşeni döndürür. Düz fonksiyonlar olarak tanımlanan React bileşenlerinin aksine, forwardRef tarafından ..."
+    },
+    {
+      "url": "https://id.react.dev/reference/react/components",
+      "title": "Komponen Bawaan React",
+      "description": "React menyediakan beberapa komponen bawaan yang dapat Anda gunakan dalam JSX Anda. Komponen bawaan. <Fragment> , sebagai alternatif dapat ditulis menjadi <>...< ..."
+    },
+    {
+      "url": "https://ko.react.dev/reference/react/useContext",
+      "title": "useContext - React",
+      "description": "useContext 는 전달한 Context에 대한 Context Value를 반환합니다. Context 값을 결정하기 위해 React는 컴포넌트 트리를 탐색하고 특정 Context에 대해 상위에서 가장 ..."
+    },
+    {
+      "url": "https://ko.react.dev/reference/react/legacy",
+      "title": "Legacy React API",
+      "description": "Component 는 자바스크립트 클래스로써 React 컴포넌트를 정의합니다. 대안 확인하기. createElement 로 React 엘리먼트를 생성합니다. 일반적으로 JSX를 대신 사용 ..."
+    },
+    {
+      "url": "https://ja.react.dev/reference/react/useId",
+      "title": "useId - React",
+      "description": "useId はフックであるため、コンポーネントのトップレベルまたは独自のフック内でのみ呼び出すことができます。ループまたは条件分岐内で呼び出すことはできません。もし ..."
+    },
+    {
+      "url": "https://fr.react.dev/reference/react/createFactory",
+      "title": "createFactory - React",
+      "description": "Créer des éléments React avec une factory. Même si la majorité des projets React utilisent JSX pour décrire leurs interfaces utilisateurs (UI), JSX n'est pas ..."
+    },
+    {
+      "url": "https://fr.react.dev/reference/react/Component",
+      "title": "Component - React",
+      "description": "Component est la classe de base pour les composants React définis à l'aide de classes JavaScript. Les composants à base de classes restent pris en charge ..."
+    },
+    {
+      "url": "https://ja.react.dev/reference/react/useCallback",
+      "title": "useCallback - React",
+      "description": "React Compiler は値や関数の自動的なメモ化を行うことで、手作業による useCallback 呼び出しの必要性を軽減します。自動でメモ化を行うためにコンパイラを使用可能 ..."
+    },
+    {
+      "url": "https://ko.react.dev/reference/react/PureComponent",
+      "title": "PureComponent - React",
+      "description": "React 컴포넌트에는 항상 순수한 렌더링 로직이 있어야 합니다. 즉, props, state 및 context가 변경되지 않은 경우 같은 출력을 반환해야 합니다."
+    },
+    {
+      "url": "https://18.react.dev/reference/react/createFactory",
+      "title": "createFactory - React",
+      "description": "Call createFactory(type) to create a factory function which produces React elements of a given type . import { createFactory } from 'react';. const button ..."
+    },
+    {
+      "url": "https://ko.react.dev/reference/react/isValidElement",
+      "title": "isValidElement - React",
+      "description": "어떤 것이 React 엘리먼트인지 확인하기. 어떤 값이 React 엘리먼트인지 확인하려면 isValidElement 를 호출해 보세요. React 엘리먼트는 다음과 같습니다. ... React ..."
+    },
+    {
+      "url": "https://ko.react.dev/reference/react/useDebugValue",
+      "title": "useDebugValue - React",
+      "description": "format (선택사항): 포맷팅 함수입니다. 컴포넌트가 검사될 때, React DevTools는 value 를 인자로 포맷팅 함수를 호출하고, 포맷팅 함수가 반환한 포맷팅 된 값을 표시 ..."
+    },
+    {
+      "url": "https://es.react.dev/reference/react/createContext",
+      "title": "createContext - React",
+      "description": "createContext(defaultValue). Puedes llamar a createContext fuera de cualquier componente para crear un contexto. import { createContext } from 'react';. const ..."
+    },
+    {
+      "url": "https://pl.react.dev/reference/react/act",
+      "title": "act – React",
+      "description": "act is a test helper to apply pending React updates before making assertions. await act(async actFn)."
+    },
+    {
+      "url": "https://ko.react.dev/reference/react/createContext",
+      "title": "createContext - React",
+      "description": "컨텍스트 생성. 컨텍스트를 사용하면 컴포넌트가 정보를 깊게 전달할 수 있습니다. 컴포넌트 외부에서 createContext 를 호출하여 하나 이상의 컨텍스트를 생성합니다."
+    },
+    {
+      "url": "https://id.react.dev/reference/react/act",
+      "title": "act – React",
+      "description": "act adalah alat bantu pengujian untuk menerapkan pembaruan React yang tertunda sebelum melakukan perbandingan. await act(async actFn)."
+    },
+    {
+      "url": "https://ja.react.dev/reference/react/cloneElement",
+      "title": "cloneElement - React",
+      "description": "さらに例を見る. 引数. element : element 引数は有効な React 要素でなければなりません。例えば、 <Something /> のような JSX ノード、 createElement の呼び出し ..."
+    },
+    {
+      "url": "https://ja.react.dev/reference/react/apis",
+      "title": "React の組み込み API",
+      "description": "フックやコンポーネントの他に、 react パッケージはコンポーネントの定義に役立つ他の API も提供しています。このページでは、残りのモダンな React API をすべて ..."
+    }
+  ]
+}

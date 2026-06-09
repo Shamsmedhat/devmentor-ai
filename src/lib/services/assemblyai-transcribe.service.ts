@@ -45,7 +45,7 @@ export async function transcribeAudio(
   try {
     const client = getClient();
 
-    // language_code:"ar" is deterministic — language_detection risks misdetecting
+    // language_code:"ar" is deterministic - language_detection risks misdetecting
     // heavy English code-switching and transcribing in the wrong language.
     const transcript = await client.transcripts.transcribe({
       audio,

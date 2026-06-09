@@ -1,4 +1,4 @@
-# CLAUDE.md — DevMentor AI
+# CLAUDE.md - DevMentor AI
 
 > Read this before doing anything in this codebase.
 
@@ -13,7 +13,7 @@
 - PDF upload & ingestion pipeline
 - Multi-session chat history per user
 
-The user is the founder/sole developer. Code quality, clarity, and pedagogical readability matter MORE than cleverness — this codebase is also a personal learning artifact.
+The user is the founder/sole developer. Code quality, clarity, and pedagogical readability matter MORE than cleverness - this codebase is also a personal learning artifact.
 
 ---
 
@@ -30,7 +30,7 @@ The user is the founder/sole developer. Code quality, clarity, and pedagogical r
 | Embeddings      | Google `text-embedding-004` (768 dims)                |
 | i18n            | next-intl v4 (en + ar, RTL)                           |
 | Forms           | React Hook Form + Zod                                 |
-| Package Manager | **Yarn v1 — never use npm**                           |
+| Package Manager | **Yarn v1 - never use npm**                           |
 
 ---
 
@@ -57,7 +57,7 @@ src/
 │   ├── features/                        # Domain-grouped (chat, review, landing, auth)
 │   ├── skeletons/
 │   ├── layout/                          # Navbar, Footer, Sidebar
-│   └── ui/                              # shadcn — NEVER edit these
+│   └── ui/                              # shadcn - NEVER edit these
 │
 ├── hooks/                               # camelCase + use prefix
 ├── lib/
@@ -84,27 +84,27 @@ src/
 
 ### TypeScript
 
-- **No `any`** — use `unknown` and narrow it
+- **No `any`** - use `unknown` and narrow it
 - Derive types from Zod schemas: `type Fields = z.infer<typeof schema>`
 - Type all function return values explicitly
 - Prefer discriminated unions over boolean flags
 
 ### Components
 
-- **Default to Server Components** — `"use client"` only when needed (events, hooks, browser APIs)
-- **Never put `"use client"` on a `page.tsx` or `layout.tsx`** — extract interactive parts into `_components/`
+- **Default to Server Components** - `"use client"` only when needed (events, hooks, browser APIs)
+- **Never put `"use client"` on a `page.tsx` or `layout.tsx`** - extract interactive parts into `_components/`
 - One component per file
 - Named exports for components, default export only for pages/layouts
 - No commented-out code, no `console.log` (only `console.error` in catch blocks)
 - No unused imports
-- Stable IDs as keys in lists — never array index
+- Stable IDs as keys in lists - never array index
 
 ### Next.js 15 Specifics
 
-- `params` and `searchParams` are **Promises** — always `await` them
-- AI calls must go through Route Handlers (`app/api/`) — not Server Actions (Server Actions don't stream natively)
+- `params` and `searchParams` are **Promises** - always `await` them
+- AI calls must go through Route Handlers (`app/api/`) - not Server Actions (Server Actions don't stream natively)
 - Wrap async Server Components in `<Suspense>` with skeleton fallback
-- Use `next/image` — never `<img>`
+- Use `next/image` - never `<img>`
 
 ### File / Symbol Naming
 
@@ -154,33 +154,33 @@ Always leave a blank line between sections. Add a short comment label before eac
 
 ### i18n
 
-- Zero hardcoded user-facing strings — everything via `useTranslations()` / `getTranslations()`
+- Zero hardcoded user-facing strings - everything via `useTranslations()` / `getTranslations()`
 - RTL: `dir="rtl"` on `<html>` when locale is `ar`
 - Use logical CSS (`ms-*`, `me-*`, `ps-*`) in shared components
 
 ### Auth
 
 - Two Supabase clients: `client.ts` (browser), `server.ts` (server)
-- Always `supabase.auth.getUser()` — never `getSession()` (less secure)
-- Protect routes in `middleware.ts` — not inside pages
+- Always `supabase.auth.getUser()` - never `getSession()` (less secure)
+- Protect routes in `middleware.ts` - not inside pages
 - Sign out via Server Action
 
 ### AI / RAG
 
-- All system prompts live in `lib/ai/prompts.ts` — **never inline**
+- All system prompts live in `lib/ai/prompts.ts` - **never inline**
 - Always set `maxTokens` on every AI call
 - Always auth-check inside Route Handlers before calling models
-- Use `useChat` from `ai/react` on the client — never raw fetch
+- Use `useChat` from `ai/react` on the client - never raw fetch
 - Render AI messages with Markdown + syntax highlighting
 - Rate-limit every AI endpoint (per-user, in DB or Redis)
-- Save messages to DB in `onFinish` callback — not on stream chunk
+- Save messages to DB in `onFinish` callback - not on stream chunk
 
 ### Mutations Pattern
 
-**Server Action → Custom Hook (useMutation) → Component** — three layers, always.
+**Server Action → Custom Hook (useMutation) → Component** - three layers, always.
 
 - Auth check in every Server Action
-- Custom hook wraps every mutation — components never call `useMutation` directly
+- Custom hook wraps every mutation - components never call `useMutation` directly
 - Centralize query keys in `lib/constants/query-keys.constant.ts`
 
 ### Database
@@ -194,13 +194,13 @@ Always leave a blank line between sections. Add a short comment label before eac
 
 ## Current State of the Codebase (be honest about smells)
 
-The user has explicitly flagged these issues — when reviewing, look for and fix them:
+The user has explicitly flagged these issues - when reviewing, look for and fix them:
 
-1. **Prop drilling** — too many props passed through layers. Lift state to context or co-locate with usage.
-2. **Over-engineering** — abstractions that exist for hypothetical future cases, not current needs. Inline single-use helpers, delete one-off "utility" files.
-3. **Complex logic** — chained conditionals, nested ternaries, deeply nested useEffects. Refactor to early returns, named functions, derived state.
-4. **Unneeded implementations** — features built ahead of time, dead code, commented-out blocks, unused props/state.
-5. **Inconsistent patterns** — some places follow the rules above, others don't. Bring everything into alignment.
+1. **Prop drilling** - too many props passed through layers. Lift state to context or co-locate with usage.
+2. **Over-engineering** - abstractions that exist for hypothetical future cases, not current needs. Inline single-use helpers, delete one-off "utility" files.
+3. **Complex logic** - chained conditionals, nested ternaries, deeply nested useEffects. Refactor to early returns, named functions, derived state.
+4. **Unneeded implementations** - features built ahead of time, dead code, commented-out blocks, unused props/state.
+5. **Inconsistent patterns** - some places follow the rules above, others don't. Bring everything into alignment.
 
 When in doubt: **prefer the simpler, more readable version**, even if it's slightly more verbose. The user is studying this code.
 
@@ -219,26 +219,26 @@ A function is clean if:
 A component is clean if:
 
 - Sections are labeled (Translation / State / Effects / etc.) and separated by blank lines
-- Props < 6 — if more, group them into an object or split the component
-- No `useEffect` doing data fetching — that goes in a hook or Server Component
-- No inline arrow functions inside JSX for non-trivial logic — extract to a named function
+- Props < 6 - if more, group them into an object or split the component
+- No `useEffect` doing data fetching - that goes in a hook or Server Component
+- No inline arrow functions inside JSX for non-trivial logic - extract to a named function
 - Markup and logic are visibly separated, not interleaved
 
 ---
 
 ## What NOT to Touch
 
-- `components/ui/*` — these are shadcn-generated, treat as vendor code
-- `messages/ar.json` and `messages/en.json` content — only add new keys, don't rephrase existing ones unless asked
-- The Supabase database schema — the user runs SQL changes manually
-- The chosen tech stack — no swapping libraries (e.g., don't suggest Drizzle, Prisma, NextAuth, LangChain)
+- `components/ui/*` - these are shadcn-generated, treat as vendor code
+- `messages/ar.json` and `messages/en.json` content - only add new keys, don't rephrase existing ones unless asked
+- The Supabase database schema - the user runs SQL changes manually
+- The chosen tech stack - no swapping libraries (e.g., don't suggest Drizzle, Prisma, NextAuth, LangChain)
 
 ---
 
 ## Communication Style with the User
 
 - The user prefers **short, direct answers** in Arabic-English code-switching (Arabic explanation + English technical terms)
-- When the user asks "why X?" — explain reasoning in 2-3 lines, not an essay
+- When the user asks "why X?" - explain reasoning in 2-3 lines, not an essay
 - Show diffs/changed sections, not full files, when refactoring
 - Flag trade-offs explicitly: "I simplified X but this means Y"
 - If a "fix" requires changing more than 3 files, **stop and ask first**
@@ -254,24 +254,24 @@ Before changing anything:
 3. Show the smallest possible fix
 4. Explain in one line why the new version is better
 
-Don't rewrite working code just for style preference — only when it violates a rule, has a real readability problem, or has dead/duplicated logic.
+Don't rewrite working code just for style preference - only when it violates a rule, has a real readability problem, or has dead/duplicated logic.
 
 ---
 
 ## Common Pitfalls in This Project
 
-- **Mixing chat session state across components via props** — should live in a context or zustand store at the chat shell level
+- **Mixing chat session state across components via props** - should live in a context or zustand store at the chat shell level
 - **Forgetting `await` on `params` / `searchParams`** in Next 15
-- **Calling AI from Server Action** — won't stream properly, must be Route Handler
-- **Hardcoded strings** in feature components — must be in `messages/*.json`
-- **Building features without RLS policies** — every new table must enable RLS day one
-- **Calling `useChat` raw fetch wrapper** — always use the hook from `ai/react`
+- **Calling AI from Server Action** - won't stream properly, must be Route Handler
+- **Hardcoded strings** in feature components - must be in `messages/*.json`
+- **Building features without RLS policies** - every new table must enable RLS day one
+- **Calling `useChat` raw fetch wrapper** - always use the hook from `ai/react`
 
 ---
 
 ## Switching chat provider
 
-To switch the active chat model: change `ACTIVE_CHAT_PROVIDER_ID` in `src/lib/ai/providers.ts` to one of the IDs in `CHAT_PROVIDERS` and restart `yarn dev`. No automatic fallback — intentional. If the active provider fails, the request fails and we see it instead of silently retrying a second model on the same key.
+To switch the active chat model: change `ACTIVE_CHAT_PROVIDER_ID` in `src/lib/ai/providers.ts` to one of the IDs in `CHAT_PROVIDERS` and restart `yarn dev`. No automatic fallback - intentional. If the active provider fails, the request fails and we see it instead of silently retrying a second model on the same key.
 
 The catalog (`CHAT_PROVIDERS`) carries per-provider `streamOptions` (e.g. `structuredOutputs: false` for gpt-oss, `thinkingConfig: { thinkingBudget: 0 }` for Gemini) and `capabilities` (image/file support), so the route stays provider-agnostic. Add a new entry to the catalog before pointing `ACTIVE_CHAT_PROVIDER_ID` at it.
 

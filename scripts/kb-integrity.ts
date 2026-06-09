@@ -35,9 +35,7 @@ async function main(): Promise<void> {
 
     if (data.length < PAGE_SIZE) break;
   }
-  const sortedSources = [...sourceCounts.entries()].sort(
-    (a, b) => a[1] - b[1],
-  );
+  const sortedSources = [...sourceCounts.entries()].sort((a, b) => a[1] - b[1]);
 
   // 3a. NULL embedding count (real failure mode)
   const { count: nullEmbeddings, error: nullErr } = await supabase
@@ -75,7 +73,7 @@ async function main(): Promise<void> {
   console.log("\n=== KB Integrity Summary ===");
   console.log(`Total chunks:                ${totalChunks ?? 0}`);
   console.log(
-    `DISTINCT SOURCES:            ${sourceCounts.size}   (expected ~198 URLs — gap means silent ingestion failures)`,
+    `DISTINCT SOURCES:            ${sourceCounts.size}   (expected ~198 URLs - gap means silent ingestion failures)`,
   );
   console.log(`NULL embeddings:             ${nullEmbeddings ?? 0}`);
   console.log(`Empty/null content rows:     ${emptyContent ?? 0}`);

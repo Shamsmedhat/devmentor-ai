@@ -24,7 +24,7 @@ export default function RagInsightStep({ sources }: RagInsightStepProps) {
   // Translation
   const t = useTranslations();
 
-  // State — collapsed by default: RAG runs on most turns, keep it compact.
+  // State - collapsed by default: RAG runs on most turns, keep it compact.
   const [isOpen, setIsOpen] = useState(false);
 
   // Variables
@@ -38,7 +38,10 @@ export default function RagInsightStep({ sources }: RagInsightStepProps) {
       </div>
 
       <div className="flex-1 overflow-hidden">
-        <Collapsible onOpenChange={setIsOpen} open={isOpen}>
+        <Collapsible
+          onOpenChange={setIsOpen}
+          open={isOpen}
+        >
           <CollapsibleTrigger className="flex w-full items-center gap-2 transition-colors hover:text-foreground">
             <span className="flex-1 text-start">
               {t("chat-insights-rag-label", { count: sources.length })}
@@ -53,10 +56,13 @@ export default function RagInsightStep({ sources }: RagInsightStepProps) {
 
           <CollapsibleContent className="mt-2 space-y-1.5 text-xs">
             {visibleSources.map((source) => (
-              // Label can be an Arabic video title or an English file name —
+              // Label can be an Arabic video title or an English file name -
               // dir="auto" lets each resolve its own direction; the similarity
               // % and timestamp stay LTR.
-              <div key={source.id} className="flex items-center gap-2">
+              <div
+                key={source.id}
+                className="flex items-center gap-2"
+              >
                 {source.url ? (
                   <a
                     dir="auto"
@@ -68,7 +74,10 @@ export default function RagInsightStep({ sources }: RagInsightStepProps) {
                     {source.label}
                   </a>
                 ) : (
-                  <span dir="auto" className="flex-1 truncate">
+                  <span
+                    dir="auto"
+                    className="flex-1 truncate"
+                  >
                     {source.label}
                   </span>
                 )}

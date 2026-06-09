@@ -43,7 +43,7 @@ export async function POST(request: Request): Promise<Response> {
 
   const messages = (body as { messages: ChatUIMessage[] }).messages;
 
-  // Active provider — switch by editing ACTIVE_CHAT_PROVIDER_ID in providers.ts
+  // Active provider - switch by editing ACTIVE_CHAT_PROVIDER_ID in providers.ts
   const provider = getActiveChatProvider();
 
   if (!process.env[provider.apiKeyEnv]) {
@@ -59,12 +59,12 @@ export async function POST(request: Request): Promise<Response> {
     provider.capabilities,
   );
 
-  // Conversation memory — trim history before it hits the model. The active
+  // Conversation memory - trim history before it hits the model. The active
   // strategy lives in `src/lib/ai/memory.ts` (one-line swap, like providers).
   const trimmed = memoryStrategy(normalized);
 
   // RAG retrieval (system prompt + sources). Reads the latest user message,
-  // which the memory strategy always preserves — safe to run against `trimmed`.
+  // which the memory strategy always preserves - safe to run against `trimmed`.
   // `ragSources` is known here (before streaming) so it can mount the KB step
   // in the insights panel from the very first metadata emit.
   const { system: systemPrompt, sources: ragSources } =
@@ -73,7 +73,7 @@ export async function POST(request: Request): Promise<Response> {
   const modelMessages = await convertToModelMessages(trimmed);
 
   // Rate-limit accounting: record THIS request so it counts toward the next
-  // window check. Best-effort — never blocks the response (see logChatRequest).
+  // window check. Best-effort - never blocks the response (see logChatRequest).
   await logChatRequest(guard.user.id, getClientIp(request));
 
   const result = streamText({
@@ -94,7 +94,7 @@ export async function POST(request: Request): Promise<Response> {
   // Google Search grounding accumulators. The `messageMetadata` callback runs
   // for every stream part, but the data is split across parts: search queries
   // ride on `finish-step` providerMetadata (one per step), sources arrive as
-  // standalone `source` parts. We collect across the whole stream — deduped —
+  // standalone `source` parts. We collect across the whole stream - deduped -
   // and emit a fresh snapshot on each part so the UI updates live. The client
   // deep-merges each emission (arrays replace), so re-sending the full
   // accumulated grounding object every time is idempotent.
@@ -111,13 +111,13 @@ export async function POST(request: Request): Promise<Response> {
   };
 
   return result.toUIMessageStreamResponse<ChatUIMessage>({
-    // `sendReasoning` defaults to TRUE in the AI SDK — Gemini would otherwise
+    // `sendReasoning` defaults to TRUE in the AI SDK - Gemini would otherwise
     // ship its thinking block down the UI stream. Explicit false here is the
     // belt; providers.ts `thinkingConfig: { thinkingBudget: 0 }` is the braces.
     sendReasoning: false,
     messageMetadata: ({ part }) => {
       // Mount the panel as soon as the turn starts. RAG sources are known
-      // upfront; emit them once here — later emits omit the key, so the
+      // upfront; emit them once here - later emits omit the key, so the
       // client's deep-merge keeps them through to the final metadata.
       if (part.type === "start") {
         return {
@@ -150,7 +150,7 @@ export async function POST(request: Request): Promise<Response> {
 
       if (part.type !== "finish") return;
 
-      // Final metadata — tokens + finish reason land here (unchanged).
+      // Final metadata - tokens + finish reason land here (unchanged).
       return {
         provider: provider.id,
         truncated: part.finishReason === "length",

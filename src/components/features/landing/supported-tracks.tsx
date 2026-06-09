@@ -232,7 +232,7 @@ function ConnectorLines() {
     </svg>
   );
 }
-// Inline SVG logos — simple, neutral marks
+// Inline SVG logos - simple, neutral marks
 function NextLogo() {
   return (
     <svg
@@ -323,7 +323,7 @@ function ShadcnLogo() {
   );
 }
 
-// 6 connector lines — one per card, each with its own color and delay
+// 6 connector lines - one per card, each with its own color and delay
 
 export async function SupportedTracks() {
   const t = await getTranslations();

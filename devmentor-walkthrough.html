@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width,initial-scale=1"
     />
-    <title>DevMentor AI — Project Walkthrough</title>
+    <title>DevMentor AI - Project Walkthrough</title>
     <style>
       :root {
         --bg: #0b1020;
@@ -437,7 +437,7 @@
         aria-label="Table of contents"
       >
         <h2>Start here</h2>
-        <a href="#tldr">TL;DR — 60-second tour</a>
+        <a href="#tldr">TL;DR - 60-second tour</a>
         <a href="#legend">Color legend</a>
         <a href="#stack">Tech stack</a>
         <a href="#read-order">Recommended read order</a>
@@ -478,7 +478,7 @@
 
       <main>
         <h1>
-          DevMentor AI — Project Walkthrough
+          DevMentor AI - Project Walkthrough
           <span class="sub"
             >A guided tour of every layer, file, and data flow before you start
             the RAG feature.</span
@@ -492,7 +492,7 @@
               class="tag"
               style="background: var(--accent)"
             ></span
-            >TL;DR — 60-second tour
+            >TL;DR - 60-second tour
           </h2>
           <p>
             DevMentor AI is an Arabic-first (with English) Next.js 16 chat app
@@ -543,11 +543,11 @@
               <h3>What you'll touch for RAG</h3>
               <ul>
                 <li>
-                  <code>src/app/api/chat/route.ts</code> — inject retrieval
+                  <code>src/app/api/chat/route.ts</code> - inject retrieval
                   before <code>streamText</code>
                 </li>
                 <li>
-                  <code>src/lib/ai/prompts.ts</code> — already has
+                  <code>src/lib/ai/prompts.ts</code> - already has
                   <code>RAG_SYSTEM_PROMPT(context)</code>
                 </li>
                 <li>
@@ -660,7 +660,7 @@
 
         <!-- ============================================== -->
         <section id="stack">
-          <h2>Tech stack — one row per dependency that matters</h2>
+          <h2>Tech stack - one row per dependency that matters</h2>
           <table>
             <thead>
               <tr>
@@ -736,42 +736,42 @@
         <section id="read-order">
           <h2>Recommended read order (≈ 30 minutes)</h2>
           <ol>
-            <li><code>src/proxy.ts</code> — request lifecycle entry point.</li>
+            <li><code>src/proxy.ts</code> - request lifecycle entry point.</li>
             <li>
-              <code>src/app/[locale]/layout.tsx</code> — locale, fonts,
+              <code>src/app/[locale]/layout.tsx</code> - locale, fonts,
               NextIntlClientProvider.
             </li>
             <li>
-              <code>src/app/[locale]/(dashboard)/chat/page.tsx</code> —
+              <code>src/app/[locale]/(dashboard)/chat/page.tsx</code> -
               server-side auth + bootstrap.
             </li>
             <li>
               <code
                 >src/app/[locale]/(dashboard)/chat/_components/chat-area.tsx</code
               >
-              — meet <strong>ChatSessionPanel</strong> inside it; this file is
+              - meet <strong>ChatSessionPanel</strong> inside it; this file is
               where most of the wiring lives.
             </li>
             <li>
               <code>src/hooks/chat/use-chat.ts</code> +
-              <code>use-chat-session.ts</code> — the brains of the chat UI.
+              <code>use-chat-session.ts</code> - the brains of the chat UI.
             </li>
             <li>
-              <code>src/app/api/chat/route.ts</code> — request → Groq stream.
+              <code>src/app/api/chat/route.ts</code> - request → Groq stream.
             </li>
             <li>
               <code>src/lib/actions/chat.action.ts</code> +
-              <code>src/lib/services/chat.service.ts</code> — persistence path.
+              <code>src/lib/services/chat.service.ts</code> - persistence path.
             </li>
             <li>
               <code
                 >src/lib/ai/{prompts,rate-limit,normalize-ui-messages-for-model,model-capabilities}.ts</code
               >
-              — AI plumbing.
+              - AI plumbing.
             </li>
             <li>
               <code>src/lib/auth/safe-next-path.ts</code> +
-              <code>src/app/api/auth/callback/route.ts</code> — OAuth.
+              <code>src/app/api/auth/callback/route.ts</code> - OAuth.
             </li>
           </ol>
           <p class="muted small">
@@ -814,7 +814,7 @@
 
         <!-- ============================================== -->
         <section id="layout">
-          <h2>Layout chain — what wraps what</h2>
+          <h2>Layout chain - what wraps what</h2>
           <table>
             <thead>
               <tr>
@@ -877,7 +877,7 @@
               <tr>
                 <td><code>/[locale]/</code></td>
                 <td>page (server)</td>
-                <td>—</td>
+                <td>-</td>
                 <td>Marketing landing; 12 sections, all server components.</td>
               </tr>
               <tr>
@@ -913,7 +913,7 @@
               <tr>
                 <td><code>GET /api/auth/callback</code></td>
                 <td>route handler</td>
-                <td>—</td>
+                <td>-</td>
                 <td>OAuth exchange; redirects to safe next path.</td>
               </tr>
             </tbody>
@@ -926,7 +926,7 @@
 
         <!-- ============================================== -->
         <section id="flow-boot">
-          <h2>Flow 1 — App boot &amp; locale resolution</h2>
+          <h2>Flow 1 - App boot &amp; locale resolution</h2>
           <ol class="flow">
             <li>
               Browser requests <code>/ar/anything</code> (or
@@ -941,7 +941,7 @@
             <li>
               The same proxy then builds a
               <strong>server Supabase client</strong> with cookie helpers and
-              calls <code>supabase.auth.getUser()</code> — this both reads the
+              calls <code>supabase.auth.getUser()</code> - this both reads the
               session and refreshes its cookies onto the response.
             </li>
             <li>
@@ -975,7 +975,7 @@
 
         <!-- ============================================== -->
         <section id="flow-login">
-          <h2>Flow 2 — Google OAuth login</h2>
+          <h2>Flow 2 - Google OAuth login</h2>
           <ol class="flow">
             <li>
               User on <code>/[locale]/login</code> clicks the Google button.
@@ -1020,7 +1020,7 @@
 
         <!-- ============================================== -->
         <section id="flow-chat">
-          <h2>Flow 3 — Sending a chat message (the hot path)</h2>
+          <h2>Flow 3 - Sending a chat message (the hot path)</h2>
           <ol class="flow">
             <li>
               User types in <code>ChatInput</code> → state lives in
@@ -1045,7 +1045,7 @@
             <li>
               If this is the first message,
               <code>updateSessionTitleAction</code> is called with the first 40
-              characters as the title — this is what shows in the sidebar list.
+              characters as the title - this is what shows in the sidebar list.
             </li>
             <li>
               <code>useChat.handleSubmit</code> fires.
@@ -1073,7 +1073,7 @@
                   (<code>groq-llama-3.3-70b</code>) flags both
                   <code>image</code> and <code>non-image</code> as
                   <strong>unsupported</strong>, so file parts get dropped and
-                  replaced with a textual marker — Groq Llama never sees binary
+                  replaced with a textual marker - Groq Llama never sees binary
                   attachments.
                 </li>
                 <li>
@@ -1126,7 +1126,7 @@
 
         <!-- ============================================== -->
         <section id="flow-history">
-          <h2>Flow 4 — Loading an existing chat</h2>
+          <h2>Flow 4 - Loading an existing chat</h2>
           <ol class="flow">
             <li>
               User clicks a session in the sidebar →
@@ -1140,7 +1140,7 @@
               stores the result in <code>loadedMessages</code>.
             </li>
             <li>
-              It bumps <code>panelKey</code> — React unmounts the previous
+              It bumps <code>panelKey</code> - React unmounts the previous
               <code>ChatSessionPanel</code> and mounts a new one with
               <code>initialMessages={loadedMessages}</code>, which seeds
               <code>useChat</code>.
@@ -1156,7 +1156,7 @@
 
         <!-- ============================================== -->
         <section id="flow-realtime">
-          <h2>Flow 5 — Sidebar realtime updates</h2>
+          <h2>Flow 5 - Sidebar realtime updates</h2>
           <ol class="flow">
             <li>
               On mount, <code>Sidebar</code> queries
@@ -1170,7 +1170,7 @@
             </li>
             <li>
               On INSERT/UPDATE/DELETE events, the local sessions array is
-              patched — so a new chat created in another tab appears live.
+              patched - so a new chat created in another tab appears live.
             </li>
             <li>
               Sign-out: <code>supabase.auth.signOut()</code> →
@@ -1412,7 +1412,7 @@
           <h2><span class="chip hook">hook</span>Hooks</h2>
           <details open>
             <summary>
-              <code>useChat</code> —
+              <code>useChat</code> -
               <span class="muted">src/hooks/chat/use-chat.ts</span>
             </summary>
             <ul>
@@ -1449,7 +1449,7 @@
           </details>
           <details>
             <summary>
-              <code>useChatSession</code> —
+              <code>useChatSession</code> -
               <span class="muted">src/hooks/chat/use-chat-session.ts</span>
             </summary>
             <ul>
@@ -1467,7 +1467,7 @@
           </details>
           <details>
             <summary>
-              <code>useGoogleLogin</code> —
+              <code>useGoogleLogin</code> -
               <span class="muted">src/hooks/auth/use-google-login.ts</span>
             </summary>
             <ul>
@@ -1625,7 +1625,7 @@
             </tbody>
           </table>
           <p class="muted small">
-            Pure data access — actions create the client and pass it in.
+            Pure data access - actions create the client and pass it in.
           </p>
         </section>
 
@@ -1913,7 +1913,7 @@ interface ChatAttachment {
                 <li>
                   <strong>Realtime:</strong>
                   <code>postgres_changes</code> channel on
-                  <code>chat_sessions</code>, filtered by <code>user_id</code> —
+                  <code>chat_sessions</code>, filtered by <code>user_id</code> -
                   sidebar subscribes.
                 </li>
               </ul>
@@ -1988,7 +1988,7 @@ type UIMessage = {
                 <td>browser + server Supabase clients, proxy</td>
               </tr>
               <tr>
-                <td><code>NEXT_SUPABASE_PUBLISHABLE_KEY</code></td>
+                <td><code>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code></td>
                 <td>browser + server Supabase clients, proxy</td>
               </tr>
               <tr>
@@ -2039,7 +2039,7 @@ type UIMessage = {
                   <code>src/lib/services/embeddings.service.ts</code>
                 </td>
                 <td>
-                  Generates embeddings (Groq doesn't ship them — likely
+                  Generates embeddings (Groq doesn't ship them - likely
                   OpenAI/Voyage/Cohere).
                 </td>
               </tr>
@@ -2079,7 +2079,7 @@ type UIMessage = {
               <tr>
                 <td><code>chunks</code></td>
                 <td>
-                  <code>document_id, content, embedding vector(N)</code> — needs
+                  <code>document_id, content, embedding vector(N)</code> - needs
                   <code>pgvector</code> extension on Supabase.
                 </td>
               </tr>
@@ -2093,19 +2093,19 @@ type UIMessage = {
               and good enough; Voyage is stronger; Cohere has multilingual.
             </li>
             <li>
-              <strong>Chunking strategy</strong> — by tokens (recommended ~500
+              <strong>Chunking strategy</strong> - by tokens (recommended ~500
               with 50 overlap), by markdown sections, by code symbols, etc.
             </li>
             <li>
-              <strong>Index/search</strong> — <code>pgvector</code> + cosine
+              <strong>Index/search</strong> - <code>pgvector</code> + cosine
               similarity is the simplest path; HNSW index for performance.
             </li>
             <li>
-              <strong>Retrieval surface</strong> — automatic on every chat? Tied
+              <strong>Retrieval surface</strong> - automatic on every chat? Tied
               to a "knowledge base" picker? Per-session or global?
             </li>
             <li>
-              <strong>RLS</strong> — chunks should be readable only by the
+              <strong>RLS</strong> - chunks should be readable only by the
               document owner unless explicitly shared.
             </li>
           </ul>
@@ -2153,7 +2153,7 @@ type UIMessage = {
                   <strong>Actions:</strong> verify
                   <code>session.user_id === userId</code>
                 </li>
-                <li><strong>DB:</strong> RLS — last line of defense</li>
+                <li><strong>DB:</strong> RLS - last line of defense</li>
               </ul>
             </div>
             <div class="card">
@@ -2181,7 +2181,7 @@ type UIMessage = {
           </div>
           <hr />
           <p class="small muted">
-            Companion file: <code>devmentor-architecture.excalidraw</code> —
+            Companion file: <code>devmentor-architecture.excalidraw</code> -
             open in <a href="https://excalidraw.com">excalidraw.com</a> for the
             visual map.
           </p>

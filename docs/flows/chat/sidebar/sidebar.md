@@ -8,16 +8,16 @@ The left rail of the chat. Brand at the top, action buttons (New chat, Code revi
 - Trigger "new chat" and (later) "code review".
 - List the user's chat sessions, with the active one highlighted.
 - Switch the active session when the user clicks a row.
-- Live-refresh the list whenever a row in `chat_sessions` for this user changes (insert/update/delete) — no polling.
+- Live-refresh the list whenever a row in `chat_sessions` for this user changes (insert/update/delete) - no polling.
 - Show user identity (initials + email) and provide sign-out.
 
 ## 2. Props
 
 ```ts
 interface ChatSidebarProps {
-  user: User;                                     // Supabase user (chat is auth-only)
-  initialSessions: ChatSession[];                 // pre-fetched on the server
-  activeSessionId: string | null;                 // highlighted row
+  user: User; // Supabase user (chat is auth-only)
+  initialSessions: ChatSession[]; // pre-fetched on the server
+  activeSessionId: string | null; // highlighted row
   onSessionSelect: (session: ChatSession) => void;
   onNewChat: () => void;
 }
@@ -25,10 +25,10 @@ interface ChatSidebarProps {
 
 ## 3. State, hooks
 
-- `t = useTranslations()` — localized labels.
-- `router = useRouter()` — locale-aware router (used for sign-out redirect to `/`).
-- `setOpenMobile = useSidebar().setOpenMobile` — to close the mobile sidebar sheet after picking an item.
-- `sessions: ChatSession[]` — local state, seeded from `initialSessions`. Updated by the realtime subscription.
+- `t = useTranslations()` - localized labels.
+- `router = useRouter()` - locale-aware router (used for sign-out redirect to `/`).
+- `setOpenMobile = useSidebar().setOpenMobile` - to close the mobile sidebar sheet after picking an item.
+- `sessions: ChatSession[]` - local state, seeded from `initialSessions`. Updated by the realtime subscription.
 - Derived:
   - `userId = user.id`
   - `initials = (user.email ?? "DM").slice(0, 2).toUpperCase()`
@@ -37,20 +37,23 @@ interface ChatSidebarProps {
 ## 4. Step-by-step flow
 
 ### 4.1 Realtime subscription effect (`useEffect` keyed by `userId`)
+
 1. Create a browser Supabase client via `createClient()`.
 2. Open a channel `chat_sessions_changes:{userId}`.
-3. `.on("postgres_changes", { event: "*", schema: "public", table: "chat_sessions", filter: \`user_id=eq.${userId}\` }, ...)` — listen for any insert/update/delete on rows where `user_id = userId`.
+3. `.on("postgres_changes", { event: "*", schema: "public", table: "chat_sessions", filter: \`user_id=eq.${userId}\` }, ...)`- listen for any insert/update/delete on rows where`user_id = userId`.
 4. On every event, run a fresh `select * from chat_sessions where user_id = userId order by updated_at desc` and put the result into `sessions`. (We refetch instead of patching state from the payload to avoid drift.)
 5. `.subscribe()` to activate the channel.
 6. **Cleanup**: `supabase.removeChannel(channel)` so we don't leak subscriptions on unmount or when `userId` changes.
 
 ### 4.2 `handleSignOut()`
+
 1. `await supabase.auth.signOut()`.
-2. `router.push("/")` — back to the landing page (locale stripped/preserved automatically by the i18n router).
+2. `router.push("/")` - back to the landing page (locale stripped/preserved automatically by the i18n router).
 
 ### 4.3 `handleSessionSelect(session)`
-1. Call `onSessionSelect(session)` — bubbles up to `ChatShell`, which updates state + URL.
-2. `setOpenMobile(false)` — collapses the sheet on mobile so the user sees the chat.
+
+1. Call `onSessionSelect(session)` - bubbles up to `ChatShell`, which updates state + URL.
+2. `setOpenMobile(false)` - collapses the sheet on mobile so the user sees the chat.
 
 ## 5. Renders
 
@@ -71,6 +74,7 @@ interface ChatSidebarProps {
 ```
 
 Notes on details:
+
 - Each session row uses `formatRelativeTime(session.updated_at)` (e.g. "2 m ago") to keep the list scannable.
 - The active row is styled by the design system via the `isActive` prop on `<SidebarMenuButton>`.
 - The sign-out button uses `text-destructive` on hover so the destructive intent is visible.

@@ -24,7 +24,7 @@ export async function ingestVideoAction(
     return { success: false, error: "Unauthorized" };
   }
 
-  // Owner-only: ingestion bypasses RLS via createAdminClient — restrict to owner.
+  // Owner-only: ingestion bypasses RLS via createAdminClient - restrict to owner.
   if (!isOwner(user)) {
     return { success: false, error: "Forbidden" };
   }
@@ -77,7 +77,7 @@ export async function ingestVideoAction(
 
     const adminSupabase = createAdminClient();
 
-    // Overwrite: same semantics as URL ingestion — document_id is the video_title.
+    // Overwrite: same semantics as URL ingestion - document_id is the video_title.
     const { error: deleteError } = await adminSupabase
       .from("knowledge_base")
       .delete()

@@ -96,7 +96,7 @@ export default function VideoIngestionForm() {
       </Button>
 
       <p className="text-xs text-amber-100/60">
-        Transcription can take a few minutes for long lectures — keep this tab
+        Transcription can take a few minutes for long lectures - keep this tab
         open.
       </p>
 

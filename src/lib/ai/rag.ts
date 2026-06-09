@@ -8,7 +8,7 @@ import { AI_LIMITS } from "@/lib/constants/ai.constant";
 import type { ChatUIMessage, RagSource } from "@/lib/types/chat";
 
 export type RagResult = {
-  /** System prompt — RAG-augmented when chunks matched, base mentor otherwise. */
+  /** System prompt - RAG-augmented when chunks matched, base mentor otherwise. */
   system: string;
   /** Deduped, similarity-sorted sources for the insights panel (empty when none). */
   sources: RagSource[];
@@ -19,7 +19,7 @@ export type RagResult = {
  * knowledge base, and returns the system prompt plus the retrieved sources.
  *
  * A retrieval failure (e.g. transient pgvector error) degrades to the plain
- * mentor prompt instead of 500ing the route — the chat is more useful with
+ * mentor prompt instead of 500ing the route - the chat is more useful with
  * stale context than dead.
  */
 export async function buildRagSystemPrompt(

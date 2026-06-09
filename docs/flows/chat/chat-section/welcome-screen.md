@@ -11,8 +11,8 @@ The empty-state shown by `ChatSessionPanel` before the first message is sent. A 
 
 ```ts
 interface WelcomeScreenProps {
-  setInput: (value: string) => void;                 // updates useChat's input
-  inputRef: RefObject<HTMLTextAreaElement | null>;   // the actual textarea below
+  setInput: (value: string) => void; // updates useChat's input
+  inputRef: RefObject<HTMLTextAreaElement | null>; // the actual textarea below
 }
 ```
 
@@ -21,10 +21,10 @@ Both come from `ChatSessionPanel`.
 ## 3. Step-by-step
 
 1. Get the translator with `useTranslations()`.
-2. Build `suggestions` — an array of three localized strings (`chat-suggestion-1` … `chat-suggestion-3`).
+2. Build `suggestions` - an array of three localized strings (`chat-suggestion-1` … `chat-suggestion-3`).
 3. Define `handleSuggestion(text)`:
    - Call `setInput(text)` to populate the parent's `useChat` input state.
-   - Schedule `inputRef.current?.focus()` on the next tick (`setTimeout(..., 0)`) so the focus call runs *after* `ChatInput` re-renders with the new value.
+   - Schedule `inputRef.current?.focus()` on the next tick (`setTimeout(..., 0)`) so the focus call runs _after_ `ChatInput` re-renders with the new value.
 
 ## 4. Renders
 
@@ -34,7 +34,7 @@ Both come from `ChatSessionPanel`.
 - A muted subtitle `t("chat-welcome-subtitle")`.
 - A `<Suggestions>` block with three `<Suggestion>` chips, each calling `handleSuggestion(suggestion)` on click. Stable React keys come from the suggestion text itself.
 
-`BrainHexIcon` is a local SVG component defined at the bottom of the file — kept colocated since it's not reused elsewhere yet.
+`BrainHexIcon` is a local SVG component defined at the bottom of the file - kept colocated since it's not reused elsewhere yet.
 
 ## 5. Gotchas / notes
 

@@ -80,7 +80,7 @@ export default function RAGChatBot({
 
   // Variables
   const lastMessage = messages.at(-1);
-  // The assistant turn currently streaming — drives the live insights panel.
+  // The assistant turn currently streaming - drives the live insights panel.
   const streamingAssistantId =
     (status === "submitted" || status === "streaming") &&
     lastMessage?.role === "assistant"
@@ -214,7 +214,10 @@ export default function RAGChatBot({
             <PromptInputTools />
 
             {/* Submit button */}
-            <PromptInputSubmit status={status} className="cursor-pointer" />
+            <PromptInputSubmit
+              status={status}
+              className="cursor-pointer"
+            />
           </PromptInputFooter>
         </PromptInput>
       </div>

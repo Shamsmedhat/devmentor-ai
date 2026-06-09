@@ -17,7 +17,7 @@ export function useChatSessionsRealtime(
     const supabase = createClient();
 
     // Refetch the full list whenever any change lands on the user's sessions.
-    // Simple over diff-patching — fine until the list grows large.
+    // Simple over diff-patching - fine until the list grows large.
     async function refetchSessions() {
       const { data, error } = await supabase
         .from("chat_sessions")

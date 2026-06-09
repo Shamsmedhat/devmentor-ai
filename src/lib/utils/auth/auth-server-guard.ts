@@ -14,7 +14,7 @@ type AuthenticatedServerSupabaseAuth = {
 
 /**
  * Single server Supabase client + `getUser()` for the current request.
- * Returns `user: null` when there is no session — callers decide redirect, empty UI, or 401.
+ * Returns `user: null` when there is no session - callers decide redirect, empty UI, or 401.
  */
 export async function getServerSupabaseAuth(): Promise<ServerSupabaseAuth> {
   const supabase = await createClient();

@@ -15,7 +15,7 @@ export async function Footer() {
           <span className="text-foreground/80">
             DevMentor <span className="text-chart-2">AI</span>
           </span>
-          <span className="hidden text-muted-foreground/50 sm:inline">—</span>
+          <span className="hidden text-muted-foreground/50 sm:inline">-</span>
           <span className="hidden sm:inline">{t("footer-tagline")}</span>
         </div>
 
@@ -26,7 +26,10 @@ export async function Footer() {
           >
             {t("footer-privacy")}
           </Link>
-          <Link href="/terms" className="transition hover:text-foreground">
+          <Link
+            href="/terms"
+            className="transition hover:text-foreground"
+          >
             {t("footer-terms")}
           </Link>
           <a
@@ -39,7 +42,9 @@ export async function Footer() {
           </a>
         </nav>
 
-        <p className="text-xs text-muted-foreground/60">{t("footer-credits")}</p>
+        <p className="text-xs text-muted-foreground/60">
+          {t("footer-credits")}
+        </p>
       </div>
     </footer>
   );

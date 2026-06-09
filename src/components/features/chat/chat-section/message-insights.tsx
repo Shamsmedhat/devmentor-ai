@@ -17,7 +17,7 @@ import RagInsightStep from "./rag-insight-step";
 
 interface MessageInsightsProps {
   metadata?: ChatMessageMetadata;
-  /** True while this turn is still streaming — drives the live "in progress"
+  /** True while this turn is still streaming - drives the live "in progress"
    *  state (panel visible from the start, grounding shown as "searching…"). */
   isStreaming?: boolean;
 }
@@ -44,7 +44,7 @@ export default function MessageInsights({
     grounding && (grounding.queries.length || grounding.sources.length),
   );
 
-  // Knowledge-base retrieval — present from the first emit when chunks matched.
+  // Knowledge-base retrieval - present from the first emit when chunks matched.
   const showRag = Boolean(rag && rag.sources.length);
 
   // While streaming the panel stays mounted (with a live "generating" step) so
@@ -119,7 +119,10 @@ export default function MessageInsights({
                   {grounding.queries.map((query) => (
                     // Queries come back in the question's language (ar or en);
                     // dir="auto" lets each resolve its own direction.
-                    <ChainOfThoughtSearchResult key={query} dir="auto">
+                    <ChainOfThoughtSearchResult
+                      key={query}
+                      dir="auto"
+                    >
                       {query}
                     </ChainOfThoughtSearchResult>
                   ))}
@@ -130,7 +133,10 @@ export default function MessageInsights({
             {grounding.sources.length > 0 && (
               <ChainOfThoughtSearchResults>
                 {grounding.sources.map((source) => (
-                  <ChainOfThoughtSearchResult key={source.url} asChild>
+                  <ChainOfThoughtSearchResult
+                    key={source.url}
+                    asChild
+                  >
                     <a
                       dir="ltr"
                       href={source.url}

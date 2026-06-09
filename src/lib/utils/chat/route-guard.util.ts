@@ -12,11 +12,11 @@ type GuardFailure = { ok: false; response: Response };
  * the route handler can return immediately on failure.
  */
 export async function guardChatRoute(): Promise<GuardSuccess | GuardFailure> {
-  // Env checks — the active AI provider's key is checked by the route handler
+  // Env checks - the active AI provider's key is checked by the route handler
   // itself (see `getActiveChatProvider` + `ACTIVE_CHAT_PROVIDER_ID`), so we
   // only verify Supabase config here.
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.NEXT_SUPABASE_PUBLISHABLE_KEY;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
     return {

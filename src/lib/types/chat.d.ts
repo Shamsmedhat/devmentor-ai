@@ -19,7 +19,7 @@ export type ChatMessageMetadata = {
     reasoningTokens?: number;
   };
   /**
-   * Google Search grounding — present only when grounding actually fired this
+   * Google Search grounding - present only when grounding actually fired this
    * turn (Gemini provider with the `googleSearch` tool). Absent on plain RAG
    * turns and on providers without web search.
    */
@@ -29,7 +29,7 @@ export type ChatMessageMetadata = {
   };
   /**
    * Knowledge-base (RAG) sources retrieved for this turn. Present only when
-   * retrieval returned chunks above threshold — absent when nothing matched.
+   * retrieval returned chunks above threshold - absent when nothing matched.
    */
   rag?: {
     sources: RagSource[];
@@ -38,7 +38,7 @@ export type ChatMessageMetadata = {
 
 /** A single knowledge-base chunk surfaced in the insights panel (sources, not text). */
 export type RagSource = {
-  /** Stable chunk id — used as a render key. */
+  /** Stable chunk id - used as a render key. */
   id: string;
   /** Document name / video title / "unknown". */
   label: string;

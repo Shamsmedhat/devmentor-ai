@@ -49,9 +49,7 @@ async function main(): Promise<void> {
         const source =
           (c.metadata?.document_id as string | undefined) ?? "<unknown>";
         const preview = c.content.replace(/\s+/g, " ").slice(0, PREVIEW_CHARS);
-        console.log(
-          `  [${c.similarity.toFixed(3)}] ${source} — ${preview}`,
-        );
+        console.log(`  [${c.similarity.toFixed(3)}] ${source} - ${preview}`);
       }
     }
 
@@ -105,7 +103,7 @@ function printAggregate(results: EvalResult[]): void {
     }
   }
   if (badControls.length > 0) {
-    console.log("\nBAD-CONTROL (false positive — control matched something):");
+    console.log("\nBAD-CONTROL (false positive - control matched something):");
     for (const r of badControls) {
       console.log(
         `  [${r.question.lang}] ${r.question.id} (top sim ${r.topSim.toFixed(3)}): ${r.question.question}`,

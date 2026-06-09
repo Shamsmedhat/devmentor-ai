@@ -1,8 +1,9 @@
 # `src/components/features/chat/chat-section/message-bubble.tsx`
 
 A single message in the conversation list. Exports two components:
-- `MessageBubble` — picks user vs. assistant rendering.
-- `TypingIndicator` — three bouncing dots shown while the assistant is "thinking".
+
+- `MessageBubble` - picks user vs. assistant rendering.
+- `TypingIndicator` - three bouncing dots shown while the assistant is "thinking".
 
 ## 1. Purpose
 
@@ -14,8 +15,8 @@ A single message in the conversation list. Exports two components:
 
 ```ts
 interface MessageBubbleProps {
-  message: ChatMessage;          // role, content, attachments?
-  isStreaming?: boolean;         // true only for the active streaming reply
+  message: ChatMessage; // role, content, attachments?
+  isStreaming?: boolean; // true only for the active streaming reply
 }
 ```
 
@@ -27,7 +28,7 @@ Step by step:
 2. If user → return `<UserBubble message={message} />`.
 3. Otherwise → return `<AssistantBubble content={message.content} isStreaming={isStreaming} />`.
 
-That's it — `MessageBubble` is just a router into the two real renderers.
+That's it - `MessageBubble` is just a router into the two real renderers.
 
 ## 4. `UserBubble({ message })`
 
@@ -52,11 +53,11 @@ Same shell as `AssistantBubble` (so it lines up visually), but the content is th
 
 ## 7. Gotchas / notes
 
-- **`isStreaming` is only true for the *last* assistant message *during* streaming.** The parent (`ChatSessionPanel`) computes this with:
+- **`isStreaming` is only true for the _last_ assistant message _during_ streaming.** The parent (`ChatSessionPanel`) computes this with:
   ```ts
-  isLoading && message.role === "assistant" && index === messages.length - 1
+  isLoading && message.role === "assistant" && index === messages.length - 1;
   ```
   Don't pass it for older messages or you'll get the streaming markdown parser running on static content unnecessarily.
 - **`parseIncompleteMarkdown` matters for code blocks.** Without it, an incomplete ```​` fence mid-stream would render as raw text until the closing fence arrives.
 - **Stable keys for attachments.** `${filename}-${url}` works because `url` is a Supabase storage path which is unique per upload. Don't use array indices.
-- **The Bot icon uses `text-muted-foreground` and `mt-1 shrink-0`** to align with the first line of text — keep these utilities together if you restyle the bubble layout.
+- **The Bot icon uses `text-muted-foreground` and `mt-1 shrink-0`** to align with the first line of text - keep these utilities together if you restyle the bubble layout.

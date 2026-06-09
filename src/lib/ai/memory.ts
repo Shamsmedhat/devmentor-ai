@@ -33,7 +33,7 @@ export function slidingWindowWithAnchor(
 }
 
 /**
- * The active strategy used by /api/chat. To swap, change this single line —
+ * The active strategy used by /api/chat. To swap, change this single line -
  * no call sites need updating.
  */
 export const memoryStrategy: MemoryStrategy = slidingWindowWithAnchor();

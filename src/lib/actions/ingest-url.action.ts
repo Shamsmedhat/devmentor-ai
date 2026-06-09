@@ -31,7 +31,7 @@ export async function ingestUrlsAction(
     return { success: false, error: "Unauthorized" };
   }
 
-  // Owner-only: ingestion bypasses RLS via createAdminClient — restrict to owner.
+  // Owner-only: ingestion bypasses RLS via createAdminClient - restrict to owner.
   if (!isOwner(user)) {
     return { success: false, error: "Forbidden" };
   }

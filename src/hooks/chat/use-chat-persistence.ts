@@ -28,7 +28,7 @@ export function useChatPersistence(
   // Context
   const { setCurrentTitle } = useChatUi();
 
-  // Refs — caches the in-flight session-creation promise so user + assistant
+  // Refs - caches the in-flight session-creation promise so user + assistant
   // saves share the same id without firing two creates.
   const pendingSessionIdRef = useRef<Promise<string> | null>(null);
 
@@ -75,7 +75,7 @@ export function useChatPersistence(
       metadata: message.metadata,
     });
 
-    // Navigate after streaming finishes — replacing earlier would interrupt
+    // Navigate after streaming finishes - replacing earlier would interrupt
     // the stream when RAGChatBot remounts on key change.
     if (!isExistingSession) {
       router.replace(buildChatPath(sid));

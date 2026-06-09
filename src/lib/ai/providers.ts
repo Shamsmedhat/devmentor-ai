@@ -8,7 +8,7 @@ import type { ModelAttachmentCapabilities } from "@/lib/ai/model-capabilities";
  * Chat provider catalog.
  *
  * To switch the active chat model: change `ACTIVE_CHAT_PROVIDER_ID` below and
- * restart dev. No automatic fallback — intentional. If the active provider
+ * restart dev. No automatic fallback - intentional. If the active provider
  * fails, the request fails and we see it instead of silently retrying.
  */
 
@@ -67,7 +67,7 @@ const groqGptOssStreamOptions: ChatProviderStreamOptions = {
 };
 
 // Gemini 2.5 streams a "thinking" block by default. Zero the budget and
-// suppress thoughts so reasoning never reaches the wire — `sendReasoning:false`
+// suppress thoughts so reasoning never reaches the wire - `sendReasoning:false`
 // on the response is the second line of defence.
 const googleNoThinkingStreamOptions: ChatProviderStreamOptions = {
   providerOptions: {

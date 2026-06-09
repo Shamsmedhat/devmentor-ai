@@ -15,7 +15,7 @@ type ChatRateLimitResult =
 export async function checkChatRateLimit(
   userId: string,
 ): Promise<ChatRateLimitResult> {
-  // Admin client — chat_request_log is locked down by RLS.
+  // Admin client - chat_request_log is locked down by RLS.
   const admin = createAdminClient();
 
   // One hour ago
@@ -44,7 +44,7 @@ export async function checkChatRateLimit(
 
 /**
  * Best-effort: record one request row so it counts toward the next window check.
- * Never throws and never denies service — the count gate is the real limiter, so
+ * Never throws and never denies service - the count gate is the real limiter, so
  * a transient logging failure must not block chat. `ip` is stored for auditing;
  * it is not enforced (per-user only).
  */

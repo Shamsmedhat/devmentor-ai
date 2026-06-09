@@ -20,7 +20,7 @@ export async function processPdfFileAction(formData: FormData) {
       };
     }
 
-    // Owner-only: ingestion bypasses RLS via createAdminClient — restrict to owner.
+    // Owner-only: ingestion bypasses RLS via createAdminClient - restrict to owner.
     if (!isOwner(user)) {
       return {
         success: false,
