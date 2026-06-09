@@ -1,9 +1,14 @@
 # DevMentor AI — Pre-Deploy Audit
 
-**Date:** 2026-06-05 (updated after owner-gate fix)
+**Date:** 2026-06-06 (updated after owner-gate, rate-limit, and grounding/throttle decisions)
 **Scope:** Read-only audit ahead of Vercel + Supabase deploy on a **paid** Google API key.
 **Method:** Static inspection + `yarn tsc --noEmit` + `yarn lint`. Every claim cites `file:line`. Unverifiable items marked **UNVERIFIED**.
-**Verdict:** 🔴 **FIX-FIRST — do not deploy as-is.** (§3 admin-gating is now RESOLVED; remaining cost-control blockers stand — see §7.)
+**Verdict:** ✅ **Ready to deploy — all audit blockers resolved or accepted.** Admin-gating (§3) and the rate-limit bypass (§2) were fixed; the completions/grounding and per-IP-throttle items were reviewed and **accepted as deliberate design** (§2, §7), not blockers.
+
+**Operational prerequisites before / at deploy:**
+1. Run the `chat_request_log` `CREATE TABLE` in Supabase (SQL in §7) — fail-closed: absent table → 503 on every chat request.
+2. Set `OWNER_EMAIL` in **`.env.local`** and **Vercel** (fail-closed: unset → upload/ingestion locked for everyone).
+3. Set a **Google Project Spend Cap (~DKK 700)** + budget alerts — this is the real cost ceiling backstopping the per-user limit and grounding usage.
 
 ---
 
@@ -23,7 +28,7 @@
 
 **Committed provider correct?** ✅ Yes. Active provider is **Google Gemini 2.5 Flash** — the intended production choice, **not** a dev value (groq). The two groq entries in `CHAT_PROVIDERS` (`providers.ts:86-101`) are inactive catalog entries.
 
-⚠️ **Third key, undocumented:** the Google Search grounding tool reads a **different** env var `GOOGLE_API_KEY` with a non-null assertion — `process.env.GOOGLE_API_KEY!` (`src/lib/ai/providers.ts:41`). It is **not** in `.env.example`. If grounding fires and the var is unset, you pass `undefined` into the tool. See §2.
+✅ **RESOLVED — "third key" was a false alarm and is gone.** The earlier draft flagged a separate `GOOGLE_API_KEY` passed into the grounding tool. That was wrong: `google.tools.googleSearch()` does **not** accept an `apiKey` field — passing one returns a 400 (`Unknown name "apiKey" at tools[0].google_search`). The `apiKey` was removed; the call is now `google.tools.googleSearch({})` (`src/lib/ai/providers.ts:40`). Grounding authenticates via the provider's `GOOGLE_GENERATIVE_AI_API_KEY` — there is **no `GOOGLE_API_KEY` anywhere** in the codebase. No env var to add.
 
 ---
 
@@ -46,26 +51,28 @@
 | --- | --- | --- | --- |
 | Embedding calls | **exactly 1** | ✅ | Only one `embed()` reachable from chat; `embedMany` is ingestion-only. All model-call sites: `embeddings.ts:18,44`, `route.ts:64`. |
 | KB vector searches | **exactly 1** | ✅ | `search.ts:29` |
-| Completion calls | **up to 5** | 🔴 | `stopWhen: stepCountIs(5)` (`route.ts:71`) permits 5 model steps; chat enables tools (`route.ts:65` → `googleSearchTools`, `providers.ts:106-107`). Each step = a billable `generateContent`. **Not** "exactly one completion per message." |
-| Retries | 0 | ✅ | `maxRetries: 0` (`route.ts:70`) — no retry amplification. |
-| Google Search grounding | up to 5× per turn | 🔴 | Active provider attaches `google.tools.googleSearch` (`providers.ts:38-43,106-107`). Grounding is **billed separately** from tokens on the paid tier. |
+| Completion calls | **≤ 2 (proven ceiling); ≈ 1 expected** | ✅ | **Proven:** `stopWhen: stepCountIs(2)` (`route.ts:85`) caps the turn at **≤ 2 model generations** — hard upper bound. **Expected:** the active provider's only tool is the **provider-executed** `googleSearch` grounding (no client/function tools), which typically resolves server-side within a **single generation** → ≈ 1 in practice (not runtime-traced). The earlier "up to 5" was wrong. |
+| Retries | 0 | ✅ | `maxRetries: 0` (`route.ts:84`) — no retry amplification. |
+| Google Search grounding | kept deliberately | ✅ accepted | Active provider attaches `google.tools.googleSearch({})` (`providers.ts:38-43,105`) as the **out-of-KB answer path**. On Gemini 2.5 Flash, grounding is **free under 1,500 queries/day** (paid tier), then $35/1k — effectively free at our scale; the Google Project Spend Cap is the backstop. |
 
-> 🔴 **The "exactly one embedding + one completion, eager-only RAG, no tool fan-out" assumption is FALSE for the active provider.** Embedding is 1, but the completion path is a tool-enabled multi-step loop (up to 5 steps) with separately-billed Google Search grounding. For true eager-only/one-completion behavior, set `stopWhen` to `stepCountIs(1)` and/or give the active provider `emptyTools` (`providers.ts:45`).
+> ✅ **Accepted design.** Embedding is exactly 1. Completions are **capped at ≤ 2 model generations per turn** by `stepCountIs(2)` (`route.ts:85`) — this is the proven ceiling. In practice it's **expected to be ≈ 1**: the only tool is provider-executed grounding (no client-tool fan-out), which typically resolves within a single generation — though this hasn't been runtime-traced. Grounding is an intentional feature (answers outside the KB), free at our volume and capped by the Google Project Spend Cap. No change required.
 
 ### Output / input / context guards
 
 | Guard | Present? | File:line | Notes |
 | --- | --- | --- | --- |
-| Max output tokens | ✅ | `route.ts:69` applies `AI_LIMITS.CHAT_MAX_TOKENS` (`ai.constant.ts:2` = **3000**) as `maxOutputTokens` | Bounded **per step**; with `stepCountIs(5)` effective output ~5×3000. Value is 3× the 1000 in `03-ai.mdc`. |
+| Max output tokens | ✅ | `route.ts:69` applies `AI_LIMITS.CHAT_MAX_TOKENS` (`ai.constant.ts:2` = **3000**) as `maxOutputTokens` | Bounded per step; `stepCountIs(2)` ceiling → ≤2× in the worst case, ≈1× in practice. Value is 3× the 1000 in `03-ai.mdc`. |
 | Input sliding window | ✅ | `route.ts:56` `memoryStrategy` = `slidingWindowWithAnchor()` (`memory.ts:39`), `SLIDING_WINDOW_MESSAGES=10` (`ai.constant.ts:18`); trimmed **before** prompt build + `convertToModelMessages` | Anchor (msg[0]) + last 9. |
 | RAG result cap | ✅ | `RAG_MAX_RESULTS=10` (`ai.constant.ts:8`) passed at `rag.ts:28`; clamped `≤50` in `search.ts:23` | Threshold 0.6 (`ai.constant.ts:6`). |
 
-### Rate limiting — PRESENT but **BYPASSABLE** 🔴
+### Rate limiting — ✅ bypass RESOLVED (fix applied 2026-06-06); per-user-only by design
 
-- **Present:** `checkChatRateLimit(user.id)` via `guardChatRoute` (`route-guard.util.ts:41`, called at `route.ts:21`). Per-user, DB counter on `chat_messages` over the last hour, `CHAT_MESSAGES_PER_HOUR=50` (`rate-limit.ts:9-37`, `ai.constant.ts:13`). Fails **closed** on count error → 503 (`rate-limit.ts:26-29`).
-- 🔴 **Bypass:** the limiter counts **rows in `chat_messages`** (`rate-limit.ts:20`). The chat route **never writes** `chat_messages` — persistence is a **separate, client-initiated** server action `saveChatMessageAction` (`chat.action.ts:19-37`). The only writers are `chat.action.ts:28` and `chat.service.ts:23`; the route has no insert. **An authenticated user who calls `POST /api/chat` directly and never calls `saveChatMessageAction` is never counted → unlimited paid completions.**
-- ⚠️ Even honest clients: counter lags real requests (concurrent bursts), and counts both user **and** assistant rows, so 50/hr ≈ 25 turns.
-- **No per-IP / global / middleware throttle exists.** Beyond the (bypassable) per-user-per-hour check, **one authenticated user can issue effectively unlimited chat turns, each a paid completion (×up to 5) plus grounding.**
+- **Now counts ACTUAL requests, per user.** `checkChatRateLimit(user.id)` (via `guardChatRoute`, `route.ts:21`) counts rows in a dedicated server-only **`chat_request_log`** table over the last hour, using the **admin** (service-role) client, `CHAT_REQUESTS_PER_HOUR=30` (`rate-limit.ts:14-46`, `ai.constant.ts:13-14`). Fails **closed** on count error → 503.
+- **Every `/api/chat` hit is logged** before `streamText` via best-effort `logChatRequest(guard.user.id, getClientIp(request))` (`route.ts`, `rate-limit.ts:53-66`). The insert is best-effort (logs `console.error` and continues on failure — the count gate is the limiter), and one row = one request = one turn.
+- ✅ **Bypass closed:** the limiter no longer depends on the client calling `saveChatMessageAction`. Calling `POST /api/chat` directly is now counted regardless of whether the message is later persisted. The original bug (counting `chat_messages`, which the route never writes) is gone.
+- Enforcement is **per-user only** (intentional). IP is recorded in `chat_request_log.ip` for auditing but **not** capped.
+- ⚠️ **Operational dependency:** requires the `chat_request_log` table (RLS on, no policies — service-role only). Until it exists, the fail-closed count errors → 503 on every request. SQL is owner-run in Supabase (see §7).
+- ✅ **No per-IP / global throttle — deliberate decision (accepted).** Per-user-only is intentional: a per-IP cap would lock out **co-located students sharing one public IP** (bootcamp WiFi, shared home networks, Egyptian mobile **CGNAT**). Multi-account / distributed abuse is bounded by the **Google Project Spend Cap**, not an app-layer IP throttle. IP is still logged in `chat_request_log.ip` for forensics. Each allowed turn is ≈1 paid completion (see §2) plus free-at-scale grounding.
 
 ### Auth gate
 
@@ -76,14 +83,14 @@
 | Guard | Present? | File | Gap |
 | --- | --- | --- | --- |
 | Auth | ✅ | `route-guard.util.ts:31`, `route.ts:21` | — |
-| Per-user rate limit | ⚠️ present but bypassable | `rate-limit.ts`, `route.ts:21` | counts persisted rows, not requests; direct `/api/chat` calls uncounted |
-| Per-IP / global limit | 🔴 ABSENT | — | none anywhere |
-| Max output tokens | ✅ | `route.ts:69` | ×steps; 3000 |
+| Per-user rate limit | ✅ fixed | `rate-limit.ts`, `route.ts:21` | counts real requests in `chat_request_log` (30/hr); bypass closed |
+| Per-IP / global limit | ✅ accepted (omitted by design) | — | per-user-only to avoid CGNAT/shared-IP lockout; cost bounded by Google Spend Cap; IP logged for forensics |
+| Max output tokens | ✅ | `route.ts:69` | 3000; bounded per turn (`stepCountIs(2)` ceiling) |
 | Input window | ✅ | `route.ts:56` | — |
 | RAG result cap | ✅ | `rag.ts:28`, `search.ts:23` | — |
-| Max retries | ✅ (0) | `route.ts:70` | — |
-| Completions per turn = 1 | 🔴 | `route.ts:71` | `stepCountIs(5)` → up to 5 |
-| Search-grounding cost | 🔴 no guard | `providers.ts:106-107` | billed per grounded turn |
+| Max retries | ✅ (0) | `route.ts:84` | — |
+| Completions per turn | ✅ | `route.ts:85` | `stepCountIs(2)` caps at **≤ 2** generations (proven); ≈ 1 expected (provider-executed grounding, not runtime-traced) |
+| Search-grounding cost | ✅ accepted | `providers.ts:40,105` | kept deliberately; free <1,500/day on Flash; Spend Cap backstop |
 
 ---
 
@@ -198,15 +205,38 @@ if (root === "upload" && !isOwner(user)) {
 ## 7. Deploy-Blocker Summary
 
 ### 🔴 Must fix before deploy
-1. **Chat rate limit is bypassable** — counts `chat_messages` rows (`rate-limit.ts:20`) but the route never writes them (persistence is the separate client action `chat.action.ts:19`). Direct `/api/chat` calls are uncounted → unlimited paid completions. **Fix:** rate-limit on requests (in-route counter / Upstash / request-log table), not persisted messages.
-2. **Completions not capped at 1 + paid Google Search grounding** — `stepCountIs(5)` (`route.ts:71`) + `googleSearch` tool on the active provider (`providers.ts:106-107`) → up to 5 billable completions plus separately-billed grounding per turn. **Fix:** `stopWhen: stepCountIs(1)` and/or `emptyTools` for the active provider if you want eager-only RAG; add the missing `GOOGLE_API_KEY` env (`providers.ts:41`) or you'll pass `undefined` if grounding fires.
-3. **No per-IP / global rate limit anywhere** — only the (bypassable) per-user-per-hour DB check. **One authenticated user can issue unlimited chat turns, each a paid completion.** **Fix:** Upstash/middleware throttle keyed on user **and** IP at the route.
+- **None.** All original 🔴 items are either fixed or accepted as deliberate design (below).
+
+### ⚙️ Operational prerequisites (do at deploy — not code blockers)
+1. **Run the `chat_request_log` `CREATE TABLE`** in Supabase (SQL below). Fail-closed: absent table → 503 on every chat request.
+2. **Set `OWNER_EMAIL`** in `.env.local` **and** Vercel. Fail-closed: unset → upload/ingestion locked for everyone (including the owner).
+3. **Set a Google Project Spend Cap (~DKK 700)** + budget alerts. This is the real cost ceiling backstopping the per-user rate limit and grounding usage.
 
 ### ✅ Fixed (was 🔴)
-- **Ingestion Server Actions + `/upload` page now owner-gated** end-to-end via `isOwner` (`require-owner.ts`), applied in all three actions and `proxy.ts`. See §3. **Remaining action:** set `OWNER_EMAIL` in `.env.local` **and** Vercel (fail-closed).
+- **Chat rate limit bypass closed** (2026-06-06) — `checkChatRateLimit` counts **actual requests** in `chat_request_log` (admin client, `CHAT_REQUESTS_PER_HOUR=30`); every `/api/chat` hit is logged before `streamText` via best-effort `logChatRequest`. No longer depends on `saveChatMessageAction`. See §2.
+- **Ingestion Server Actions + `/upload` page owner-gated** end-to-end via `isOwner` (`require-owner.ts`), in all three actions and `proxy.ts`. See §3.
+
+### ✅ Accepted design (reviewed — not blockers)
+- **Completions capped at ≤ 2/turn (≈ 1 expected) + Google Search grounding kept** — `stopWhen: stepCountIs(2)` (`route.ts:85`) caps the turn at **≤ 2 model generations** (proven ceiling). In practice it's **expected to be ≈ 1**: the only tool is provider-executed `googleSearch` grounding (no client/function tools), which typically resolves within a **single generation** — not runtime-traced. Grounding is the deliberate out-of-KB answer path, **free under 1,500 queries/day** on Gemini 2.5 Flash, then $35/1k — bounded by the Spend Cap. The earlier "up to 5 completions" and the "add `GOOGLE_API_KEY`" recommendation were both **wrong and have been removed** (see §1 / §2).
+- **No per-IP / global throttle (per-user-only)** — deliberate, to avoid locking out co-located students behind shared public IPs / CGNAT (bootcamp WiFi, Egyptian mobile). Multi-account/distributed abuse is bounded by the Google Project Spend Cap; IP is logged for forensics. See §2.
+
+> **Owner-run SQL prerequisite (rate-limit fix):**
+> ```sql
+> create table if not exists public.chat_request_log (
+>   id         uuid        primary key default gen_random_uuid(),
+>   user_id    uuid,
+>   ip         text,
+>   created_at timestamptz not null default now()
+> );
+> create index if not exists chat_request_log_user_created_idx
+>   on public.chat_request_log (user_id, created_at);
+> create index if not exists chat_request_log_ip_created_idx
+>   on public.chat_request_log (ip, created_at);
+> alter table public.chat_request_log enable row level security;
+> ```
 
 ### 🟡 Soon
-- `CHAT_MAX_TOKENS=3000` × up to 5 steps = larger output cost than the rule's 1000 (`ai.constant.ts:2`). Reconsider once §7.2 is fixed.
+- `CHAT_MAX_TOKENS=3000` (`ai.constant.ts:2`) is 3× the rule's 1000. With `stepCountIs(2)` and ≈1 generation/turn, output is bounded per turn (≤2× worst case, ≈1× typical) — minor cost note, no longer a multiplier concern.
 - Dead env vars in `.env.example` (`CHAT_MODEL_PROVIDER`, `OPENROUTER_API_KEY`, `AGENT_ROUTER_API_KEY/BASE_URL`).
 - Vendor lint error in `components/ui/carousel.tsx:98` — confirm it doesn't fail the Vercel/CI lint gate (§6).
 
@@ -216,4 +246,4 @@ if (root === "upload" && !isOwner(user)) {
 
 ---
 
-*Read-only audit, with the §3 admin-gating fix subsequently applied (5 files). No DB objects or `components/ui/*` were modified.*
+*Read-only audit, with the §3 admin-gating fix (5 files, 2026-06-05) and the §2 rate-limit fix (3 files + owner-run SQL, 2026-06-06) subsequently applied, then re-reviewed (2026-06-06): the completions/grounding and per-IP-throttle items were accepted as deliberate design and the verdict flipped to ✅ Ready to deploy. No DB objects or `components/ui/*` were modified by the assistant.*

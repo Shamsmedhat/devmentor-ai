@@ -1,6 +1,7 @@
 import { InfoIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import LtrValue from "@/components/shared/ltr-value";
 import type { ChatUIMessage } from "@/lib/types/chat";
 
 interface DisplayUsedTokensProps {
@@ -27,11 +28,13 @@ export default function DisplayUsedTokens({
       <div className="flex items-start gap-2">
         <InfoIcon className="w-4 h-4 shrink-0" />
         <h4 className="uppercase">{t("token-used")}</h4>
-        {t("chat-insights-tokens-desc", {
-          input: lastMessage?.metadata?.usage?.inputTokens ?? 0,
-          output: lastMessage?.metadata?.usage?.outputTokens ?? 0,
-          total: lastMessage?.metadata?.usage?.totalTokens ?? 0,
-        })}
+        <LtrValue>
+          {t("chat-insights-tokens-desc", {
+            input: lastMessage?.metadata?.usage?.inputTokens ?? 0,
+            output: lastMessage?.metadata?.usage?.outputTokens ?? 0,
+            total: lastMessage?.metadata?.usage?.totalTokens ?? 0,
+          })}
+        </LtrValue>
       </div>
     </div>
   );

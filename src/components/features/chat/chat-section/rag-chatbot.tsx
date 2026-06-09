@@ -80,6 +80,12 @@ export default function RAGChatBot({
 
   // Variables
   const lastMessage = messages.at(-1);
+  // The assistant turn currently streaming — drives the live insights panel.
+  const streamingAssistantId =
+    (status === "submitted" || status === "streaming") &&
+    lastMessage?.role === "assistant"
+      ? lastMessage.id
+      : null;
   const showActivitySpinner =
     (status === "submitted" || status === "streaming") &&
     !(
@@ -120,48 +126,56 @@ export default function RAGChatBot({
           dir={isArabicResponse ? "rtl" : "ltr"}
         >
           <ConversationContent>
-            {messages.map((message) => (
-              <div key={message.id}>
-                {message.role === "assistant" && message.metadata && (
-                  <MessageInsights metadata={message.metadata} />
-                )}
+            {messages.map((message) => {
+              const isStreaming = message.id === streamingAssistantId;
 
-                {message.parts.map((part, i) => {
-                  // Text part
-                  if (isTextUIPart(part))
-                    return (
-                      <TextPart
-                        key={`${message.id}-${i}`}
-                        message={message}
-                        part={part}
+              return (
+                <div key={message.id}>
+                  {message.role === "assistant" &&
+                    (message.metadata || isStreaming) && (
+                      <MessageInsights
+                        metadata={message.metadata}
+                        isStreaming={isStreaming}
                       />
-                    );
+                    )}
 
-                  // Reasoning part
-                  if (isReasoningUIPart(part))
-                    return (
-                      <ReasoningPart
-                        key={`${message.id}-${i}`}
-                        message={message}
-                        part={part}
-                      />
-                    );
+                  {message.parts.map((part, i) => {
+                    // Text part
+                    if (isTextUIPart(part))
+                      return (
+                        <TextPart
+                          key={`${message.id}-${i}`}
+                          message={message}
+                          part={part}
+                        />
+                      );
 
-                  // Tool part
-                  if (isToolUIPart(part)) {
-                    return (
-                      <ToolPart
-                        key={`${message.id}-${i}`}
-                        message={message}
-                        part={part}
-                      />
-                    );
-                  }
+                    // Reasoning part
+                    if (isReasoningUIPart(part))
+                      return (
+                        <ReasoningPart
+                          key={`${message.id}-${i}`}
+                          message={message}
+                          part={part}
+                        />
+                      );
 
-                  return null;
-                })}
-              </div>
-            ))}
+                    // Tool part
+                    if (isToolUIPart(part)) {
+                      return (
+                        <ToolPart
+                          key={`${message.id}-${i}`}
+                          message={message}
+                          part={part}
+                        />
+                      );
+                    }
+
+                    return null;
+                  })}
+                </div>
+              );
+            })}
             {showActivitySpinner && <Spinner />}
           </ConversationContent>
           <ConversationScrollButton />
@@ -200,10 +214,7 @@ export default function RAGChatBot({
             <PromptInputTools />
 
             {/* Submit button */}
-            <PromptInputSubmit
-              status={status}
-              className="cursor-pointer"
-            />
+            <PromptInputSubmit status={status} className="cursor-pointer" />
           </PromptInputFooter>
         </PromptInput>
       </div>

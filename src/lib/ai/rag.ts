@@ -5,11 +5,18 @@ import {
   type KnowledgeBaseSearchResult,
 } from "@/lib/ai/search";
 import { AI_LIMITS } from "@/lib/constants/ai.constant";
-import type { ChatUIMessage } from "@/lib/types/chat";
+import type { ChatUIMessage, RagSource } from "@/lib/types/chat";
+
+export type RagResult = {
+  /** System prompt — RAG-augmented when chunks matched, base mentor otherwise. */
+  system: string;
+  /** Deduped, similarity-sorted sources for the insights panel (empty when none). */
+  sources: RagSource[];
+};
 
 /**
  * Runs the full RAG pipeline: extracts the latest user query, searches the
- * knowledge base, and returns either a RAG-augmented or base system prompt.
+ * knowledge base, and returns the system prompt plus the retrieved sources.
  *
  * A retrieval failure (e.g. transient pgvector error) degrades to the plain
  * mentor prompt instead of 500ing the route — the chat is more useful with
@@ -17,9 +24,9 @@ import type { ChatUIMessage } from "@/lib/types/chat";
  */
 export async function buildRagSystemPrompt(
   messages: ChatUIMessage[],
-): Promise<string> {
+): Promise<RagResult> {
   const query = getLatestUserMessageText(messages);
-  if (!query) return MENTOR_SYSTEM_PROMPT;
+  if (!query) return { system: MENTOR_SYSTEM_PROMPT, sources: [] };
 
   let results: KnowledgeBaseSearchResult[];
   try {
@@ -30,12 +37,60 @@ export async function buildRagSystemPrompt(
     );
   } catch (error) {
     console.error("[rag] searchKnowledgeBase failed", error);
-    return MENTOR_SYSTEM_PROMPT;
+    return { system: MENTOR_SYSTEM_PROMPT, sources: [] };
   }
 
-  if (results.length === 0) return MENTOR_SYSTEM_PROMPT;
+  if (results.length === 0) {
+    return { system: MENTOR_SYSTEM_PROMPT, sources: [] };
+  }
 
-  return RAG_SYSTEM_PROMPT(formatRetrievedContext(results));
+  return {
+    system: RAG_SYSTEM_PROMPT(formatRetrievedContext(results)),
+    sources: extractRagSources(results),
+  };
+}
+
+/**
+ * Maps raw chunks to compact panel sources: dedupes PDF/text by document
+ * (keeping the best-scoring chunk) while keeping video chunks distinct per
+ * timestamp, then sorts by similarity (highest first).
+ */
+function extractRagSources(results: KnowledgeBaseSearchResult[]): RagSource[] {
+  const byKey = new Map<string, RagSource>();
+
+  for (const r of results) {
+    const meta = r.metadata ?? {};
+    const documentId = (meta.document_id as string | undefined) ?? "unknown";
+    const sourceType = meta.source_type as string | undefined;
+    const isVideo = sourceType === "video";
+
+    const key = isVideo
+      ? `video:${documentId}:${meta.start_seconds ?? ""}`
+      : `doc:${documentId}`;
+
+    const source: RagSource = isVideo
+      ? {
+          id: r.id,
+          label: (meta.video_title as string | undefined) ?? documentId,
+          sourceType,
+          similarity: r.similarity,
+          url: meta.drive_url as string | undefined,
+          timestamp: formatMMSS(meta.start_seconds),
+        }
+      : {
+          id: r.id,
+          label: documentId,
+          sourceType,
+          similarity: r.similarity,
+        };
+
+    const existing = byKey.get(key);
+    if (!existing || source.similarity > existing.similarity) {
+      byKey.set(key, source);
+    }
+  }
+
+  return [...byKey.values()].sort((a, b) => b.similarity - a.similarity);
 }
 
 function formatRetrievedContext(results: KnowledgeBaseSearchResult[]): string {
