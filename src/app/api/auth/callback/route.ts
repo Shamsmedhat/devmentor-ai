@@ -24,7 +24,7 @@ export async function GET(request: Request) {
     // Create Supabase Client
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      process.env.NEXT_SUPABASE_PUBLISHABLE_KEY!,
       {
         cookies: {
           getAll() {
