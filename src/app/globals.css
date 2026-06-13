@@ -45,17 +45,6 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-
-  /* Private theme slots (no utilities; set values in :root / .dark or use var(--_…)) */
-  --_primary-bg: initial;
-  --_secondary-chat: initial;
-  --_primary-app-bg: initial;
-  --_primary-surface: initial;
-  --_primary-accent: initial;
-  --_primary-accent-soft: initial;
-  --_primary-text: initial;
-  --_primary-muted: initial;
-  --_primary-border: initial;
 }
 
 :root {
@@ -149,64 +138,6 @@
   box-shadow: none;
 }
 
-@keyframes travel-dot {
-  0% {
-    offset-distance: 0%;
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
-  }
-  100% {
-    offset-distance: 100%;
-    opacity: 0;
-  }
-}
-
-@keyframes line-travel {
-  0% {
-    stroke-dashoffset: 0.15;
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  95% {
-    opacity: 1;
-  }
-  100% {
-    stroke-dashoffset: -1;
-    opacity: 0;
-  }
-}
-
-@utility animate-line-travel-next {
-  animation: line-travel 2s linear 0s infinite;
-}
-
-@utility animate-line-travel-react {
-  animation: line-travel 2s linear 0.4s infinite;
-}
-
-@utility animate-line-travel-ts {
-  animation: line-travel 2s linear 0.8s infinite;
-}
-
-@utility animate-line-travel-tailwind {
-  animation: line-travel 2s linear 1.2s infinite;
-}
-
-@utility animate-line-travel-shadcn {
-  animation: line-travel 2s linear 1.6s infinite;
-}
-
-@utility animate-line-travel-supabase {
-  animation: line-travel 2s linear 2s infinite;
-}
-
 @keyframes glow-pulse {
   0%,
   100% {
@@ -246,81 +177,6 @@
 
 @utility animate-glow-pulse {
   animation: glow-pulse 3s ease-in-out infinite;
-}
-
-.track {
-  stroke: #1e2028;
-  stroke-width: 1.5;
-  fill: none;
-}
-.signal {
-  fill: none;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-}
-.pin {
-  stroke: #3a3d4d;
-  stroke-width: 2;
-  stroke-linecap: round;
-}
-.node {
-  fill: #1e2028;
-  stroke: #2a2d38;
-  stroke-width: 1;
-}
-
-@keyframes flow {
-  0% {
-    stroke-dashoffset: var(--len);
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    opacity: 0;
-  }
-}
-
-.s1 {
-  stroke: #c084fc;
-  --len: 220;
-  stroke-dasharray: 60 220;
-  animation: flow 2.8s linear infinite;
-}
-.s2 {
-  stroke: #f97316;
-  --len: 260;
-  stroke-dasharray: 55 260;
-  animation: flow 3.2s linear infinite 0.6s;
-}
-.s3 {
-  stroke: #38bdf8;
-  --len: 200;
-  stroke-dasharray: 50 200;
-  animation: flow 2.5s linear infinite 1.1s;
-}
-.s4 {
-  stroke: #fb7185;
-  --len: 240;
-  stroke-dasharray: 60 240;
-  animation: flow 3s linear infinite 0.3s;
-}
-.s5 {
-  stroke: #a3e635;
-  --len: 180;
-  stroke-dasharray: 45 180;
-  animation: flow 2.6s linear infinite 1.5s;
-}
-.s6 {
-  stroke: #fbbf24;
-  --len: 220;
-  stroke-dasharray: 55 220;
-  animation: flow 2.9s linear infinite 0.8s;
 }
 
 @keyframes pulse {

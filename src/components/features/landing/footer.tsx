@@ -33,7 +33,7 @@ export async function Footer() {
             {t("footer-terms")}
           </Link>
           <a
-            href="https://github.com"
+            href="https://github.com/Shamsmedhat/devmentor-ai"
             target="_blank"
             rel="noreferrer"
             className="transition hover:text-foreground"

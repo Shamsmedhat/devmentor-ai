@@ -8,7 +8,6 @@ type Props = {
 };
 
 export default async function LoginPage({ params, searchParams }: Props) {
-  console.log("", "LoginPage");
   // Navigation
   const { locale } = await params;
   const sp = await searchParams;
