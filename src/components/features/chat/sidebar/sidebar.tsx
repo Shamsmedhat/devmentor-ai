@@ -50,7 +50,7 @@ export function ChatSidebar({ user, initialSessions }: ChatSidebarProps) {
   // Variables
   const userId = user.id;
   const initials = (user.email ?? "DM").slice(0, 2).toUpperCase();
-  const displayName = user.email ?? "Account";
+  const displayName = user.email ?? t("chat-account-fallback");
 
   // Hooks
   const sessions = useChatSessionsRealtime(userId, initialSessions);

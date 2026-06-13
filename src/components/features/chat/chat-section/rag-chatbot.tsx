@@ -9,11 +9,13 @@ import {
   isTextUIPart,
   isToolUIPart,
 } from "ai";
+import { MessageSquareIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import {
   Conversation,
   ConversationContent,
+  ConversationEmptyState,
   ConversationScrollButton,
 } from "@/components/ai-elements/conversation";
 
@@ -27,7 +29,6 @@ import {
   PromptInputTools,
 } from "@/components/ai-elements/prompt-input";
 
-import { Spinner } from "@/components/ui/spinner";
 import { useChatPersistence } from "@/hooks/chat/use-chat-persistence";
 import type { ChatBannerState, ChatUIMessage } from "@/lib/types/chat";
 import TextPart from "./text-part";
@@ -35,6 +36,7 @@ import ReasoningPart from "./reasoning-part";
 import ToolPart from "./tool-part";
 import MessageInsights from "./message-insights";
 import ChatBanner from "./chat-banner";
+import TypingIndicator from "./typing-indicator";
 import {
   buildChatErrorBanner,
   messageHasStreamingAssistantActivity,
@@ -62,7 +64,7 @@ export default function RAGChatBot({
   const { persistUserMessage, persistAssistantMessage } =
     useChatPersistence(sessionId);
 
-  const { messages, sendMessage, status } = useChat<ChatUIMessage>({
+  const { messages, sendMessage, status, stop } = useChat<ChatUIMessage>({
     transport: new DefaultChatTransport({ api: "/api/chat" }),
     messages: initialMessages,
     onError: (err) => {
@@ -72,6 +74,10 @@ export default function RAGChatBot({
     // On finish, persist the assistant message.
     onFinish: ({ message }) => {
       if (message.role !== "assistant") return;
+      // Stopped before any renderable part - nothing worth persisting.
+      // Intentionally shares the typing-indicator helper so the two
+      // definitions of "has visible content" never fork.
+      if (!messageHasStreamingAssistantActivity(message)) return;
       void persistAssistantMessage(message).catch((persistErr) => {
         console.error(persistErr);
       });
@@ -79,15 +85,13 @@ export default function RAGChatBot({
   });
 
   // Variables
+  const isGenerating = status === "submitted" || status === "streaming";
   const lastMessage = messages.at(-1);
   // The assistant turn currently streaming - drives the live insights panel.
   const streamingAssistantId =
-    (status === "submitted" || status === "streaming") &&
-    lastMessage?.role === "assistant"
-      ? lastMessage.id
-      : null;
-  const showActivitySpinner =
-    (status === "submitted" || status === "streaming") &&
+    isGenerating && lastMessage?.role === "assistant" ? lastMessage.id : null;
+  const showTypingIndicator =
+    isGenerating &&
     !(
       lastMessage?.role === "assistant" &&
       messageHasStreamingAssistantActivity(lastMessage)
@@ -95,11 +99,21 @@ export default function RAGChatBot({
   const showTruncatedBanner =
     lastMessage?.role === "assistant" &&
     Boolean(lastMessage.metadata?.truncated);
+  // Token strip waits for real usage numbers - they only land on `finish`,
+  // so it never flashes 0/0/0 while the turn is still streaming.
+  const lastUsage = lastMessage?.metadata?.usage;
   const showInsights =
-    lastMessage?.role === "assistant" && !!lastMessage?.metadata;
+    lastMessage?.role === "assistant" &&
+    Boolean(
+      lastUsage?.inputTokens || lastUsage?.outputTokens || lastUsage?.totalTokens,
+    );
 
   // Functions
   function handleSubmit(message: PromptInputMessage) {
+    // Enter mid-stream re-submits the form; drop it while a turn is running.
+    // `status === "error"` still submits so the user can retry after a failure.
+    if (isGenerating) return;
+
     const text = message.text.trim();
     if (!text) return;
 
@@ -125,7 +139,16 @@ export default function RAGChatBot({
           initial="instant"
           dir={isArabicResponse ? "rtl" : "ltr"}
         >
-          <ConversationContent>
+          <ConversationContent
+            className={messages.length === 0 ? "h-full" : undefined}
+          >
+            {messages.length === 0 && (
+              <ConversationEmptyState
+                icon={<MessageSquareIcon className="size-8" />}
+                title={t("chat-welcome-title")}
+                description={t("chat-welcome-subtitle")}
+              />
+            )}
             {messages.map((message) => {
               const isStreaming = message.id === streamingAssistantId;
 
@@ -176,7 +199,7 @@ export default function RAGChatBot({
                 </div>
               );
             })}
-            {showActivitySpinner && <Spinner />}
+            {showTypingIndicator && <TypingIndicator />}
           </ConversationContent>
           <ConversationScrollButton />
         </Conversation>
@@ -205,7 +228,7 @@ export default function RAGChatBot({
           {/* Input body */}
           <PromptInputBody>
             {/* Textarea */}
-            <PromptInputTextarea />
+            <PromptInputTextarea placeholder={t("chat-placeholder")} />
           </PromptInputBody>
 
           {/* Footer */}
@@ -216,6 +239,12 @@ export default function RAGChatBot({
             {/* Submit button */}
             <PromptInputSubmit
               status={status}
+              onStop={stop}
+              aria-label={
+                isGenerating
+                  ? t("chat-stop-generating")
+                  : t("chat-input-send-aria")
+              }
               className="cursor-pointer"
             />
           </PromptInputFooter>
@@ -223,8 +252,7 @@ export default function RAGChatBot({
       </div>
 
       <p className="text-xs text-muted-foreground text-center mt-2">
-        devmentor.ai is a agent mentor platform that may make mistakes, please
-        verify the information before using it.
+        {t("chat-ai-disclaimer")}
       </p>
     </div>
   );

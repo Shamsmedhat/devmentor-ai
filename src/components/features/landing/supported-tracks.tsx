@@ -2,6 +2,8 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import type { ReactNode } from "react";
 
+import { SectionHeading } from "./section-heading";
+
 interface TrackCardProps {
   name: string;
   version: string;
@@ -340,21 +342,17 @@ export async function SupportedTracks() {
 
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section heading */}
-        <div className="text-center">
-          <h2 className="text-4xl font-bold text-white">
-            مبني على أقوى الـ Tools
-          </h2>
-          <p className="mt-3 text-white/50">
-            متخصص في الـ stack اللي بتشتغل بيه فعلاً
-          </p>
-        </div>
+        <SectionHeading
+          title={t("tracks-title")}
+          subtitle={t("tracks-subtitle")}
+        />
 
         <div className="relative mx-auto mt-20 max-w-5xl">
           <div className="flex items-center justify-center">
             <div className="border-2 border-white/10 rounded-xl p-4 outline outline-chart-2">
               <Image
                 src="/brain.svg"
-                alt="Chip"
+                alt={t("tracks-chip-alt")}
                 width={100}
                 height={100}
               />
@@ -365,10 +363,6 @@ export async function SupportedTracks() {
             <ConnectorLines />
           </div>
           <div className="relative mt-20">
-            {/* <div className="absolute -top-4 left-0 right-0 bottom-0">
-              <ConnectorLines />
-            </div> */}
-
             <div className="relative z-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               <TrackCard
                 name={t("tracks-next-name")}
@@ -407,7 +401,7 @@ export async function SupportedTracks() {
           </div>
 
           <p className="mt-12 text-center text-sm text-white/30">
-            + بتقدر تضيف أي library تانية من خلال الـ Knowledge Base بتاعتك
+            {t("tracks-footnote")}
           </p>
         </div>
       </div>

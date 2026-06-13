@@ -1,20 +1,16 @@
 import { ChatBannerState, ChatUIMessage } from "@/lib/types/chat";
-import { isReasoningUIPart, isToolUIPart } from "ai";
+import { isReasoningUIPart, isTextUIPart, isToolUIPart } from "ai";
 import { parseChatStreamError } from "./chat-stream-error.util";
 
-/** Hides the generic spinner when tool or reasoning UI already shows in-flight work. */
+/** Hides the pre-token typing indicator once ANY assistant part is rendering -
+ *  streamed text, a reasoning block, or a tool call all show their own UI. */
 export function messageHasStreamingAssistantActivity(
   message: ChatUIMessage,
 ): boolean {
   return message.parts.some((part) => {
-    if (isToolUIPart(part)) {
-      return (
-        part.state === "input-available" || part.state === "input-streaming"
-      );
-    }
-    if (isReasoningUIPart(part)) {
-      return part.state === "streaming";
-    }
+    if (isTextUIPart(part)) return part.text.length > 0;
+    if (isToolUIPart(part)) return true;
+    if (isReasoningUIPart(part)) return true;
     return false;
   });
 }

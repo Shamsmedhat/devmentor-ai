@@ -1,4 +1,4 @@
-type ChatStreamErrorPayload =
+export type ChatStreamErrorPayload =
   | { kind: "rate-limit"; retryAfter?: number }
   | { kind: "generic" };
 

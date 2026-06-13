@@ -2,6 +2,7 @@ import type { User } from "@supabase/supabase-js";
 
 import { checkChatRateLimit } from "@/lib/ai/rate-limit";
 import { getServerSupabaseAuth } from "@/lib/utils/auth/auth-server-guard";
+import type { ChatStreamErrorPayload } from "@/lib/utils/chat/chat-stream-error.util";
 
 type GuardSuccess = { ok: true; user: User };
 type GuardFailure = { ok: false; response: Response };
@@ -41,9 +42,19 @@ export async function guardChatRoute(): Promise<GuardSuccess | GuardFailure> {
   const rate = await checkChatRateLimit(user.id);
 
   if (!rate.ok && rate.reason === "over_limit") {
+    // Same JSON envelope stream errors use: the transport surfaces the body as
+    // `error.message`, so `parseChatStreamError` shows the rate-limit banner
+    // instead of the generic one. No reset time is tracked, so no `retryAfter`.
+    const body = JSON.stringify({
+      kind: "rate-limit",
+    } satisfies ChatStreamErrorPayload);
+
     return {
       ok: false,
-      response: new Response("Too many requests", { status: 429 }),
+      response: new Response(body, {
+        status: 429,
+        headers: { "Content-Type": "application/json" },
+      }),
     };
   }
 

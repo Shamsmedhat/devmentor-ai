@@ -1,6 +1,7 @@
 "use client";
 
 import { Bot } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import {
   Message,
@@ -13,8 +14,15 @@ import {
  * takes over and this component should be unmounted by the caller.
  */
 export default function TypingIndicator() {
+  // Translation
+  const t = useTranslations();
+
   return (
-    <Message from="assistant">
+    <Message
+      from="assistant"
+      role="status"
+      aria-label={t("chat-typing-aria")}
+    >
       <div className="mt-1 shrink-0 text-muted-foreground">
         <Bot className="size-5" />
       </div>

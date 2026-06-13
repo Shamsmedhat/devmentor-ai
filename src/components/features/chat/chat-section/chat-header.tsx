@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { GlobeIcon } from "lucide-react";
 import { useChatUi } from "../../../../lib/context/chat-ui.context";
@@ -22,7 +22,10 @@ export default function ChatHeader({
   isArabicResponse: boolean;
 }) {
   // Translation
+  const t = useTranslations();
   const locale = useLocale();
+
+  // Navigation
   const router = useRouter();
   const pathname = usePathname();
 
@@ -48,7 +51,7 @@ export default function ChatHeader({
         <button
           type="button"
           onClick={() => setIsArabicResponse(!isArabicResponse)}
-          aria-label="Toggle response language"
+          aria-label={t("chat-direction-toggle-aria")}
           aria-pressed={isArabicResponse}
           className="inline-flex items-center rounded-full border border-border bg-muted p-0.5 text-xs"
         >
@@ -60,7 +63,7 @@ export default function ChatHeader({
               "rounded-full px-2.5 py-1 transition-all duration-300 ease-out",
             )}
           >
-            AR Text
+            {t("chat-direction-rtl")}
           </span>
           <span
             className={cn(
@@ -70,7 +73,7 @@ export default function ChatHeader({
               "rounded-full px-2.5 py-1 transition-all duration-300 ease-out",
             )}
           >
-            EN Text
+            {t("chat-direction-ltr")}
           </span>
         </button>
 
@@ -82,7 +85,7 @@ export default function ChatHeader({
               variant="outline"
               size="icon"
               className="size-8 rounded-full"
-              aria-label="Change locale"
+              aria-label={t("chat-locale-aria")}
             >
               <GlobeIcon className="size-4" />
             </Button>
@@ -97,8 +100,8 @@ export default function ChatHeader({
                 onClick={() => switchLocale(loc)}
                 className="cursor-pointer "
               >
-                {loc === "ar" ? "Arabic (AR)" : "English (EN)"}
-                {locale === loc ? " • Active" : ""}
+                {loc === "ar" ? t("chat-locale-ar") : t("chat-locale-en")}
+                {locale === loc ? ` ${t("chat-locale-active")}` : ""}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
