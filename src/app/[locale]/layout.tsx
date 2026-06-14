@@ -66,7 +66,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} dark h-full antialiased`}
     >
       <body
-        className="min-h-full bg-background font-sans selection:bg-chart-2/25 selection:text-foreground"
+        className="min-h-full bg-background font-sans selection:bg-brand/25 selection:text-foreground"
         style={{
           fontFamily:
             "var(--font-cairo), var(--font-geist-sans), ui-sans-serif, system-ui",

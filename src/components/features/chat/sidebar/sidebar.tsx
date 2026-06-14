@@ -81,9 +81,9 @@ export function ChatSidebar({ user, initialSessions }: ChatSidebarProps) {
       {/* Brand */}
       <SidebarHeader className="border-b border-sidebar-border px-2 py-4">
         <div className="flex items-center gap-2.5 px-2">
-          <HexIcon className="h-6 w-6 text-chart-2" />
+          <HexIcon className="h-6 w-6 text-brand" />
           <span className="text-sm font-semibold text-sidebar-foreground">
-            DevMentor <span className="text-chart-2">AI</span>
+            DevMentor <span className="text-brand">AI</span>
           </span>
         </div>
       </SidebarHeader>
@@ -98,8 +98,8 @@ export function ChatSidebar({ user, initialSessions }: ChatSidebarProps) {
                   type="button"
                   onClick={handleNewChat}
                   className={cn(
-                    "h-auto min-h-8 border border-chart-2/20 bg-chart-2/8 py-2 text-chart-2",
-                    "hover:bg-chart-2/15 hover:text-chart-2",
+                    "h-auto min-h-8 border border-brand/20 bg-brand/8 py-2 text-brand",
+                    "hover:bg-brand/15 hover:text-brand",
                   )}
                 >
                   <Plus className="shrink-0" />
@@ -162,7 +162,7 @@ export function ChatSidebar({ user, initialSessions }: ChatSidebarProps) {
       {/* User */}
       <SidebarFooter className="border-t border-sidebar-border">
         <div className="flex items-center gap-2.5 px-2 py-1">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyan-500/20 text-xs font-medium text-cyan-400">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand/20 text-xs font-medium text-brand">
             {initials}
           </div>
           <span className="flex-1 truncate text-sm text-sidebar-foreground/70">

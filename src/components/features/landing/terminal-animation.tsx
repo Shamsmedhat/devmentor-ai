@@ -43,7 +43,7 @@ function lineTone(line: string) {
 
 function lineToneClass(tone: ReturnType<typeof lineTone>) {
   return cn(
-    tone === "cmd" && "text-cyan-300/90",
+    tone === "cmd" && "text-brand/90",
     tone === "warn" && "text-amber-300/90",
     tone === "ok" && "text-emerald-300/90",
   );
@@ -150,12 +150,12 @@ export function TerminalAnimation() {
         className="pointer-events-none absolute inset-0 -z-10 scale-110 blur-3xl"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 55%, rgba(34, 211, 238, 0.2), transparent 58%)",
+            "radial-gradient(ellipse at 50% 55%, color-mix(in srgb, var(--brand) 20%, transparent), transparent 58%)",
         }}
       />
 
       <motion.div
-        className="primary-badge-float absolute -inset-s-2 top-6 z-20 hidden rounded-full border border-cyan-300/20 bg-card px-3 py-1 text-[11px] font-medium tracking-wide text-cyan-300/90 backdrop-blur-md sm:block"
+        className="primary-badge-float absolute -inset-s-2 top-6 z-20 hidden rounded-full border border-brand/20 bg-card px-3 py-1 text-[11px] font-medium tracking-wide text-brand/90 backdrop-blur-md sm:block"
         animate={{ y: [0, -8, 0], opacity: [0.9, 1, 0.9] }}
         transition={{
           duration: 3.2,
@@ -207,7 +207,7 @@ export function TerminalAnimation() {
           whileHover={{ scale: 1.012 }}
           transition={{ type: "spring", stiffness: 220, damping: 20 }}
         >
-          <div className="rounded-2xl border border-white/12 bg-card shadow-[0_24px_80px_rgba(0,0,0,0.55),0_0_0_1px_rgba(34,211,238,0.1)] backdrop-blur-sm">
+          <div className="rounded-2xl border border-white/12 bg-card shadow-[0_24px_80px_rgba(0,0,0,0.55),0_0_0_1px_color-mix(in_srgb,var(--brand)_10%,transparent)] backdrop-blur-sm">
             <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
               <div className="flex gap-1.5">
                 <span className="size-2.5 rounded-full bg-[#FF5F57]/90" />

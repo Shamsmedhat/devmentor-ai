@@ -30,7 +30,7 @@ export default async function PrivacyPage({ params }: Props) {
     <main className="mx-auto min-h-screen w-full max-w-2xl px-4 py-16 sm:py-20">
       <Link
         href="/"
-        className="text-sm font-medium text-chart-2/90 transition-colors hover:text-chart-2"
+        className="text-sm font-medium text-brand/90 transition-colors hover:text-brand"
       >
         {t("legal-back-home")}
       </Link>
@@ -77,7 +77,7 @@ function linkifyEmail(text: string): ReactNode {
           <a
             key={index}
             href={`mailto:${CONTACT_EMAIL}`}
-            className="text-chart-2 underline-offset-2 hover:underline"
+            className="text-brand underline-offset-2 hover:underline"
           >
             {CONTACT_EMAIL}
           </a>,

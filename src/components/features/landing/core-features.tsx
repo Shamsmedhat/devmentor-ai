@@ -23,9 +23,9 @@ function FeatureCard({
     <article
       className={cn(
         "group relative flex flex-col gap-6 overflow-hidden rounded-2xl border p-8 backdrop-blur-sm transition-all duration-300",
-        "hover:-translate-y-1 hover:shadow-[0_0_40px_rgba(0,212,255,0.06)]",
+        "hover:-translate-y-1 hover:shadow-[0_0_40px_color-mix(in_srgb,var(--brand)_6%,transparent)]",
         featured
-          ? "border-chart-2/25 bg-linear-to-b from-chart-2/5 to-card/80"
+          ? "border-brand/25 bg-linear-to-b from-brand/5 to-card/80"
           : "border-white/8 bg-card/70 hover:border-white/15",
         className,
       )}
@@ -50,17 +50,17 @@ function ChatVisual() {
       <div className="ms-auto max-w-[75%] rounded-2xl rounded-se-sm border border-white/10 bg-white/4 px-3.5 py-2 text-xs text-foreground/80">
         إزاي أعمل optimistic update في React Query؟
       </div>
-      <div className="me-auto max-w-[80%] rounded-2xl rounded-ss-sm border border-chart-2/25 bg-chart-2/8 px-3.5 py-2 text-xs text-foreground/90">
-        استخدم <code className="text-chart-2">onMutate</code> callback…
+      <div className="me-auto max-w-[80%] rounded-2xl rounded-ss-sm border border-brand/25 bg-brand/8 px-3.5 py-2 text-xs text-foreground/90">
+        استخدم <code className="text-brand">onMutate</code> callback…
       </div>
-      <div className="me-auto flex max-w-[40%] items-center gap-1 rounded-2xl rounded-ss-sm border border-chart-2/25 bg-chart-2/8 px-3.5 py-2">
-        <span className="size-1.5 animate-pulse rounded-full bg-chart-2" />
+      <div className="me-auto flex max-w-[40%] items-center gap-1 rounded-2xl rounded-ss-sm border border-brand/25 bg-brand/8 px-3.5 py-2">
+        <span className="size-1.5 animate-pulse rounded-full bg-brand" />
         <span
-          className="size-1.5 animate-pulse rounded-full bg-chart-2"
+          className="size-1.5 animate-pulse rounded-full bg-brand"
           style={{ animationDelay: "150ms" }}
         />
         <span
-          className="size-1.5 animate-pulse rounded-full bg-chart-2"
+          className="size-1.5 animate-pulse rounded-full bg-brand"
           style={{ animationDelay: "300ms" }}
         />
       </div>
@@ -72,7 +72,7 @@ function CodeReviewVisual() {
   return (
     <div className="absolute inset-0 flex flex-col justify-center gap-1 p-5 font-mono text-[11px] leading-relaxed">
       <p className="text-muted-foreground">
-        <span className="text-chart-2">const</span> data = useQuery()
+        <span className="text-brand">const</span> data = useQuery()
       </p>
       <p className="flex items-start gap-2">
         <span className="mt-0.5 text-amber-400">⚠</span>
@@ -105,7 +105,7 @@ function KnowledgeBaseVisual() {
               <svg
                 aria-hidden
                 viewBox="0 0 24 24"
-                className="size-5 text-chart-2/80"
+                className="size-5 text-brand/80"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.6"
@@ -124,7 +124,7 @@ function KnowledgeBaseVisual() {
         >
           <path
             d="M20 5 Q100 60 180 5"
-            stroke="rgba(0,212,255,0.35)"
+            stroke="color-mix(in srgb, var(--brand) 35%, transparent)"
             strokeWidth="1"
             fill="none"
             strokeDasharray="3 4"

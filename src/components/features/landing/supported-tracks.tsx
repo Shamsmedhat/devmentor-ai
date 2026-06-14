@@ -16,7 +16,7 @@ function TrackCard({ name, version, description, logo }: TrackCardProps) {
     <article className="group relative flex h-full flex-col gap-4 rounded-xl border border-white/8 bg-card p-6  transition hover:-translate-y-0.5 hover:border-white/20">
       <span
         aria-hidden
-        className="absolute inset-e-4 top-4 text-muted-foreground/40 transition group-hover:text-chart-2 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        className="absolute inset-e-4 top-4 text-muted-foreground/40 transition group-hover:text-brand group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
       >
         <svg
           viewBox="0 0 24 24"
@@ -349,7 +349,7 @@ export async function SupportedTracks() {
 
         <div className="relative mx-auto mt-20 max-w-5xl">
           <div className="flex items-center justify-center">
-            <div className="border-2 border-white/10 rounded-xl p-4 outline outline-chart-2">
+            <div className="border-2 border-white/10 rounded-xl p-4 outline outline-brand">
               <Image
                 src="/brain.svg"
                 alt={t("tracks-chip-alt")}

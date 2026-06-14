@@ -13,7 +13,7 @@ export async function Hero() {
     <section className="relative isolate min-h-screen overflow-hidden bg-background">
       <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center gap-14 px-4 pb-20 pt-24 lg:flex-row lg:items-center lg:gap-16 lg:px-8 lg:pb-24 lg:pt-20">
         <div className="max-w-xl flex-1 space-y-8 animate-in fade-in slide-in-from-bottom-3 duration-700">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-chart-2/80 animate-in fade-in slide-in-from-bottom-2 duration-500">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand/80 animate-in fade-in slide-in-from-bottom-2 duration-500">
             {t("landing-hero-eyebrow")}
           </p>
 

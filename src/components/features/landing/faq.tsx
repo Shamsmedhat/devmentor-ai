@@ -27,21 +27,21 @@ function FAQItem({ question, answer, open, onToggle }: FAQItemProps) {
     <div
       className={cn(
         "rounded-xl border border-white/8 bg-card/60 transition",
-        open && "border-chart-2/25 bg-chart-2/3",
+        open && "border-brand/25 bg-brand/3",
       )}
     >
       <button
         type="button"
         aria-expanded={open}
         onClick={onToggle}
-        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-start text-base font-medium text-foreground transition hover:text-chart-2 sm:text-[17px]"
+        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-start text-base font-medium text-foreground transition hover:text-brand sm:text-[17px]"
       >
         <span>{question}</span>
         <span
           aria-hidden
           className={cn(
             "flex size-8 shrink-0 items-center justify-center rounded-full border border-white/10 text-muted-foreground transition",
-            open && "rotate-45 border-chart-2/40 text-chart-2",
+            open && "rotate-45 border-brand/40 text-brand",
           )}
         >
           <svg

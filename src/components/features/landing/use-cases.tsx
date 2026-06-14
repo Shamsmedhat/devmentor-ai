@@ -11,8 +11,8 @@ interface UseCaseCardProps {
 
 function UseCaseCard({ title, description, icon }: UseCaseCardProps) {
   return (
-    <article className="group relative flex flex-col gap-5 rounded-2xl border border-white/8 bg-card/70 p-8 transition hover:-translate-y-1 hover:border-white/15 hover:shadow-[0_0_40px_rgba(0,212,255,0.05)]">
-      <div className="flex size-12 items-center justify-center rounded-xl border border-chart-2/25 bg-chart-2/8 text-chart-2 shadow-[0_0_24px_rgba(0,212,255,0.12)]">
+    <article className="group relative flex flex-col gap-5 rounded-2xl border border-white/8 bg-card/70 p-8 transition hover:-translate-y-1 hover:border-white/15 hover:shadow-[0_0_40px_color-mix(in_srgb,var(--brand)_5%,transparent)]">
+      <div className="flex size-12 items-center justify-center rounded-xl border border-brand/25 bg-brand/8 text-brand shadow-[0_0_24px_color-mix(in_srgb,var(--brand)_12%,transparent)]">
         {icon}
       </div>
       <div className="space-y-2.5">

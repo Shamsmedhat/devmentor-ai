@@ -41,7 +41,7 @@ function CheckIcon() {
     <svg
       aria-hidden
       viewBox="0 0 24 24"
-      className="mt-1 size-4 shrink-0 text-chart-2"
+      className="mt-1 size-4 shrink-0 text-brand"
       fill="none"
       stroke="currentColor"
       strokeWidth="2.4"
@@ -119,8 +119,8 @@ export async function ProblemStatement() {
 
           <div
             className={cn(
-              "group relative rounded-2xl border border-chart-2/20 bg-linear-to-b from-chart-2/6 to-transparent p-8 backdrop-blur-sm transition",
-              "hover:border-chart-2/35",
+              "group relative rounded-2xl border border-brand/20 bg-linear-to-b from-brand/6 to-transparent p-8 backdrop-blur-sm transition",
+              "hover:border-brand/35",
             )}
           >
             <div
@@ -128,12 +128,12 @@ export async function ProblemStatement() {
               className="pointer-events-none absolute inset-0 -z-10 rounded-2xl"
               style={{
                 background:
-                  "radial-gradient(ellipse at 50% 0%, rgba(0,212,255,0.08), transparent 60%)",
+                  "radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--brand) 8%, transparent), transparent 60%)",
               }}
             />
 
             <header className="flex items-center gap-3 border-b border-white/5 pb-5">
-              <div className="flex size-9 items-center justify-center rounded-lg border border-chart-2/30 bg-chart-2/10 text-chart-2 shadow-[0_0_24px_rgba(0,212,255,0.25)]">
+              <div className="flex size-9 items-center justify-center rounded-lg border border-brand/30 bg-brand/10 text-brand shadow-[0_0_24px_color-mix(in_srgb,var(--brand)_25%,transparent)]">
                 <svg
                   aria-hidden
                   viewBox="0 0 24 24"

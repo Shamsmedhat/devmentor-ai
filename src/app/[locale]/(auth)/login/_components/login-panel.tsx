@@ -67,7 +67,7 @@ export async function LoginPanel({
           {/* Link back to home */}
           <Link
             href="/"
-            className="text-sm font-medium text-chart-2/90 transition-colors hover:text-chart-2"
+            className="text-sm font-medium text-brand/90 transition-colors hover:text-brand"
           >
             {t("login-back-home")}
           </Link>

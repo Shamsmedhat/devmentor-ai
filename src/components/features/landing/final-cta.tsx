@@ -13,7 +13,7 @@ export async function FinalCTA() {
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(ellipse at center, rgba(0,212,255,0.09) 0%, transparent 60%)",
+            "radial-gradient(ellipse at center, color-mix(in srgb, var(--brand) 9%, transparent) 0%, transparent 60%)",
         }}
       />
       <div
@@ -33,7 +33,7 @@ export async function FinalCTA() {
           <Button
             asChild
             size="lg"
-            className="animate-glow-pulse h-12 rounded-xl border border-chart-2/60 bg-chart-2/15 px-8 text-sm font-semibold text-chart-2 hover:border-chart-2 hover:bg-chart-2/25"
+            className="animate-glow-pulse h-12 rounded-xl border border-brand/60 bg-brand/15 px-8 text-sm font-semibold text-brand hover:border-brand hover:bg-brand/25"
           >
             <Link href="/chat">{t("cta-button")}</Link>
           </Button>
