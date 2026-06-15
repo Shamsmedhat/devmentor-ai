@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
+import BrandMark from "@/components/shared/brand-mark";
 import { Link } from "@/i18n/navigation";
 
 export async function Footer() {
@@ -9,12 +10,7 @@ export async function Footer() {
     <footer className="border-t border-white/5 bg-background py-12">
       <div className="container mx-auto flex flex-col items-center justify-between gap-6 px-4 text-sm text-muted-foreground/70 sm:flex-row lg:px-8">
         <div className="flex items-center gap-3">
-          <span className="flex size-7 items-center justify-center rounded-md border border-brand/40 bg-brand/10 font-mono text-xs font-bold text-brand">
-            D
-          </span>
-          <span className="text-foreground/80">
-            DevMentor <span className="text-brand">AI</span>
-          </span>
+          <BrandMark size="sm" />
           <span className="hidden text-muted-foreground/50 sm:inline">-</span>
           <span className="hidden sm:inline">{t("footer-tagline")}</span>
         </div>

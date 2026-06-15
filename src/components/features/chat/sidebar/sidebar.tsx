@@ -19,6 +19,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { Badge } from "@/components/ui/badge";
+import BrandMark from "@/components/shared/brand-mark";
 import { useChatSessionsRealtime } from "@/hooks/chat/use-chat-sessions-realtime";
 import { useRouter } from "@/i18n/navigation";
 import type { ChatSession } from "@/lib/types/chat";
@@ -80,11 +82,8 @@ export function ChatSidebar({ user, initialSessions }: ChatSidebarProps) {
     >
       {/* Brand */}
       <SidebarHeader className="border-b border-sidebar-border px-2 py-4">
-        <div className="flex items-center gap-2.5 px-2">
-          <HexIcon className="h-6 w-6 text-brand" />
-          <span className="text-sm font-semibold text-sidebar-foreground">
-            DevMentor <span className="text-brand">AI</span>
-          </span>
+        <div className="px-2">
+          <BrandMark size="sm" />
         </div>
       </SidebarHeader>
 
@@ -110,10 +109,18 @@ export function ChatSidebar({ user, initialSessions }: ChatSidebarProps) {
                 <SidebarMenuButton
                   type="button"
                   variant="outline"
-                  className="h-auto min-h-8 border-sidebar-border py-2 text-sidebar-foreground/70 hover:text-sidebar-foreground"
+                  disabled
+                  aria-disabled
+                  className="h-auto min-h-8 border-sidebar-border py-2 text-sidebar-foreground/70"
                 >
                   <Code2 className="shrink-0" />
                   <span>{t("chat-code-review")}</span>
+                  <Badge
+                    variant="secondary"
+                    className="ms-auto"
+                  >
+                    {t("chat-soon")}
+                  </Badge>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
@@ -179,28 +186,5 @@ export function ChatSidebar({ user, initialSessions }: ChatSidebarProps) {
         </div>
       </SidebarFooter>
     </Sidebar>
-  );
-}
-
-function HexIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className={className}
-      aria-hidden="true"
-    >
-      <path
-        d="M12 2L21.196 7V17L12 22L2.804 17V7L12 2Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M12 6L17.598 9.25V15.75L12 19L6.402 15.75V9.25L12 6Z"
-        fill="currentColor"
-        opacity="0.4"
-      />
-    </svg>
   );
 }

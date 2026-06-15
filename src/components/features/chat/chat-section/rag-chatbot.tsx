@@ -132,126 +132,124 @@ export default function RAGChatBot({
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 relative size-full h-[calc(100vh-4rem)]">
-      <div className="flex flex-col h-full">
-        <Conversation
-          className="h-full"
-          initial="instant"
-          dir={isArabicResponse ? "rtl" : "ltr"}
+    <div className="relative mx-auto flex w-full max-w-4xl min-h-0 flex-1 flex-col p-6">
+      <Conversation
+        className="min-h-0 flex-1"
+        initial="instant"
+        dir={isArabicResponse ? "rtl" : "ltr"}
+      >
+        <ConversationContent
+          className={messages.length === 0 ? "h-full" : undefined}
         >
-          <ConversationContent
-            className={messages.length === 0 ? "h-full" : undefined}
-          >
-            {messages.length === 0 && (
-              <ConversationEmptyState
-                icon={<MessageSquareIcon className="size-8" />}
-                title={t("chat-welcome-title")}
-                description={t("chat-welcome-subtitle")}
-              />
-            )}
-            {messages.map((message) => {
-              const isStreaming = message.id === streamingAssistantId;
-
-              return (
-                <div key={message.id}>
-                  {message.role === "assistant" &&
-                    (message.metadata || isStreaming) && (
-                      <MessageInsights
-                        metadata={message.metadata}
-                        isStreaming={isStreaming}
-                      />
-                    )}
-
-                  {message.parts.map((part, i) => {
-                    // Text part
-                    if (isTextUIPart(part))
-                      return (
-                        <TextPart
-                          key={`${message.id}-${i}`}
-                          message={message}
-                          part={part}
-                        />
-                      );
-
-                    // Reasoning part
-                    if (isReasoningUIPart(part))
-                      return (
-                        <ReasoningPart
-                          key={`${message.id}-${i}`}
-                          message={message}
-                          part={part}
-                        />
-                      );
-
-                    // Tool part
-                    if (isToolUIPart(part)) {
-                      return (
-                        <ToolPart
-                          key={`${message.id}-${i}`}
-                          message={message}
-                          part={part}
-                        />
-                      );
-                    }
-
-                    return null;
-                  })}
-                </div>
-              );
-            })}
-            {showTypingIndicator && <TypingIndicator />}
-          </ConversationContent>
-          <ConversationScrollButton />
-        </Conversation>
-
-        {/* Error / truncated banner - error takes priority */}
-        {chatError ? (
-          <ChatBanner
-            title={chatError.title}
-            description={chatError.description}
-          />
-        ) : showTruncatedBanner ? (
-          <ChatBanner
-            title={t("chat-truncated-banner-title")}
-            description={t("chat-truncated-banner-desc")}
-          />
-        ) : null}
-
-        {/* Display tokens for user */}
-        <DisplayUsedTokens
-          showInsights={showInsights}
-          lastMessage={lastMessage as ChatUIMessage}
-        />
-
-        {/* Chat input */}
-        <PromptInput onSubmit={handleSubmit}>
-          {/* Input body */}
-          <PromptInputBody>
-            {/* Textarea */}
-            <PromptInputTextarea placeholder={t("chat-placeholder")} />
-          </PromptInputBody>
-
-          {/* Footer */}
-          <PromptInputFooter>
-            {/* Tools */}
-            <PromptInputTools />
-
-            {/* Submit button */}
-            <PromptInputSubmit
-              status={status}
-              onStop={stop}
-              aria-label={
-                isGenerating
-                  ? t("chat-stop-generating")
-                  : t("chat-input-send-aria")
-              }
-              className="cursor-pointer"
+          {messages.length === 0 && (
+            <ConversationEmptyState
+              icon={<MessageSquareIcon className="size-8" />}
+              title={t("chat-welcome-title")}
+              description={t("chat-welcome-subtitle")}
             />
-          </PromptInputFooter>
-        </PromptInput>
-      </div>
+          )}
+          {messages.map((message) => {
+            const isStreaming = message.id === streamingAssistantId;
 
-      <p className="text-xs text-muted-foreground text-center mt-2">
+            return (
+              <div key={message.id}>
+                {message.role === "assistant" &&
+                  (message.metadata || isStreaming) && (
+                    <MessageInsights
+                      metadata={message.metadata}
+                      isStreaming={isStreaming}
+                    />
+                  )}
+
+                {message.parts.map((part, i) => {
+                  // Text part
+                  if (isTextUIPart(part))
+                    return (
+                      <TextPart
+                        key={`${message.id}-${i}`}
+                        message={message}
+                        part={part}
+                      />
+                    );
+
+                  // Reasoning part
+                  if (isReasoningUIPart(part))
+                    return (
+                      <ReasoningPart
+                        key={`${message.id}-${i}`}
+                        message={message}
+                        part={part}
+                      />
+                    );
+
+                  // Tool part
+                  if (isToolUIPart(part)) {
+                    return (
+                      <ToolPart
+                        key={`${message.id}-${i}`}
+                        message={message}
+                        part={part}
+                      />
+                    );
+                  }
+
+                  return null;
+                })}
+              </div>
+            );
+          })}
+          {showTypingIndicator && <TypingIndicator />}
+        </ConversationContent>
+        <ConversationScrollButton />
+      </Conversation>
+
+      {/* Error / truncated banner - error takes priority */}
+      {chatError ? (
+        <ChatBanner
+          title={chatError.title}
+          description={chatError.description}
+        />
+      ) : showTruncatedBanner ? (
+        <ChatBanner
+          title={t("chat-truncated-banner-title")}
+          description={t("chat-truncated-banner-desc")}
+        />
+      ) : null}
+
+      {/* Display tokens for user */}
+      <DisplayUsedTokens
+        showInsights={showInsights}
+        lastMessage={lastMessage as ChatUIMessage}
+      />
+
+      {/* Chat input */}
+      <PromptInput onSubmit={handleSubmit}>
+        {/* Input body */}
+        <PromptInputBody>
+          {/* Textarea */}
+          <PromptInputTextarea placeholder={t("chat-placeholder")} />
+        </PromptInputBody>
+
+        {/* Footer */}
+        <PromptInputFooter>
+          {/* Tools */}
+          <PromptInputTools />
+
+          {/* Submit button */}
+          <PromptInputSubmit
+            status={status}
+            onStop={stop}
+            aria-label={
+              isGenerating
+                ? t("chat-stop-generating")
+                : t("chat-input-send-aria")
+            }
+            className="cursor-pointer"
+          />
+        </PromptInputFooter>
+      </PromptInput>
+
+      <p className="mt-2 text-center text-xs text-muted-foreground">
         {t("chat-ai-disclaimer")}
       </p>
     </div>

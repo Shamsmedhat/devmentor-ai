@@ -2,7 +2,9 @@
 
 import { createContext, useContext, useState, type ReactNode } from "react";
 
-const DEFAULT_CHAT_TITLE = "DevMentor AI";
+// New chats have no title - identity lives in the header BrandMark, not here.
+// A real title is set on the first message (see useChatPersistence).
+const DEFAULT_CHAT_TITLE = "";
 
 interface ChatUiProviderProps {
   initialTitle?: string;

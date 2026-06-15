@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
 import { GoogleLoginButton } from "@/components/features/auth/google-login-button";
+import BrandMark from "@/components/shared/brand-mark";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
@@ -29,13 +29,7 @@ export async function LoginPanel({
         <div className="flex flex-col items-center gap-8">
           {/* Logo + title + subtitle */}
           <div className="flex flex-col items-center gap-4 text-center">
-            <Image
-              src="/brain.svg"
-              alt=""
-              width={52}
-              height={52}
-              priority
-            />
+            <BrandMark size="lg" />
             <div className="space-y-2">
               <h1 className="text-2xl font-semibold tracking-tight text-white">
                 {t("login-title")}

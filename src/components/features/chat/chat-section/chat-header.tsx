@@ -11,6 +11,7 @@ import {
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { GlobeIcon } from "lucide-react";
+import BrandMark from "@/components/shared/brand-mark";
 import { useChatUi } from "../../../../lib/context/chat-ui.context";
 import { cn } from "@/lib/utils";
 
@@ -39,11 +40,23 @@ export default function ChatHeader({
 
   return (
     <header className="flex h-[52px] shrink-0 items-center justify-between border-b border-border px-4 md:px-6">
-      <div className="flex items-center gap-2 md:gap-3">
+      <div className="flex min-w-0 items-center gap-2 md:gap-3">
         <SidebarTrigger className="text-muted-foreground" />
-        <span className="text-sm font-medium text-foreground/80">
-          {currentTitle}
-        </span>
+        <BrandMark
+          size="sm"
+          href="/"
+        />
+        {currentTitle && (
+          <>
+            <span
+              aria-hidden
+              className="hidden h-4 w-px shrink-0 bg-border sm:block"
+            />
+            <span className="hidden truncate text-sm font-medium text-foreground/70 sm:block">
+              {currentTitle}
+            </span>
+          </>
+        )}
       </div>
 
       <div className="flex items-center gap-2">
