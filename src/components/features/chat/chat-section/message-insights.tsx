@@ -1,6 +1,6 @@
 "use client";
 
-import { CoinsIcon, FlagIcon, GlobeIcon, SparklesIcon } from "lucide-react";
+import { CoinsIcon, CpuIcon, FlagIcon, GlobeIcon, SparklesIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import {
@@ -30,7 +30,7 @@ export default function MessageInsights({
   const t = useTranslations();
 
   // Variables
-  const { finishReason, usage, grounding, rag } = metadata;
+  const { finishReason, usage, grounding, rag, provider } = metadata;
   const hasUsage = Boolean(
     usage && (usage.inputTokens || usage.outputTokens || usage.totalTokens),
   );
@@ -75,6 +75,14 @@ export default function MessageInsights({
         )}
 
         {showRag && rag && <RagInsightStep sources={rag.sources} />}
+
+        {provider && (
+          <ChainOfThoughtStep
+            icon={CpuIcon}
+            label={t("chat-insights-provider-label")}
+            description={<LtrValue>{modelName(provider)}</LtrValue>}
+          />
+        )}
 
         {hasUsage && (
           <ChainOfThoughtStep
@@ -157,6 +165,13 @@ export default function MessageInsights({
 }
 
 // Helpers
+// `groq:openai/gpt-oss-20b` / `google:gemini-2.5-flash` -> the model after the
+// first colon. The routing prefix is internal; students only see the model.
+function modelName(provider: string): string {
+  const colon = provider.indexOf(":");
+  return colon === -1 ? provider : provider.slice(colon + 1);
+}
+
 function hostnameOf(url: string): string {
   try {
     return new URL(url).hostname.replace(/^www\./, "");

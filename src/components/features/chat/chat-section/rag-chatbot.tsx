@@ -29,6 +29,11 @@ import {
   PromptInputTools,
 } from "@/components/ai-elements/prompt-input";
 
+import {
+  Suggestion,
+  Suggestions,
+} from "@/components/ai-elements/suggestion";
+
 import { useChatPersistence } from "@/hooks/chat/use-chat-persistence";
 import type { ChatBannerState, ChatUIMessage } from "@/lib/types/chat";
 import TextPart from "./text-part";
@@ -109,12 +114,13 @@ export default function RAGChatBot({
     );
 
   // Functions
-  function handleSubmit(message: PromptInputMessage) {
-    // Enter mid-stream re-submits the form; drop it while a turn is running.
-    // `status === "error"` still submits so the user can retry after a failure.
+  // Single send path - shared by the input form and the empty-state chips.
+  function sendText(rawText: string) {
+    // Drop while a turn is running; `status === "error"` still sends so the
+    // user can retry after a failure.
     if (isGenerating) return;
 
-    const text = message.text.trim();
+    const text = rawText.trim();
     if (!text) return;
 
     // Sending a new message clears any banner left over from the previous turn.
@@ -127,8 +133,12 @@ export default function RAGChatBot({
       console.error(err);
     });
 
-    // Fire AI request immediately. PromptInput auto-clears after onSubmit returns.
+    // PromptInput auto-clears after onSubmit returns.
     sendMessage({ text });
+  }
+
+  function handleSubmit(message: PromptInputMessage) {
+    sendText(message.text);
   }
 
   return (
@@ -142,11 +152,31 @@ export default function RAGChatBot({
           className={messages.length === 0 ? "h-full" : undefined}
         >
           {messages.length === 0 && (
-            <ConversationEmptyState
-              icon={<MessageSquareIcon className="size-8" />}
-              title={t("chat-welcome-title")}
-              description={t("chat-welcome-subtitle")}
-            />
+            <ConversationEmptyState>
+              <MessageSquareIcon className="size-8 text-muted-foreground" />
+              <div className="space-y-1">
+                <h3 className="text-sm font-medium">
+                  {t("chat-welcome-title")}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {t("chat-welcome-subtitle")}
+                </p>
+              </div>
+              <Suggestions className="mt-2 max-w-md justify-center">
+                <Suggestion
+                  suggestion={t("chat-suggestion-1")}
+                  onClick={sendText}
+                />
+                <Suggestion
+                  suggestion={t("chat-suggestion-2")}
+                  onClick={sendText}
+                />
+                <Suggestion
+                  suggestion={t("chat-suggestion-3")}
+                  onClick={sendText}
+                />
+              </Suggestions>
+            </ConversationEmptyState>
           )}
           {messages.map((message) => {
             const isStreaming = message.id === streamingAssistantId;
