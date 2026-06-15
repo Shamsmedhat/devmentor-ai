@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="7" fill="#00D3F2" />
+  <g transform="translate(4,4)">
+    <path
+      d="M12 2L21.196 7V17L12 22L2.804 17V7L12 2Z"
+      fill="none"
+      stroke="#0a0a0c"
+      stroke-width="1.7"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M12 6L17.598 9.25V15.75L12 19L6.402 15.75V9.25L12 6Z"
+      fill="#0a0a0c"
+      opacity="0.9"
+    />
+  </g>
+</svg>
