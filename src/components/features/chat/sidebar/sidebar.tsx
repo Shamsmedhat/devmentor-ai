@@ -28,6 +28,7 @@ import { cn } from "@/lib/utils";
 import { buildChatPath } from "@/lib/utils/chat/chat-navigation.util";
 import { formatRelativeTime } from "@/lib/utils/date.util";
 import { createClient } from "@/lib/utils/supabase/client";
+import Image from "next/image";
 
 interface ChatSidebarProps {
   user: User;
@@ -81,9 +82,16 @@ export function ChatSidebar({ user, initialSessions }: ChatSidebarProps) {
       side={isArabic ? "right" : "left"}
     >
       {/* Brand */}
-      <SidebarHeader className="border-b border-sidebar-border px-2 py-4">
-        <div className="px-2">
-          <BrandMark size="sm" />
+      <SidebarHeader className="border-b border-sidebar-border ">
+        <div>
+          <span className="inline-flex items-center">
+            <Image
+              src="/devmentor_ai_logo_sm.png"
+              alt="DevMentor AI"
+              width={150}
+              height={0}
+            />
+          </span>
         </div>
       </SidebarHeader>
 

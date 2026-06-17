@@ -98,7 +98,7 @@ function formatRetrievedContext(results: KnowledgeBaseSearchResult[]): string {
     .map((r) => {
       const meta = r.metadata ?? {};
       const source = (meta.document_id as string | undefined) ?? "unknown";
-      const similarity = r.similarity.toFixed(3);
+      // const similarity = r.similarity.toFixed(3);
 
       if (meta.source_type === "video") {
         const title = (meta.video_title as string | undefined) ?? source;
@@ -107,10 +107,10 @@ function formatRetrievedContext(results: KnowledgeBaseSearchResult[]): string {
         const driveAttr = meta.drive_url
           ? ` drive_url="${meta.drive_url}"`
           : "";
-        return `<chunk type="video" title="${title}" start="${start}" end="${end}"${driveAttr} similarity="${similarity}">\n${r.content}\n</chunk>`;
+        return `<chunk type="video" title="${title}" start="${start}" end="${end}"${driveAttr}>\n${r.content}\n</chunk>`;
       }
 
-      return `<chunk source="${source}" similarity="${similarity}">\n${r.content}\n</chunk>`;
+      return `<chunk source="${source}" >\n${r.content}\n</chunk>`;
     })
     .join("\n\n");
 }

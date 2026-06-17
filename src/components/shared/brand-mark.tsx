@@ -20,7 +20,7 @@ interface BrandMarkProps {
 export default function BrandMark({
   size = "sm",
   href,
-  showWordmark = true,
+  showWordmark = false,
   className,
 }: BrandMarkProps) {
   // Variables
@@ -34,6 +34,11 @@ export default function BrandMark({
         width={300}
         height={0}
       />
+      {showWordmark && (
+        <span className={cn("font-semibold text-foreground", variant.text)}>
+          DevMentor <span className="text-brand">AI</span>
+        </span>
+      )}
     </span>
   );
 
@@ -46,28 +51,5 @@ export default function BrandMark({
     >
       {mark}
     </Link>
-  );
-}
-
-function HexIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className={className}
-      aria-hidden="true"
-    >
-      <path
-        d="M12 2L21.196 7V17L12 22L2.804 17V7L12 2Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M12 6L17.598 9.25V15.75L12 19L6.402 15.75V9.25L12 6Z"
-        fill="currentColor"
-        opacity="0.4"
-      />
-    </svg>
   );
 }
