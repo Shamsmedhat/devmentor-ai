@@ -14,13 +14,7 @@ import { GlobeIcon } from "lucide-react";
 import { useChatUi } from "../../../../lib/context/chat-ui.context";
 import { cn } from "@/lib/utils";
 
-export default function ChatHeader({
-  setIsArabicResponse,
-  isArabicResponse,
-}: {
-  setIsArabicResponse: (isArabicResponse: boolean) => void;
-  isArabicResponse: boolean;
-}) {
+export default function ChatHeader() {
   // Translation
   const t = useTranslations();
   const locale = useLocale();
@@ -30,7 +24,7 @@ export default function ChatHeader({
   const pathname = usePathname();
 
   // Hooks
-  const { currentTitle } = useChatUi();
+  const { currentTitle, isArabicResponse, setIsArabicResponse } = useChatUi();
 
   // Functions
   function switchLocale(newLocale: string) {

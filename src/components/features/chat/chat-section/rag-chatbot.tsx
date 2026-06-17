@@ -35,6 +35,7 @@ import {
 } from "@/components/ai-elements/suggestion";
 
 import { useChatPersistence } from "@/hooks/chat/use-chat-persistence";
+import { useChatUi } from "@/lib/context/chat-ui.context";
 import type { ChatBannerState, ChatUIMessage } from "@/lib/types/chat";
 import TextPart from "./text-part";
 import ReasoningPart from "./reasoning-part";
@@ -51,16 +52,17 @@ import DisplayUsedTokens from "./display-used-tokens";
 interface RAGChatBotProps {
   sessionId: string | null;
   initialMessages: ChatUIMessage[];
-  isArabicResponse: boolean;
 }
 
 export default function RAGChatBot({
   sessionId,
   initialMessages,
-  isArabicResponse,
 }: RAGChatBotProps) {
   // Translation
   const t = useTranslations();
+
+  // Context
+  const { isArabicResponse } = useChatUi();
 
   // State
   const [chatError, setChatError] = useState<ChatBannerState | null>(null);

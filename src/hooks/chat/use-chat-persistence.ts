@@ -2,14 +2,14 @@
 
 import { useRef } from "react";
 
-import { useRouter } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
+
 import {
   createChatSessionAction,
   saveChatMessageAction,
   updateSessionTitleAction,
 } from "@/lib/actions/chat.action";
 import type { ChatUIMessage } from "@/lib/types/chat";
-import { buildChatPath } from "@/lib/utils/chat/chat-navigation.util";
 import { useChatUi } from "@/lib/context/chat-ui.context";
 
 const TITLE_MAX_LENGTH = 40;
@@ -22,8 +22,8 @@ interface UseChatPersistenceResult {
 export function useChatPersistence(
   sessionId: string | null,
 ): UseChatPersistenceResult {
-  // Navigation
-  const router = useRouter();
+  // Translation
+  const locale = useLocale();
 
   // Context
   const { setCurrentTitle } = useChatUi();
@@ -75,10 +75,11 @@ export function useChatPersistence(
       metadata: message.metadata,
     });
 
-    // Navigate after streaming finishes - replacing earlier would interrupt
-    // the stream when RAGChatBot remounts on key change.
+    // Sync the URL after streaming finishes without a route navigation -
+    // a real navigation would remount RAGChatBot (key change) and wipe the
+    // messages we just streamed. A refresh still loads the session by URL.
     if (!isExistingSession) {
-      router.replace(buildChatPath(sid));
+      window.history.replaceState(null, "", `/${locale}/chat/${sid}`);
     }
   }
 

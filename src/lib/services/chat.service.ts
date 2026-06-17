@@ -14,6 +14,23 @@ export async function getChatSessions(userId: string): Promise<ChatSession[]> {
   return (data ?? []) as ChatSession[];
 }
 
+export async function getChatSession(
+  sessionId: string,
+  userId: string,
+): Promise<ChatSession | null> {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("chat_sessions")
+    .select("*")
+    .eq("id", sessionId)
+    .eq("user_id", userId)
+    .maybeSingle();
+
+  if (error) throw new Error(error.message);
+  return (data as ChatSession | null) ?? null;
+}
+
 export async function getChatMessages(
   sessionId: string,
 ): Promise<ChatUIMessage[]> {

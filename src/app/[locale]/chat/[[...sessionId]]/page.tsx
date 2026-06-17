@@ -1,11 +1,11 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { redirect } from "next/navigation";
 
-import ChatShell from "@/components/features/chat/chat-shell";
-import { loadAuthenticatedChatSessions } from "@/lib/utils/auth/load-authenticated-chat-sessions";
-import { getChatMessages } from "@/lib/services/chat.service";
-import { Suspense } from "react";
-import { ChatMessagesSkeleton } from "@/components/skeletons/chat-messages-skeleton";
+import ChatTitleSync from "@/components/features/chat/chat-section/chat-title-sync";
+import RAGChatBot from "@/components/features/chat/chat-section/rag-chatbot";
+import { getChatMessages, getChatSession } from "@/lib/services/chat.service";
+import type { ChatUIMessage } from "@/lib/types/chat";
+import { getServerSupabaseAuth } from "@/lib/utils/auth/auth-server-guard";
 
 type Props = {
   params: Promise<{ locale: string; sessionId?: string[] }>;
@@ -28,40 +28,42 @@ export default async function ChatPage({ params }: Props) {
   setRequestLocale(locale);
 
   const sessionId = sessionIdSegments?.[0] ?? null;
-  const callbackPath = sessionId
-    ? `/${locale}/chat/${sessionId}`
-    : `/${locale}/chat`;
 
-  const { user, initialSessions } = await loadAuthenticatedChatSessions({
-    locale,
-    callbackPath,
-  });
-
-  // Ownership check: redirect to /chat if the session id isn't ours.
-  if (sessionId && !initialSessions.some((s) => s.id === sessionId)) {
-    redirect(`/${locale}/chat`);
-  }
   // Catch-all only handles /chat and /chat/<id>; reject deeper paths.
   if (sessionIdSegments && sessionIdSegments.length > 1) {
     redirect(`/${locale}/chat`);
   }
 
-  // Initial title shown in the header before the user types anything.
-  const initialTitle = sessionId
-    ? initialSessions.find((s) => s.id === sessionId)?.title
-    : undefined;
+  // Auth (the layout guards too; we need the id for the ownership check).
+  const { user } = await getServerSupabaseAuth();
 
-  const initialMessages = sessionId ? await getChatMessages(sessionId) : [];
+  if (!user) {
+    redirect(`/${locale}/login?callbackUrl=${encodeURIComponent(`/${locale}/chat`)}`);
+  }
+
+  // Ownership: redirect to /chat if the session isn't ours.
+  let initialTitle = "";
+  let initialMessages: ChatUIMessage[] = [];
+
+  if (sessionId) {
+    const session = await getChatSession(sessionId, user.id);
+
+    if (!session) {
+      redirect(`/${locale}/chat`);
+    }
+
+    initialTitle = session.title;
+    initialMessages = await getChatMessages(sessionId);
+  }
 
   return (
-    <Suspense fallback={<ChatMessagesSkeleton />}>
-      <ChatShell
-        user={user}
-        initialSessions={initialSessions}
-        initialTitle={initialTitle}
+    <>
+      <ChatTitleSync title={initialTitle} />
+      <RAGChatBot
+        key={sessionId ?? "new"}
         sessionId={sessionId}
         initialMessages={initialMessages}
       />
-    </Suspense>
+    </>
   );
 }

@@ -22,7 +22,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import BrandMark from "@/components/shared/brand-mark";
 import { useChatSessionsRealtime } from "@/hooks/chat/use-chat-sessions-realtime";
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import type { ChatSession } from "@/lib/types/chat";
 import { cn } from "@/lib/utils";
 import { buildChatPath } from "@/lib/utils/chat/chat-navigation.util";
@@ -84,14 +84,17 @@ export function ChatSidebar({ user, initialSessions }: ChatSidebarProps) {
       {/* Brand */}
       <SidebarHeader className="border-b border-sidebar-border ">
         <div>
-          <span className="inline-flex items-center">
+          <Link
+            href="/"
+            className="inline-flex items-center"
+          >
             <Image
               src="/devmentor_ai_logo_sm.png"
               alt="DevMentor AI"
               width={150}
               height={0}
             />
-          </span>
+          </Link>
         </div>
       </SidebarHeader>
 

@@ -14,6 +14,8 @@ interface ChatUiProviderProps {
 interface ChatUiContextValue {
   currentTitle: string;
   setCurrentTitle: (title: string) => void;
+  isArabicResponse: boolean;
+  setIsArabicResponse: (isArabicResponse: boolean) => void;
 }
 
 const ChatUiContext = createContext<ChatUiContextValue | null>(null);
@@ -24,9 +26,17 @@ export function ChatUiProvider({
 }: ChatUiProviderProps) {
   // State
   const [currentTitle, setCurrentTitle] = useState<string>(initialTitle);
+  const [isArabicResponse, setIsArabicResponse] = useState<boolean>(false);
 
   return (
-    <ChatUiContext.Provider value={{ currentTitle, setCurrentTitle }}>
+    <ChatUiContext.Provider
+      value={{
+        currentTitle,
+        setCurrentTitle,
+        isArabicResponse,
+        setIsArabicResponse,
+      }}
+    >
       {children}
     </ChatUiContext.Provider>
   );
