@@ -7,7 +7,7 @@ export async function FinalCTA() {
   const t = await getTranslations();
 
   return (
-    <section className="relative isolate overflow-hidden bg-background py-28 sm:py-36 lg:py-44">
+    <section className="relative isolate overflow-hidden bg-background py-20 sm:py-28 lg:py-32">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
@@ -22,7 +22,10 @@ export async function FinalCTA() {
       />
 
       <div className="container mx-auto px-4 text-center lg:px-8">
-        <h2 className="text-balance text-5xl font-semibold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand/80">
+          {t("cta-eyebrow")}
+        </p>
+        <h2 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
           {t("cta-title")}
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-pretty text-base text-muted-foreground sm:text-lg">

@@ -333,7 +333,7 @@ export async function SupportedTracks() {
   return (
     <section
       id="tracks"
-      className="relative isolate overflow-hidden bg-background py-24 sm:py-32 lg:py-40"
+      className="relative isolate overflow-hidden bg-background py-14 sm:py-20 lg:py-24"
     >
       <div
         aria-hidden
@@ -343,11 +343,12 @@ export async function SupportedTracks() {
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section heading */}
         <SectionHeading
+          eyebrow={t("tracks-eyebrow")}
           title={t("tracks-title")}
           subtitle={t("tracks-subtitle")}
         />
 
-        <div className="relative mx-auto mt-20 max-w-5xl">
+        <div className="relative mx-auto mt-10 max-w-5xl lg:mt-14">
           <div className="flex items-center justify-center">
             <div className="border-2 border-white/10 rounded-xl p-4 outline outline-brand">
               <Image

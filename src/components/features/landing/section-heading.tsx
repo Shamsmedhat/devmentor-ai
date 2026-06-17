@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
   title: string;
+  eyebrow?: string;
   subtitle?: string;
   align?: "center" | "start";
   className?: string;
@@ -9,6 +10,7 @@ interface SectionHeadingProps {
 
 export function SectionHeading({
   title,
+  eyebrow,
   subtitle,
   align = "center",
   className,
@@ -22,7 +24,12 @@ export function SectionHeading({
         className,
       )}
     >
-      <h2 className="text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+      {eyebrow ? (
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand/80">
+          {eyebrow}
+        </p>
+      ) : null}
+      <h2 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
         {title}
       </h2>
       {subtitle ? (

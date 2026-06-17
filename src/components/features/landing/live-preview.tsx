@@ -10,15 +10,16 @@ export async function LivePreview() {
   return (
     <section
       id="preview"
-      className="relative bg-background py-24 sm:py-32 lg:py-40"
+      className="relative bg-background py-14 sm:py-20 lg:py-24"
     >
       <div className="container mx-auto px-4 lg:px-8">
         <SectionHeading
+          eyebrow={t("preview-eyebrow")}
           title={t("preview-title")}
           subtitle={t("preview-subtitle")}
         />
 
-        <div className="relative mx-auto mt-16 max-w-5xl lg:mt-20">
+        <div className="relative mx-auto mt-10 max-w-5xl lg:mt-14">
           <div
             aria-hidden
             className="pointer-events-none absolute -inset-8 -z-10 rounded-[32px] blur-3xl"
@@ -39,6 +40,11 @@ export async function LivePreview() {
               <div className="mx-auto w-full max-w-sm truncate rounded-md border border-white/8 bg-muted px-3 py-1 text-center font-mono text-[11px] text-muted-foreground/80">
                 {t("preview-browser-url")}
               </div>
+
+              <span className="hidden shrink-0 items-center gap-1.5 rounded-full border border-brand/25 bg-brand/8 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-brand sm:inline-flex">
+                <span className="size-1.5 animate-pulse rounded-full bg-brand" />
+                {t("preview-chip")}
+              </span>
             </div>
 
             {/* Chat mock */}

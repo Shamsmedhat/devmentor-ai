@@ -80,11 +80,15 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative bg-background py-24 sm:py-32 lg:py-40">
+    <section id="faq" className="relative bg-background py-14 sm:py-20 lg:py-24">
       <div className="container mx-auto px-4 lg:px-8">
-        <SectionHeading title={t("faq-title")} subtitle={t("faq-subtitle")} />
+        <SectionHeading
+          eyebrow={t("faq-eyebrow")}
+          title={t("faq-title")}
+          subtitle={t("faq-subtitle")}
+        />
 
-        <div className="mx-auto mt-14 max-w-3xl space-y-3 lg:mt-16">
+        <div className="mx-auto mt-10 max-w-3xl space-y-3 lg:mt-14">
           {FAQ_ITEMS.map((item, index) => (
             <FAQItem
               key={item.q}

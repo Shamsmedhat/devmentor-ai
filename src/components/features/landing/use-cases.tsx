@@ -61,15 +61,16 @@ export async function UseCases() {
   return (
     <section
       id="use-cases"
-      className="relative bg-background py-24 sm:py-32 lg:py-40"
+      className="relative bg-background py-14 sm:py-20 lg:py-24"
     >
       <div className="container mx-auto px-4 lg:px-8">
         <SectionHeading
+          eyebrow={t("usecases-eyebrow")}
           title={t("usecases-title")}
           subtitle={t("usecases-subtitle")}
         />
 
-        <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-3 lg:mt-20">
+        <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-3 lg:mt-14">
           <UseCaseCard
             title={t("usecases-1-title")}
             description={t("usecases-1-desc")}

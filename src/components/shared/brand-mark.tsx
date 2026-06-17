@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const SIZES = {
   sm: { wrap: "gap-2", icon: "size-6", text: "text-sm" },
@@ -27,12 +28,12 @@ export default function BrandMark({
 
   const mark = (
     <span className={cn("inline-flex items-center", variant.wrap, className)}>
-      <HexIcon className={cn(variant.icon, "shrink-0 text-brand")} />
-      {showWordmark && (
-        <span className={cn("font-semibold text-foreground", variant.text)}>
-          DevMentor <span className="text-brand">AI</span>
-        </span>
-      )}
+      <Image
+        src="/devmentor_ai_logo.png"
+        alt="DevMentor AI"
+        width={300}
+        height={0}
+      />
     </span>
   );
 

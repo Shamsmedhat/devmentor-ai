@@ -68,9 +68,13 @@ function ChatVisual() {
   );
 }
 
-function CodeReviewVisual() {
+function CodeReviewVisual({ chip }: { chip: string }) {
   return (
     <div className="absolute inset-0 flex flex-col justify-center gap-1 p-5 font-mono text-[11px] leading-relaxed">
+      <span className="absolute inset-e-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-brand/25 bg-brand/8 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-brand">
+        <span className="size-1.5 animate-pulse rounded-full bg-brand" />
+        {chip}
+      </span>
       <p className="text-muted-foreground">
         <span className="text-brand">const</span> data = useQuery()
       </p>
@@ -170,15 +174,16 @@ export async function CoreFeatures() {
   return (
     <section
       id="features"
-      className="relative bg-background py-24 sm:py-32 lg:py-40"
+      className="relative bg-background py-14 sm:py-20 lg:py-24"
     >
       <div className="container mx-auto px-4 lg:px-8">
         <SectionHeading
+          eyebrow={t("features-eyebrow")}
           title={t("features-title")}
           subtitle={t("features-subtitle")}
         />
 
-        <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-2 lg:mt-20 lg:gap-6">
+        <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-2 lg:mt-14 lg:gap-6">
           <FeatureCard
             title={t("features-1-title")}
             description={t("features-1-desc")}
@@ -187,7 +192,7 @@ export async function CoreFeatures() {
           <FeatureCard
             title={t("features-2-title")}
             description={t("features-2-desc")}
-            visual={<CodeReviewVisual />}
+            visual={<CodeReviewVisual chip={t("features-review-chip")} />}
             featured
           />
           <FeatureCard

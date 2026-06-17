@@ -11,22 +11,20 @@ export async function Hero() {
 
   return (
     <section className="relative isolate min-h-screen overflow-hidden bg-background">
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center gap-14 px-4 pb-20 pt-24 lg:flex-row lg:items-center lg:gap-16 lg:px-8 lg:pb-24 lg:pt-20">
-        <div className="max-w-xl flex-1 space-y-8 animate-in fade-in slide-in-from-bottom-3 duration-700">
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center gap-14 px-4 pb-20 pt-32 text-center lg:px-8">
+        <div className="flex max-w-3xl flex-col items-center gap-6 animate-in fade-in slide-in-from-bottom-3 duration-700">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand/80 animate-in fade-in slide-in-from-bottom-2 duration-500">
             {t("landing-hero-eyebrow")}
           </p>
 
-          <div className="space-y-4 animate-in fade-in slide-in-from-bottom-3 duration-700 [animation-delay:80ms] fill-mode-[both]">
-            <h1 className="text-balance text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-4xl lg:leading-tight">
-              <span className="block text-foreground">
-                {t("landing-hero-headline-ar")}
-              </span>
-              <span className="mt-2 block text-lg font-normal text-muted-foreground sm:text-xl">
-                {t("landing-hero-headline-en")}
-              </span>
+          <div className="space-y-5 animate-in fade-in slide-in-from-bottom-3 duration-700 [animation-delay:80ms] fill-mode-[both]">
+            <h1 className="text-balance text-4xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+              {t("landing-hero-headline-ar")}
             </h1>
-            <p className="max-w-prose text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="mx-auto max-w-2xl text-balance text-lg font-normal text-muted-foreground sm:text-xl">
+              {t("landing-hero-headline-en")}
+            </p>
+            <p className="mx-auto max-w-prose text-pretty text-base leading-relaxed text-muted-foreground/90 sm:text-lg">
               {t("landing-hero-subheading")}
             </p>
           </div>
@@ -35,10 +33,9 @@ export async function Hero() {
             <Button
               asChild
               size="lg"
-              variant="outline"
               className={cn(
-                "group relative h-11 rounded-xl border border-white/20 bg-card px-7 text-sm font-semibold text-white",
-                "hover:border-white/35 hover:bg-white/8",
+                "group relative h-12 rounded-xl border border-brand/50 bg-brand/10 px-8 text-sm font-semibold text-brand shadow-[0_0_30px_color-mix(in_srgb,var(--brand)_20%,transparent)]",
+                "hover:border-brand hover:bg-brand/20",
                 "transition-colors duration-300",
               )}
             >
@@ -52,7 +49,7 @@ export async function Hero() {
           </div>
         </div>
 
-        <div className="relative flex flex-1 justify-center animate-in fade-in slide-in-from-bottom-4 duration-900 [animation-delay:220ms] fill-mode-[both] lg:justify-end">
+        <div className="relative w-full max-w-3xl animate-in fade-in slide-in-from-bottom-4 duration-900 [animation-delay:220ms] fill-mode-[both]">
           <TerminalAnimation />
         </div>
       </div>

@@ -112,12 +112,16 @@ export async function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="relative bg-background py-24 sm:py-32 lg:py-40"
+      className="relative bg-background py-14 sm:py-20 lg:py-24"
     >
       <div className="container mx-auto px-4 lg:px-8">
-        <SectionHeading title={t("how-title")} subtitle={t("how-subtitle")} />
+        <SectionHeading
+          eyebrow={t("how-eyebrow")}
+          title={t("how-title")}
+          subtitle={t("how-subtitle")}
+        />
 
-        <div className="mx-auto mt-16 flex max-w-6xl flex-col gap-6 lg:mt-20 lg:flex-row lg:items-stretch lg:gap-4">
+        <div className="mx-auto mt-10 flex max-w-6xl flex-col gap-6 lg:mt-14 lg:flex-row lg:items-stretch lg:gap-4">
           <StepCard
             number="01"
             title={t("how-step-1-title")}

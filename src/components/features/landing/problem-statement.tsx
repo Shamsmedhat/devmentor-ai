@@ -59,17 +59,18 @@ export async function ProblemStatement() {
   return (
     <section
       id="problem"
-      className="relative isolate overflow-hidden bg-background py-24 sm:py-32 lg:py-40"
+      className="relative isolate overflow-hidden bg-background py-14 sm:py-20 lg:py-24"
     >
       <div aria-hidden className="dot-grid absolute inset-0 -z-10 opacity-60" />
 
       <div className="container mx-auto px-4 lg:px-8">
         <SectionHeading
+          eyebrow={t("problem-eyebrow")}
           title={t("problem-title")}
           subtitle={t("problem-subtitle")}
         />
 
-        <div className="relative mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-6 lg:mt-20 lg:grid-cols-[1fr_auto_1fr] lg:gap-8">
+        <div className="relative mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-6 lg:mt-14 lg:grid-cols-[1fr_auto_1fr] lg:gap-8">
           <div
             className={cn(
               "group rounded-2xl border border-white/5 bg-card/70 p-8 opacity-70 backdrop-blur-sm transition",
