@@ -1,0 +1,128 @@
+{
+  "lib": "zod",
+  "root": "https://zod.dev",
+  "mappedAt": "2026-06-17T23:40:12.636Z",
+  "appliedIncludes": [
+    "/"
+  ],
+  "appliedExcludes": [
+    "/blog",
+    "/CHANGELOG",
+    "/ecosystem",
+    "/library-authors"
+  ],
+  "discoveredCount": 22,
+  "keptCount": 14,
+  "links": [
+    {
+      "url": "https://zod.dev/v4",
+      "title": "Release notes | Zod",
+      "description": "Zod 4 release notes and new features including performance improvements and breaking changes"
+    },
+    {
+      "url": "https://zod.dev/metadata",
+      "title": "Metadata and registries | Zod",
+      "description": "Attaching and manipulatinvg metadata on Zod schemas"
+    },
+    {
+      "url": "https://zod.dev/v4/versioning",
+      "title": "Versioning | Zod",
+      "description": "Versioning strategy and compatibility information for Zod 4"
+    },
+    {
+      "url": "https://zod.dev/api",
+      "title": "Defining schemas | Zod",
+      "description": "Complete API reference for all Zod schema types, methods, and validation features"
+    },
+    {
+      "url": "https://zod.dev",
+      "title": "Intro | Zod",
+      "description": "Introduction to Zod - TypeScript-first schema validation library with static type inference"
+    },
+    {
+      "url": "https://zod.dev/error-formatting",
+      "title": "Formatting errors | Zod",
+      "description": "Utilities for formatting and displaying Zod errors"
+    },
+    {
+      "url": "https://zod.dev/api#z-email",
+      "title": "Defining schemas | Zod",
+      "description": "Complete API reference for all Zod schema types, methods, and validation features"
+    },
+    {
+      "url": "https://zod.dev/packages/core",
+      "title": "Zod Core | Zod",
+      "description": "Zod Core package - minimal core functionality for custom implementations"
+    },
+    {
+      "url": "https://v3.zod.dev",
+      "title": "Zod | Documentation",
+      "description": "TypeScript-first schema validation with static type inference"
+    },
+    {
+      "url": "https://zod.dev/packages/mini",
+      "title": "Zod Mini | Zod",
+      "description": "Zod Mini - a tree-shakable Zod"
+    },
+    {
+      "url": "https://zod.dev/error-customization",
+      "title": "Customizing errors | Zod",
+      "description": "Guide to customizing validation error messages and error handling patterns"
+    },
+    {
+      "url": "https://zod.dev/library-authors",
+      "title": "For library authors | Zod",
+      "description": "Guidelines and best practices for library authors integrating with Zod"
+    },
+    {
+      "url": "https://zod.dev/ecosystem",
+      "title": "Ecosystem | Zod",
+      "description": "Overview of the Zod ecosystem including integrations, tools, and community resources"
+    },
+    {
+      "url": "https://zod.dev/v4/changelog",
+      "title": "Migration guide | Zod",
+      "description": "Complete changelog and migration guide for upgrading from Zod 3 to Zod 4"
+    },
+    {
+      "url": "https://zod.dev/CHANGELOG",
+      "title": "Releases · colinhacks/zod - GitHub",
+      "description": "This is a minor release with a wide set of correctness and soundness fixes. Some fixes intentionally make Zod stricter, so code that depended on previously ..."
+    },
+    {
+      "url": "https://zod.dev/codecs",
+      "title": "Codecs - Zod",
+      "description": "Codecs are a special type of define the reversed schema. Codecs are a schema like any other. You can nest them inside objects, arrays, pipes, etc. Codecs ..."
+    },
+    {
+      "url": "https://zod.dev/basics",
+      "title": "Basic usage - Zod",
+      "description": "Basic usage guide covering schema definition, parsing data, error handling, and type inference. This page will walk you through the basics of creating schemas, ..."
+    },
+    {
+      "url": "https://zod.dev/json-schema",
+      "title": "JSON Schema - Zod",
+      "description": "How to convert Zod schemas to JSON Schema."
+    },
+    {
+      "url": "https://zod.dev/packages/zod",
+      "title": "Packages - Zod",
+      "description": "Internals and structure of the Zod library."
+    },
+    {
+      "url": "https://zod.dev/blog",
+      "title": "Untitled",
+      "description": "Updates, announcements, and deep dives from the Zod project. Joining Clerk as an OSS Fellow to work on Zod 4. Announcing my Clerk OSS Fellowship and what's ..."
+    },
+    {
+      "url": "https://zod.dev/blog/clerk-fellowship",
+      "title": "Joining Clerk as an OSS Fellow to work on Zod 4",
+      "description": "I'm thrilled to announce that I'm the inaugural recipient of Clerk's OSS Fellowship! This fellowship is kind of like a \"summer ..."
+    },
+    {
+      "url": "https://v3.zod.dev/",
+      "title": "TypeScript-first schema validation with static type inference - Zod v3",
+      "description": "Introduction. Zod is a TypeScript-first schema declaration and validation library. I'm using the term \"schema\" to broadly refer to any data type, from a simple ..."
+    }
+  ]
+}

@@ -1,0 +1,682 @@
+{
+  "lib": "typescript",
+  "root": "https://www.typescriptlang.org/docs/handbook",
+  "mappedAt": "2026-06-18T00:51:59.090Z",
+  "appliedIncludes": [
+    "/docs/handbook"
+  ],
+  "appliedExcludes": [
+    "/release-notes",
+    "/angular",
+    "/asp-net-core",
+    "/gulp",
+    "/babel"
+  ],
+  "discoveredCount": 134,
+  "keptCount": 80,
+  "links": [
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html",
+      "title": "TypeScript: Documentation - TypeScript 4.7",
+      "description": "TypeScript 4.7 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+      "title": "TypeScript: Documentation - Utility Types",
+      "description": "Types which are globally included in TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/tsconfig-json.html",
+      "title": "TypeScript: Documentation - What is a tsconfig.json",
+      "description": "Learn about how a TSConfig works"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/type-declarations.html",
+      "title": "TypeScript: Documentation - Type Declarations",
+      "description": "How TypeScript provides types for un-typed JavaScript."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/modules/theory.html",
+      "title": "TypeScript: Documentation - Modules - Theory",
+      "description": "How TypeScript models JavaScript modules"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/nightly-builds.html",
+      "title": "TypeScript: Documentation - Nightly Builds",
+      "description": "How to use a nightly build of TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+      "title": "TypeScript: Documentation - Mapped Types",
+      "description": "Generating types by re-using an existing type."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-class-d-ts.html",
+      "title": "TypeScript: Documentation - Module: Class"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html",
+      "title": "TypeScript: Documentation - TypeScript 3.4",
+      "description": "TypeScript 3.4 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+      "title": "TypeScript: Documentation - Everyday Types",
+      "description": "The language primitives."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+      "title": "TypeScript: Handbook - The TypeScript Handbook",
+      "description": "Your first step to learn TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-3.html",
+      "title": "TypeScript: Documentation - TypeScript 2.3",
+      "description": "TypeScript 2.3 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+      "title": "TypeScript: Documentation - TypeScript 6.0",
+      "description": "TypeScript 6.0 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/understanding-errors.html",
+      "title": "TypeScript: Documentation - Understanding Errors",
+      "description": "How to read TypeScript errors."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-6.html",
+      "title": "TypeScript: Documentation - TypeScript 3.6",
+      "description": "TypeScript 3.6 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+      "title": "TypeScript: Documentation - Keyof Type Operator",
+      "description": "Using the keyof operator in type contexts."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/jsx.html",
+      "title": "TypeScript: Documentation - JSX",
+      "description": "Using JSX with TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/project-references.html",
+      "title": "TypeScript: Documentation - Project References",
+      "description": "How to split up a large TypeScript project"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-3.html",
+      "title": "TypeScript: Documentation - TypeScript 3.3",
+      "description": "TypeScript 3.3 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-2.html",
+      "title": "TypeScript: Documentation - TypeScript 2.2",
+      "description": "TypeScript 2.2 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html",
+      "title": "TypeScript: Documentation - TypeScript 2.8",
+      "description": "TypeScript 2.8 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+      "title": "TypeScript: Documentation - TypeScript 5.4",
+      "description": "TypeScript 5.4 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+      "title": "TypeScript: Documentation - TypeScript 4.8",
+      "description": "TypeScript 4.8 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/mixins.html",
+      "title": "TypeScript: Documentation - Mixins",
+      "description": "Using the mixin pattern with TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/compiler-options-in-msbuild.html",
+      "title": "TypeScript: Documentation - Compiler Options in MSBuild",
+      "description": "Which compiler options are available in MSBuild projects."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/modules/reference.html#node16-node18-node20-nodenext",
+      "title": "TypeScript: Documentation - Modules - Reference",
+      "description": "Module syntax and compiler options reference"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-8.html",
+      "title": "TypeScript: Documentation - TypeScript 1.8",
+      "description": "TypeScript 1.8 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html",
+      "title": "TypeScript: Documentation - Modules .d.ts"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
+      "title": "TypeScript: Documentation - Type Compatibility",
+      "description": "How type-checking works in TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/modules/guides/choosing-compiler-options.html",
+      "title": "TypeScript: Documentation - Modules - Choosing Compiler O...",
+      "description": "How to choose compiler options that reflect your module environment"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook",
+      "title": "TypeScript: The starting point for learning TypeScript",
+      "description": "Find TypeScript starter projects: from Angular to React or Node.js and CLIs."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/dts-from-js.html",
+      "title": "TypeScript: Documentation - Creating .d.ts Files from .js...",
+      "description": "How to add d.ts generation to JavaScript projects"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+      "title": "TypeScript: Documentation - More on Functions",
+      "description": "Learn about how Functions work in TypeScript."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+      "title": "TypeScript: Documentation - Typeof Type Operator",
+      "description": "Using the typeof operator in type contexts."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-9.html",
+      "title": "TypeScript: Documentation - TypeScript 5.9",
+      "description": "TypeScript 5.9 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+      "title": "TypeScript: Documentation - Indexed Access Types",
+      "description": "Using Type['a'] syntax to access a subset of a type."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/compiler-options.html",
+      "title": "TypeScript: Documentation - tsc CLI Options",
+      "description": "A very high-level overview of the CLI compiler options for tsc"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html",
+      "title": "TypeScript: Documentation - TypeScript 4.0",
+      "description": "TypeScript 4.0 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/global-plugin-d-ts.html",
+      "title": "TypeScript: Documentation - Global: Plugin"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html",
+      "title": "TypeScript: Documentation - Template Literal Types",
+      "description": "Generating mapping types which change properties via template literal strings."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/modules.html",
+      "title": "TypeScript: Documentation - Modules",
+      "description": "How JavaScript handles communicating across file boundaries."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/basic-types.html",
+      "title": "TypeScript: Documentation - The Basics",
+      "description": "Step one in learning TypeScript: The basic types."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/functions.html",
+      "title": "TypeScript: Handbook - Functions",
+      "description": "How to add types to a function"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/objects.html",
+      "title": "TypeScript: Documentation - Object Types",
+      "description": "How TypeScript describes the shapes of JavaScript objects."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-5.html",
+      "title": "TypeScript: Documentation - TypeScript 2.5",
+      "description": "TypeScript 2.5 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html",
+      "title": "TypeScript: Documentation - TypeScript 2.7",
+      "description": "TypeScript 2.7 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+      "title": "TypeScript: Documentation - TypeScript 4.1",
+      "description": "TypeScript 4.1 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/asp-net-core.html",
+      "title": "TypeScript: Documentation - ASP.NET Core",
+      "description": "Using TypeScript in ASP.NET Core"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-3.html",
+      "title": "TypeScript: Documentation - TypeScript 5.3",
+      "description": "TypeScript 5.3 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/literal-types.html",
+      "title": "TypeScript: Handbook - Literal Types",
+      "description": "Using literal types with TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/namespaces.html",
+      "title": "TypeScript: Documentation - Namespaces",
+      "description": "How TypeScript namespaces work"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-8.html",
+      "title": "TypeScript: Documentation - TypeScript 5.8",
+      "description": "TypeScript 5.8 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/classes.html",
+      "title": "TypeScript: Documentation - Classes",
+      "description": "How classes work in TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/global-modifying-module-d-ts.html",
+      "title": "TypeScript: Documentation - Global: Modifying Module"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html",
+      "title": "TypeScript: Documentation - TypeScript for the New Progra...",
+      "description": "Learn TypeScript from scratch"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html",
+      "title": "TypeScript: Documentation - TypeScript 2.0",
+      "description": "TypeScript 2.0 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+      "title": "TypeScript: Documentation - TypeScript 5.5",
+      "description": "TypeScript 5.5 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-function-d-ts.html",
+      "title": "TypeScript: Documentation - Module: Function"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html",
+      "title": "TypeScript: Documentation - Migrating from JavaScript",
+      "description": "How to migrate from JavaScript to TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-4.html",
+      "title": "TypeScript: Documentation - TypeScript 1.4",
+      "description": "TypeScript 1.3 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html",
+      "title": "TypeScript: Documentation - TypeScript 5.0",
+      "description": "TypeScript 5.0 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/symbols.html",
+      "title": "TypeScript: Documentation - Symbols",
+      "description": "Using the JavaScript Symbol primitive in TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/global-d-ts.html",
+      "title": "TypeScript: Documentation - Global .d.ts"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/modules/reference.html",
+      "title": "TypeScript: Documentation - Modules - Reference",
+      "description": "Module syntax and compiler options reference"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
+      "title": "TypeScript: Documentation - TypeScript 4.6",
+      "description": "TypeScript 4.6 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+      "title": "TypeScript: Documentation - TypeScript 4.5",
+      "description": "TypeScript 4.5 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-6.html",
+      "title": "TypeScript: Documentation - TypeScript 1.6",
+      "description": "TypeScript 1.6 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html",
+      "title": "TypeScript: Documentation - Do's and Don'ts",
+      "description": "Recommendations for writing d.ts files"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html",
+      "title": "TypeScript: Documentation - JSDoc Reference",
+      "description": "What JSDoc does TypeScript-powered JavaScript support?"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-oop.html",
+      "title": "TypeScript: Documentation - TypeScript for Java/C# Progra...",
+      "description": "Learn TypeScript if you have a background in object-oriented languages"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/modules/theory.html#module-resolution",
+      "title": "TypeScript: Documentation - Modules - Theory",
+      "description": "How TypeScript models JavaScript modules"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html",
+      "title": "TypeScript: Documentation - TypeScript for Functional Pro...",
+      "description": "Learn TypeScript if you have a background in functional programming"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/type-inference.html",
+      "title": "TypeScript: Documentation - Type Inference",
+      "description": "How code flow analysis works in TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html",
+      "title": "TypeScript: Documentation - TypeScript 3.8",
+      "description": "TypeScript 3.8 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/integrating-with-build-tools.html",
+      "title": "TypeScript: Documentation - Integrating with Build Tools",
+      "description": "How to use TypeScript with other build tools"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-plugin-d-ts.html",
+      "title": "TypeScript: Documentation - Module: Plugin"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/namespaces-and-modules.html",
+      "title": "TypeScript: Documentation - Namespaces and Modules",
+      "description": "How to organize code in TypeScript via modules or namespaces"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/by-example.html",
+      "title": "TypeScript: Documentation - Declaration Reference",
+      "description": "How to create a d.ts file for a module"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-1.html",
+      "title": "TypeScript: Documentation - TypeScript 5.1",
+      "description": "TypeScript 5.1 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html",
+      "title": "TypeScript: Handbook - Unions and Intersection Types",
+      "description": "How to use unions and intersection types in TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html",
+      "title": "TypeScript: Documentation - TypeScript Tooling in 5 minutes",
+      "description": "A tutorial to understand how to create a small website with TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/gulp.html",
+      "title": "TypeScript: Documentation - Gulp",
+      "description": "Using TypeScript with Gulp"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html",
+      "title": "TypeScript: Documentation - JS Projects Utilizing TypeScript",
+      "description": "How to add type checking to JavaScript files using TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html",
+      "title": "TypeScript: Documentation - Publishing",
+      "description": "How to get your d.ts files to users"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-5.html",
+      "title": "TypeScript: Documentation - TypeScript 3.5",
+      "description": "TypeScript 3.5 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/basic-types.html",
+      "title": "TypeScript: Handbook - Basic Types",
+      "description": "Step two in learning TypeScript: The basic types."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-3.html",
+      "title": "TypeScript: Documentation - TypeScript 1.3",
+      "description": "TypeScript 1.3 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/conditional-types.html",
+      "title": "TypeScript: Documentation - Conditional Types",
+      "description": "Create types which act like if statements in the type system."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-merging.html",
+      "title": "TypeScript: Documentation - Declaration Merging",
+      "description": "How merging namespaces and interfaces works"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-2.html",
+      "title": "TypeScript: Documentation - TypeScript 5.2",
+      "description": "TypeScript 5.2 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-9.html",
+      "title": "TypeScript: Documentation - TypeScript 3.9",
+      "description": "TypeScript 3.9 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/deep-dive.html",
+      "title": "TypeScript: Documentation - Deep Dive",
+      "description": "How do d.ts files work, a deep dive"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/library-structures.html",
+      "title": "TypeScript: Documentation - Library Structures",
+      "description": "How to structure your d.ts files"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/angular.html",
+      "title": "TypeScript: Documentation - Angular",
+      "description": "Using Angular with TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html",
+      "title": "TypeScript: Documentation - Type Checking JavaScript Files",
+      "description": "How to add type checking to JavaScript files using TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html",
+      "title": "TypeScript: Documentation - TypeScript for JavaScript Pro...",
+      "description": "Learn how TypeScript extends JavaScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/generics.html",
+      "title": "TypeScript: Documentation - Generics",
+      "description": "Types which take parameters"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/variable-declarations.html",
+      "title": "TypeScript: Documentation - Variable Declaration",
+      "description": "How TypeScript handles variable declaration"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-0.html",
+      "title": "TypeScript: Documentation - TypeScript 3.0",
+      "description": "TypeScript 3.0 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/modules/appendices/esm-cjs-interop.html",
+      "title": "TypeScript: Documentation - Modules - ESM/CJS Interoperab...",
+      "description": "A detailed look at interoperability between ES modules and CommonJS modules"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-1.html",
+      "title": "TypeScript: Documentation - TypeScript 1.1",
+      "description": "TypeScript 1.1 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/advanced-types.html",
+      "title": "TypeScript: Documentation - Advanced Types",
+      "description": "Advanced concepts around types in TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html",
+      "title": "TypeScript: Documentation - Consumption",
+      "description": "How to download d.ts files for your project"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/dom-manipulation.html",
+      "title": "TypeScript: Documentation - DOM Manipulation",
+      "description": "Using the DOM with TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/enums.html",
+      "title": "TypeScript: Handbook - Enums",
+      "description": "How TypeScript enums work"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/classes.html",
+      "title": "TypeScript: Handbook - Classes",
+      "description": "How classes work in TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/decorators.html",
+      "title": "TypeScript: Documentation - Decorators",
+      "description": "TypeScript Decorators overview"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/interfaces.html",
+      "title": "TypeScript: Handbook - Interfaces",
+      "description": "How to write an interface with TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-2.html",
+      "title": "TypeScript: Documentation - TypeScript 3.2",
+      "description": "TypeScript 3.2 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+      "title": "TypeScript: Documentation - Creating Types from Types",
+      "description": "An overview of the ways in which you can create more types from existing types."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-1.html",
+      "title": "TypeScript: Documentation - TypeScript 2.1",
+      "description": "TypeScript 2.1 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-6.html",
+      "title": "TypeScript: Documentation - TypeScript 2.6",
+      "description": "TypeScript 2.6 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html",
+      "title": "TypeScript: Documentation - TypeScript 2.9",
+      "description": "TypeScript 2.9 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html",
+      "title": "TypeScript: Documentation - Introduction",
+      "description": "How to write a high-quality TypeScript Declaration (d.ts) file"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-5.html",
+      "title": "TypeScript: Documentation - TypeScript 1.5",
+      "description": "TypeScript 1.5 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-7.html",
+      "title": "TypeScript: Documentation - TypeScript 1.7",
+      "description": "TypeScript 1.7 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates.html",
+      "title": "TypeScript: Documentation - Templates",
+      "description": "Different d.ts module template examples"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/iterators-and-generators.html",
+      "title": "TypeScript: Documentation - Iterators and Generators",
+      "description": "How Iterators and Generators work in TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-3.html",
+      "title": "TypeScript: Documentation - TypeScript 4.3",
+      "description": "TypeScript 4.3 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/modules/introduction.html",
+      "title": "TypeScript: Documentation - Modules - Introduction",
+      "description": "How TypeScript models JavaScript modules"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
+      "title": "TypeScript: Documentation - TypeScript 4.4",
+      "description": "TypeScript 4.4 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html",
+      "title": "TypeScript: Documentation - Triple-Slash Directives",
+      "description": "How to use triple slash directives in TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html",
+      "title": "TypeScript: Documentation - TypeScript 3.7",
+      "description": "TypeScript 3.7 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-6.html",
+      "title": "TypeScript: Documentation - TypeScript 5.6",
+      "description": "TypeScript 5.6 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-4.html",
+      "title": "TypeScript: Documentation - TypeScript 2.4",
+      "description": "TypeScript 2.4 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-1.html",
+      "title": "TypeScript: Documentation - TypeScript 3.1",
+      "description": "TypeScript 3.1 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-2.html",
+      "title": "TypeScript: Documentation - TypeScript 4.2",
+      "description": "TypeScript 4.2 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-7.html",
+      "title": "TypeScript: Documentation - TypeScript 5.7",
+      "description": "TypeScript 5.7 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+      "title": "TypeScript: Documentation - TypeScript 4.9",
+      "description": "TypeScript 4.9 Release Notes"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/configuring-watch.html",
+      "title": "TypeScript: Documentation - Configuring Watch",
+      "description": "How to configure the watch mode of TypeScript"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+      "title": "TypeScript: Documentation - Narrowing",
+      "description": "Understand how TypeScript uses JavaScript knowledge to reduce the amount of type syntax in your projects."
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/babel-with-typescript.html",
+      "title": "TypeScript: Documentation - Using Babel with TypeScript",
+      "description": "How to create a hybrid Babel + TypeScript project"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/react.html",
+      "title": "TypeScript: Documentation - React",
+      "description": "Links to learn about TypeScript and React"
+    },
+    {
+      "url": "https://www.typescriptlang.org/docs/handbook/react-&-webpack.html",
+      "title": "TypeScript - webpack",
+      "description": "tip. This guide stems from the Getting Started guide. TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. In this guide we will ..."
+    }
+  ]
+}

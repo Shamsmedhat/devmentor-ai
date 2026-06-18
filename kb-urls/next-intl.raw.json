@@ -1,0 +1,173 @@
+{
+  "lib": "next-intl",
+  "root": "https://next-intl.dev/docs",
+  "mappedAt": "2026-06-18T00:05:08.671Z",
+  "appliedIncludes": [
+    "/docs"
+  ],
+  "appliedExcludes": [
+    "/blog"
+  ],
+  "discoveredCount": 32,
+  "keptCount": 32,
+  "links": [
+    {
+      "url": "https://next-intl.dev/docs/usage/configuration",
+      "title": "Request configuration – Internationalization (i18n) for N...",
+      "description": "Internationalization (i18n) for Next.js"
+    },
+    {
+      "url": "https://next-intl.dev/docs/routing/navigation",
+      "title": "Navigation APIs – Internationalization (i18n) for Next.js",
+      "description": "Internationalization (i18n) for Next.js"
+    },
+    {
+      "url": "https://next-intl.dev/docs/getting-started/app-router",
+      "title": "Next.js App Router internationalization (i18n) – Internat...",
+      "description": "Internationalization (i18n) for Next.js"
+    },
+    {
+      "url": "https://next-intl.dev/docs/routing/middleware",
+      "title": "Proxy / middleware – Internationalization (i18n) for Next.js",
+      "description": "Internationalization (i18n) for Next.js"
+    },
+    {
+      "url": "https://next-intl.dev/docs/environments/testing",
+      "title": "Testing – Internationalization (i18n) for Next.js",
+      "description": "Internationalization (i18n) for Next.js"
+    },
+    {
+      "url": "https://next-intl.dev/docs/usage/translations",
+      "title": "Rendering translations – Internationalization (i18n) for ...",
+      "description": "Internationalization (i18n) for Next.js"
+    },
+    {
+      "url": "https://next-intl.dev/docs/routing/setup",
+      "title": "Setup locale-based routing – Internationalization (i18n) ...",
+      "description": "Internationalization (i18n) for Next.js"
+    },
+    {
+      "url": "https://next-intl.dev/docs/design-principles",
+      "title": "Design principles – Internationalization (i18n) for Next.js",
+      "description": "next-intl takes a holistic approach to internationalization that nudges you towards best practices for handling languages and country-specific ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/environments",
+      "title": "Environments – Internationalization (i18n) for Next.js",
+      "description": "The next-intl APIs are available in the following environments: Server & Client Components→Server Actions, Metadata & Route Handlers→Error files"
+    },
+    {
+      "url": "https://next-intl.dev/docs/environments/actions-metadata-route-handlers",
+      "title": "Server Actions, Metadata & Route Handlers - next-intl",
+      "description": "Server Actions provide a mechanism to execute server-side code that is invoked by the client. In case you're returning user-facing messages, you ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/environments/core-library",
+      "title": "Core library – Internationalization (i18n) for Next.js",
+      "description": "React apps. next-intl internally uses a library called use-intl . This core library contains most features you're familiar with from next-intl , ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/environments/error-files",
+      "title": "Internationalization in Next.js error files",
+      "description": "The Next.js App Router's file convention provides two files that can be used for error handling. This page provides practical guides for these cases."
+    },
+    {
+      "url": "https://next-intl.dev/docs/environments/runtime-requirements",
+      "title": "Runtime requirements – Internationalization (i18n) for Next.js - next-intl",
+      "description": "Based on the features you're using, you have to make sure your target browsers support the following APIs: Basic usage: Intl.Locale ( ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/environments/server-client-components",
+      "title": "Internationalization of Server & Client Components - next-intl",
+      "description": "React Server Components allow you to implement components that remain server-side only if they don't require React's interactive features, such as useState and ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/getting-started",
+      "title": "Internationalization (i18n) for Next.js",
+      "description": "Learn how to build delightful, multilingual apps with Next.js—from the basics to advanced patterns, all through a real-world project. Get ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/getting-started/pages-router",
+      "title": "Next.js Pages Router internationalization (i18n)",
+      "description": "Next.js Pages Router internationalization (i18n). While it's recommended to use next-intl with the App Router, the Pages Router is still fully ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/routing",
+      "title": "Routing – Internationalization (i18n) for Next.js",
+      "description": "Navigation APIs: Lightweight wrappers around Next.js' navigation APIs like <Link />. This enables you to express your app in terms of APIs like ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/routing/configuration",
+      "title": "Routing configuration – Internationalization (i18n) for Next.js",
+      "description": "Internationalization (i18n) for Next.js."
+    },
+    {
+      "url": "https://next-intl.dev/docs/usage",
+      "title": "Usage guide – Internationalization (i18n) for Next.js",
+      "description": "This guide explains how next-intl can be used in React components. Note that while it might be helpful to get an overview of the capabilities of ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/usage/dates-times",
+      "title": "Date and time formatting – Internationalization (i18n) for Next.js",
+      "description": "You can format plain dates that are not part of a message with the dateTime function that is returned from the useFormatter hook."
+    },
+    {
+      "url": "https://next-intl.dev/docs/usage/display-name",
+      "title": "Display names – Internationalization (i18n) for Next.js",
+      "description": "When you need to display locale-aware names for regions, languages, currencies, or scripts, you can use the displayName function from the ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/usage/extraction",
+      "title": "useExtracted (experimental) – Internationalization (i18n) for Next.js",
+      "description": "Extraction integrates automatically with next dev and next build via a Turbo- or Webpack loader, you don't need to manually trigger it."
+    },
+    {
+      "url": "https://next-intl.dev/docs/usage/lists",
+      "title": "List formatting – Internationalization (i18n) for Next.js",
+      "description": "When working with lists of items, you can format them as conjunctions or disjunctions. Formatting aspects, like the used separators, differ per ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/usage/numbers",
+      "title": "Number formatting – Internationalization (i18n) for Next.js",
+      "description": "The formatting of numbers can vary depending on the user's locale and may include different rules such as: Decimal separators"
+    },
+    {
+      "url": "https://next-intl.dev/docs/usage/plugin",
+      "title": "Next.js plugin (createNextIntlPlugin) – Internationalization (i18n) for ...",
+      "description": "Next.js plugin ( createNextIntlPlugin ). When setting up next-intl for the App Router, you'll add next-intl/plugin to your Next.js config."
+    },
+    {
+      "url": "https://next-intl.dev/docs/workflows",
+      "title": "Workflows & integrations – Internationalization (i18n) for Next.js",
+      "description": "Workflows & integrations. To get the most out of next-intl , you can choose from these integrations to improve your workflow."
+    },
+    {
+      "url": "https://next-intl.dev/docs/workflows/localization-management",
+      "title": "Localization management with Crowdin - next-intl",
+      "description": "As a developer-focused localization service, Crowdin helps you to decouple the localization process from development and integrates with your ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/workflows/messages",
+      "title": "Validating messages – Internationalization (i18n) for Next.js",
+      "description": "To ensure quality and completeness of your messages, you can use i18n-check. This CLI helps you validate against issues like:"
+    },
+    {
+      "url": "https://next-intl.dev/docs/workflows/storybook",
+      "title": "Storybook integration for next-intl",
+      "description": "Storybook is a tool for developing UI components in isolation and can be used in combination with next-intl to handle components that rely on ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/workflows/typescript",
+      "title": "TypeScript augmentation – Internationalization (i18n) for Next.js",
+      "description": "next-intl integrates seamlessly with TypeScript right out of the box, requiring no additional setup. However, you can optionally provide ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs/workflows/vscode-integration",
+      "title": "VSCode integration – Internationalization (i18n) for Next.js",
+      "description": "To improve the workflow for managing messages right from your code editor, you can use an extension for VSCode that includes support for ..."
+    },
+    {
+      "url": "https://next-intl.dev/docs"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "lib": "zod",
+  "completed": [
+    "https://zod.dev/",
+    "https://zod.dev/api",
+    "https://zod.dev/basics",
+    "https://zod.dev/codecs",
+    "https://zod.dev/error-customization",
+    "https://zod.dev/error-formatting",
+    "https://zod.dev/json-schema",
+    "https://zod.dev/metadata",
+    "https://zod.dev/packages/core",
+    "https://zod.dev/packages/mini",
+    "https://zod.dev/packages/zod",
+    "https://zod.dev/v4",
+    "https://zod.dev/v4/changelog",
+    "https://zod.dev/v4/versioning"
+  ],
+  "updatedAt": "2026-06-17T23:51:54.076Z"
+}

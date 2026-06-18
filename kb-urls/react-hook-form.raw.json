@@ -1,0 +1,173 @@
+{
+  "lib": "react-hook-form",
+  "root": "https://react-hook-form.com/docs",
+  "mappedAt": "2026-06-18T00:05:05.597Z",
+  "appliedIncludes": [
+    "/docs"
+  ],
+  "appliedExcludes": [],
+  "discoveredCount": 32,
+  "keptCount": 32,
+  "links": [
+    {
+      "url": "https://react-hook-form.com/docs/useform",
+      "title": "useForm",
+      "description": "The primary React Hook Form hook. Initialize your form with validation rules, default values, and submission handling in a single call."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/usecontroller",
+      "title": "useController",
+      "description": "React hook for building reusable controlled inputs with full access to field value, validation state, and form state from React Hook Form."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/reset",
+      "title": "reset",
+      "description": "Reset the entire form to default values, clearing all errors, dirty fields, and touched state in React Hook Form."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/usewatch/watch",
+      "title": "Watch",
+      "description": "A React component that subscribes to form input changes and re-renders only its children, scoping updates for better performance."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/trigger",
+      "title": "trigger",
+      "description": "Manually trigger validation for one field, a list of fields, or the entire React Hook Form without submitting."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/uselens",
+      "title": "useLens",
+      "description": "Type-safe functional lenses that scope form context to a nested field path, reducing boilerplate in deeply nested React Hook Forms."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/createFormControl",
+      "title": "createFormControl",
+      "description": "Create standalone React Hook Form state outside of a React component, useful for global or shared form state management across your app."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/form",
+      "title": "Form",
+      "description": "React Hook Form's Form component handles submission to a URL or callback, with built-in loading, error, and success state management."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useformstate",
+      "title": "useFormState",
+      "description": "Subscribe to specific form state properties and isolate re-renders at the component level for better performance in large React Hook Forms."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/control",
+      "title": "control",
+      "description": "The control object returned by useForm, required to register controlled inputs via the Controller component and useController hook."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/unregister",
+      "title": "unregister",
+      "description": "Remove a registered input from React Hook Form, optionally preserving its value, error, dirty, or touched state on unmount."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/getfieldstate",
+      "title": "getFieldState",
+      "description": "Get the current validation and interaction state of a specific field — invalid, isDirty, isTouched, and error — from React Hook Form."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/setvalue",
+      "title": "setValue",
+      "description": "Dynamically update a registered field's value with options to trigger validation, mark the field dirty, or set it as touched."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/resetfield",
+      "title": "resetField",
+      "description": "Reset a single field's value and state — errors, dirty, and touched — independently without resetting the entire React Hook Form."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/clearerrors",
+      "title": "clearErrors",
+      "description": "Manually clear validation errors for one field, an array of fields, or the entire React Hook Form without triggering re-validation."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/setfocus",
+      "title": "setFocus",
+      "description": "Programmatically focus any registered input field, with an option to also select its current value in React Hook Form."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useformcontext",
+      "title": "useFormContext",
+      "description": "Access all useForm methods deep in the component tree without prop drilling, using React Hook Form's built-in context API."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/usefieldarray",
+      "title": "useFieldArray",
+      "description": "React hook for dynamic field arrays. Append, prepend, insert, remove, swap, move, update, and replace fields with optimized performance."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useformstate/errormessage",
+      "title": "ErrorMessage",
+      "description": "Render validation error messages for a registered field. Supports multiple errors per field and custom message rendering in React Hook Form."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/usecontroller/controller",
+      "title": "Controller",
+      "description": "Wrapper component for integrating controlled external inputs like MUI, Chakra UI, and React-Select with React Hook Form validation."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/formprovider",
+      "title": "FormProvider",
+      "description": "Wrap your form tree with FormProvider to share useForm methods across deeply nested components without passing props manually."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/watch",
+      "title": "watch",
+      "description": "Subscribe to one or more input value changes and trigger re-renders. Useful for conditional form logic and dependent field calculations."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/usewatch",
+      "title": "useWatch",
+      "description": "Subscribe to input value changes with isolated component-level re-renders, offering better performance than watch for large React Hook Forms."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/subscribe",
+      "title": "subscribe",
+      "description": "Subscribe to React Hook Form state changes outside the render cycle — ideal for analytics, side effects, and non-React integrations."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/setvalues",
+      "title": "setValues",
+      "description": "Update multiple React Hook Form field values at once using an object or a callback that receives the current form values and returns changes."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/seterror",
+      "title": "setError",
+      "description": "Manually set a validation error on one or multiple fields, with support for server-side and custom errors in React Hook Form."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/handlesubmit",
+      "title": "handleSubmit",
+      "description": "Validate form inputs and invoke your submit callback with typed form data, or pass errors to an error handler on validation failure."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/formstate",
+      "title": "formState",
+      "description": "Access real-time form state including isDirty, isValid, errors, isSubmitting, touchedFields, and dirtyFields from React Hook Form."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/getvalues",
+      "title": "getValues",
+      "description": "Read current form values without subscribing to re-renders. Retrieve a single field, multiple fields, or the entire form data object."
+    },
+    {
+      "url": "https://react-hook-form.com/docs",
+      "title": "API Documentation",
+      "description": "Complete API reference for React Hook Form — hooks, methods, and TypeScript types."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useform/register",
+      "title": "register",
+      "description": "Register an input with React Hook Form to enable validation, value tracking, and form submission. Supports text, checkbox, select, and more."
+    },
+    {
+      "url": "https://react-hook-form.com/docs/useformstate/formstatesubscribe",
+      "title": "FormStateSubscribe",
+      "description": "A renderless React component that subscribes to form state changes and re-renders children only when the relevant state updates occur."
+    }
+  ]
+}

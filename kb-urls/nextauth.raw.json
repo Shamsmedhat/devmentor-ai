@@ -1,0 +1,786 @@
+{
+  "lib": "nextauth",
+  "root": "https://next-auth.js.org",
+  "mappedAt": "2026-06-18T00:52:00.777Z",
+  "appliedIncludes": [
+    "/"
+  ],
+  "appliedExcludes": [
+    "/blog",
+    "/v3",
+    "/search",
+    "/seo",
+    "/contributors"
+  ],
+  "discoveredCount": 189,
+  "keptCount": 101,
+  "links": [
+    {
+      "url": "https://next-auth.js.org/sitemap.xml"
+    },
+    {
+      "url": "https://next-auth.js.org/getting-started/client",
+      "title": "Client API | NextAuth.js",
+      "description": "The NextAuth.js client library makes it easy to interact with sessions from React applications."
+    },
+    {
+      "url": "https://next-auth.js.org/search",
+      "title": "Search the documentation | NextAuth.js",
+      "description": "Search the documentation. About NextAuth.js. Introduction. Download. GitHub · NPM. Acknowledgements. Contributors · Images by unDraw."
+    },
+    {
+      "url": "https://next-auth.js.org/seo"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/adapters/dynamodb",
+      "title": "DynamoDB Adapter - NextAuth.js",
+      "description": "DynamoDB. This is the AWS DynamoDB Adapter for next-auth. This package can only be used in conjunction with the primary next-auth package."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/adapters/fauna",
+      "title": "FaunaDB Adapter | NextAuth.js",
+      "description": "This is documentation for NextAuth.js v3, which is no longer actively maintained. For up-to-date documentation, see the latest version (v4) ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/adapters/firebase",
+      "title": "Firebase Adapter - NextAuth.js",
+      "description": "This is the Firebase Adapter for next-auth . This package can only be used in conjunction with the primary next-auth package. It is not a ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/adapters/models",
+      "title": "Models | NextAuth.js",
+      "description": "This provides a way to contact users and for users to maintain access to their account and sign in using email in the event they are unable to ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/adapters/overview",
+      "title": "Overview | NextAuth.js",
+      "description": "Overview. An Adapter in NextAuth.js connects your application to whatever database or backend system you want to use to store data for user ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/adapters/pouchdb",
+      "title": "PouchDB Adapter - NextAuth.js",
+      "description": "This is the PouchDB Adapter for next-auth. This package can only be used in conjunction with the primary next-auth package."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/adapters/prisma",
+      "title": "Prisma Adapter - NextAuth.js",
+      "description": "You may have noticed there is a prisma and prisma-legacy adapter. This is due to historical reasons, but the code has mostly converged so ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/adapters/prisma-legacy",
+      "title": "Prisma Adapter (Legacy) - NextAuth.js",
+      "description": "Prisma (Legacy). You can also use NextAuth.js with the built-in Adapter for Prisma. This is included in the core next-auth package at the ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/adapters/typeorm/mongodb",
+      "title": "MongoDB - NextAuth.js",
+      "description": "MongoDB is a document database and does not use schemas in the same way as most RDBMS databases. In MongoDB as collections and indexes are ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/adapters/typeorm/mssql",
+      "title": "Microsoft SQL Server - NextAuth.js",
+      "description": "When using a Microsoft SQL Server database with the default adapter (TypeORM) all properties of type timestamp are transformed to datetime ."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/adapters/typeorm/mysql",
+      "title": "MySQL - NextAuth.js",
+      "description": "This is documentation for NextAuth.js v3, which is no longer actively maintained. For up-to-date documentation, see the latest version (v4) ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/adapters/typeorm/postgres",
+      "title": "Postgres - NextAuth.js",
+      "description": "Schema for a Postgres database."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/adapters/typeorm/typeorm-overview"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/configuration/callbacks",
+      "title": "Callbacks | NextAuth.js",
+      "description": "Callbacks are asynchronous functions you can use to control what happens when an action is performed."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/configuration/databases",
+      "title": "Databases | NextAuth.js",
+      "description": "It is useful to create the tables you need when setting up a database for the first time, but it should not be enabled against production ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/configuration/events",
+      "title": "Events - NextAuth.js",
+      "description": "Events are asynchronous functions that do not return a response, they are useful for audit logs / reporting."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/configuration/options"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/configuration/pages",
+      "title": "Pages - NextAuth.js",
+      "description": "Pages. NextAuth.js automatically creates simple, unbranded authentication pages for handling Sign in, Sign out, Email Verification and ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/configuration/providers",
+      "title": "Providers - NextAuth.js",
+      "description": "Authentication Providers in NextAuth.js are services that can be used to sign in a user."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/contributors"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/errors",
+      "title": "Errors | NextAuth.js",
+      "description": "Errors. This is a list of errors output from NextAuth.js. All errors indicate an unexpected problem, you should not expect to see errors. If you ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/faq",
+      "title": "Frequently Asked Questions - NextAuth.js",
+      "description": "NextAuth.js is an open source project built by individual contributors. It is not commercial software and is not associated with a commercial organization."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/getting-started/client",
+      "title": "Client API - NextAuth.js",
+      "description": "The NextAuth.js client library makes it easy to interact with sessions from React applications."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/getting-started/example",
+      "title": "Example Code - NextAuth.js",
+      "description": "Get started with NextAuth.js​ · Add API route​ · Add React Hook​ · Add session state​ · Deploying to production​. When deploying your site set ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/getting-started/introduction"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/getting-started/rest-api",
+      "title": "REST API - NextAuth.js",
+      "description": "It can be used to dynamically generate custom sign up pages and to check what callback URLs are configured for each OAuth provider that is ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/getting-started/typescript",
+      "title": "TypeScript - NextAuth.js",
+      "description": "TypeScript. NextAuth.js comes with its own type definitions, so you can safely use it in your TypeScript projects."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/42-school"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/apple"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/atlassian"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/auth0"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/azure-ad-b2c"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/basecamp"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/battle.net"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/box"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/bungie"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/cognito"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/coinbase"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/credentials"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/discord"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/dropbox"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/duende-identityserver6"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/email"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/eveonline"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/facebook"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/faceit"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/foursquare"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/fusionauth"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/github"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/gitlab"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/google"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/identity-server4"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/instagram"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/kakao"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/line"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/linkedin"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/mailchimp"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/mailru"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/medium"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/naver"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/netlify"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/okta"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/osso"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/reddit"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/salesforce"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/slack"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/spotify"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/strava"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/twitch"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/twitter"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/vk"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/wordpress"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/workos"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/yandex"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/zoho"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/providers/zoom"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/tutorials",
+      "title": "Tutorials and Explainers - NextAuth.js",
+      "description": "Tutorials and Explainers. NextAuth.js tutorials​. These tutorials are contributed by the community and hosted on this site."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/tutorials/creating-a-database-adapter"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/tutorials/ldap-auth-example",
+      "title": "LDAP Authentication - NextAuth.js",
+      "description": "The idea is that once one is authenticated with the LDAP server, one can pass through both the username/DN and password to the JWT stored in the ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/tutorials/refresh-token-rotation",
+      "title": "Refresh Token Rotation - NextAuth.js",
+      "description": "Refresh Token Rotation. While NextAuth.js doesn't automatically handle access token rotation for OAuth providers yet, this functionality can ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/tutorials/securing-pages-and-api-routes"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/tutorials/testing-with-cypress",
+      "title": "Testing with Cypress - NextAuth.js",
+      "description": "To test an implementation of NextAuth.js, we encourage you to use Cypress."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/tutorials/typeorm-custom-models",
+      "title": "Custom models with TypeORM - NextAuth.js",
+      "description": "You can use these models with MySQL, MariaDB, Postgres, MongoDB and SQLite. Creating custom models​. models/User.js. import Adapters from \"next ..."
+    },
+    {
+      "url": "https://next-auth.js.org/v3/tutorials/usage-with-class-components"
+    },
+    {
+      "url": "https://next-auth.js.org/v3/warnings",
+      "title": "Warnings | NextAuth.js",
+      "description": "This is a list of warning output from NextAuth.js."
+    },
+    {
+      "url": "https://next-auth.js.org",
+      "title": "NextAuth.js",
+      "description": "Authentication for Next.js."
+    },
+    {
+      "url": "https://next-auth.js.org/adapters",
+      "title": "Adapters - NextAuth.js",
+      "description": "NextAuth.js is now part of Better Auth! Visit the authjs.dev page for the up-to-date documentation. © Better Auth Inc."
+    },
+    {
+      "url": "https://next-auth.js.org/configuration/callbacks",
+      "title": "Callbacks | NextAuth.js",
+      "description": "Callbacks. Callbacks are asynchronous functions you can use to control what happens when an action is performed. Callbacks are extremely ..."
+    },
+    {
+      "url": "https://next-auth.js.org/configuration/databases",
+      "title": "Databases | NextAuth.js",
+      "description": "To learn more about databases in NextAuth.js and how they are used, check out databases in the FAQ. How to use a database​. See the ..."
+    },
+    {
+      "url": "https://next-auth.js.org/configuration/events",
+      "title": "Events | NextAuth.js",
+      "description": "Events are asynchronous functions that do not return a response, they are useful for audit logs / reporting or handling any other ..."
+    },
+    {
+      "url": "https://next-auth.js.org/configuration/initialization",
+      "title": "Initialization - NextAuth.js",
+      "description": "You can initialize NextAuth.js in a few different ways. Simple initialization​. API Routes ( pages )​. In Next.js, you can define an API ..."
+    },
+    {
+      "url": "https://next-auth.js.org/configuration/nextjs",
+      "title": "Next.js | NextAuth.js",
+      "description": "Description​. Specify URLs to be used if you want to create custom sign-in and error pages. The pages specified will override the corresponding ..."
+    },
+    {
+      "url": "https://next-auth.js.org/configuration/options",
+      "title": "Options | NextAuth.js",
+      "description": "An array of authentication providers for signing in (eg Google, Facebook, Twitter, GitHub, Email, etc) in any order."
+    },
+    {
+      "url": "https://next-auth.js.org/configuration/pages",
+      "title": "Pages | NextAuth.js",
+      "description": "Pages NextAuth.js automatically creates simple, unbranded authentication pages for handling Sign in, Sign out, Email Verification and ..."
+    },
+    {
+      "url": "https://next-auth.js.org/configuration/providers/credentials"
+    },
+    {
+      "url": "https://next-auth.js.org/configuration/providers/email"
+    },
+    {
+      "url": "https://next-auth.js.org/configuration/providers/oauth",
+      "title": "OAuth | NextAuth.js",
+      "description": "Authentication Providers in NextAuth.js are OAuth definitions that allow your users to sign in with their favorite preexisting logins."
+    },
+    {
+      "url": "https://next-auth.js.org/contributors",
+      "title": "Contributors - Auth.js",
+      "description": "NextAuth.js was originally developed by Iain Collins in 2016 as an authentication framework specific to Next.js. 2020 – Refactor and clean up. NextAuth.js ..."
+    },
+    {
+      "url": "https://next-auth.js.org/deployment",
+      "title": "Deployment - NextAuth.js",
+      "description": "Deploying a modern JavaScript application using NextAuth.js consists of making sure your environment variables are set correctly as well as the ..."
+    },
+    {
+      "url": "https://next-auth.js.org/errors",
+      "title": "Errors - NextAuth.js - JS.ORG",
+      "description": "This is a list of errors output from NextAuth.js. All errors indicate an unexpected problem, you should not expect to see errors."
+    },
+    {
+      "url": "https://next-auth.js.org/faq",
+      "title": "Frequently Asked Questions - NextAuth.js",
+      "description": "NextAuth.js is an open source project built by individual contributors. It is not commercial software and is not associated with a commercial organization."
+    },
+    {
+      "url": "https://next-auth.js.org/getting-started/example",
+      "title": "Getting Started - NextAuth.js",
+      "description": "NextAuth.js allows you to hook into various parts of the authentication flow via our built-in callbacks. For example, to pass a value from the ..."
+    },
+    {
+      "url": "https://next-auth.js.org/getting-started/introduction"
+    },
+    {
+      "url": "https://next-auth.js.org/getting-started/rest-api",
+      "title": "REST API - NextAuth.js",
+      "description": "NextAuth.js exposes a REST API that is used by the NextAuth.js client."
+    },
+    {
+      "url": "https://next-auth.js.org/getting-started/typescript",
+      "title": "TypeScript - NextAuth.js",
+      "description": "NextAuth.js has its own type definitions to use in your TypeScript projects safely. Even if you don't use TypeScript, IDEs like VSCode will pick ..."
+    },
+    {
+      "url": "https://next-auth.js.org/getting-started/upgrade-v4",
+      "title": "Upgrade Guide (v4) - NextAuth.js",
+      "description": "NextAuth.js version 4 includes a few breaking changes from the last major version (3.x). So we're here to help you upgrade your applications ..."
+    },
+    {
+      "url": "https://next-auth.js.org/guides",
+      "title": "Guides - NextAuth.js",
+      "description": "We have internal guides in three levels of difficulty. NextAuth.js is now part of Better Auth! Basics Fullstack Testing Guides take a look at ..."
+    },
+    {
+      "url": "https://next-auth.js.org/guides/basics"
+    },
+    {
+      "url": "https://next-auth.js.org/guides/fullstack"
+    },
+    {
+      "url": "https://next-auth.js.org/guides/testing"
+    },
+    {
+      "url": "https://next-auth.js.org/providers",
+      "title": "Overview - NextAuth.js",
+      "description": "NextAuth.js are services that can be used to sign in a user. designed to work with any OAuth service, it supports OAuth 1.0, 1.0A, 2.0 and ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/42-school",
+      "title": "42 School - NextAuth.js",
+      "description": "42 returns a field on Account called createdat which is a number. See the docs. Make sure to add this field to your database schema, ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/apple",
+      "title": "Apple | NextAuth.js",
+      "description": "The KeyID is located after you create the key. Look for it before you download the k8 file. Testing on a development server​. tip. Apple ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/atlassian",
+      "title": "Atlassian - NextAuth.js",
+      "description": "Atlassian Provider options. You can override any of the options to suit your own use case. Example​. import AtlassianProvider from \"next-auth/ ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/auth0",
+      "title": "Auth0 - NextAuth.js",
+      "description": "The Auth0 Provider comes with a set of default options: Auth0 Provider options. You can override any of the options to suit your own use case."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/authentik",
+      "title": "Authentik - NextAuth.js",
+      "description": "The Authentik Provider comes with a set of default options. You can override any of the options to suit your own use case."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/azure-ad",
+      "title": "Azure Active Directory | NextAuth.js",
+      "description": "Only your tenant, all azure tenants, or all azure tenants and public Microsoft accounts (Skype, Xbox, Outlook.com, etc.) When asked ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/azure-ad-b2c",
+      "title": "Azure Active Directory B2C | NextAuth.js",
+      "description": "Azure AD B2C returns the following fields on Account:"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/battle.net"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/box"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/boxyhq-saml"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/bungie",
+      "title": "Bungie | NextAuth.js",
+      "description": "Access items like your Bungie.net notifications, memberships, and recent Bungie.Net forum activity. Origin Header. The following guide may be ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/cognito",
+      "title": "Amazon Cognito | NextAuth.js",
+      "description": "The Amazon Cognito Provider comes with a set of default options. You can override any of the options to suit your own use case."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/coinbase"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/credentials",
+      "title": "Credentials | NextAuth.js",
+      "description": "Credentials. Overview​. The Credentials provider allows you to handle signing in with arbitrary credentials, such as a username and password ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/discord",
+      "title": "Discord - NextAuth.js",
+      "description": "The Discord Provider comes with a set of default options. You can override any of the options to suit your own use case."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/dropbox",
+      "title": "Dropbox | NextAuth.js",
+      "description": "osu! Patreon · Pinterest · Pipedrive · Reddit · Salesforce · Slack · Spotify · Strava · Todoist · Trakt · Twitch · Twitter · United Effects · VK ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/duende-identityserver6"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/email",
+      "title": "Email - NextAuth.js",
+      "description": "Configuration​. NextAuth.js lets you send emails either via HTTP or SMTP. HTTP​. Check out our HTTP-based Email Provider guide. SMTP​. NextAuth ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/eveonline",
+      "title": "EVE Online - NextAuth.js",
+      "description": "The EVE Online Provider comes with a set of default options. You can override any of the options to suit your own use case."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/facebook",
+      "title": "Facebook | NextAuth.js",
+      "description": "Production applications cannot use localhost URLs to sign in with Facebook. You need to use a dedicated development application in Facebook ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/faceit"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/foursquare"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/freshbooks",
+      "title": "Freshbooks | NextAuth.js",
+      "description": "You can override any of the options to suit your own use case. Example​. import FreshbooksProvider from \" ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/fusionauth",
+      "title": "FusionAuth - NextAuth.js",
+      "description": "The FusionAuth Provider comes with a set of default options: FusionAuth Provider options. You can override any of the options to suit your own ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/github",
+      "title": "GitHub - NextAuth.js",
+      "description": "When creating a GitHub App, make sure to set the \"Email addresses\" account permission to read-only in order to access private email addresses on ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/gitlab",
+      "title": "GitLab - NextAuth.js",
+      "description": "GitLab returns a field on Account called created_at which is a number. See their docs. Remember to add this field as optional to your ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/google",
+      "title": "Google | NextAuth.js",
+      "description": "Google only provides Refresh Token to an application the first time a user signs in. To force Google to re-issue a Refresh Token, the user needs ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/hubspot",
+      "title": "HubSpot - NextAuth.js",
+      "description": "The HubSpot Provider comes with a set of default options: HubSpot Provider options. You can override any of the options to suit your own use ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/identity-server4",
+      "title": "IdentityServer4 - NextAuth.js",
+      "description": "NextAuth.js is now part of Better Auth! NextAuth Logo. NextAuth.jsDocumentationTutorialsFAQSecurity · v4 · v4 · v3 · All Releases · npmGitHub."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/instagram"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/kakao"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/keycloak"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/line"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/linkedin",
+      "title": "LinkedIn - NextAuth.js",
+      "description": "The LinkedIn Provider comes with a set of default options: LinkedIn Provider options. You can override any of the options to suit your own use ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/mailchimp",
+      "title": "Mailchimp | NextAuth.js",
+      "description": "Mailchimp. Documentation​. https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/. Configuration​."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/mailru"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/medium"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/naver",
+      "title": "Naver - NextAuth.js",
+      "description": "osu! Patreon · Pinterest · Pipedrive · Reddit · Salesforce · Slack · Spotify · Strava · Todoist · Trakt · Twitch · Twitter · United Effects · VK ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/netlify"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/okta",
+      "title": "Okta - NextAuth.js",
+      "description": "The Okta Provider comes with a set of default options. You can override any of the options to suit your own use case."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/onelogin",
+      "title": "OneLogin - NextAuth.js",
+      "description": "The OneLogin Provider comes with a set of default options. You can override any of the options to suit your own use case."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/osso",
+      "title": "Osso - NextAuth.js",
+      "description": "Osso provides documentation for providers like Okta and OneLogin, cloud-based IDPs who also offer a developer account that's useful for testing."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/osu"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/patreon",
+      "title": "Patreon - NextAuth.js",
+      "description": "Create a API v2 client on Patreon. Platform Options: The Patreon Provider comes with a set of default options. You can override any of the options to suit your ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/pinterest",
+      "title": "Pinterest - NextAuth.js",
+      "description": "osu! Patreon · Pinterest · Pipedrive · Reddit · Salesforce · Slack · Spotify · Strava · Todoist · Trakt · Twitch · Twitter · United Effects · VK ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/pipedrive",
+      "title": "Pipedrive | NextAuth.js",
+      "description": "osu! Patreon · Pinterest · Pipedrive · Reddit · Salesforce · Slack · Spotify · Strava · Todoist · Trakt · Twitch · Twitter · United Effects · VK ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/reddit"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/salesforce"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/slack",
+      "title": "Slack - NextAuth.js",
+      "description": "The Slack Provider comes with a set of default options: Slack Provider options. You can override any of the options to suit your own use case."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/spotify"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/strava"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/todoist",
+      "title": "Todoist | NextAuth.js",
+      "description": "osu! Patreon · Pinterest · Pipedrive · Reddit · Salesforce · Slack · Spotify · Strava · Todoist · Trakt · Twitch · Twitter · United Effects · VK ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/trakt"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/twitch",
+      "title": "Twitch - NextAuth.js",
+      "description": "The Twitch Provider comes with a set of default options. You can override any of the options to suit your own use case."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/twitter",
+      "title": "Twitter | NextAuth.js",
+      "description": "Twitter is currently the only built-in provider using the OAuth 1.0 spec. This means that you won't receive an accesstoken or refreshtoken, ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/united-effects"
+    },
+    {
+      "url": "https://next-auth.js.org/providers/vk",
+      "title": "VK - NextAuth.js",
+      "description": "The VK Provider comes with a set of default options. You can override any of the options to suit your own use case."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/wikimedia",
+      "title": "Wikimedia | NextAuth.js",
+      "description": "After registration, you can initally test your application only with your own Wikimedia account. You may have to wait several days for the ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/wordpress",
+      "title": "WordPress.com - NextAuth.js",
+      "description": "Wordpress Provider options. You can override any of the options to suit your own use case. Example​. import WordpressProvider from \"next-auth/ ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/workos",
+      "title": "WorkOS - NextAuth.js",
+      "description": "WorkOS is not an identity provider itself, but, rather, a bridge to multiple single sign-on (SSO) providers. As a result, we need to make ..."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/yandex",
+      "title": "Yandex - NextAuth.js",
+      "description": "The Yandex Provider comes with a set of default options: Yandex Provider options. You can override any of the options to suit your own use case."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/zitadel",
+      "title": "Zitadel - NextAuth.js",
+      "description": "ZITADEL also returns a email_verified boolean property in the profile. You can use this property to restrict access to people with verified accounts."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/zoho",
+      "title": "Zoho | NextAuth.js",
+      "description": "NextAuth.js is now part of Better Auth! NextAuth Logo. NextAuth.jsDocumentationTutorialsFAQSecurity · v4 · v4 · v3 · All Releases · npmGitHub."
+    },
+    {
+      "url": "https://next-auth.js.org/providers/zoom"
+    },
+    {
+      "url": "https://next-auth.js.org/security",
+      "title": "Security - NextAuth.js",
+      "description": "Security. Reporting a Vulnerability​. NextAuth.js practices responsible disclosure. We request that you contact us directly to report ..."
+    },
+    {
+      "url": "https://next-auth.js.org/tutorials",
+      "title": "Tutorials and Explainers - NextAuth.js",
+      "description": "This is an introductory video to NextAuth.js for beginners. In how to set up authentication in a few easy steps. This tutorial dives into the ..."
+    },
+    {
+      "url": "https://next-auth.js.org/tutorials/avoid-corporate-link-checking-email-provider"
+    },
+    {
+      "url": "https://next-auth.js.org/tutorials/corporate-proxy"
+    },
+    {
+      "url": "https://next-auth.js.org/tutorials/creating-a-database-adapter",
+      "title": "Create an adapter - NextAuth.js",
+      "description": "How to create an adapter​. For more information about creating an adapter, see this guide. See the code below for practical example. Example ..."
+    },
+    {
+      "url": "https://next-auth.js.org/tutorials/ldap-auth-example",
+      "title": "LDAP Authentication - NextAuth.js",
+      "description": "The idea is that once one is authenticated with the LDAP server, one can pass through both the username/DN and password to the JWT stored in the ..."
+    },
+    {
+      "url": "https://next-auth.js.org/tutorials/securing-pages-and-api-routes"
+    },
+    {
+      "url": "https://next-auth.js.org/tutorials/testing-with-cypress",
+      "title": "Testing with Cypress - NextAuth.js",
+      "description": "To test an implementation of NextAuth.js, we encourage you to use Cypress. Setting up Cypress​. To get started, install the dependencies: npm ..."
+    },
+    {
+      "url": "https://next-auth.js.org/tutorials/usage-with-class-components",
+      "title": "Usage with class components - NextAuth.js",
+      "description": "NextAuth.js is now part of Better Auth! NextAuth Logo. NextAuth.jsDocumentationTutorialsFAQSecurity · v4 · v4 · v3 · All Releases · npmGitHub."
+    },
+    {
+      "url": "https://next-auth.js.org/warnings",
+      "title": "Warnings - NextAuth.js",
+      "description": "This is a list of warning output from NextAuth.js. All warnings indicate things which you should take a look at, but do not inhibit normal ..."
+    }
+  ]
+}

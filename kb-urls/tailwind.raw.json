@@ -1,0 +1,685 @@
+{
+  "lib": "tailwind",
+  "root": "https://tailwindcss.com/docs",
+  "mappedAt": "2026-06-18T00:05:02.150Z",
+  "appliedIncludes": [
+    "/docs"
+  ],
+  "appliedExcludes": [
+    "/blog"
+  ],
+  "discoveredCount": 134,
+  "keptCount": 103,
+  "links": [
+    {
+      "url": "https://tailwindcss.com/docs/place-items",
+      "title": "place-items - Flexbox & Grid - Tailwind CSS",
+      "description": "Utilities for controlling how items are justified and aligned at the same time."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/backdrop-filter-sepia",
+      "title": "backdrop-filter: sepia() - Filters - Tailwind CSS",
+      "description": "Utilities for applying backdrop sepia filters to an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/text-overflow",
+      "title": "text-overflow - Typography - Tailwind CSS",
+      "description": "Utilities for controlling how the text of an element overflows."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/framework-guides/sveltekit",
+      "title": "Install Tailwind CSS with SvelteKit - Tailwind CSS",
+      "description": "Setting up Tailwind CSS in a SvelteKit project."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/font-family",
+      "title": "font-family - Typography - Tailwind CSS",
+      "description": "Utilities for controlling the font family of an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/width",
+      "title": "width - Sizing - Tailwind CSS",
+      "description": "Utilities for setting the width of an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/styling-with-utility-classes#/dashboard",
+      "title": "Styling with utility classes - Core concepts - Tailwind CSS",
+      "description": "Building complex components from a constrained set of primitive utilities."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/framework-guides/tanstack-start",
+      "title": "Install Tailwind CSS with TanStack Start - Tailwind CSS",
+      "description": "Setting up Tailwind CSS in a TanStack Start project."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/backdrop-filter",
+      "title": "backdrop-filter - Filters - Tailwind CSS",
+      "description": "Utilities for applying backdrop filters to an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/using-vite",
+      "title": "Installing Tailwind CSS with Vite - Tailwind CSS",
+      "description": "Installing Tailwind CSS as a Vite plugin is the most seamless way to integrate it with frameworks like Laravel, SvelteKit, React Router, Nuxt, and SolidJS."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/framework-guides/gatsby",
+      "title": "Install Tailwind CSS with Gatsby - Tailwind CSS",
+      "description": "Setting up Tailwind CSS in a Gatsby project."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/responsive-design",
+      "title": "Responsive design - Core concepts - Tailwind CSS",
+      "description": "Using responsive utility variants to build adaptive user interfaces."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/hover-focus-and-other-states#using-the-has-variant",
+      "title": "Hover, focus, and other states - Core concepts - Tailwind...",
+      "description": "Using utilities to style elements on hover, focus, and more."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/box-shadow",
+      "title": "box-shadow - Effects - Tailwind CSS",
+      "description": "Utilities for controlling the box shadow of an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/play-cdn",
+      "title": "Play CDN - Tailwind CSS",
+      "description": "Use the Play CDN to try Tailwind right in the browser without any build step."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/styling-with-utility-classes#/reports",
+      "title": "Styling with utility classes - Core concepts - Tailwind CSS",
+      "description": "Building complex components from a constrained set of primitive utilities."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/using-postcss",
+      "title": "Installing Tailwind CSS with PostCSS - Tailwind CSS",
+      "description": "Installing Tailwind CSS as a PostCSS plugin is the most seamless way to integrate it with frameworks like Next.js and Angular."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/framework-guides/laravel/vite",
+      "title": "Install Tailwind CSS with Laravel - Tailwind CSS",
+      "description": "Setting up Tailwind CSS in a Laravel project."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/dark-mode",
+      "title": "Dark mode - Core concepts - Tailwind CSS",
+      "description": "Using variants to style your site in dark mode."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/hover-focus-and-other-states",
+      "title": "Hover, focus, and other states - Core concepts - Tailwind...",
+      "description": "Using utilities to style elements on hover, focus, and more."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/framework-guides/angular",
+      "title": "Install Tailwind CSS with Angular - Tailwind CSS",
+      "description": "Setting up Tailwind CSS in an Angular project."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/tailwind-cli",
+      "title": "Tailwind CLI - Tailwind CSS",
+      "description": "The simplest and fastest way to get up and running with Tailwind CSS from scratch is with the Tailwind CLI tool."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/framework-guides/laravel/mix",
+      "title": "Install Tailwind CSS with Laravel - Tailwind CSS",
+      "description": "Setting up Tailwind CSS in a Laravel project."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/styling-with-utility-classes#/team",
+      "title": "Styling with utility classes - Core concepts - Tailwind CSS",
+      "description": "Building complex components from a constrained set of primitive utilities."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/framework-guides/nuxt",
+      "title": "Install Tailwind CSS with Nuxt - Tailwind CSS",
+      "description": "Setting up Tailwind CSS in a Nuxt project."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/transition-property",
+      "title": "transition-property - Transitions & Animation - Tailwind CSS",
+      "description": "Utilities for controlling which CSS properties transition."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/framework-guides/nextjs",
+      "title": "Install Tailwind CSS with Next.js - Tailwind CSS",
+      "description": "Setting up Tailwind CSS in a Next.js project."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/styling-with-utility-classes#/projects",
+      "title": "Styling with utility classes - Core concepts - Tailwind CSS",
+      "description": "Building complex components from a constrained set of primitive utilities."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/colors",
+      "title": "Colors - Core concepts - Tailwind CSS",
+      "description": "Using and customizing the color palette in Tailwind CSS projects."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/padding",
+      "title": "padding - Spacing - Tailwind CSS",
+      "description": "Utilities for controlling an element's padding."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/font-size",
+      "title": "font-size - Typography - Tailwind CSS",
+      "description": "Utilities for controlling the font size of an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/theme",
+      "title": "Theme variables - Core concepts - Tailwind CSS",
+      "description": "Using utility classes as an API for your design tokens."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/upgrade-guide",
+      "title": "Upgrade guide - Getting started - Tailwind CSS",
+      "description": "Upgrading your Tailwind CSS projects from v3 to v4."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/framework-guides/react-router",
+      "title": "Install Tailwind CSS with React Router - Tailwind CSS",
+      "description": "Setting up Tailwind CSS in a React Router project."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/background-image#setting-gradient-color-stops",
+      "title": "background-image - Backgrounds - Tailwind CSS",
+      "description": "Utilities for controlling an element's background image."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/upgrade-guide#removed-deprecated-config-options",
+      "title": "Upgrade guide - Getting started - Tailwind CSS",
+      "description": "Upgrading your Tailwind CSS projects from v3 to v4."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/preflight",
+      "title": "Preflight - Base styles - Tailwind CSS",
+      "description": "An opinionated set of base styles for Tailwind projects."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/framework-guides/solidjs",
+      "title": "Install Tailwind CSS with SolidJS - Tailwind CSS",
+      "description": "Setting up Tailwind CSS in a SolidJS project."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/styling-with-utility-classes",
+      "title": "Styling with utility classes - Core concepts - Tailwind CSS",
+      "description": "Building complex components from a constrained set of primitive utilities."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/framework-guides/ruby-on-rails",
+      "title": "Install Tailwind CSS with Ruby on Rails - Tailwind CSS",
+      "description": "Setting up Tailwind CSS in Ruby on Rails v8+ project."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/backdrop-filter-blur",
+      "title": "backdrop-filter: blur() - Filters - Tailwind CSS",
+      "description": "Utilities for applying backdrop blur filters to an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/functions-and-directives",
+      "title": "Functions and directives - Core concepts - Tailwind CSS",
+      "description": "A reference for the custom functions and directives Tailwind exposes to your CSS."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/animation",
+      "title": "animation - Transitions & Animation - Tailwind CSS",
+      "description": "Utilities for animating elements with CSS animations."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/detecting-classes-in-source-files",
+      "title": "Detecting classes in source files - Core concepts - Tailw...",
+      "description": "Understanding and customizing how Tailwind scans your source files."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/background-color",
+      "title": "background-color - Backgrounds - Tailwind CSS",
+      "description": "Utilities for controlling an element's background color."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/framework-guides",
+      "title": "Framework guides - Tailwind CSS",
+      "description": "Framework-specific guides that cover our recommended approach to installing Tailwind CSS in a number of popular environments."
+    },
+    {
+      "url": "https://tailwindcss.com/docs",
+      "title": "Installing Tailwind CSS with Vite",
+      "description": "Get started with Tailwind CSS. Tailwind CSS works by scanning all of your HTML files, JavaScript components, and any other templates for class names, generating ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/columns",
+      "title": "columns - Layout - Tailwind CSS",
+      "description": "Utilities for controlling the number of columns within an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/margin",
+      "title": "margin - Spacing - Tailwind CSS",
+      "description": "The space utilities are really just a shortcut for adding margin to all-but-the-last-item in a group, and aren't designed to handle complex cases like grids, ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/content",
+      "title": "content - Typography - Tailwind CSS",
+      "description": "Use the content-[ <value> ] syntax, along with the before and after variants, to set the contents of the ::before and ::after pseudo-elements."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/order",
+      "title": "order - Flexbox & Grid - Tailwind CSS",
+      "description": "Utilities for controlling the order of flex and grid items."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/clear",
+      "title": "clear - Layout - Tailwind CSS",
+      "description": "Utilities for controlling the wrapping of content around an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/color",
+      "title": "color - Typography - Tailwind CSS",
+      "description": "Use the color opacity modifier to control the text color opacity of an element: The quick brown fox jumps over the lazy dog. The quick brown fox jumps ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/skew",
+      "title": "skew - Transforms - Tailwind CSS",
+      "description": "Utilities for skewing elements with transform. Examples Basic example Use skew- <number> utilities like skew-4 and skew-10 to skew an element on both axes."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/visibility",
+      "title": "visibility - Layout - Tailwind CSS",
+      "description": "Utilities for controlling the visibility of an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/compatibility",
+      "title": "Compatibility - Getting started - Tailwind CSS",
+      "description": "Tailwind CSS v4.0 is a full-featured CSS build tool designed for a specific workflow, and is not designed to be used with CSS preprocessors like Sass, Less, or ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/flex",
+      "title": "flex - Flexbox & Grid - Tailwind CSS",
+      "description": "Utilities for controlling how flex items both grow and shrink."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/stroke",
+      "title": "stroke - SVG - Tailwind CSS",
+      "description": "SVG. stroke. Utilities for styling the stroke of SVG elements. Class, Styles. stroke-none. stroke: none;. stroke-inherit. stroke: inherit;. stroke-current."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/opacity",
+      "title": "opacity - Effects - Tailwind CSS",
+      "description": "Utilities for controlling the opacity of an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/display",
+      "title": "display - Layout - Tailwind CSS",
+      "description": "Utilities for controlling the display box type of an element. Show more Examples Block and Inline Use the inline, inline-block, and block utilities to control ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/gap",
+      "title": "gap - Flexbox & Grid - Tailwind CSS",
+      "description": "Utilities for controlling gutters between grid and flexbox items."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/fill",
+      "title": "fill - SVG - Tailwind CSS",
+      "description": "Use the fill-current utility to set the fill color to the current text color. Hover over the button to see the fill color change."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/grid-row",
+      "title": "grid-row - Flexbox & Grid - Tailwind CSS",
+      "description": "Utilities for controlling how elements are sized and placed across grid rows."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/mask-origin",
+      "title": "mask-origin - Effects - Tailwind CSS",
+      "description": "Utilities for controlling how an element's mask image is positioned relative to borders, padding, and content."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/break-after",
+      "title": "break-after - Layout - Tailwind CSS",
+      "description": "Utilities for controlling how a column or page should break after an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/word-break",
+      "title": "word-break - Typography - Tailwind CSS",
+      "description": "Use the break-all utility to add line breaks whenever necessary, without trying to preserve whole words: The longest word in any of the major English language ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/filter-grayscale",
+      "title": "filter: grayscale() - Tailwind CSS",
+      "description": "Utilities for applying grayscale filters to an element."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/animation",
+      "title": "Animation - Tailwind CSS",
+      "description": "Utilities for animating elements with CSS animations."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/break-inside",
+      "title": "break-inside - Layout - Tailwind CSS",
+      "description": "Utilities for controlling how a column or page should break within an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/block-size",
+      "title": "block-size - Tailwind CSS",
+      "description": "Utilities for setting the block size of an element."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/cursor",
+      "title": "Cursor - Tailwind CSS",
+      "description": "Use the cursor-* utilities to control which cursor is displayed when hovering over an element. Hover over each button to see the cursor change. Submit Saving."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/break-before",
+      "title": "break-before - Layout - Tailwind CSS",
+      "description": "Utilities for controlling how a column or page should break before an element."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/space",
+      "title": "Space Between - Tailwind CSS",
+      "description": "Utilities for controlling the space between child elements."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/clear",
+      "title": "Clear - Tailwind CSS",
+      "description": "Use the clear-left utility to position an element below any preceding left-floated elements. Maybe we can live without libraries, people like you and me ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/background-attachment",
+      "title": "background-attachment - Tailwind CSS",
+      "description": "Utilities for controlling how a background image behaves when scrolling."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/font-weight",
+      "title": "font-weight - Typography - Tailwind CSS",
+      "description": "Utilities for controlling the font weight of an element. Examples Basic example Use utilities like font-thin and font-bold to set the font weight of an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/filter-contrast",
+      "title": "filter: contrast() - Tailwind CSS",
+      "description": "Utilities for applying contrast filters to an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/mask-size",
+      "title": "mask-size - Effects - Tailwind CSS",
+      "description": "This is just a shorthand for mask-size-[var( <custom-property> )] that adds the var() function for you automatically."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/scroll-margin",
+      "title": "scroll-margin - Interactivity - Tailwind CSS",
+      "description": "Utilities for controlling the scroll offset around items in a snap container."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/saturate",
+      "title": "Saturate - Tailwind CSS",
+      "description": "Utilities for applying saturation filters to an element."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/blur",
+      "title": "Blur - Tailwind CSS",
+      "description": "Utilities for applying blur filters to an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/flex-direction",
+      "title": "flex-direction - Flexbox & Grid - Tailwind CSS",
+      "description": "Flexbox & Grid. flex-direction. Utilities for controlling the direction of flex items. Class, Styles. flex-row. flex-direction: row;. flex-row-reverse."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/min-height",
+      "title": "min-height - Sizing - Tailwind CSS",
+      "description": "Utilities for setting the minimum height of an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/caret-color",
+      "title": "caret-color - Interactivity - Tailwind CSS",
+      "description": "Interactivity. caret-color. Utilities for controlling the color of the text input cursor. Class, Styles. caret-inherit. caret-color: inherit;. caret-current."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/translate",
+      "title": "Translate - Tailwind CSS",
+      "description": "Utilities for translating elements with transform."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/user-select",
+      "title": "user-select - Interactivity - Tailwind CSS",
+      "description": "Utilities for controlling whether the user can select text in an element."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/display",
+      "title": "Display - Tailwind CSS",
+      "description": "Utilities for controlling the display box type of an element. Show all classes Basic usage Block & Inline Use the inline, inline-block, and block utilities to ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/align-self",
+      "title": "align-self - Flexbox & Grid - Tailwind CSS",
+      "description": "This is useful for ensuring that text items align with each other, even if they have different heights. Responsive design. Prefix an align-self utility with a ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/outline-style",
+      "title": "outline-style - Borders - Tailwind CSS",
+      "description": "Utilities for controlling the style of an element's outline."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/whitespace",
+      "title": "Whitespace - Tailwind CSS",
+      "description": "Utilities for controlling an element's white-space property."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/object-fit",
+      "title": "object-fit - Layout - Tailwind CSS",
+      "description": "Utilities for controlling how a replaced element's content should be resized."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/content",
+      "title": "Content - Tailwind CSS",
+      "description": "Use the content-* utilities along with the before and after variant modifiers to set the contents of the ::before and ::after pseudo-elements."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/guides/sveltekit",
+      "title": "Install Tailwind CSS with SvelteKit",
+      "description": "Start using Tailwind's utility classes to style your content, making sure to import your Tailwind CSS theme for any <style> blocks that need to be processed by ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/color-scheme",
+      "title": "color-scheme - Interactivity - Tailwind CSS",
+      "description": "Utilities for controlling the color scheme of an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/max-height",
+      "title": "max-height - Sizing - Tailwind CSS",
+      "description": "Utilities for setting the maximum height of an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/guides/laravel",
+      "title": "Install Tailwind CSS with Laravel",
+      "description": "Create your project. Start by creating a new Laravel project if you don't have one set up already. The most common approach is to use the Laravel installer."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/guides/angular",
+      "title": "Install Tailwind CSS with Angular",
+      "description": "Start by creating a new Angular project if you don't have one set up already. The most common approach is to use Angular CLI."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/guides/symfony",
+      "title": "Install Tailwind CSS with Symfony",
+      "description": "Start using Tailwind in your project. Make sure your compiled CSS is included in the <head> then start using Tailwind's utility classes to style your content."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/background-origin",
+      "title": "background-origin - Tailwind CSS",
+      "description": "Utilities for controlling how an element's background is positioned relative to borders, padding, and content."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/brightness",
+      "title": "Brightness - Tailwind CSS",
+      "description": "Utilities for applying brightness filters to an element."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/theme",
+      "title": "Theme Configuration - Tailwind CSS",
+      "description": "The theme() function attempts to find the value you are looking for from the fully merged theme object, so it can reference your own customizations as well as ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/justify-content",
+      "title": "justify-content - Flexbox & Grid - Tailwind CSS",
+      "description": "Utilities for controlling how flex and grid items are positioned along a container's main axis."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/transform-origin",
+      "title": "transform-origin - Tailwind CSS",
+      "description": "Utilities for specifying the origin for an element's transformations. Examples Basic example Use utilities like origin-top and origin-bottom-left to set an ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/backface-visibility",
+      "title": "backface-visibility - Transforms - Tailwind CSS",
+      "description": "Utilities for controlling if an element's backface is visible."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/transform-style",
+      "title": "transform-style - Tailwind CSS",
+      "description": "Utilities for controlling if an elements children are placed in 3D space. Examples Basic example Use transform-3d to position children in 3D space."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/scale",
+      "title": "Scale - Tailwind CSS",
+      "description": "Utilities for scaling elements with transform."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/editor-setup",
+      "title": "Editor setup - Getting started - Tailwind CSS",
+      "description": "Tooling to improve the developer experience when working with Tailwind CSS."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/place-self",
+      "title": "place-self - Flexbox & Grid - Tailwind CSS",
+      "description": "Utilities for controlling how an individual item is justified and aligned at the same time."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/stroke",
+      "title": "Stroke - Tailwind CSS",
+      "description": "Utilities for styling the stroke of SVG elements."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/mask-repeat",
+      "title": "mask-repeat - Effects - Tailwind CSS",
+      "description": "Utilities for controlling the repetition of an element's mask image."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/mask-position",
+      "title": "mask-position - Effects - Tailwind CSS",
+      "description": "Utilities for controlling the position of an element's mask image."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/customizing-colors",
+      "title": "Colors - Core concepts - Tailwind CSS",
+      "description": "Using and customizing the color palette in Tailwind CSS projects."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/fill",
+      "title": "Fill - Tailwind CSS",
+      "description": "Utilities for styling the fill of SVG elements. Basic usage Setting the fill color Use the fill-* utilities to change the fill color of an SVG."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/border-spacing",
+      "title": "border-spacing - Tables - Tailwind CSS",
+      "description": "Utilities for controlling the spacing between table borders."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/scrollbar-width",
+      "title": "scrollbar-width - Interactivity - Tailwind CSS",
+      "description": "The Cerulean Archives occupy three narrow floors above the old observatory, each lined with drawers of star maps, expedition notes, and brass instruments ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/align-content",
+      "title": "align-content - Flexbox & Grid - Tailwind CSS",
+      "description": "Use content-between to distribute rows in a container such that there is an equal amount of space between each line."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/width",
+      "title": "Width - Tailwind CSS",
+      "description": "Utilities for setting the width of an element."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/appearance",
+      "title": "Appearance - Tailwind CSS - TailwindCSS v3",
+      "description": "Utilities for suppressing native form control styling."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/scrollbar-color",
+      "title": "scrollbar-color - Interactivity - Tailwind CSS",
+      "description": "Utilities for controlling the color of an element's scrollbar."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/outline-offset",
+      "title": "outline-offset - Borders - Tailwind CSS",
+      "description": "Utilities for controlling the offset of an element's outline. Examples Basic example Use utilities like outline-offset-2 and outline-offset-4 to change the ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/z-index",
+      "title": "z-index - Layout - Tailwind CSS",
+      "description": "Utilities for controlling the stack order of an element."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/preflight",
+      "title": "Preflight - Tailwind CSS",
+      "description": "Preflight removes all of the default margins from elements like headings, blockquotes, paragraphs, etc. blockquote, dl, dd, h1, h2, h3, ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/border-width",
+      "title": "border-width - Tailwind CSS",
+      "description": "Utilities for controlling the width of an element's borders."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/skew",
+      "title": "Skew - Tailwind CSS",
+      "description": "Utilities for skewing elements with transform."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/text-shadow",
+      "title": "text-shadow - Effects - Tailwind CSS",
+      "description": "The default text shadow opacities are quite low (20% or less), so increasing the opacity (to like 50%) will make the text shadows more pronounced."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/sepia",
+      "title": "Sepia - Tailwind CSS",
+      "description": "Tailwind lets you conditionally apply utility classes in different states using variant modifiers. For example, use hover:sepia-0 to only apply the sepia-0 ..."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/text-wrap",
+      "title": "text-wrap - Typography - Tailwind CSS",
+      "description": "Use the text-wrap utility to wrap overflowing text onto multiple lines at logical points in the text."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/rotate",
+      "title": "Rotate - Tailwind CSS",
+      "description": "Utilities for rotating elements with transform."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/forced-color-adjust",
+      "title": "forced-color-adjust - Accessibility - Tailwind CSS",
+      "description": "Utilities for opting in and out of forced colors."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/font-smoothing",
+      "title": "Font Smoothing - Tailwind CSS",
+      "description": "Utilities for controlling the font smoothing of an element."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/backdrop-filter-contrast",
+      "title": "backdrop-filter: contrast() - Tailwind CSS",
+      "description": "Utilities for applying backdrop contrast filters to an element. Class, Styles. backdrop-contrast- <number>. backdrop-filter: contrast( <number> %);."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/guides/sveltekit",
+      "title": "Install Tailwind CSS with SvelteKit",
+      "description": "Start by creating a new SvelteKit project if you don't have one set up already. The most common approach is outlined in the Getting Started with SvelteKit ..."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/backdrop-saturate",
+      "title": "Backdrop Saturate - Tailwind CSS",
+      "description": "If you need to use a one-off backdrop-saturate value that doesn't make sense to include in your theme, use square brackets to generate a property on the fly ..."
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/stroke-width",
+      "title": "Stroke Width - Tailwind CSS",
+      "description": "​ Hover, focus, and other states. Tailwind lets you conditionally apply utility classes in different states using variant modifiers. For example, use hover: ..."
+    }
+  ]
+}

@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "kb:integrity": "tsx --env-file=.env.local scripts/kb-integrity.ts",
-    "kb:eval": "tsx --env-file=.env.local scripts/kb-retrieval-eval.ts"
+    "kb:eval": "tsx --env-file=.env.local scripts/kb-retrieval-eval.ts",
+    "kb:map": "tsx --env-file=.env.local scripts/kb-map.ts",
+    "kb:ingest": "tsx --env-file=.env.local scripts/kb-ingest.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^3.0.64",

@@ -1,0 +1,4 @@
+https://tanstack.com/query/latest/docs/eslint/no-rest-destructuring
+https://tanstack.com/query/latest/docs/framework/react/guides/important-defaults
+https://tanstack.com/query/latest/docs/framework/react/guides/infinite-queries
+https://tanstack.com/query/latest/docs/framework/react/guides/initial-query-data
