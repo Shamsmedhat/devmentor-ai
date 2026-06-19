@@ -86,6 +86,141 @@
   },
 
   {
+    "id": "en-covered-zod-refine",
+    "question": "How do I use .refine() in Zod to add a custom validation rule?",
+    "lang": "en",
+    "topic": "zod refine",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-zod-infer",
+    "question": "How do I infer a TypeScript type from a Zod schema using z.infer?",
+    "lang": "en",
+    "topic": "zod z.infer",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-tailwind-darkmode",
+    "question": "How do I enable and use dark mode with the dark: variant in Tailwind CSS?",
+    "lang": "en",
+    "topic": "tailwind dark mode",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-tailwind-responsive",
+    "question": "How do responsive breakpoint prefixes like md: and lg: work in Tailwind?",
+    "lang": "en",
+    "topic": "tailwind responsive",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-shadcn-form",
+    "question": "How do I build a form with the shadcn/ui Form component and React Hook Form?",
+    "lang": "en",
+    "topic": "shadcn form",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-shadcn-cli",
+    "question": "How do I add a new component to my project using the shadcn CLI?",
+    "lang": "en",
+    "topic": "shadcn add component",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-rhf-usefieldarray",
+    "question": "How do I use useFieldArray in React Hook Form for dynamic field lists?",
+    "lang": "en",
+    "topic": "react-hook-form useFieldArray",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-rhf-useform",
+    "question": "How do I register inputs and handle submit with useForm in React Hook Form?",
+    "lang": "en",
+    "topic": "react-hook-form useForm",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-nextintl-routing",
+    "question": "How do I set up localized routing and navigation with next-intl?",
+    "lang": "en",
+    "topic": "next-intl routing",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-nextintl-usetranslations",
+    "question": "How do I read messages with the useTranslations hook in next-intl?",
+    "lang": "en",
+    "topic": "next-intl useTranslations",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-tanstack-usemutation",
+    "question": "How do I use useMutation in TanStack Query to perform a create or update?",
+    "lang": "en",
+    "topic": "tanstack-query useMutation",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-tanstack-usequery",
+    "question": "How do I fetch and cache data with useQuery in TanStack Query?",
+    "lang": "en",
+    "topic": "tanstack-query useQuery",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-ts-generics",
+    "question": "How do generics work in TypeScript and how do I write a generic function?",
+    "lang": "en",
+    "topic": "typescript generics",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-ts-utility-types",
+    "question": "What do the Partial and Pick utility types do in TypeScript?",
+    "lang": "en",
+    "topic": "typescript utility types",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-nextauth-credentials",
+    "question": "How do I configure the Credentials provider for email and password in NextAuth?",
+    "lang": "en",
+    "topic": "nextauth credentials provider",
+    "type": "covered"
+  },
+  {
+    "id": "en-covered-nextauth-session",
+    "question": "How do I get the current user session in NextAuth on the server?",
+    "lang": "en",
+    "topic": "nextauth session",
+    "type": "covered"
+  },
+
+  {
+    "id": "ar-covered-zod-refine",
+    "question": "ازاي أستخدم refine في Zod عشان أضيف custom validation rule؟",
+    "lang": "ar",
+    "topic": "zod refine",
+    "type": "covered"
+  },
+  {
+    "id": "ar-covered-tanstack-usemutation",
+    "question": "ازاي أستخدم useMutation في TanStack Query عشان أعمل create أو update؟",
+    "lang": "ar",
+    "topic": "tanstack-query useMutation",
+    "type": "covered"
+  },
+  {
+    "id": "ar-covered-tailwind-darkmode",
+    "question": "ازاي أفعّل dark mode وأستخدم الـ dark: variant في Tailwind؟",
+    "lang": "ar",
+    "topic": "tailwind dark mode",
+    "type": "covered"
+  },
+
+  {
     "id": "en-deep-react-lazy",
     "question": "What is the function signature of React.lazy and what does it return?",
     "lang": "en",
@@ -140,6 +275,27 @@
     "question": "كم سعر سهم Apple النهارده في البورصة؟",
     "lang": "ar",
     "topic": "finance",
+    "type": "control"
+  },
+  {
+    "id": "en-control-pour-over-coffee",
+    "question": "What's the best water temperature for brewing pour-over coffee?",
+    "lang": "en",
+    "topic": "cooking",
+    "type": "control"
+  },
+  {
+    "id": "en-control-solar-system",
+    "question": "How many planets are there in the solar system?",
+    "lang": "en",
+    "topic": "astronomy",
+    "type": "control"
+  },
+  {
+    "id": "ar-control-tomatoes",
+    "question": "ازاي أزرع الطماطم في البلكونة في الصيف؟",
+    "lang": "ar",
+    "topic": "gardening",
     "type": "control"
   }
 ]

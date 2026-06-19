@@ -1,8 +1,8 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { redirect } from "next/navigation";
 
+import ChatInstance from "@/components/features/chat/chat-section/chat-instance";
 import ChatTitleSync from "@/components/features/chat/chat-section/chat-title-sync";
-import RAGChatBot from "@/components/features/chat/chat-section/rag-chatbot";
 import { getChatMessages, getChatSession } from "@/lib/services/chat.service";
 import type { ChatUIMessage } from "@/lib/types/chat";
 import { getServerSupabaseAuth } from "@/lib/utils/auth/auth-server-guard";
@@ -59,8 +59,7 @@ export default async function ChatPage({ params }: Props) {
   return (
     <>
       <ChatTitleSync title={initialTitle} />
-      <RAGChatBot
-        key={sessionId ?? "new"}
+      <ChatInstance
         sessionId={sessionId}
         initialMessages={initialMessages}
       />

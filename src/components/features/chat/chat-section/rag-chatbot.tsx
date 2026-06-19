@@ -29,10 +29,7 @@ import {
   PromptInputTools,
 } from "@/components/ai-elements/prompt-input";
 
-import {
-  Suggestion,
-  Suggestions,
-} from "@/components/ai-elements/suggestion";
+import { Suggestion, Suggestions } from "@/components/ai-elements/suggestion";
 
 import { useChatPersistence } from "@/hooks/chat/use-chat-persistence";
 import { useChatUi } from "@/lib/context/chat-ui.context";
@@ -81,9 +78,7 @@ export default function RAGChatBot({
     // On finish, persist the assistant message.
     onFinish: ({ message }) => {
       if (message.role !== "assistant") return;
-      // Stopped before any renderable part - nothing worth persisting.
-      // Intentionally shares the typing-indicator helper so the two
-      // definitions of "has visible content" never fork.
+
       if (!messageHasStreamingAssistantActivity(message)) return;
       void persistAssistantMessage(message).catch((persistErr) => {
         console.error(persistErr);
@@ -112,7 +107,9 @@ export default function RAGChatBot({
   const showInsights =
     lastMessage?.role === "assistant" &&
     Boolean(
-      lastUsage?.inputTokens || lastUsage?.outputTokens || lastUsage?.totalTokens,
+      lastUsage?.inputTokens ||
+      lastUsage?.outputTokens ||
+      lastUsage?.totalTokens,
     );
 
   // Functions

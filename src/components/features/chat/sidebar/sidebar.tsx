@@ -20,7 +20,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Badge } from "@/components/ui/badge";
-import BrandMark from "@/components/shared/brand-mark";
+import { useChatUi } from "@/lib/context/chat-ui.context";
 import { useChatSessionsRealtime } from "@/hooks/chat/use-chat-sessions-realtime";
 import { Link, useRouter } from "@/i18n/navigation";
 import type { ChatSession } from "@/lib/types/chat";
@@ -50,6 +50,9 @@ export function ChatSidebar({ user, initialSessions }: ChatSidebarProps) {
   // Sidebar (mobile sheet close)
   const { setOpenMobile } = useSidebar();
 
+  // Context
+  const { startNewChat } = useChatUi();
+
   // Variables
   const userId = user.id;
   const initials = (user.email ?? "DM").slice(0, 2).toUpperCase();
@@ -71,6 +74,9 @@ export function ChatSidebar({ user, initialSessions }: ChatSidebarProps) {
   }
 
   function handleNewChat() {
+    // Bump the instance key first so the chat resets even when router.push is a
+    // no-op (URL/router desync after the first message's history.replaceState).
+    startNewChat();
     router.push(buildChatPath(null));
     setOpenMobile(false);
   }

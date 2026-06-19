@@ -16,6 +16,8 @@ interface ChatUiContextValue {
   setCurrentTitle: (title: string) => void;
   isArabicResponse: boolean;
   setIsArabicResponse: (isArabicResponse: boolean) => void;
+  chatInstanceKey: number;
+  startNewChat: () => void;
 }
 
 const ChatUiContext = createContext<ChatUiContextValue | null>(null);
@@ -28,6 +30,17 @@ export function ChatUiProvider({
   const [currentTitle, setCurrentTitle] = useState<string>(initialTitle);
   const [isArabicResponse, setIsArabicResponse] = useState<boolean>(false);
 
+  // Bumped on New Chat to force a fresh RAGChatBot mount even when the route
+  // navigation is a no-op (URL/router desync after history.replaceState).
+  const [chatInstanceKey, setChatInstanceKey] = useState<number>(0);
+
+  // Functions
+  function startNewChat() {
+    setChatInstanceKey((key) => key + 1);
+    setCurrentTitle(DEFAULT_CHAT_TITLE);
+    setIsArabicResponse(false);
+  }
+
   return (
     <ChatUiContext.Provider
       value={{
@@ -35,6 +48,8 @@ export function ChatUiProvider({
         setCurrentTitle,
         isArabicResponse,
         setIsArabicResponse,
+        chatInstanceKey,
+        startNewChat,
       }}
     >
       {children}

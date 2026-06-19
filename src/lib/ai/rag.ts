@@ -1,5 +1,5 @@
-import { getLatestUserMessageText } from "@/lib/ai/helpers";
 import { MENTOR_SYSTEM_PROMPT, RAG_SYSTEM_PROMPT } from "@/lib/ai/prompts";
+import { rewriteToStandaloneQuery } from "@/lib/ai/query-rewrite";
 import {
   searchKnowledgeBase,
   type KnowledgeBaseSearchResult,
@@ -25,7 +25,7 @@ export type RagResult = {
 export async function buildRagSystemPrompt(
   messages: ChatUIMessage[],
 ): Promise<RagResult> {
-  const query = getLatestUserMessageText(messages);
+  const query = await rewriteToStandaloneQuery(messages);
   if (!query) return { system: MENTOR_SYSTEM_PROMPT, sources: [] };
 
   let results: KnowledgeBaseSearchResult[];
