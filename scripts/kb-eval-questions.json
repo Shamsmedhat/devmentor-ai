@@ -1,301 +1,252 @@
 [
   {
-    "id": "en-covered-usestate",
+    "id": "ar-sprints-elevate",
+    "question": "تعرف اية عن السبرنتات في ايليفيت",
+    "lang": "ar",
+    "topic": "sprints overview",
+    "type": "covered",
+    "expected": ["rose-app-overview"]
+  },
+  {
+    "id": "ar-sprint-1",
+    "question": "طيب اية السبرنت الاول ؟",
+    "lang": "ar",
+    "topic": "sprint 1",
+    "type": "covered",
+    "expected": [
+      "rose-app-overview",
+      "nra-sprint-1-project-setup",
+      "nra-sprint-1-input",
+      "nra-sprint-1-combobox-select-menu"
+    ]
+  },
+  {
+    "id": "ar-dropdown-task",
+    "question": "ازاي اعمل ال Dropdown في السبرنت الاول والتاسك دي عبارة عن اية بالظبط ؟",
+    "lang": "ar",
+    "topic": "combobox task",
+    "type": "covered",
+    "expected": ["nra-sprint-1-combobox-select-menu", "rose-app-component-combobox"]
+  },
+  {
+    "id": "en-sprint-1-tasks",
+    "question": "What are the tasks in Rose App Sprint 1?",
+    "lang": "en",
+    "topic": "sprint 1",
+    "type": "covered",
+    "expected": [
+      "rose-app-overview",
+      "nra-sprint-1-project-setup",
+      "nra-sprint-1-input",
+      "nra-sprint-1-combobox-select-menu"
+    ]
+  },
+  {
+    "id": "en-elevate-sprints",
+    "question": "How do sprints work at Elevate?",
+    "lang": "en",
+    "topic": "sprints overview",
+    "type": "covered",
+    "expected": ["rose-app-overview"]
+  },
+  {
+    "id": "ar-weekly-schedule",
+    "question": "ايه جدول الأسبوع في السبرنت؟ الديمو بيبقى امتى؟",
+    "lang": "ar",
+    "topic": "weekly schedule",
+    "type": "covered",
+    "expected": ["rose-app-overview"]
+  },
+  {
+    "id": "en-jira-states",
+    "question": "What are the Jira board states a task moves through?",
+    "lang": "en",
+    "topic": "jira workflow",
+    "type": "covered",
+    "expected": ["rose-app-overview"]
+  },
+  {
+    "id": "ar-who-to-ask",
+    "question": "لو عندي سؤال في التاسك اسأل مين؟",
+    "lang": "ar",
+    "topic": "escalation",
+    "type": "covered",
+    "expected": ["rose-app-overview"]
+  },
+  {
+    "id": "ar-input-task",
+    "question": "تاسك الـ Input component مطلوب فيه ايه؟",
+    "lang": "ar",
+    "topic": "input task",
+    "type": "covered",
+    "expected": ["nra-sprint-1-input", "rose-app-component-input"]
+  },
+  {
+    "id": "en-input-otp-password",
+    "question": "Does the Input task include an OTP input and a password visibility toggle?",
+    "lang": "en",
+    "topic": "input task",
+    "type": "covered",
+    "expected": ["nra-sprint-1-input", "rose-app-component-input"]
+  },
+  {
+    "id": "ar-project-setup",
+    "question": "ايه المطلوب في تاسك تجهيز الريبو والمشروع؟",
+    "lang": "ar",
+    "topic": "project setup task",
+    "type": "covered",
+    "expected": ["nra-sprint-1-project-setup"]
+  },
+  {
+    "id": "en-fonts",
+    "question": "Which fonts should the Rose App use for English and Arabic?",
+    "lang": "en",
+    "topic": "typography",
+    "type": "covered",
+    "expected": ["nra-sprint-1-project-setup", "rose-app-design-tokens"]
+  },
+  {
+    "id": "ar-combobox-search",
+    "question": "البحث في الكومبوبوكس لازم يكون case-insensitive؟",
+    "lang": "ar",
+    "topic": "combobox task",
+    "type": "covered",
+    "expected": ["nra-sprint-1-combobox-select-menu", "rose-app-component-combobox"]
+  },
+  {
+    "id": "en-menu-component",
+    "question": "What does the Menu component need to support in Sprint 1?",
+    "lang": "en",
+    "topic": "menu task",
+    "type": "covered",
+    "expected": ["nra-sprint-1-combobox-select-menu"]
+  },
+  {
+    "id": "en-primary-color",
+    "question": "What is the primary brand color in the Rose App design system?",
+    "lang": "en",
+    "topic": "design tokens",
+    "type": "covered",
+    "expected": ["rose-app-design-tokens", "rose-app-color-primitives"]
+  },
+  {
+    "id": "ar-error-color",
+    "question": "ايه اللون اللي استخدمه لحالة الـ error في الـ input؟",
+    "lang": "ar",
+    "topic": "design tokens",
+    "type": "covered",
+    "expected": ["rose-app-design-tokens", "rose-app-component-input"]
+  },
+  {
+    "id": "en-button-variants",
+    "question": "What button variants does the Rose App design system have?",
+    "lang": "en",
+    "topic": "button component",
+    "type": "covered",
+    "expected": ["rose-app-component-button"]
+  },
+  {
+    "id": "ar-toast-variants",
+    "question": "الـ Toast في Rose App فيه كام variant؟",
+    "lang": "ar",
+    "topic": "toast component",
+    "type": "covered",
+    "expected": ["rose-app-component-toast"]
+  },
+  {
+    "id": "ar-badge",
+    "question": "الـ Badge شكله ايه في الديزاين؟",
+    "lang": "ar",
+    "topic": "badge component",
+    "type": "covered",
+    "expected": ["rose-app-component-badge"]
+  },
+  {
+    "id": "ar-rules-ai-tools",
+    "question": "ينفع استخدم أدوات الذكاء الاصطناعي في التاسك؟",
+    "lang": "ar",
+    "topic": "team rules",
+    "type": "covered",
+    "expected": ["ضوابط الفِرَق.pdf"]
+  },
+  {
+    "id": "ar-rules-min-grade",
+    "question": "الدرجة الصغرى عشان آخد شهادة الدبلومة كام؟",
+    "lang": "ar",
+    "topic": "team rules",
+    "type": "covered",
+    "expected": ["ضوابط الفِرَق.pdf"]
+  },
+  {
+    "id": "ar-rules-late-task",
+    "question": "لو مخلصتش التاسك في معادها ايه اللي بيحصل؟",
+    "lang": "ar",
+    "topic": "team rules",
+    "type": "covered",
+    "expected": ["ضوابط الفِرَق.pdf"]
+  },
+  {
+    "id": "en-rules-excuse",
+    "question": "How early do I need to submit an excuse before missing a standup?",
+    "lang": "en",
+    "topic": "team rules",
+    "type": "covered",
+    "expected": ["ضوابط الفِرَق.pdf"]
+  },
+  {
+    "id": "en-control-usestate",
     "question": "What does useState do in React and when should I use it?",
     "lang": "en",
-    "topic": "useState",
-    "type": "covered"
+    "topic": "control - general React",
+    "type": "control"
   },
   {
-    "id": "en-covered-useeffect",
+    "id": "en-control-useeffect",
     "question": "How does useEffect run on mount and on dependency change?",
     "lang": "en",
-    "topic": "useEffect",
-    "type": "covered"
+    "topic": "control - general React",
+    "type": "control"
   },
   {
-    "id": "en-covered-usedeferredvalue",
-    "question": "When should I use useDeferredValue in React?",
-    "lang": "en",
-    "topic": "useDeferredValue",
-    "type": "covered"
+    "id": "ar-control-cleanup",
+    "question": "ازاي اعمل cleanup في useEffect؟",
+    "lang": "ar",
+    "topic": "control - general React",
+    "type": "control"
   },
   {
-    "id": "en-covered-server-components",
+    "id": "en-control-server-components",
     "question": "What are React Server Components and how do they differ from Client Components?",
     "lang": "en",
-    "topic": "Server Components",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-app-router",
-    "question": "How do I create dynamic routes in the Next.js app router?",
-    "lang": "en",
-    "topic": "app-router routing",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-suspense",
-    "question": "How does Suspense work for data fetching in React?",
-    "lang": "en",
-    "topic": "Suspense",
-    "type": "covered"
-  },
-
-  {
-    "id": "ar-covered-usestate",
-    "question": "ايه اللي بيعمله useState في React وامتى أستخدمه؟",
-    "lang": "ar",
-    "topic": "useState",
-    "type": "covered"
-  },
-  {
-    "id": "ar-covered-useeffect",
-    "question": "ازاي useEffect بيشتغل عند ال mount وعند تغيير ال dependencies؟",
-    "lang": "ar",
-    "topic": "useEffect",
-    "type": "covered"
-  },
-  {
-    "id": "ar-covered-usedeferredvalue",
-    "question": "امتى أستخدم useDeferredValue في React؟",
-    "lang": "ar",
-    "topic": "useDeferredValue",
-    "type": "covered"
-  },
-  {
-    "id": "ar-covered-server-components",
-    "question": "ايه هي Server Components في React وايه الفرق بينها وبين Client Components؟",
-    "lang": "ar",
-    "topic": "Server Components",
-    "type": "covered"
-  },
-  {
-    "id": "ar-covered-app-router",
-    "question": "ازاي أعمل dynamic routes في Next.js app router؟",
-    "lang": "ar",
-    "topic": "app-router routing",
-    "type": "covered"
-  },
-  {
-    "id": "ar-covered-suspense",
-    "question": "ازاي Suspense بيشتغل مع ال data fetching في React؟",
-    "lang": "ar",
-    "topic": "Suspense",
-    "type": "covered"
-  },
-
-  {
-    "id": "en-covered-zod-refine",
-    "question": "How do I use .refine() in Zod to add a custom validation rule?",
-    "lang": "en",
-    "topic": "zod refine",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-zod-infer",
-    "question": "How do I infer a TypeScript type from a Zod schema using z.infer?",
-    "lang": "en",
-    "topic": "zod z.infer",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-tailwind-darkmode",
-    "question": "How do I enable and use dark mode with the dark: variant in Tailwind CSS?",
-    "lang": "en",
-    "topic": "tailwind dark mode",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-tailwind-responsive",
-    "question": "How do responsive breakpoint prefixes like md: and lg: work in Tailwind?",
-    "lang": "en",
-    "topic": "tailwind responsive",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-shadcn-form",
-    "question": "How do I build a form with the shadcn/ui Form component and React Hook Form?",
-    "lang": "en",
-    "topic": "shadcn form",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-shadcn-cli",
-    "question": "How do I add a new component to my project using the shadcn CLI?",
-    "lang": "en",
-    "topic": "shadcn add component",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-rhf-usefieldarray",
-    "question": "How do I use useFieldArray in React Hook Form for dynamic field lists?",
-    "lang": "en",
-    "topic": "react-hook-form useFieldArray",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-rhf-useform",
-    "question": "How do I register inputs and handle submit with useForm in React Hook Form?",
-    "lang": "en",
-    "topic": "react-hook-form useForm",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-nextintl-routing",
-    "question": "How do I set up localized routing and navigation with next-intl?",
-    "lang": "en",
-    "topic": "next-intl routing",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-nextintl-usetranslations",
-    "question": "How do I read messages with the useTranslations hook in next-intl?",
-    "lang": "en",
-    "topic": "next-intl useTranslations",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-tanstack-usemutation",
-    "question": "How do I use useMutation in TanStack Query to perform a create or update?",
-    "lang": "en",
-    "topic": "tanstack-query useMutation",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-tanstack-usequery",
-    "question": "How do I fetch and cache data with useQuery in TanStack Query?",
-    "lang": "en",
-    "topic": "tanstack-query useQuery",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-ts-generics",
-    "question": "How do generics work in TypeScript and how do I write a generic function?",
-    "lang": "en",
-    "topic": "typescript generics",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-ts-utility-types",
-    "question": "What do the Partial and Pick utility types do in TypeScript?",
-    "lang": "en",
-    "topic": "typescript utility types",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-nextauth-credentials",
-    "question": "How do I configure the Credentials provider for email and password in NextAuth?",
-    "lang": "en",
-    "topic": "nextauth credentials provider",
-    "type": "covered"
-  },
-  {
-    "id": "en-covered-nextauth-session",
-    "question": "How do I get the current user session in NextAuth on the server?",
-    "lang": "en",
-    "topic": "nextauth session",
-    "type": "covered"
-  },
-
-  {
-    "id": "ar-covered-zod-refine",
-    "question": "ازاي أستخدم refine في Zod عشان أضيف custom validation rule؟",
-    "lang": "ar",
-    "topic": "zod refine",
-    "type": "covered"
-  },
-  {
-    "id": "ar-covered-tanstack-usemutation",
-    "question": "ازاي أستخدم useMutation في TanStack Query عشان أعمل create أو update؟",
-    "lang": "ar",
-    "topic": "tanstack-query useMutation",
-    "type": "covered"
-  },
-  {
-    "id": "ar-covered-tailwind-darkmode",
-    "question": "ازاي أفعّل dark mode وأستخدم الـ dark: variant في Tailwind؟",
-    "lang": "ar",
-    "topic": "tailwind dark mode",
-    "type": "covered"
-  },
-
-  {
-    "id": "en-deep-react-lazy",
-    "question": "What is the function signature of React.lazy and what does it return?",
-    "lang": "en",
-    "topic": "React.lazy",
-    "type": "deep"
-  },
-  {
-    "id": "ar-deep-useimperativehandle",
-    "question": "ايه ال signature بتاع useImperativeHandle وامتى نستخدمه؟",
-    "lang": "ar",
-    "topic": "useImperativeHandle",
-    "type": "deep"
-  },
-  {
-    "id": "en-deep-notfound",
-    "question": "What HTTP status code does Next.js return when notFound() is called from a Server Component?",
-    "lang": "en",
-    "topic": "notFound",
-    "type": "deep"
-  },
-  {
-    "id": "ar-deep-cookies-server",
-    "question": "ايه الـ error اللي بيرميه Next.js لما تستدعي cookies() برا Server Component؟",
-    "lang": "ar",
-    "topic": "cookies()",
-    "type": "deep"
-  },
-
-  {
-    "id": "ar-control-koshary",
-    "question": "ازاي أطبخ الكشري المصري بالخطوات؟",
-    "lang": "ar",
-    "topic": "cooking",
+    "topic": "control - general Next.js",
     "type": "control"
   },
   {
-    "id": "en-control-france",
-    "question": "What is the capital of France?",
-    "lang": "en",
-    "topic": "geography",
-    "type": "control"
-  },
-  {
-    "id": "en-control-worldcup",
-    "question": "Who won the 2022 FIFA World Cup final?",
-    "lang": "en",
-    "topic": "sports",
-    "type": "control"
-  },
-  {
-    "id": "ar-control-apple-stock",
-    "question": "كم سعر سهم Apple النهارده في البورصة؟",
+    "id": "ar-control-memo",
+    "question": "امتى استخدم useMemo و useCallback؟",
     "lang": "ar",
-    "topic": "finance",
+    "topic": "control - general React",
     "type": "control"
   },
   {
-    "id": "en-control-pour-over-coffee",
-    "question": "What's the best water temperature for brewing pour-over coffee?",
+    "id": "en-control-promise",
+    "question": "What is the difference between Promise.all and Promise.allSettled?",
     "lang": "en",
-    "topic": "cooking",
+    "topic": "control - general JS",
     "type": "control"
   },
   {
-    "id": "en-control-solar-system",
-    "question": "How many planets are there in the solar system?",
-    "lang": "en",
-    "topic": "astronomy",
-    "type": "control"
-  },
-  {
-    "id": "ar-control-tomatoes",
-    "question": "ازاي أزرع الطماطم في البلكونة في الصيف؟",
+    "id": "ar-control-git",
+    "question": "ايه الفرق بين git merge و git rebase؟",
     "lang": "ar",
-    "topic": "gardening",
+    "topic": "control - general Git",
+    "type": "control"
+  },
+  {
+    "id": "en-control-zustand",
+    "question": "How do I create a store with Zustand?",
+    "lang": "en",
+    "topic": "control - general state",
     "type": "control"
   }
 ]

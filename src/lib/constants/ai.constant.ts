@@ -2,10 +2,15 @@ export const AI_LIMITS = {
   CHAT_MAX_TOKENS: 3000,
   REVIEW_MAX_TOKENS: 2000,
   SUMMARY_MAX_TOKENS: 500,
-  /** Cosine similarity floor for a knowledge-base chunk to count as a match. */
+  /**
+   * Cosine similarity floor for a knowledge-base chunk to count as a match.
+   * Measured 2026-10-15 on gemini-embedding-001 (plain, no taskType): covered
+   * questions min 0.640, general controls max 0.559. Re-tune when the KB or
+   * the embedding model changes.
+   */
   RAG_SIMILARITY_THRESHOLD: 0.6,
   /** Max chunks returned by a single knowledge-base search. */
-  RAG_MAX_RESULTS: 10,
+  RAG_MAX_RESULTS: 6,
   /** Texts per `embedMany` call. Keeps a single document under Gemini RPM. */
   EMBEDDING_BATCH_SIZE: 50,
   /** Pause between embedding batches in ms. Skipped after the final batch. */

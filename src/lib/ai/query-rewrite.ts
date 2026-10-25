@@ -22,9 +22,12 @@ const REWRITE_MAX_OUTPUT_TOKENS = 100;
  * The result is used ONLY for the KB search embedding. It never replaces the
  * message sent to the model and never influences the reply's language or content.
  *
- * Fail-open: no latest message returns "", and every other miss (first turn,
- * empty model output, LLM error) returns the raw latest message so retrieval
- * still runs on something real rather than nothing.
+ * Runs on the first message too: a self-contained question still needs the
+ * domain anchoring ("ايليفيت" / bare "السبرنت" -> Rose App) to hit the KB.
+ *
+ * Fail-open: no latest message returns "", and every other miss (empty model
+ * output, LLM error) returns the raw latest message so retrieval still runs on
+ * something real rather than nothing.
  */
 export async function rewriteToStandaloneQuery(
   messages: ChatUIMessage[],
@@ -32,26 +35,18 @@ export async function rewriteToStandaloneQuery(
   const latest = getLatestUserMessageText(messages);
   if (!latest) return "";
 
-  // First message: no prior turns to resolve against - skip the LLM round-trip.
-  if (messages.length <= 1) return latest;
+  const provider = getActiveChatProvider();
 
   try {
     const { text } = await generateText({
-      model: getActiveChatProvider().createModel(),
+      model: provider.createModel(),
       system: QUERY_REWRITE_SYSTEM_PROMPT,
       prompt: buildTranscript(messages),
       maxOutputTokens: REWRITE_MAX_OUTPUT_TOKENS,
       maxRetries: 0,
-      // Gemini 2.5 spends "thinking" tokens by default; with a 100-token cap
-      // that can starve the actual query (empty text -> silent fallback to the
-      // raw query). Zero it so the budget produces the line we want. The main
-      // chat zeroes it via streamOptions; createModel() doesn't carry it, so we
-      // set it here too. Namespaced under `google`, so it's a no-op on Groq.
-      providerOptions: {
-        google: {
-          thinkingConfig: { thinkingBudget: 0, includeThoughts: false },
-        },
-      },
+      // The provider's options keep thinking off/minimal - with a 100-token cap,
+      // thinking tokens can starve the query (empty text -> raw-query fallback).
+      ...provider.streamOptions,
     });
 
     const rewritten = text.trim();

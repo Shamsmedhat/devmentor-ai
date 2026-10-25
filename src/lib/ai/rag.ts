@@ -1,4 +1,8 @@
-import { MENTOR_SYSTEM_PROMPT, RAG_SYSTEM_PROMPT } from "@/lib/ai/prompts";
+import {
+  MENTOR_SYSTEM_PROMPT,
+  NO_KB_MATCH_NOTE,
+  RAG_SYSTEM_PROMPT,
+} from "@/lib/ai/prompts";
 import { rewriteToStandaloneQuery } from "@/lib/ai/query-rewrite";
 import {
   searchKnowledgeBase,
@@ -40,8 +44,9 @@ export async function buildRagSystemPrompt(
     return { system: MENTOR_SYSTEM_PROMPT, sources: [] };
   }
 
+  // No match still goes through the RAG prompt so its gap / escalation rules apply.
   if (results.length === 0) {
-    return { system: MENTOR_SYSTEM_PROMPT, sources: [] };
+    return { system: RAG_SYSTEM_PROMPT(NO_KB_MATCH_NOTE), sources: [] };
   }
 
   return {
@@ -110,7 +115,12 @@ function formatRetrievedContext(results: KnowledgeBaseSearchResult[]): string {
         return `<chunk type="video" title="${title}" start="${start}" end="${end}"${driveAttr}>\n${r.content}\n</chunk>`;
       }
 
-      return `<chunk source="${source}" >\n${r.content}\n</chunk>`;
+      if (meta.source_type === "session") {
+        return `<chunk type="session" source="${source}">\n${r.content}\n</chunk>`;
+      }
+
+      const typeAttr = meta.source_type ? ` type="${meta.source_type}"` : "";
+      return `<chunk source="${source}"${typeAttr}>\n${r.content}\n</chunk>`;
     })
     .join("\n\n");
 }

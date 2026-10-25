@@ -80,6 +80,19 @@ const googleNoThinkingStreamOptions: ChatProviderStreamOptions = {
   },
 };
 
+// Gemini 3.x takes `thinkingLevel` instead of `thinkingBudget`; "minimal" is
+// the lowest level, the closest to the 2.5 setup above.
+const googleMinimalThinkingStreamOptions: ChatProviderStreamOptions = {
+  providerOptions: {
+    google: {
+      thinkingConfig: {
+        thinkingLevel: "minimal",
+        includeThoughts: false,
+      },
+    },
+  },
+};
+
 export const CHAT_PROVIDERS: readonly ChatProvider[] = [
   {
     id: "groq:openai/gpt-oss-20b",
@@ -105,9 +118,17 @@ export const CHAT_PROVIDERS: readonly ChatProvider[] = [
     createTools: googleSearchTools,
     streamOptions: googleNoThinkingStreamOptions,
   },
+  {
+    id: "google:gemini-3.5-flash-lite",
+    apiKeyEnv: "GOOGLE_GENERATIVE_AI_API_KEY",
+    capabilities: geminiMultimodal,
+    createModel: () => google.chat("gemini-3.5-flash-lite"),
+    createTools: googleSearchTools,
+    streamOptions: googleMinimalThinkingStreamOptions,
+  },
 ];
 
-export const ACTIVE_CHAT_PROVIDER_ID = "google:gemini-2.5-flash";
+export const ACTIVE_CHAT_PROVIDER_ID = "google:gemini-3.5-flash-lite";
 
 export function getActiveChatProvider(): ChatProvider {
   const provider = CHAT_PROVIDERS.find((p) => p.id === ACTIVE_CHAT_PROVIDER_ID);

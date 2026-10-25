@@ -1,11 +1,13 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
+import { rewriteToStandaloneQuery } from "@/lib/ai/query-rewrite";
 import { searchKnowledgeBase } from "@/lib/ai/search";
 import { AI_LIMITS } from "@/lib/constants/ai.constant";
+import type { ChatUIMessage } from "@/lib/types/chat";
 
 type QuestionLang = "en" | "ar";
-type QuestionType = "covered" | "deep" | "control";
+type QuestionType = "covered" | "control";
 
 type EvalQuestion = {
   id: string;
@@ -13,9 +15,11 @@ type EvalQuestion = {
   lang: QuestionLang;
   topic: string;
   type: QuestionType;
+  /** document_ids that count as a correct retrieval (covered questions only). */
+  expected?: string[];
 };
 
-type Flag = "PASS" | "REVIEW" | "GOOD-CONTROL" | "BAD-CONTROL";
+type Flag = "PASS" | "WRONG-DOC" | "REVIEW" | "GOOD-CONTROL" | "BAD-CONTROL";
 
 type EvalResult = {
   question: EvalQuestion;
@@ -36,8 +40,12 @@ async function main(): Promise<void> {
   for (const q of questions) {
     console.log(`\n[${q.lang}] [${q.type}] (${q.topic}) ${q.question}`);
 
+    // Same path as production: the rewriter anchors the query before search.
+    const query = await rewriteToStandaloneQuery([toUserMessage(q)]);
+    if (query !== q.question) console.log(`  rewritten: ${query}`);
+
     const chunks = await searchKnowledgeBase(
-      q.question,
+      query,
       AI_LIMITS.RAG_MAX_RESULTS,
       AI_LIMITS.RAG_SIMILARITY_THRESHOLD,
     );
@@ -56,20 +64,26 @@ async function main(): Promise<void> {
     const topSim = chunks[0]?.similarity ?? 0;
     const cleared =
       chunks.length > 0 && topSim >= AI_LIMITS.RAG_SIMILARITY_THRESHOLD;
-    const flag: Flag =
-      q.type === "control"
-        ? cleared
-          ? "BAD-CONTROL"
-          : "GOOD-CONTROL"
-        : cleared
-          ? "PASS"
-          : "REVIEW";
+    const hitExpected = chunks.some((c) =>
+      (q.expected ?? []).includes(String(c.metadata?.document_id)),
+    );
+    const flag = flagFor(q, cleared, hitExpected);
 
     console.log(`  -> ${flag} (top sim = ${topSim.toFixed(3)})`);
     results.push({ question: q, topSim, hitCount: chunks.length, flag });
   }
 
   printAggregate(results);
+}
+
+function toUserMessage(q: EvalQuestion): ChatUIMessage {
+  return { id: q.id, role: "user", parts: [{ type: "text", text: q.question }] };
+}
+
+function flagFor(q: EvalQuestion, cleared: boolean, hitExpected: boolean): Flag {
+  if (q.type === "control") return cleared ? "BAD-CONTROL" : "GOOD-CONTROL";
+  if (!cleared) return "REVIEW";
+  return hitExpected ? "PASS" : "WRONG-DOC";
 }
 
 function printAggregate(results: EvalResult[]): void {
@@ -80,7 +94,9 @@ function printAggregate(results: EvalResult[]): void {
     (r) => r.question.lang === "ar" && r.question.type === "covered",
   );
   const controls = results.filter((r) => r.question.type === "control");
-  const review = results.filter((r) => r.flag === "REVIEW");
+  const misses = results.filter(
+    (r) => r.flag === "REVIEW" || r.flag === "WRONG-DOC",
+  );
   const badControls = results.filter((r) => r.flag === "BAD-CONTROL");
   const goodControls = controls.filter((r) => r.flag === "GOOD-CONTROL");
 
@@ -94,11 +110,11 @@ function printAggregate(results: EvalResult[]): void {
     `Controls correctly rejected: ${goodControls.length}/${controls.length}`,
   );
 
-  if (review.length > 0) {
-    console.log("\nREVIEW (retrieval miss on covered/deep):");
-    for (const r of review) {
+  if (misses.length > 0) {
+    console.log("\nMISSES (REVIEW = nothing above threshold, WRONG-DOC = expected doc not retrieved):");
+    for (const r of misses) {
       console.log(
-        `  [${r.question.lang}] ${r.question.id} (top sim ${r.topSim.toFixed(3)}): ${r.question.question}`,
+        `  [${r.question.lang}] ${r.flag} ${r.question.id} (top sim ${r.topSim.toFixed(3)}): ${r.question.question}`,
       );
     }
   }

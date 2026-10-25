@@ -11,12 +11,14 @@ import { google } from "@ai-sdk/google";
 import { AI_LIMITS } from "@/lib/constants/ai.constant";
 
 const EMBEDDING_DIMENSIONS = 768;
+/** Measured against the project golden set: 001-plain beat 001+taskType and gemini-embedding-2. */
+const EMBEDDING_MODEL = "gemini-embedding-001";
 
 export async function generateEmbeddings(text: string): Promise<EmbedResult> {
   const value = text.replace(/[\r\n]+/g, " ");
 
   const result = await embed({
-    model: google.embeddingModel("gemini-embedding-001"),
+    model: google.embeddingModel(EMBEDDING_MODEL),
     providerOptions: {
       google: {
         outputDimensionality: EMBEDDING_DIMENSIONS,
@@ -42,7 +44,7 @@ export async function generateEmbeddingsMany(
     const batch = texts.slice(i, i + AI_LIMITS.EMBEDDING_BATCH_SIZE);
 
     const result = await embedMany({
-      model: google.embeddingModel("gemini-embedding-001"),
+      model: google.embeddingModel(EMBEDDING_MODEL),
       providerOptions: {
         google: {
           outputDimensionality: EMBEDDING_DIMENSIONS,

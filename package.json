@@ -11,7 +11,8 @@
     "kb:eval": "tsx --env-file=.env.local scripts/kb-retrieval-eval.ts",
     "kb:map": "tsx --env-file=.env.local scripts/kb-map.ts",
     "kb:ingest": "tsx --env-file=.env.local scripts/kb-ingest.ts",
-    "kb:ingest-doc": "tsx --env-file=.env.local scripts/kb-ingest-doc.ts"
+    "kb:ingest-doc": "tsx --env-file=.env.local scripts/kb-ingest-doc.ts",
+    "kb:reembed": "tsx --env-file=.env.local scripts/kb-reembed.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^3.0.64",
