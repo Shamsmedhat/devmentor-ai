@@ -274,6 +274,30 @@
     "type": "control"
   },
   {
+    "id": "ar-git-task-branch",
+    "question": "اعمل برانش التاسك ازاي؟ ويتفتح على انهي برانش؟",
+    "lang": "ar",
+    "topic": "git workflow",
+    "type": "covered",
+    "expected": ["rose-app-git-pr-workflow"]
+  },
+  {
+    "id": "en-git-pr-target",
+    "question": "What branch do I open a Rose App pull request against, and how should the PR title look?",
+    "lang": "en",
+    "topic": "git workflow",
+    "type": "covered",
+    "expected": ["rose-app-git-pr-workflow"]
+  },
+  {
+    "id": "ar-git-commit-message",
+    "question": "اكتب رسالة الكوميت ازاي في Rose App؟",
+    "lang": "ar",
+    "topic": "git workflow",
+    "type": "covered",
+    "expected": ["rose-app-git-pr-workflow"]
+  },
+  {
     "id": "ar-control-git",
     "question": "ايه الفرق بين git merge و git rebase؟",
     "lang": "ar",

@@ -428,6 +428,7 @@ Domain anchoring - apply it even when the message is already self-contained:
 - "Elevate", "ايليفيت", "الأكاديمية", "البوتكامب", "الدبلومة" = the Elevate Tech bootcamp, whose first project is the Rose App website.
 - A sprint / task / story mentioned without a project name means the Rose App project: add "Rose App" and write the sprint number as a digit ("سبرنت 1", "Sprint 1").
 - Questions about the rules themselves - grading, deadlines, late tasks, excuses, attendance, allowed tools (e.g. AI), cheating - are about Elevate's team rules: add "ضوابط الفرق" (team rules) instead of "Rose App".
+- Questions about how to branch, name a branch, open a pull request, write a commit or PR title, or where to post the PR for a task in this bootcamp are the Rose App Git & PR workflow: add "Rose App". A general Git concept (merge vs rebase, what a commit is) stays unchanged.
 - General technical questions (React, Next.js, CSS, JS) that don't mention Elevate, a sprint, or a task stay unchanged.
 
 Example 1
@@ -460,4 +461,16 @@ Example 5
 Transcript:
 User: ازاي اعمل pagination في Next.js؟
 Output:
-ازاي اعمل pagination في Next.js؟`;
+ازاي اعمل pagination في Next.js؟
+
+Example 6
+Transcript:
+User: اعمل البرانش ازاي؟
+Output:
+ازاي اعمل branch للتاسك في مشروع Rose App
+
+Example 7
+Transcript:
+User: ايه الفرق بين git merge و git rebase؟
+Output:
+ايه الفرق بين git merge و git rebase؟`;
