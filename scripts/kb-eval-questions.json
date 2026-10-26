@@ -13,12 +13,7 @@
     "lang": "ar",
     "topic": "sprint 1",
     "type": "covered",
-    "expected": [
-      "rose-app-overview",
-      "nra-sprint-1-project-setup",
-      "nra-sprint-1-input",
-      "nra-sprint-1-combobox-select-menu"
-    ]
+    "expected": ["rose-sprint-1"]
   },
   {
     "id": "ar-dropdown-task",
@@ -26,7 +21,7 @@
     "lang": "ar",
     "topic": "combobox task",
     "type": "covered",
-    "expected": ["nra-sprint-1-combobox-select-menu", "rose-app-component-combobox"]
+    "expected": ["rose-task-combobox-select-menu", "rose-app-component-combobox"]
   },
   {
     "id": "en-sprint-1-tasks",
@@ -34,12 +29,7 @@
     "lang": "en",
     "topic": "sprint 1",
     "type": "covered",
-    "expected": [
-      "rose-app-overview",
-      "nra-sprint-1-project-setup",
-      "nra-sprint-1-input",
-      "nra-sprint-1-combobox-select-menu"
-    ]
+    "expected": ["rose-sprint-1"]
   },
   {
     "id": "en-elevate-sprints",
@@ -79,7 +69,7 @@
     "lang": "ar",
     "topic": "input task",
     "type": "covered",
-    "expected": ["nra-sprint-1-input", "rose-app-component-input"]
+    "expected": ["rose-task-input", "rose-app-component-input"]
   },
   {
     "id": "en-input-otp-password",
@@ -87,7 +77,7 @@
     "lang": "en",
     "topic": "input task",
     "type": "covered",
-    "expected": ["nra-sprint-1-input", "rose-app-component-input"]
+    "expected": ["rose-task-input", "rose-app-component-input"]
   },
   {
     "id": "ar-project-setup",
@@ -95,7 +85,7 @@
     "lang": "ar",
     "topic": "project setup task",
     "type": "covered",
-    "expected": ["nra-sprint-1-project-setup"]
+    "expected": ["rose-task-project-setup"]
   },
   {
     "id": "en-fonts",
@@ -103,7 +93,7 @@
     "lang": "en",
     "topic": "typography",
     "type": "covered",
-    "expected": ["nra-sprint-1-project-setup", "rose-app-design-tokens"]
+    "expected": ["rose-task-project-setup", "rose-app-design-tokens"]
   },
   {
     "id": "ar-combobox-search",
@@ -111,7 +101,7 @@
     "lang": "ar",
     "topic": "combobox task",
     "type": "covered",
-    "expected": ["nra-sprint-1-combobox-select-menu", "rose-app-component-combobox"]
+    "expected": ["rose-task-combobox-select-menu", "rose-app-component-combobox"]
   },
   {
     "id": "en-menu-component",
@@ -119,7 +109,55 @@
     "lang": "en",
     "topic": "menu task",
     "type": "covered",
-    "expected": ["nra-sprint-1-combobox-select-menu"]
+    "expected": ["rose-task-combobox-select-menu"]
+  },
+  {
+    "id": "ar-header-footer-task",
+    "question": "تاسك الـ Header والـ Footer فيه ايه؟",
+    "lang": "ar",
+    "topic": "home page task",
+    "type": "covered",
+    "expected": ["rose-task-home-header-footer-notifications"]
+  },
+  {
+    "id": "ar-newsletter-endpoint",
+    "question": "ايه الـ endpoint بتاع الـ newsletter في الفوتر؟",
+    "lang": "ar",
+    "topic": "home page task",
+    "type": "covered",
+    "expected": ["rose-task-home-header-footer-notifications"]
+  },
+  {
+    "id": "en-push-permission",
+    "question": "When should the app ask for browser notification permission for push notifications?",
+    "lang": "en",
+    "topic": "home page task",
+    "type": "covered",
+    "expected": ["rose-task-home-header-footer-notifications"]
+  },
+  {
+    "id": "ar-pagination-url",
+    "question": "الـ Pagination لازم تتربط بالـ URL؟",
+    "lang": "ar",
+    "topic": "pagination task",
+    "type": "covered",
+    "expected": ["rose-task-pagination-toast-tabs-textarea", "rose-app-component-pagination"]
+  },
+  {
+    "id": "en-mode-toggle",
+    "question": "What options does the Mode Toggle have and does it persist?",
+    "lang": "en",
+    "topic": "mode toggle task",
+    "type": "covered",
+    "expected": ["rose-task-button-checkbox-badge-mode-toggle"]
+  },
+  {
+    "id": "en-which-sprint-header",
+    "question": "Which sprint is the Home page header task in?",
+    "lang": "en",
+    "topic": "sprint plan",
+    "type": "covered",
+    "expected": ["rose-sprint-1"]
   },
   {
     "id": "en-primary-color",

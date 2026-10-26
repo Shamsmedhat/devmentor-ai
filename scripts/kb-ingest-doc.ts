@@ -1,5 +1,5 @@
 /**
- * INGEST one local file (`yarn kb:ingest-doc <filePath> <documentId> [--source-type doc]`).
+ * INGEST one local file (`yarn kb:ingest-doc <filePath> <documentId> [--source-type doc] [--by-section]`).
  *
  * A no-scrape sibling of kb-ingest for content that already lives on disk: reads
  * a local .md/.txt -> chunkText -> generateEmbeddingsMany -> overwrite
@@ -7,13 +7,16 @@
  * is keyed on the caller-supplied documentId, so re-running with the same id
  * cleanly replaces the prior chunks.
  *
+ * `--by-section` splits markdown on `## ` headings instead (chunkMarkdownBySection);
+ * `--chunk-size` then caps each merged chunk (default 3000 chars).
+ *
  * Metadata is intentionally minimal: { document_id, source_type, title } where
  * title is the file's basename. No URL/scrape, no schema change.
  */
 import { readFileSync } from "node:fs";
 import { basename, resolve } from "node:path";
 
-import { chunkText } from "@/lib/ai/chunking";
+import { chunkMarkdownBySection, chunkText } from "@/lib/ai/chunking";
 import { generateEmbeddingsMany } from "@/lib/ai/embeddings";
 import { createAdminClient } from "@/lib/utils/supabase/admin";
 
@@ -50,7 +53,7 @@ async function main(): Promise<void> {
   const documentId = positional[1];
   if (!filePath || !documentId) {
     fail(
-      "Usage: yarn kb:ingest-doc <filePath> <documentId> [--source-type doc]",
+      "Usage: yarn kb:ingest-doc <filePath> <documentId> [--source-type doc] [--by-section]",
     );
   }
 
@@ -64,8 +67,11 @@ async function main(): Promise<void> {
 
   const chunkSize = readNumberFlag(args, "--chunk-size");
   const chunkOverlap = readNumberFlag(args, "--chunk-overlap");
+  const bySection = args.includes("--by-section");
 
-  const chunks = await chunkText(text, chunkSize, chunkOverlap);
+  const chunks = bySection
+    ? await chunkMarkdownBySection(text, chunkSize)
+    : await chunkText(text, chunkSize, chunkOverlap);
   if (chunks.length === 0) {
     fail(`Nothing to ingest: ${absPath} has no chunkable content.`);
   }

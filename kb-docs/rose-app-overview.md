@@ -1,11 +1,11 @@
 # Rose App — Project Overview
 
-> **ملخّص بالعربي:** مشروع Rose App هو **أول مشروع** في بوتكامب Elevate Tech للـ frontend. عبارة عن **موقع بيع ورد (e-commerce)** متبني بـ **Next.js**، وبيتسلّم على 3 أجزاء: الـ **Website** (الموقع)، الـ **Design System** (نظام التصميم)، والـ **Dashboard** (لوحة التحكم). الموقع بيتعمل على **6 sprints**، والـ Dashboard على **sprint عدد 2**، وكل sprint فيه **6 tasks (stories)**. الطلبة بيشتغلوا في **فرق (≤6 أفراد)**، كل فريق عنده **JIRA project** و**GitHub repo** خاص بيه، والتواصل على **Slack**، والتاسكات نفسها لكل الفرق بس متوزّعة حسب حجم الفريق.
+> **ملخّص بالعربي:** مشروع Rose App هو **أول مشروع** في بوتكامب Elevate Tech للـ frontend. عبارة عن **موقع بيع ورد (e-commerce)** متبني بـ **Next.js**، وبيتسلّم على 3 أجزاء: الـ **Website** (الموقع)، الـ **Design System** (نظام التصميم)، والـ **Dashboard** (لوحة التحكم). الموقع بيتعمل على **4 sprints**، والـ Dashboard على **sprint عدد 2**، وكل sprint فيه **6 tasks (stories)**. الطلبة بيشتغلوا في **فرق (≤6 أفراد)**، كل فريق عنده **JIRA project** و**GitHub repo** خاص بيه، والتواصل على **Slack**، والتاسكات نفسها لكل الفرق بس متوزّعة حسب حجم الفريق.
 
 Rose App is the **first project** in the Elevate Tech frontend bootcamp: a flower-selling **e-commerce** platform built with **Next.js**, delivered in three parts — a customer-facing **Website**, a shared **Design System**, and an admin **Dashboard**.
 
 ## Roadmap
-- **Website** (Project 1) — **6 sprints**, about 1 week each (sometimes 2).
+- **Website** (Project 1) — **4 sprints**, about 1 week each (sometimes 2).
 - **Dashboard** (Project 2) — **2 sprints**.
 - Further projects follow after these (covered in the technical sessions).
 - Every sprint contains **6 stories (tasks)**.

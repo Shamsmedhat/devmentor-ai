@@ -80,13 +80,14 @@ const googleNoThinkingStreamOptions: ChatProviderStreamOptions = {
   },
 };
 
-// Gemini 3.x takes `thinkingLevel` instead of `thinkingBudget`; "minimal" is
-// the lowest level, the closest to the 2.5 setup above.
-const googleMinimalThinkingStreamOptions: ChatProviderStreamOptions = {
+// Gemini 3.x takes `thinkingLevel` instead of `thinkingBudget`. "minimal" kept
+// merging list items and sometimes answered English questions in Arabic;
+// "low" fixed both for ~1-2s per reply.
+const googleLowThinkingStreamOptions: ChatProviderStreamOptions = {
   providerOptions: {
     google: {
       thinkingConfig: {
-        thinkingLevel: "minimal",
+        thinkingLevel: "low",
         includeThoughts: false,
       },
     },
@@ -124,7 +125,7 @@ export const CHAT_PROVIDERS: readonly ChatProvider[] = [
     capabilities: geminiMultimodal,
     createModel: () => google.chat("gemini-3.5-flash-lite"),
     createTools: googleSearchTools,
-    streamOptions: googleMinimalThinkingStreamOptions,
+    streamOptions: googleLowThinkingStreamOptions,
   },
 ];
 

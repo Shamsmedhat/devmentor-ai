@@ -1,16 +1,13 @@
 # Rose App — Badge Component
 
-Badge — عنصر pill صغير (حواف مدوّرة بالكامل). الـ variants بتتبع الألوان الدلالية (semantic colors).
+Badge — pill صغير (حواف مدوّرة بالكامل) من صفحة Figma **Design System - NEW**. مش success/warning/error/info/outline. الـ design فيه 3 ألوان، وكل لون له tone 1 و tone 2، في Light و Dark. المجموع 6 أشكال، وده نفس تاسك الـ Badge.
 
-## Variants
-- **Default** — Maroon / Zinc.
-- **Success** — emerald-500 #00BC7D.
-- **Warning** — yellow-400 #FACC15.
-- **Error** — red-600 #DC2626.
-- **Info** — blue-600 #155DFC.
-- **Outline** — border بدل الـ fill.
+| Figma variant | Task name | الشكل |
+|---|---|---|
+| Primary | Accent Maroon — Tone 1 و Tone 2 | زوج maroon، واحد أقوى وواحد أفتح |
+| Secondary | Soft Pink — Tone 1 و Tone 2 | زوج soft pink |
+| Subtle | Neutral Grey — Tone 1 و Tone 2 | زوج رمادي محايد |
 
-كل variant بيتعمل بـ style: **solid** (fill كامل) أو **soft** (tint فاتح من نفس اللون).
+الحالات على الـ component: **Default** و **Hovered**. في الـ layers: `Primary, Default Badge (light)` و `Primary, Hovered Badge (light)`، ونفس الاتنين للـ Dark، وبنفس النمط لـ Secondary و Subtle.
 
-## Tokens
-بيستخدم الـ semantic tokens (success/warning/danger/info) عشان اتساق الألوان مع المشروع · بيدعم dark/light.
+بيدعم Light و Dark. الألوان تتبع الـ semantic tokens (light primary = maroon، dark primary = soft pink) مش hex متثبت على الثيم الفاتح.

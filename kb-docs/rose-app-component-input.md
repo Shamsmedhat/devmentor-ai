@@ -1,17 +1,21 @@
 # Rose App — Input Component
 
-حقل الإدخال (Input). Label فوق الحقل دايماً، حواف rounded. بيدعم dark/light + RTL/LTR. عدد الـ variants = 9.
+حقل الإدخال (Input) من صفحة Figma **Design System - NEW**. Label فوق الحقل، حواف rounded. بيدعم Light/Dark و RTL/LTR.
 
-## Variants (9)
-- **Default (Text)** — حقل نص عادي بـ placeholder.
-- **Number** — أسهم stepper (▲▼) لزيادة/نقصان.
-- **Search** — أيقونة بحث + زرار clear (✕) لما يكون مليان.
-- **Password** — نقاط مخفية + eye toggle (إظهار/إخفاء).
-- **OTP** — 6 خانات منفصلة؛ error = خانات حمرا.
-- **File** — زرار "Upload file" + اسم الملف المختار + "Review current image(s)".
-- **Phone** — country code selector (EG +20 بالعلم) + حقل الرقم.
-- **Error state** — label + border أحمر + رسالة خطأ.
-- **Disabled state** — باهت ومعطّل.
+الأنواع 7، مش 9. Error و Disabled حالات على النوع، مش أنواع لوحدها.
 
-## Tokens
-error = danger red-600 #DC2626 (border + label) · disabled = zinc باهت · focus ring = primary Maroon.
+## Types (7)
+
+- **Text** — حقل نص بـ placeholder، والـ filled بيظهر القيمة.
+- **Search** — أيقونة بحث، وزرار clear (✕) لما يكون مليان.
+- **Number** — أسهم stepper.
+- **File** — "Upload file"، وبعد الاختيار اسم الملف و "Review current image(s)".
+- **Phone** — country code (EG +20 بالعلم) + حقل الرقم.
+- **OTP** — 6 خانات منفصلة.
+- **Password** — نقاط مخفية + eye toggle.
+
+## States
+
+على كل نوع: **Default**، **Hovered**، **Focused**، **Error**، **Disabled**. وفيه **Filled** للأنواع اللي بتظهر قيمة (زي Search).
+
+Error: label + border من `danger` (light: red-600 `#DC2626`، dark: red-500 `#EF4444`) + رسالة. OTP في الـ error خاناته باللون ده. Disabled باهت. Focus ring من `primary` بتاع الثيم (light maroon-800، dark soft-pink-300).

@@ -10,14 +10,24 @@ import type { TextUIPart } from "ai";
 
 import CopyButton from "./copy-button";
 import { MessageBlockquote } from "./message-blockquote";
+import {
+  MessageListItem,
+  MessageOrderedList,
+  MessageUnorderedList,
+} from "./message-lists";
 
-const responseComponents = { blockquote: MessageBlockquote };
+const responseComponents = {
+  blockquote: MessageBlockquote,
+  li: MessageListItem,
+  ol: MessageOrderedList,
+  ul: MessageUnorderedList,
+};
 
 // Brand-tinted assistant bubble - copied verbatim from the landing live-preview
 // mock (live-preview.tsx:50) so the real chat matches it. Assistant role only;
 // the user bubble keeps the vendored styling.
 const ASSISTANT_BUBBLE =
-  "rounded-2xl rounded-ss-sm border border-brand/25 bg-brand/5 px-4 py-3 leading-relaxed text-foreground/90";
+  "rounded-2xl rounded-ss-sm px-4 py-3 leading-relaxed text-foreground/90";
 
 export default function TextPart({
   message,
@@ -33,7 +43,10 @@ export default function TextPart({
     <Fragment>
       <Message from={message.role}>
         <MessageContent className={isAssistant ? ASSISTANT_BUBBLE : undefined}>
-          <MessageResponse mode="streaming" components={responseComponents}>
+          <MessageResponse
+            mode="streaming"
+            components={responseComponents}
+          >
             {part.text}
           </MessageResponse>
         </MessageContent>

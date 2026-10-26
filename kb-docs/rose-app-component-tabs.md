@@ -1,6 +1,6 @@
 # Rose App — Tabs Component
 
-Tabs — تبويبات أفقية. الـ tab النشط ليه مؤشر/خلفية Maroon + نص أبيض؛ غير النشط فاتح + نص غامق.
+Tabs — تبويبات أفقية. في Figma فيه `Tabs (light)` و `Tabs (dark)`. الـ tab النشط بياخد `primary` بتاع الثيم (light: maroon-800 ونص أبيض، dark: soft-pink-300). غير النشط خلفية فاتحة ونص غامق في اللايت، والعكس في الدارك.
 
 ## Behavior / States
 - **Active indicator** على الـ tab المختار.
@@ -10,4 +10,4 @@ Tabs — تبويبات أفقية. الـ tab النشط ليه مؤشر/خلف
 بيدعم dark/light.
 
 ## Tokens
-active = primary Maroon #501419 + نص أبيض.
+active = semantic `primary` (light maroon-800 `#501419`، dark soft-pink-300 `#FFA3B9`).

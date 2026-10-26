@@ -1,12 +1,11 @@
 # Rose App — Toast Component
 
-Toast — إشعار مؤقت: icon + رسالة + زرار قفل (✕). بيختفي تلقائياً بعد ~3 ثواني، وبيتراكم رأسياً (stack) لو فيه أكتر من واحد.
+Toast من صفحة Figma **Design System - NEW**. فيه نسخة Light ونسخة Dark. الشكل: icon + رسالة + قفل (✕).
 
-## Variants
-- **Success** — emerald-500 #00BC7D (✓).
-- **Error** — red-600 #DC2626 (✗).
-- **Warning** — yellow-400 #FACC15.
-- **Info** — blue-600 #155DFC (ⓘ).
+الـ variants اللي ظاهرة في الملف 3، مش 4. مفيش Warning toast في الصفحة دي.
 
-## Tokens
-بيستخدم الـ semantic tokens (success/danger/warning/info) + خلفية faint/fade من نفس اللون · بيدعم dark/light.
+- **Informative** — النص في الملف: "Informative message". اللون من `info` (light blue-600، dark blue-500).
+- **Successful** — النص: "Successful operation". اللون من `success` (emerald-500) وعلامة صح.
+- **Unsuccessful** — النص: "Unsuccessful operation". اللون من `danger` (light red-600، dark red-500).
+
+الخلفية من `-faint` / `-fade` لنفس الـ intent. بيدعم Light و Dark.

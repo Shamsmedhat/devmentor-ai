@@ -2,13 +2,11 @@
 
 مربع اختيار (Checkbox) شكله rounded + label جنبه.
 
-## States / Variants
-- **Default (Unchecked)** — مربع فاضي.
-- **Checked** — Maroon fill + علامة صح (✓) بيضا.
-- **Indeterminate** — حالة وسط (اختيار جزئي).
-- **Focus** — ring/border واضح.
-- **Error** — border أحمر + رسالة خطأ تحته (مثلاً "You must accept terms and conditions").
-- **Disabled** — باهت ومعطّل.
+## States
 
-## Tokens
-checked = primary Maroon #501419 + علامة صح بيضا · error = danger red-600 #DC2626 · بيدعم dark/light.
+من Figma (Light و Dark): **Default** (فاضي)، **Checked**، **Focused**، **Error**. التاسك كمان بتطلب **Hovered**. مفيش Indeterminate في الصفحة دي.
+
+- **Checked** — fill من `primary` بتاع الثيم + علامة صح بيضا. Light: maroon-800 `#501419`. Dark: soft-pink-300 `#FFA3B9`.
+- **Error** — border من `danger` + رسالة تحت (مثلاً "You must accept terms and conditions"). Light danger: red-600 `#DC2626`. Dark danger: red-500 `#EF4444`.
+
+بيدعم Light/Dark.

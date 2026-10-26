@@ -1,17 +1,23 @@
 # Rose App — Button Component
 
-زرار المشروع (Button). الـ variant names بتتبع الـ Sprint 1 task spec (اللي الطلبة بيكوّدوا بيها)، والألوان من الـ design tokens (primary = Maroon).
+زرار المشروع (Button) من صفحة Figma **Design System - NEW**. فيه 6 variants، وكل واحد Light و Dark. الحالات على كل variant: **Default**، **Hovered**، **Disabled**، **Loading**.
 
-## Variants
-- **Primary** — solid Maroon (primary / maroon-800 #501419)، نص أبيض. الزرار الأساسي للأكشنز الرئيسية.
-- **Secondary** — fill ثانوي (soft/muted)، للأكشنز البديلة.
-- **Outline** — خلفية شفافة + border Maroon + نص Maroon.
-- **Ghost** — شفاف تماماً، من غير border، tint عند الـ hover بس.
-- **Destructive** — danger أحمر (red-600 #DC2626)، نص أبيض. للحذف/الأكشنز الخطيرة.
+أسماء الـ property في Figma، وقدامها الاسم اللي التاسك بتستخدمه:
+
+| Figma variant | Task name | Light | Dark |
+|---|---|---|---|
+| Primary | Solid Maroon | maroon-800 `#501419`، نص أبيض | soft-pink-300 `#FFA3B9` (dark primary) |
+| Secondary | Soft Pink | soft-pink-400 `#FF85A2` | maroon-600 `#A6252A` (dark secondary) |
+| Outline | Outline | خلفية شفافة + border ونص من primary | نفس الفكرة بـ dark primary |
+| Subtle | Neutral | خلفية zinc محايدة، نص غامق | النسخة الداكنة من نفس الـ neutral |
+| Ghost | Text-only | من غير خلفية ومن غير border | نفس الفكرة على الخلفية الداكنة |
+| Destructive | Destructive Red | danger أحمر، نص أبيض | dark danger (red-500 `#EF4444`) |
 
 ## States
-- **Default** · **Hover** (درجة أغمق) · **Disabled** (باهت + مش قابل للتفاعل) · **Loading** (spinner + معطّل).
-- **Icon** — أيقونة على اليمين أو الشمال.
 
-## Tokens
-primary = maroon-800 #501419 (hover درجة أغمق) · destructive = red-600 #DC2626 · بيدعم dark/light + RTL/LTR.
+- **Default** — الشكل العادي.
+- **Hovered** — درجة أغمق من نفس الـ variant.
+- **Disabled** — باهت ومش قابل للتفاعل.
+- **Loading** — spinner جنب الـ label، والزرار مش بيتداس تاني.
+
+الألوان من الـ semantic tokens في `rose-app-design-tokens`، مش hex ثابت، عشان Light و Dark يفضلوا مظبوطين. بيدعم RTL/LTR.

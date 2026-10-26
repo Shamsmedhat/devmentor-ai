@@ -11,4 +11,4 @@ Textarea — حقل نص multi-line بـ label فوقه، حواف rounded.
 بيدعم dark/light + RTL/LTR.
 
 ## Tokens
-error = danger red-600 #DC2626 · focus ring = primary Maroon.
+error = theme `danger` (light red-600 `#DC2626`، dark red-500 `#EF4444`) · focus ring = theme `primary` (light maroon-800، dark soft-pink-300).

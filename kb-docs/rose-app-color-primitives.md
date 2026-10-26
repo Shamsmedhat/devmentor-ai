@@ -2,7 +2,7 @@
 
 The complete primitive color ramps of the Rose App design system, extracted from Figma. Each ramp runs 50 (lightest) → 950 (darkest). These are the raw values; in components, prefer the **semantic tokens** (primary, secondary, success, danger, etc.) documented in `rose-app-design-tokens`, which map onto these primitives.
 
-Brand identity: **Maroon** is the brand/primary ramp; **Soft Pink** is the secondary/accent ramp. Emerald = success, Yellow = warning, Red = danger, Blue = info. Zinc = neutrals.
+Brand ramps: **Maroon** and **Soft Pink**. In light mode primary points at Maroon and secondary at Soft Pink. In dark mode that swaps (primary = Soft Pink, secondary = Maroon). Emerald = success, Yellow = warning, Red = danger, Blue = info. Zinc = neutrals. Semantic mapping is in `rose-app-design-tokens`.
 
 ## Maroon (brand / primary)
 50 #FBEAEA · 100 #F3C5C7 · 200 #EA9FA2 · 300 #E07A7D · 400 #D75458 · 500 #CD2E33 · 600 #A6252A · 700 #741C21 · 800 #501419 · 900 #2C0C10 · 950 #20090C
