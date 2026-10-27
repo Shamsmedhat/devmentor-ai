@@ -298,6 +298,30 @@
     "expected": ["rose-app-git-pr-workflow"]
   },
   {
+    "id": "ar-clean-code-names",
+    "question": "اكتب الأسماء في الكود ازاي؟ والـ boolean يبدأ بإيه؟",
+    "lang": "ar",
+    "topic": "clean code",
+    "type": "covered",
+    "expected": ["rose-app-clean-code"]
+  },
+  {
+    "id": "en-clean-code-component-order",
+    "question": "What order do I declare things inside a Rose App component?",
+    "lang": "en",
+    "topic": "clean code",
+    "type": "covered",
+    "expected": ["rose-app-clean-code"]
+  },
+  {
+    "id": "ar-clean-code-any-comments",
+    "question": "ينفع أستخدم any؟ والكومنت أكتبه امتى؟",
+    "lang": "ar",
+    "topic": "clean code",
+    "type": "covered",
+    "expected": ["rose-app-clean-code"]
+  },
+  {
     "id": "ar-control-git",
     "question": "ايه الفرق بين git merge و git rebase؟",
     "lang": "ar",
