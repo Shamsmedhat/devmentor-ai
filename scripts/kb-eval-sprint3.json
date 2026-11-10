@@ -1,0 +1,191 @@
+[
+  {
+    "id": "ar-s3-contents",
+    "question": "ايه اللي في السبرنت التالت؟",
+    "lang": "ar",
+    "expected": ["rose-sprint-3"],
+    "includes": ["sprint/3-wishlist-products-cart", "Wishlist", "Product Reviews"]
+  },
+  {
+    "id": "en-s3-contents",
+    "question": "What are the six tasks in Rose App Sprint 3?",
+    "lang": "en",
+    "expected": ["rose-sprint-3"],
+    "includes": ["Products You May Like", "Add to Cart"]
+  },
+  {
+    "id": "ar-s3-branch",
+    "question": "برانش السبرنت التالت اسمه ايه؟",
+    "lang": "ar",
+    "expected": ["rose-sprint-3"],
+    "includes": ["sprint/3-wishlist-products-cart"]
+  },
+  {
+    "id": "en-s3-pr-wishlist",
+    "question": "What is the PR title for the Sprint 3 wishlist task?",
+    "lang": "en",
+    "expected": ["rose-sprint-3"],
+    "includes": ["feat(wishlist): add wishlist page and add to favorite functionality"]
+  },
+  {
+    "id": "ar-s3-pr-base",
+    "question": "الـ pull request بتاع سبرنت 3 يتفتح على انهي برانش؟",
+    "lang": "ar",
+    "expected": ["rose-sprint-3"],
+    "includes": ["sprint/3-wishlist-products-cart"]
+  },
+  {
+    "id": "ar-wishlist-button",
+    "question": "زر المفضلة على كارت المنتج بيشتغل ازاي؟",
+    "lang": "ar",
+    "expected": ["rose-task-wishlist"],
+    "includes": ["Add to wishlist", "Remove from wishlist"]
+  },
+  {
+    "id": "en-similar-products",
+    "question": "On an out-of-stock wishlist item, what page does Explore Similar Products open and how is it filtered?",
+    "lang": "en",
+    "expected": ["rose-task-wishlist"],
+    "includes": ["filtered by that product's category"]
+  },
+  {
+    "id": "ar-guest-heart",
+    "question": "لو يوزر مش مسجل دخول ضغط على القلب في المفضلة اعمل ايه؟",
+    "lang": "ar",
+    "expected": ["rose-task-wishlist"],
+    "includes": ["Do not guess", "guest"]
+  },
+  {
+    "id": "en-wishlist-api",
+    "question": "Which wishlist API routes are there and who can call them?",
+    "lang": "en",
+    "expected": ["rose-task-wishlist"],
+    "includes": ["DELETE /api/wishlist", "logged-in user"]
+  },
+  {
+    "id": "en-guest-cart",
+    "question": "How does a guest add a product to the cart without logging in?",
+    "lang": "en",
+    "expected": ["rose-task-products-list"],
+    "includes": ["local storage", "no token"]
+  },
+  {
+    "id": "ar-products-filters",
+    "question": "صفحة المنتجات بتبعت انهي فلاتر لـ GET /api/products؟",
+    "lang": "ar",
+    "expected": ["rose-task-products-list"],
+    "includes": ["categoryId", "minPrice", "sortBy"]
+  },
+  {
+    "id": "en-pagination-broken",
+    "question": "If the Pagination component is broken on the products task, is fixing it in scope?",
+    "lang": "en",
+    "expected": ["rose-task-products-list"],
+    "includes": ["fixing it is part of this task"]
+  },
+  {
+    "id": "ar-home-cards",
+    "question": "أربط كروت الصفحة الرئيسية بالـ add to cart ولا لأ؟",
+    "lang": "ar",
+    "expected": ["rose-task-products-list"],
+    "includes": ["Do not guess", "Home page cards were static"]
+  },
+  {
+    "id": "en-long-description",
+    "question": "What happens to a long description on the product details page?",
+    "lang": "en",
+    "expected": ["rose-task-product-overview"],
+    "includes": ["scrolls", "stays in place"]
+  },
+  {
+    "id": "ar-related-api",
+    "question": "في endpoint للـ related products ولا لأ؟",
+    "lang": "ar",
+    "expected": ["rose-task-product-overview"],
+    "includes": ["confirm it before building", "categoryId"]
+  },
+  {
+    "id": "en-qty-feedback",
+    "question": "What feedback is shown when Add to cart is pressed again on the product page?",
+    "lang": "en",
+    "expected": ["rose-task-product-overview"],
+    "includes": ["Quantity increased", "cart icon"]
+  },
+  {
+    "id": "ar-reviews-guest",
+    "question": "الضيف يقدر يكتب ريفيو على المنتج؟",
+    "lang": "ar",
+    "expected": ["rose-task-product-reviews"],
+    "includes": ["Please login to be able to review the product"]
+  },
+  {
+    "id": "en-half-star",
+    "question": "Can a product review be half a star, and what rating does the API accept?",
+    "lang": "en",
+    "expected": ["rose-task-product-reviews"],
+    "includes": ["1.5", "whole-number"]
+  },
+  {
+    "id": "ar-review-body",
+    "question": "نص الريفيو إجباري في الـ API ولا لأ؟",
+    "lang": "ar",
+    "expected": ["rose-task-product-reviews"],
+    "includes": ["content", "optional"]
+  },
+  {
+    "id": "ar-cart-limit",
+    "question": "الحد الأقصى للكمية في السلة كام؟",
+    "lang": "ar",
+    "expected": ["rose-task-cart-list"],
+    "includes": ["use 6"]
+  },
+  {
+    "id": "en-cart-login-merge",
+    "question": "What happens to a guest cart when the guest logs in?",
+    "lang": "en",
+    "expected": ["rose-task-cart-list"],
+    "includes": ["local storage", "cart API"]
+  },
+  {
+    "id": "ar-cart-price",
+    "question": "سعر المنتج في السلة بيتغير لما الكمية تزيد؟",
+    "lang": "ar",
+    "expected": ["rose-task-cart-list"],
+    "includes": ["(x2)", "price for both"]
+  },
+  {
+    "id": "ar-checkout",
+    "question": "صفحة الـ Checkout في تاسك ملخص السلة فيها ايه؟",
+    "lang": "ar",
+    "expected": ["rose-task-cart-summary"],
+    "includes": ["stays empty"]
+  },
+  {
+    "id": "en-coupon-api",
+    "question": "Is there an API endpoint to apply a coupon on the cart summary?",
+    "lang": "en",
+    "expected": ["rose-task-cart-summary"],
+    "includes": ["no apply endpoint", "Do not guess"]
+  },
+  {
+    "id": "ar-carousel",
+    "question": "Products You May Like والكومبوننت بتاع Related Products نفس الحاجة؟",
+    "lang": "ar",
+    "expected": ["rose-task-cart-summary"],
+    "includes": ["same reusable carousel"]
+  },
+  {
+    "id": "en-which-sprint-reviews",
+    "question": "Which sprint is the product reviews task in?",
+    "lang": "en",
+    "expected": ["rose-sprint-3"],
+    "includes": ["Product Reviews"]
+  },
+  {
+    "id": "ar-clear-wishlist",
+    "question": "زرار Clear wishlist بيعمل ايه؟",
+    "lang": "ar",
+    "expected": ["rose-task-wishlist"],
+    "includes": ["removes every item"]
+  }
+]

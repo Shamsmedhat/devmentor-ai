@@ -122,6 +122,16 @@ Example shape only — still list every task in the plan, not just the two shown
 
 2. **Input**
    - 7 أنواع: Text، Search، Number، File، Phone، OTP، Password
+
+السبرنت التاني في Rose App بيركز على الـ Authentication. فيه **6 تاسكات**:
+
+1. **NextAuth Setup & Config**
+   - NextAuth / Auth.js، Credentials provider
+   - جلسات JWT، حماية الراوتس، SessionProvider
+
+2. **Authentication Layout**
+   - تخطيط عمودين (فورم + صورة)
+   - زر اللغة، Light/Dark، RTL/LTR
 </answering_sprint_questions>
 
 <answering_task_questions>

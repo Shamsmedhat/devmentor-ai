@@ -5,7 +5,9 @@
     "lang": "ar",
     "topic": "sprints overview",
     "type": "covered",
-    "expected": ["rose-app-overview"]
+    "expected": [
+      "rose-app-overview"
+    ]
   },
   {
     "id": "ar-sprint-1",
@@ -13,7 +15,9 @@
     "lang": "ar",
     "topic": "sprint 1",
     "type": "covered",
-    "expected": ["rose-sprint-1"]
+    "expected": [
+      "rose-sprint-1"
+    ]
   },
   {
     "id": "ar-dropdown-task",
@@ -21,7 +25,10 @@
     "lang": "ar",
     "topic": "combobox task",
     "type": "covered",
-    "expected": ["rose-task-combobox-select-menu", "rose-app-component-combobox"]
+    "expected": [
+      "rose-task-combobox-select-menu",
+      "rose-app-component-combobox"
+    ]
   },
   {
     "id": "en-sprint-1-tasks",
@@ -29,7 +36,9 @@
     "lang": "en",
     "topic": "sprint 1",
     "type": "covered",
-    "expected": ["rose-sprint-1"]
+    "expected": [
+      "rose-sprint-1"
+    ]
   },
   {
     "id": "en-elevate-sprints",
@@ -37,7 +46,9 @@
     "lang": "en",
     "topic": "sprints overview",
     "type": "covered",
-    "expected": ["rose-app-overview"]
+    "expected": [
+      "rose-app-overview"
+    ]
   },
   {
     "id": "ar-weekly-schedule",
@@ -45,7 +56,9 @@
     "lang": "ar",
     "topic": "weekly schedule",
     "type": "covered",
-    "expected": ["rose-app-overview"]
+    "expected": [
+      "rose-app-overview"
+    ]
   },
   {
     "id": "en-jira-states",
@@ -53,7 +66,9 @@
     "lang": "en",
     "topic": "jira workflow",
     "type": "covered",
-    "expected": ["rose-app-overview"]
+    "expected": [
+      "rose-app-overview"
+    ]
   },
   {
     "id": "ar-who-to-ask",
@@ -61,7 +76,9 @@
     "lang": "ar",
     "topic": "escalation",
     "type": "covered",
-    "expected": ["rose-app-overview"]
+    "expected": [
+      "rose-app-overview"
+    ]
   },
   {
     "id": "ar-input-task",
@@ -69,7 +86,10 @@
     "lang": "ar",
     "topic": "input task",
     "type": "covered",
-    "expected": ["rose-task-input", "rose-app-component-input"]
+    "expected": [
+      "rose-task-input",
+      "rose-app-component-input"
+    ]
   },
   {
     "id": "en-input-otp-password",
@@ -77,7 +97,10 @@
     "lang": "en",
     "topic": "input task",
     "type": "covered",
-    "expected": ["rose-task-input", "rose-app-component-input"]
+    "expected": [
+      "rose-task-input",
+      "rose-app-component-input"
+    ]
   },
   {
     "id": "ar-project-setup",
@@ -85,7 +108,9 @@
     "lang": "ar",
     "topic": "project setup task",
     "type": "covered",
-    "expected": ["rose-task-project-setup"]
+    "expected": [
+      "rose-task-project-setup"
+    ]
   },
   {
     "id": "en-fonts",
@@ -93,7 +118,10 @@
     "lang": "en",
     "topic": "typography",
     "type": "covered",
-    "expected": ["rose-task-project-setup", "rose-app-design-tokens"]
+    "expected": [
+      "rose-task-project-setup",
+      "rose-app-design-tokens"
+    ]
   },
   {
     "id": "ar-combobox-search",
@@ -101,7 +129,10 @@
     "lang": "ar",
     "topic": "combobox task",
     "type": "covered",
-    "expected": ["rose-task-combobox-select-menu", "rose-app-component-combobox"]
+    "expected": [
+      "rose-task-combobox-select-menu",
+      "rose-app-component-combobox"
+    ]
   },
   {
     "id": "en-menu-component",
@@ -109,7 +140,9 @@
     "lang": "en",
     "topic": "menu task",
     "type": "covered",
-    "expected": ["rose-task-combobox-select-menu"]
+    "expected": [
+      "rose-task-combobox-select-menu"
+    ]
   },
   {
     "id": "ar-header-footer-task",
@@ -117,7 +150,9 @@
     "lang": "ar",
     "topic": "home page task",
     "type": "covered",
-    "expected": ["rose-task-home-header-footer-notifications"]
+    "expected": [
+      "rose-task-home-header-footer-notifications"
+    ]
   },
   {
     "id": "ar-newsletter-endpoint",
@@ -125,7 +160,9 @@
     "lang": "ar",
     "topic": "home page task",
     "type": "covered",
-    "expected": ["rose-task-home-header-footer-notifications"]
+    "expected": [
+      "rose-task-home-header-footer-notifications"
+    ]
   },
   {
     "id": "en-push-permission",
@@ -133,7 +170,9 @@
     "lang": "en",
     "topic": "home page task",
     "type": "covered",
-    "expected": ["rose-task-home-header-footer-notifications"]
+    "expected": [
+      "rose-task-home-header-footer-notifications"
+    ]
   },
   {
     "id": "ar-pagination-url",
@@ -141,7 +180,10 @@
     "lang": "ar",
     "topic": "pagination task",
     "type": "covered",
-    "expected": ["rose-task-pagination-toast-tabs-textarea", "rose-app-component-pagination"]
+    "expected": [
+      "rose-task-pagination-toast-tabs-textarea",
+      "rose-app-component-pagination"
+    ]
   },
   {
     "id": "en-mode-toggle",
@@ -149,7 +191,9 @@
     "lang": "en",
     "topic": "mode toggle task",
     "type": "covered",
-    "expected": ["rose-task-button-checkbox-badge-mode-toggle"]
+    "expected": [
+      "rose-task-button-checkbox-badge-mode-toggle"
+    ]
   },
   {
     "id": "en-which-sprint-header",
@@ -157,7 +201,9 @@
     "lang": "en",
     "topic": "sprint plan",
     "type": "covered",
-    "expected": ["rose-sprint-1"]
+    "expected": [
+      "rose-sprint-1"
+    ]
   },
   {
     "id": "en-primary-color",
@@ -165,7 +211,10 @@
     "lang": "en",
     "topic": "design tokens",
     "type": "covered",
-    "expected": ["rose-app-design-tokens", "rose-app-color-primitives"]
+    "expected": [
+      "rose-app-design-tokens",
+      "rose-app-color-primitives"
+    ]
   },
   {
     "id": "ar-error-color",
@@ -173,7 +222,10 @@
     "lang": "ar",
     "topic": "design tokens",
     "type": "covered",
-    "expected": ["rose-app-design-tokens", "rose-app-component-input"]
+    "expected": [
+      "rose-app-design-tokens",
+      "rose-app-component-input"
+    ]
   },
   {
     "id": "en-button-variants",
@@ -181,7 +233,9 @@
     "lang": "en",
     "topic": "button component",
     "type": "covered",
-    "expected": ["rose-app-component-button"]
+    "expected": [
+      "rose-app-component-button"
+    ]
   },
   {
     "id": "ar-toast-variants",
@@ -189,7 +243,9 @@
     "lang": "ar",
     "topic": "toast component",
     "type": "covered",
-    "expected": ["rose-app-component-toast"]
+    "expected": [
+      "rose-app-component-toast"
+    ]
   },
   {
     "id": "ar-badge",
@@ -197,7 +253,9 @@
     "lang": "ar",
     "topic": "badge component",
     "type": "covered",
-    "expected": ["rose-app-component-badge"]
+    "expected": [
+      "rose-app-component-badge"
+    ]
   },
   {
     "id": "ar-rules-ai-tools",
@@ -205,7 +263,9 @@
     "lang": "ar",
     "topic": "team rules",
     "type": "covered",
-    "expected": ["ضوابط الفِرَق.pdf"]
+    "expected": [
+      "ضوابط الفِرَق.pdf"
+    ]
   },
   {
     "id": "ar-rules-min-grade",
@@ -213,7 +273,9 @@
     "lang": "ar",
     "topic": "team rules",
     "type": "covered",
-    "expected": ["ضوابط الفِرَق.pdf"]
+    "expected": [
+      "ضوابط الفِرَق.pdf"
+    ]
   },
   {
     "id": "ar-rules-late-task",
@@ -221,7 +283,9 @@
     "lang": "ar",
     "topic": "team rules",
     "type": "covered",
-    "expected": ["ضوابط الفِرَق.pdf"]
+    "expected": [
+      "ضوابط الفِرَق.pdf"
+    ]
   },
   {
     "id": "en-rules-excuse",
@@ -229,7 +293,9 @@
     "lang": "en",
     "topic": "team rules",
     "type": "covered",
-    "expected": ["ضوابط الفِرَق.pdf"]
+    "expected": [
+      "ضوابط الفِرَق.pdf"
+    ]
   },
   {
     "id": "en-control-usestate",
@@ -279,7 +345,9 @@
     "lang": "ar",
     "topic": "git workflow",
     "type": "covered",
-    "expected": ["rose-app-git-pr-workflow"]
+    "expected": [
+      "rose-app-git-pr-workflow"
+    ]
   },
   {
     "id": "en-git-pr-target",
@@ -287,7 +355,9 @@
     "lang": "en",
     "topic": "git workflow",
     "type": "covered",
-    "expected": ["rose-app-git-pr-workflow"]
+    "expected": [
+      "rose-app-git-pr-workflow"
+    ]
   },
   {
     "id": "ar-git-commit-message",
@@ -295,7 +365,9 @@
     "lang": "ar",
     "topic": "git workflow",
     "type": "covered",
-    "expected": ["rose-app-git-pr-workflow"]
+    "expected": [
+      "rose-app-git-pr-workflow"
+    ]
   },
   {
     "id": "ar-clean-code-names",
@@ -303,7 +375,9 @@
     "lang": "ar",
     "topic": "clean code",
     "type": "covered",
-    "expected": ["rose-app-clean-code"]
+    "expected": [
+      "rose-app-clean-code"
+    ]
   },
   {
     "id": "en-clean-code-component-order",
@@ -311,7 +385,9 @@
     "lang": "en",
     "topic": "clean code",
     "type": "covered",
-    "expected": ["rose-app-clean-code"]
+    "expected": [
+      "rose-app-clean-code"
+    ]
   },
   {
     "id": "ar-clean-code-any-comments",
@@ -319,7 +395,9 @@
     "lang": "ar",
     "topic": "clean code",
     "type": "covered",
-    "expected": ["rose-app-clean-code"]
+    "expected": [
+      "rose-app-clean-code"
+    ]
   },
   {
     "id": "ar-control-git",
@@ -334,5 +412,87 @@
     "lang": "en",
     "topic": "control - general state",
     "type": "control"
+  },
+  {
+    "id": "ar-sprint-2",
+    "question": "طيب اية السبرنت التاني ؟",
+    "lang": "ar",
+    "topic": "sprint 2",
+    "type": "covered",
+    "expected": [
+      "rose-sprint-2"
+    ]
+  },
+  {
+    "id": "en-sprint-2-tasks",
+    "question": "What are the tasks in Rose App Sprint 2?",
+    "lang": "en",
+    "topic": "sprint 2",
+    "type": "covered",
+    "expected": [
+      "rose-sprint-2"
+    ]
+  },
+  {
+    "id": "ar-nextauth-task",
+    "question": "تاسك NextAuth Setup & Config مطلوب فيه ايه؟",
+    "lang": "ar",
+    "topic": "nextauth task",
+    "type": "covered",
+    "expected": [
+      "rose-task-nextauth-setup-config"
+    ]
+  },
+  {
+    "id": "en-login-page-task",
+    "question": "What does the Login Page task require in Rose App?",
+    "lang": "en",
+    "topic": "login page task",
+    "type": "covered",
+    "expected": [
+      "rose-task-login-page"
+    ]
+  },
+  {
+    "id": "en-which-sprint-login",
+    "question": "Which sprint is the Login Page task in?",
+    "lang": "en",
+    "topic": "sprint plan",
+    "type": "covered",
+    "expected": [
+      "rose-sprint-2"
+    ]
+  },
+  {
+    "id": "ar-sprint-3",
+    "question": "طيب اية السبرنت التالت ؟",
+    "lang": "ar",
+    "topic": "sprint 3",
+    "type": "covered",
+    "expected": ["rose-sprint-3"]
+  },
+  {
+    "id": "en-sprint-3-tasks",
+    "question": "What are the tasks in Rose App Sprint 3?",
+    "lang": "en",
+    "topic": "sprint 3",
+    "type": "covered",
+    "expected": ["rose-sprint-3"]
+  },
+  {
+    "id": "ar-wishlist-task",
+    "question": "تاسك الـ Wishlist مطلوب فيها ايه؟",
+    "lang": "ar",
+    "topic": "wishlist task",
+    "type": "covered",
+    "expected": ["rose-task-wishlist"]
+  },
+  {
+    "id": "en-cart-coupon",
+    "question": "How does the cart coupon work in the Rose App summary task?",
+    "lang": "en",
+    "topic": "cart summary task",
+    "type": "covered",
+    "expected": ["rose-task-cart-summary"]
   }
 ]
